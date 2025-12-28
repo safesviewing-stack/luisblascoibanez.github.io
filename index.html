@@ -1,226 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Luis Blasco-Ibáñez | Industrial Design</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Luis Blasco-Ibáñez | Industrial Design</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root {
-      --blue-1:#0f4c81;
-      --blue-2:#0d4270;
-      --blue-3:#0b385f;
-      --blue-4:#092e4f;
-      --blue-5:#07243e;
-      --black:#0b0b0b;
-      --white:#ffffff;
-      --gray:#f5f7fa;
-    }
+<style>
+:root{
+  --blue:#0f4c81;
+  --dark:#0b0b0b;
+  --gray:#f5f7fa;
+}
 
-    *{margin:0;padding:0;box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      font-family:"Segoe UI",Helvetica,Arial,sans-serif;
-      background:var(--gray);
-      color:#222;
-      line-height:1.7;
-    }
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:"Segoe UI",Arial,sans-serif;
+  background:var(--gray);
+  color:#222;
+}
 
-    /* NAV */
-    nav{
-      position:fixed;
-      top:0;
-      width:100%;
-      height:90px;
-      background:var(--black);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:0 60px;
-      z-index:1000;
-    }
-    nav h1{color:white;font-size:20px;font-weight:500}
-    nav a{
-      color:white;
-      margin-left:30px;
-      text-decoration:none;
-      font-size:15px;
-      position:relative;
-    }
-    nav a::after{
-      content:"";
-      position:absolute;
-      width:0;height:2px;
-      background:var(--blue-1);
-      bottom:-6px;left:0;
-      transition:.3s;
-    }
-    nav a:hover::after{width:100%}
-    .lang{
-      border:1px solid #444;
-      padding:6px 12px;
-      border-radius:20px;
-      font-size:13px;
-      cursor:pointer;
-    }
+/* NAV */
+nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  height:85px;
+  background:var(--dark);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 60px;
+  z-index:1000;
+}
+nav h1{color:white;font-size:20px;font-weight:500}
 
-    /* HERO */
-    header{
-      height:95vh;
-      background:
-      linear-gradient(rgba(11,11,11,.6),rgba(11,11,11,.6)),
-      url("https://images.unsplash.com/photo-1581090700227-1e37b190418e") center/cover;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      color:white;
-      padding:0 20px;
-    }
-    header h2{font-size:52px;margin-bottom:20px}
-    header p{font-size:20px;max-width:700px;margin:auto}
+.menu a{
+  color:white;
+  margin-left:30px;
+  text-decoration:none;
+  font-size:15px;
+  cursor:pointer;
+}
 
-    /* SECTIONS */
-    section{
-      max-width:1150px;
-      margin:auto;
-      padding:130px 40px;
-      opacity:0;
-      transform:translateY(40px);
-      transition:all .8s ease;
-    }
-    section.visible{
-      opacity:1;
-      transform:translateY(0);
-    }
-    h3{font-size:34px;margin-bottom:50px;color:var(--blue-3)}
+.lang{
+  margin-left:50px;
+  border:1px solid #555;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:13px;
+  cursor:pointer;
+  color:white;
+}
 
-    /* ABOUT */
-    .profile{
-      display:grid;
-      grid-template-columns:260px 1fr;
-      gap:50px;
-      align-items:center;
-    }
-    .profile img{
-      width:100%;
-      border-radius:50%;
-      box-shadow:0 20px 50px rgba(0,0,0,.3);
-    }
+/* SECTIONS */
+section{
+  display:none;
+  max-width:1100px;
+  margin:auto;
+  padding:140px 40px;
+}
+section.active{display:block}
 
-    /* PORTFOLIO */
-    .portfolio-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:35px;
-    }
-    .portfolio-item{
-      background:white;
-      padding:35px;
-      border-radius:10px;
-      min-height:220px;
-      box-shadow:0 15px 40px rgba(0,0,0,.12);
-      transition:.3s;
-      cursor:pointer;
-    }
-    .portfolio-item:hover{transform:translateY(-8px)}
-    .portfolio-item h4{margin-bottom:10px;color:var(--blue-3)}
-    .portfolio-item p{font-size:14px;color:#555}
+h2{
+  color:var(--blue);
+  font-size:34px;
+  margin-bottom:40px;
+}
 
-    /* CONTACT */
-    .contact{
-      background:var(--blue-5);
-      color:white;
-      text-align:center;
-      padding:100px 20px;
-    }
+/* CV */
+.profile{
+  display:grid;
+  grid-template-columns:260px 1fr;
+  gap:50px;
+  margin-bottom:60px;
+}
+.profile img{
+  width:100%;
+  border-radius:50%;
+  box-shadow:0 20px 40px rgba(0,0,0,.25);
+}
 
-    footer{
-      background:var(--black);
-      color:#aaa;
-      text-align:center;
-      padding:25px;
-      font-size:14px;
-    }
-  </style>
+.cv-block{margin-bottom:40px}
+.cv-block h3{
+  font-size:20px;
+  margin-bottom:15px;
+  color:#111;
+}
+.cv-block p, .cv-block li{
+  font-size:15px;
+  line-height:1.7;
+  color:#444;
+}
+ul{padding-left:20px}
+
+/* PORTFOLIO */
+.portfolio-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
+}
+.project{
+  background:white;
+  padding:30px;
+  border-radius:10px;
+  box-shadow:0 15px 30px rgba(0,0,0,.1);
+}
+.project h4{margin-bottom:10px;color:var(--blue)}
+.project p{font-size:14px;color:#555}
+
+/* CONTACT */
+.contact p{font-size:16px;margin-bottom:10px}
+
+footer{
+  text-align:center;
+  padding:20px;
+  background:#000;
+  color:#aaa;
+  font-size:14px;
+}
+</style>
 </head>
 
 <body>
 
 <nav>
   <h1>Luis Blasco-Ibáñez</h1>
-  <div>
-    <a href="#about">About</a>
-    <a href="#portfolio">Portfolio</a>
-    <a href="#contact">Contact</a>
+  <div class="menu">
+    <a onclick="showSection('cv')">CV</a>
+    <a onclick="showSection('portfolio')">Portfolio</a>
+    <a onclick="showSection('contact')">Contact</a>
     <span class="lang" onclick="toggleLang()">ES / EN</span>
   </div>
 </nav>
 
-<header>
-  <div>
-    <h2 data-en="Industrial Design & 3D Modeling"
-        data-es="Diseño Industrial & Modelado 3D">
-        Industrial Design & 3D Modeling
-    </h2>
-    <p data-en="Product-focused design combining 3D modeling, functionality and user-centered thinking."
-       data-es="Diseño de producto enfocado en modelado 3D, funcionalidad y enfoque humano.">
-       Product-focused design combining 3D modeling, functionality and user-centered thinking.
-    </p>
-  </div>
-</header>
+<!-- CV -->
+<section id="cv" class="active">
+<h2 data-en="Curriculum Vitae" data-es="Currículum Vitae">Curriculum Vitae</h2>
 
-<section id="about">
-  <h3 data-en="About Me" data-es="Sobre mí">About Me</h3>
-  <div class="profile">
-    <img src="profile.jpg" alt="Luis Blasco-Ibáñez">
-    <p data-en="Industrial design student focused on 3D modeling as a core design tool. I combine technical precision and creativity to develop functional, well-defined products."
-       data-es="Estudiante de diseño industrial con el modelado 3D como herramienta central. Combino precisión técnica y creatividad para desarrollar productos funcionales y bien definidos.">
-    </p>
-  </div>
-</section>
-
-<section id="portfolio">
-  <h3>Portfolio</h3>
-  <div class="portfolio-grid">
-    <div class="portfolio-item"><h4>Project 1</h4><p>Product design – coming soon</p></div>
-    <div class="portfolio-item"><h4>Project 2</h4><p>3D modeling & prototyping – coming soon</p></div>
-    <div class="portfolio-item"><h4>Project 3</h4><p>Technical development – coming soon</p></div>
-    <div class="portfolio-item"><h4>Project 4</h4><p>Concept design – coming soon</p></div>
-    <div class="portfolio-item"><h4>Project 5</h4><p>Manufacturing-oriented design – coming soon</p></div>
-  </div>
-</section>
-
-<div class="contact" id="contact">
-  <h3>Contact</h3>
-  <p>Email: luisblascoibanezberbel@gmail.com</p>
-  <p>Valencia, Spain</p>
+<div class="profile">
+  <img src="profile.jpg" alt="Luis Blasco-Ibáñez">
+  <p data-en="
+Industrial design student with a strong focus on 3D modeling as a key design tool.
+I combine technical skills, creativity and a human-centered approach to develop functional,
+feasible and well-defined products."
+data-es="
+Estudiante de diseño industrial con un fuerte enfoque en el modelado 3D como herramienta clave
+del proceso de diseño. Combino habilidades técnicas, creatividad y un enfoque centrado en el
+usuario para desarrollar productos funcionales, viables y bien definidos.">
+</p>
 </div>
 
+<div class="cv-block">
+<h3 data-en="Professional Profile" data-es="Perfil profesional">Professional Profile</h3>
+<p data-en="
+Strong interest in product design and development, especially in environments where 3D modeling
+plays a central role in defining geometry, validating concepts and preparing products for manufacturing."
+data-es="
+Interés por el diseño y desarrollo de producto, especialmente en entornos donde el modelado 3D
+tiene un papel central en la definición de geometría, validación de conceptos y preparación para
+fabricación.">
+</p>
+</div>
+
+<div class="cv-block">
+<h3 data-en="Skills" data-es="Competencias">Skills</h3>
+<ul>
+<li>3D Modeling: Inventor, SolidWorks, Fusion 360, Rhinoceros</li>
+<li>Product design & technical development</li>
+<li>Prototyping and manufacturing-oriented design</li>
+<li>3D printing and laser cutting</li>
+</ul>
+</div>
+
+<div class="cv-block">
+<h3 data-en="Software" data-es="Software">Software</h3>
+<p>Adobe Illustrator · Photoshop · InDesign · Animate · AutoCAD</p>
+</div>
+
+<div class="cv-block">
+<h3 data-en="Education" data-es="Formación">Education</h3>
+<p>
+BSc Industrial Design Engineering – UPV (2024 – Present)<br>
+BSc Industrial Design Engineering – UJI (2021 – 2024)<br>
+Advanced & Intermediate Vocational Training in Electrical Installations
+</p>
+</div>
+
+<div class="cv-block">
+<h3 data-en="Languages" data-es="Idiomas">Languages</h3>
+<p>Spanish (Native) · Valencian (B1) · English (B2)</p>
+</div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+<h2>Portfolio</h2>
+<div class="portfolio-grid">
+  <div class="project"><h4>Project 1</h4><p>Product design – coming soon</p></div>
+  <div class="project"><h4>Project 2</h4><p>3D modeling & prototyping – coming soon</p></div>
+  <div class="project"><h4>Project 3</h4><p>Technical development – coming soon</p></div>
+  <div class="project"><h4>Project 4</h4><p>Concept design – coming soon</p></div>
+  <div class="project"><h4>Project 5</h4><p>Manufacturing-oriented design – coming soon</p></div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+<h2>Contact</h2>
+<div class="contact">
+<p>Email: luisblascoibanezberbel@gmail.com</p>
+<p>Valencia, Spain</p>
+</div>
+</section>
+
 <footer>
-  © 2025 · Luis Blasco-Ibáñez
+© 2025 · Luis Blasco-Ibáñez
 </footer>
 
 <script>
-  /* SCROLL ANIMATION */
-  const sections=document.querySelectorAll("section");
-  const reveal=()=>{
-    sections.forEach(sec=>{
-      const top=sec.getBoundingClientRect().top;
-      if(top<window.innerHeight-100){sec.classList.add("visible")}
-    });
-  };
-  window.addEventListener("scroll",reveal);
-  reveal();
+function showSection(id){
+  document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
 
-  /* LANGUAGE TOGGLE */
-  let en=true;
-  function toggleLang(){
-    en=!en;
-    document.querySelectorAll("[data-en]").forEach(el=>{
-      el.textContent=en?el.dataset.en:el.dataset.es;
-    });
-  }
+let en=true;
+function toggleLang(){
+  en=!en;
+  document.querySelectorAll("[data-en]").forEach(el=>{
+    el.textContent=en?el.dataset.en:el.dataset.es;
+  });
+}
 </script>
 
 </body>

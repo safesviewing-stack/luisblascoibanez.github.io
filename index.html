@@ -6,173 +6,222 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --blue-1:#0f4c81;
+      --blue-2:#0d4270;
+      --blue-3:#0b385f;
+      --blue-4:#092e4f;
+      --blue-5:#07243e;
+      --black:#0b0b0b;
+      --white:#ffffff;
+      --gray:#f5f7fa;
     }
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f4f4f4;
-      color: #222;
-      line-height: 1.6;
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"Segoe UI",Helvetica,Arial,sans-serif;
+      background:var(--gray);
+      color:#222;
+      line-height:1.7;
     }
 
-    /* MENU */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: #111;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
+    /* NAV */
+    nav{
+      position:fixed;
+      top:0;
+      width:100%;
+      height:90px;
+      background:var(--black);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 60px;
+      z-index:1000;
+    }
+    nav h1{color:white;font-size:20px;font-weight:500}
+    nav a{
+      color:white;
+      margin-left:30px;
+      text-decoration:none;
+      font-size:15px;
+      position:relative;
+    }
+    nav a::after{
+      content:"";
+      position:absolute;
+      width:0;height:2px;
+      background:var(--blue-1);
+      bottom:-6px;left:0;
+      transition:.3s;
+    }
+    nav a:hover::after{width:100%}
+    .lang{
+      border:1px solid #444;
+      padding:6px 12px;
+      border-radius:20px;
+      font-size:13px;
+      cursor:pointer;
     }
 
-    nav h1 {
-      color: white;
-      font-size: 18px;
-      font-weight: normal;
+    /* HERO */
+    header{
+      height:95vh;
+      background:
+      linear-gradient(rgba(11,11,11,.6),rgba(11,11,11,.6)),
+      url("https://images.unsplash.com/photo-1581090700227-1e37b190418e") center/cover;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:white;
+      padding:0 20px;
     }
+    header h2{font-size:52px;margin-bottom:20px}
+    header p{font-size:20px;max-width:700px;margin:auto}
 
-    nav a {
-      color: white;
-      margin-left: 20px;
-      text-decoration: none;
-      font-size: 14px;
+    /* SECTIONS */
+    section{
+      max-width:1150px;
+      margin:auto;
+      padding:130px 40px;
+      opacity:0;
+      transform:translateY(40px);
+      transition:all .8s ease;
     }
-
-    nav a:hover {
-      text-decoration: underline;
+    section.visible{
+      opacity:1;
+      transform:translateY(0);
     }
+    h3{font-size:34px;margin-bottom:50px;color:var(--blue-3)}
 
-    section {
-      max-width: 1000px;
-      margin: auto;
-      padding: 100px 30px 60px;
+    /* ABOUT */
+    .profile{
+      display:grid;
+      grid-template-columns:260px 1fr;
+      gap:50px;
+      align-items:center;
     }
-
-    h2 {
-      margin-bottom: 20px;
-      border-bottom: 2px solid #ddd;
-      padding-bottom: 5px;
-    }
-
-    .block {
-      margin-bottom: 40px;
+    .profile img{
+      width:100%;
+      border-radius:50%;
+      box-shadow:0 20px 50px rgba(0,0,0,.3);
     }
 
     /* PORTFOLIO */
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+    .portfolio-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:35px;
+    }
+    .portfolio-item{
+      background:white;
+      padding:35px;
+      border-radius:10px;
+      min-height:220px;
+      box-shadow:0 15px 40px rgba(0,0,0,.12);
+      transition:.3s;
+      cursor:pointer;
+    }
+    .portfolio-item:hover{transform:translateY(-8px)}
+    .portfolio-item h4{margin-bottom:10px;color:var(--blue-3)}
+    .portfolio-item p{font-size:14px;color:#555}
+
+    /* CONTACT */
+    .contact{
+      background:var(--blue-5);
+      color:white;
+      text-align:center;
+      padding:100px 20px;
     }
 
-    .project {
-      background: white;
-      padding: 20px;
-      border-radius: 4px;
-    }
-
-    .project img {
-      width: 100%;
-      border-radius: 4px;
-      margin-bottom: 10px;
-    }
-
-    footer {
-      background: #111;
-      color: white;
-      text-align: center;
-      padding: 30px;
-      font-size: 14px;
+    footer{
+      background:var(--black);
+      color:#aaa;
+      text-align:center;
+      padding:25px;
+      font-size:14px;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- MENU -->
-  <nav>
-    <h1>Luis Blasco-Ibáñez</h1>
-    <div>
-      <a href="#cv">CV</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
+<nav>
+  <h1>Luis Blasco-Ibáñez</h1>
+  <div>
+    <a href="#about">About</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#contact">Contact</a>
+    <span class="lang" onclick="toggleLang()">ES / EN</span>
+  </div>
+</nav>
 
-  <!-- CV -->
-  <section id="cv">
-    <h2>Professional Profile</h2>
-    <div class="block">
-      <p>
-        Industrial design student with a strong focus on 3D modeling as a key tool in the design
-        process. I combine technical knowledge, creative thinking, and user-centered sensitivity
-        to develop functional, feasible, and well-defined products.
-      </p>
-      <br>
-      <p>
-        I work confidently with solid and surface modeling tools such as Autodesk Inventor,
-        Fusion 360, SolidWorks, and Rhinoceros, adapting to different product types and
-        manufacturing contexts.
-      </p>
-    </div>
-
-    <h2>Skills</h2>
-    <div class="block">
-      <p><strong>3D Modeling:</strong> Inventor · Fusion 360 · SolidWorks · Rhino</p>
-      <p><strong>Software:</strong> Adobe Illustrator · Photoshop · InDesign · Animate · AutoCAD</p>
-      <p><strong>Manufacturing:</strong> 3D Printing · Laser Cutting · Prototyping</p>
-      <p><strong>Languages:</strong> Spanish (Native) · Valencian (B1) · English (B2)</p>
-    </div>
-
-    <h2>Experience & Education</h2>
-    <div class="block">
-      <p><strong>Industrial Design Engineering</strong> – UPV (2024 – present)</p>
-      <p><strong>Industrial Design Engineering</strong> – UJI (2021 – 2024)</p>
-      <p>Higher and Intermediate Vocational Training in Electrotechnical Installations</p>
-    </div>
-  </section>
-
-  <!-- PORTFOLIO -->
-  <section id="portfolio">
-    <h2>Portfolio</h2>
-    <p class="block">
-      Selection of projects where 3D modeling is the main tool used to define,
-      validate, and materialize design solutions.
+<header>
+  <div>
+    <h2 data-en="Industrial Design & 3D Modeling"
+        data-es="Diseño Industrial & Modelado 3D">
+        Industrial Design & 3D Modeling
+    </h2>
+    <p data-en="Product-focused design combining 3D modeling, functionality and user-centered thinking."
+       data-es="Diseño de producto enfocado en modelado 3D, funcionalidad y enfoque humano.">
+       Product-focused design combining 3D modeling, functionality and user-centered thinking.
     </p>
+  </div>
+</header>
 
-    <div class="projects">
-      <div class="project">
-        <img src="proyecto1.jpg" alt="Project 1">
-        <h3>Product Design Project</h3>
-        <p>3D modeling, functional design, and prototyping.</p>
-      </div>
+<section id="about">
+  <h3 data-en="About Me" data-es="Sobre mí">About Me</h3>
+  <div class="profile">
+    <img src="profile.jpg" alt="Luis Blasco-Ibáñez">
+    <p data-en="Industrial design student focused on 3D modeling as a core design tool. I combine technical precision and creativity to develop functional, well-defined products."
+       data-es="Estudiante de diseño industrial con el modelado 3D como herramienta central. Combino precisión técnica y creatividad para desarrollar productos funcionales y bien definidos.">
+    </p>
+  </div>
+</section>
 
-      <div class="project">
-        <img src="proyecto2.jpg" alt="Project 2">
-        <h3>3D Printed Prototype</h3>
-        <p>Technical development and geometry validation.</p>
-      </div>
-    </div>
-  </section>
+<section id="portfolio">
+  <h3>Portfolio</h3>
+  <div class="portfolio-grid">
+    <div class="portfolio-item"><h4>Project 1</h4><p>Product design – coming soon</p></div>
+    <div class="portfolio-item"><h4>Project 2</h4><p>3D modeling & prototyping – coming soon</p></div>
+    <div class="portfolio-item"><h4>Project 3</h4><p>Technical development – coming soon</p></div>
+    <div class="portfolio-item"><h4>Project 4</h4><p>Concept design – coming soon</p></div>
+    <div class="portfolio-item"><h4>Project 5</h4><p>Manufacturing-oriented design – coming soon</p></div>
+  </div>
+</section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: luisblascoibanezberbel@gmail.com</p>
-    <p>Phone: +34 630 511 806</p>
-    <p>Valencia, Spain</p>
-  </section>
+<div class="contact" id="contact">
+  <h3>Contact</h3>
+  <p>Email: luisblascoibanezberbel@gmail.com</p>
+  <p>Valencia, Spain</p>
+</div>
 
-  <footer>
-    © 2025 · Luis Blasco-Ibáñez Berbel
-  </footer>
+<footer>
+  © 2025 · Luis Blasco-Ibáñez
+</footer>
+
+<script>
+  /* SCROLL ANIMATION */
+  const sections=document.querySelectorAll("section");
+  const reveal=()=>{
+    sections.forEach(sec=>{
+      const top=sec.getBoundingClientRect().top;
+      if(top<window.innerHeight-100){sec.classList.add("visible")}
+    });
+  };
+  window.addEventListener("scroll",reveal);
+  reveal();
+
+  /* LANGUAGE TOGGLE */
+  let en=true;
+  function toggleLang(){
+    en=!en;
+    document.querySelectorAll("[data-en]").forEach(el=>{
+      el.textContent=en?el.dataset.en:el.dataset.es;
+    });
+  }
+</script>
 
 </body>
 </html>

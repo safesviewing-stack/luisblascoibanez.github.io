@@ -5,7 +5,7 @@
 <title>Portfolio | Industrial Designer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- TIPOGRAFÍA -->
+<!-- TYPOGRAPHY -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -118,7 +118,7 @@ section.active {
     margin: auto;
 }
 
-/* MÁS AIRE SOLO EN ESTAS SECCIONES */
+/* Extra spacing for inner sections */
 .spaced {
     padding: 60px 0;
 }
@@ -229,10 +229,21 @@ footer {
 
         <nav>
             <ul>
-                <li class="tab active" data-tab="home">Home</li>
-                <li class="tab" data-tab="cv">CV</li>
-                <li class="tab" data-tab="portfolio">Portfolio</li>
-                <li class="tab" data-tab="contact">Contact</li>
+                <li class="tab active" data-tab="home"
+                    data-es="Home"
+                    data-en="Home">Home</li>
+
+                <li class="tab" data-tab="cv"
+                    data-es="Curriculum vitae"
+                    data-en="Curriculum vitae">Curriculum vitae</li>
+
+                <li class="tab" data-tab="portfolio"
+                    data-es="Portfolio"
+                    data-en="Portfolio">Portfolio</li>
+
+                <li class="tab" data-tab="contact"
+                    data-es="Contacto"
+                    data-en="Contact">Contacto</li>
             </ul>
         </nav>
 
@@ -249,7 +260,8 @@ footer {
 <section id="home" class="home active">
     <div class="container">
         <div class="home-text">
-            <h1 data-es="Diseñador Industrial" data-en="Industrial Designer">
+            <h1 data-es="Diseñador Industrial"
+                data-en="Industrial Designer">
                 Diseñador Industrial
             </h1>
             <p data-es="Producto · Proceso · Función"
@@ -263,33 +275,41 @@ footer {
 <!-- CV -->
 <section id="cv">
     <div class="container spaced">
-        <h1>CV</h1>
+        <h1 data-es="Curriculum vitae"
+            data-en="Curriculum vitae">
+            Curriculum vitae
+        </h1>
 
         <div class="cv">
             <img src="profile.jpg" alt="Profile">
 
             <div>
-                <h2>Profile</h2>
-                <p>
-                    Industrial designer with experience in the electrical industry,
-                    focused on functional, precise and human-centered solutions.
+                <h2 data-es="Perfil" data-en="Profile">Perfil</h2>
+                <p data-es="Diseñador industrial con experiencia en el sector eléctrico, enfocado en soluciones funcionales y precisas."
+                   data-en="Industrial designer with experience in the electrical industry, focused on functional and precise solutions.">
+                   Diseñador industrial con experiencia en el sector eléctrico, enfocado en soluciones funcionales y precisas.
                 </p>
 
-                <h2>Skills</h2>
+                <h2 data-es="Habilidades" data-en="Skills">Habilidades</h2>
                 <ul class="list">
-                    <li>Product Design</li>
-                    <li>3D Printing & Prototyping</li>
-                    <li>Technical Design</li>
-                    <li>Manufacturing Processes</li>
+                    <li data-es="Diseño de producto" data-en="Product design">Diseño de producto</li>
+                    <li data-es="Impresión 3D y prototipado" data-en="3D printing and prototyping">Impresión 3D y prototipado</li>
+                    <li data-es="Diseño técnico" data-en="Technical design">Diseño técnico</li>
+                    <li data-es="Procesos de fabricación" data-en="Manufacturing processes">Procesos de fabricación</li>
                 </ul>
 
-                <h2>Education</h2>
+                <h2 data-es="Formación" data-en="Education">Formación</h2>
                 <ul class="list">
-                    <li>Bachelor in Industrial Design</li>
+                    <li data-es="Grado en Diseño Industrial"
+                        data-en="Bachelor in Industrial Design">
+                        Grado en Diseño Industrial
+                    </li>
                 </ul>
 
-                <a href="cv.pdf" class="download" download>
-                    Download CV (PDF)
+                <a href="cv.pdf" class="download" download
+                   data-es="Descargar CV (PDF)"
+                   data-en="Download CV (PDF)">
+                   Descargar CV (PDF)
                 </a>
             </div>
         </div>
@@ -299,20 +319,31 @@ footer {
 <!-- PORTFOLIO -->
 <section id="portfolio">
     <div class="container spaced">
-        <h1>Portfolio</h1>
+        <h1 data-es="Portfolio" data-en="Portfolio">Portfolio</h1>
 
         <div class="grid">
             <div class="project">
-                <h2>Product Design</h2>
-                <p>Concept and development.</p>
+                <h2 data-es="Diseño de Producto" data-en="Product Design">Diseño de Producto</h2>
+                <p data-es="Concepto y desarrollo."
+                   data-en="Concept and development.">
+                   Concepto y desarrollo.
+                </p>
             </div>
+
             <div class="project">
-                <h2>3D Printing</h2>
-                <p>Prototyping and validation.</p>
+                <h2 data-es="Impresión 3D" data-en="3D Printing">Impresión 3D</h2>
+                <p data-es="Prototipado y validación."
+                   data-en="Prototyping and validation.">
+                   Prototipado y validación.
+                </p>
             </div>
+
             <div class="project">
-                <h2>Electrical Industry</h2>
-                <p>Applied technical design.</p>
+                <h2 data-es="Industria Eléctrica" data-en="Electrical Industry">Industria Eléctrica</h2>
+                <p data-es="Diseño técnico aplicado."
+                   data-en="Applied technical design.">
+                   Diseño técnico aplicado.
+                </p>
             </div>
         </div>
     </div>
@@ -321,7 +352,7 @@ footer {
 <!-- CONTACT -->
 <section id="contact">
     <div class="container spaced">
-        <h1>Contact</h1>
+        <h1 data-es="Contacto" data-en="Contact">Contacto</h1>
         <p>Email · LinkedIn · GitHub</p>
     </div>
 </section>
@@ -335,26 +366,34 @@ const tabs = document.querySelectorAll(".tab");
 const sections = document.querySelectorAll("section");
 const langBtns = document.querySelectorAll(".lang-btn");
 
+/* Tabs */
 tabs.forEach(tab => {
     tab.addEventListener("click", () => {
         tabs.forEach(t => t.classList.remove("active"));
         sections.forEach(s => s.classList.remove("active"));
+
         tab.classList.add("active");
         document.getElementById(tab.dataset.tab).classList.add("active");
     });
 });
 
+/* Back arrow */
 function goHome() {
     document.querySelector('[data-tab="home"]').click();
 }
 
+/* Language switch */
 langBtns.forEach(btn => {
     btn.addEventListener("click", () => {
         langBtns.forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
+
         const lang = btn.dataset.lang;
+
         document.querySelectorAll("[data-es]").forEach(el => {
-            el.textContent = el.dataset[lang];
+            if (el.dataset[lang]) {
+                el.textContent = el.dataset[lang];
+            }
         });
     });
 });

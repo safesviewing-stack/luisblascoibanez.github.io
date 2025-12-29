@@ -5,13 +5,14 @@
   <title>Luis Blasco-Ibáñez Berbel · Industrial Design</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Google Font -->
+  <!-- Typography -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --blue: #0b385f;
-      --light-gray: #f5f5f5;
+      --black: #000;
+      --gray: #f5f5f5;
       --text: #1a1a1a;
     }
 
@@ -23,7 +24,7 @@
     }
 
     body {
-      background: #ffffff;
+      background: #fff;
       color: var(--text);
     }
 
@@ -32,8 +33,7 @@
       position: fixed;
       top: 0;
       width: 100%;
-      background: #000;
-      color: #fff;
+      background: var(--black);
       padding: 20px 60px;
       display: flex;
       justify-content: space-between;
@@ -42,15 +42,15 @@
     }
 
     header h1 {
-      font-size: 16px;
+      color: #fff;
+      font-size: 15px;
       font-weight: 500;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.4px;
     }
 
     nav {
       display: flex;
       gap: 40px;
-      align-items: center;
     }
 
     nav button {
@@ -113,25 +113,24 @@
       max-width: 520px;
     }
 
-    /* ---------- HOME ---------- */
+    /* ---------- HOME / HERO ---------- */
     #home {
       display: flex;
       align-items: center;
       gap: 80px;
     }
 
-    .home-text h2 {
+    .hero-text h2 {
       margin-bottom: 20px;
     }
 
-    .home-text span {
+    .hero-text span {
       color: var(--blue);
       font-weight: 500;
     }
 
-    .home-image img {
-      width: 420px;
-      height: auto;
+    .hero-image img {
+      width: 440px;
       box-shadow: 0 30px 60px rgba(0,0,0,0.15);
     }
 
@@ -152,7 +151,7 @@
       background: var(--blue);
       color: #fff;
       border: none;
-      padding: 14px 26px;
+      padding: 14px 28px;
       border-radius: 30px;
       font-size: 14px;
       cursor: pointer;
@@ -172,7 +171,7 @@
     }
 
     .project-card {
-      background: var(--light-gray);
+      background: var(--gray);
       padding: 30px;
       cursor: pointer;
       transition: transform 0.3s ease;
@@ -188,10 +187,10 @@
     }
 
     .contact-box p {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
-    /* ---------- HOME BUTTON ---------- */
+    /* ---------- BACK HOME ---------- */
     .back-home {
       margin-top: 60px;
       font-size: 14px;
@@ -206,25 +205,27 @@
 <header>
   <h1>Luis Blasco-Ibáñez Berbel</h1>
   <nav>
-    <button onclick="showSection('cv')">CV</button>
-    <button onclick="showSection('portfolio')">Portfolio</button>
-    <button onclick="showSection('contact')">Contact</button>
+    <button onclick="openSection('cv')">CV</button>
+    <button onclick="openSection('portfolio')">Portfolio</button>
+    <button onclick="openSection('contact')">Contact</button>
   </nav>
 </header>
 
 <!-- HOME -->
 <section id="home" class="active">
-  <div class="home-text">
-    <h2>Industrial Design<br><span>Focused on 3D Modeling</span></h2>
+  <div class="hero-text">
+    <h2>
+      Industrial Design<br>
+      <span>3D Modeling & Product Development</span>
+    </h2>
     <p>
-      Product-oriented industrial design with a strong focus on
-      CAD modeling, technical development and manufacturing logic.
+      Industrial design focused on CAD modeling, technical development
+      and manufacturing-oriented solutions.
     </p>
   </div>
 
-  <div class="home-image">
-    <!-- Imagen de portada de diseño industrial -->
-    <img src="hero.jpg" alt="Industrial design sketch">
+  <div class="hero-image">
+    <img src="hero.jpg" alt="Industrial design sketches">
   </div>
 </section>
 
@@ -239,7 +240,7 @@
         manufacturing-oriented design.
       </p>
       <button>Download CV (PDF)</button>
-      <div class="back-home" onclick="showSection('home')">← Back to home</div>
+      <div class="back-home" onclick="goHome()">← Back to home</div>
     </div>
 
     <div class="cv-photo">
@@ -260,7 +261,7 @@
     <div class="project-card">Project 05 · Coming soon</div>
   </div>
 
-  <div class="back-home" onclick="showSection('home')">← Back to home</div>
+  <div class="back-home" onclick="goHome()">← Back to home</div>
 </section>
 
 <!-- CONTACT -->
@@ -273,15 +274,23 @@
     <p>Location: Spain</p>
   </div>
 
-  <div class="back-home" onclick="showSection('home')">← Back to home</div>
+  <div class="back-home" onclick="goHome()">← Back to home</div>
 </section>
 
 <script>
-  function showSection(id) {
+  function openSection(id) {
     document.querySelectorAll('section').forEach(sec => {
       sec.classList.remove('active');
     });
     document.getElementById(id).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function goHome() {
+    document.querySelectorAll('section').forEach(sec => {
+      sec.classList.remove('active');
+    });
+    document.getElementById('home').classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 </script>

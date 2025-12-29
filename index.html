@@ -5,7 +5,7 @@
 <title>Luis Blasco-Ibáñez Berbel | Industrial Design & 3D Modeling</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- GOOGLE FONT: INTER -->
+<!-- GOOGLE FONT -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -17,13 +17,12 @@
   --blue-light:#eaf2f8;
   --dark:#0b0b0b;
   --gray:#f4f4f4;
-  --white:#ffffff;
 }
 
 /* RESET */
 *{margin:0;padding:0;box-sizing:border-box}
 body{
-  font-family:"Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family:"Inter", system-ui, sans-serif;
   background:var(--gray);
   color:#222;
 }
@@ -46,10 +45,9 @@ nav h1{
   color:white;
   font-size:18px;
   font-weight:500;
-  letter-spacing:0.2px;
+  letter-spacing:0.3px;
 }
 
-/* MENU LINKS */
 .menu{
   display:flex;
   gap:40px;
@@ -60,28 +58,25 @@ nav h1{
   color:white;
   text-decoration:none;
   font-size:15px;
-  font-weight:400;
   letter-spacing:0.5px;
   cursor:pointer;
   padding:6px 0;
-  transition:transform 0.25s ease, opacity 0.25s ease;
+  transition:transform .25s ease;
 }
 
-/* UNDERLINE ANIMATION */
 .menu a::after{
   content:"";
   position:absolute;
   left:0;
   bottom:0;
-  width:0%;
+  width:0;
   height:2px;
   background:var(--blue);
-  transition:width 0.3s ease;
+  transition:width .3s ease;
 }
 
 .menu a:hover{
   transform:translateY(-2px);
-  opacity:0.9;
 }
 
 .menu a:hover::after{
@@ -101,28 +96,21 @@ nav h1{
   padding:6px 14px;
   border-radius:20px;
   font-size:12px;
-  font-weight:500;
   cursor:pointer;
-  transition:all 0.3s ease;
-}
-
-.lang-switch button:hover{
-  background:rgba(255,255,255,0.1);
 }
 
 .lang-switch button.active{
   background:white;
   color:#000;
-  border-color:white;
 }
 
 /* SECTIONS */
 section{
   display:none;
-  max-width:1100px;
+  max-width:1200px;
   margin:auto;
   padding:150px 40px 100px;
-  animation:fadeUp 0.8s ease;
+  animation:fadeUp .8s ease;
 }
 
 section.active{display:block}
@@ -137,14 +125,13 @@ h2{
   margin-bottom:50px;
   color:var(--blue-dark);
   font-weight:600;
-  letter-spacing:-0.5px;
 }
 
 /* HERO */
 .hero-content{
   display:grid;
-  grid-template-columns:1.2fr 1fr;
-  gap:60px;
+  grid-template-columns:1.2fr 800px;
+  gap:80px;
   align-items:center;
 }
 
@@ -152,31 +139,32 @@ h2{
   font-size:16px;
   color:var(--blue);
   margin-bottom:22px;
-  font-weight:500;
 }
 
 .hero-text p{
   font-size:15px;
   line-height:1.8;
-  color:#333;
   max-width:520px;
 }
 
-/* FOTO CUADRADA */
+/* FOTO CONTENEDOR 800x1200 */
 .hero-image{
+  width:800px;
+  height:1200px;
+  background:var(--gray);
   display:flex;
   justify-content:center;
   align-items:center;
 }
 
+/* FOTO */
 .hero-image img{
-  width:100%;
-  max-width:360px;
-  aspect-ratio:1 / 1;
+  width:360px;
+  height:360px;
   object-fit:cover;
   background:var(--gray);
   border-radius:8px;
-  box-shadow:0 12px 28px rgba(0,0,0,0.14);
+  box-shadow:0 12px 28px rgba(0,0,0,.14);
 }
 
 /* BUTTON */
@@ -190,9 +178,8 @@ h2{
   text-decoration:none;
   border-radius:30px;
   font-size:13px;
-  font-weight:500;
   letter-spacing:1px;
-  transition:all 0.3s ease;
+  transition:.3s;
 }
 
 .btn-primary:hover{
@@ -206,7 +193,6 @@ h2{
 .cv-block h3{
   font-size:20px;
   margin-bottom:15px;
-  font-weight:600;
 }
 
 .cv-block p, .cv-block li{
@@ -228,25 +214,12 @@ ul{padding-left:20px}
   background:white;
   padding:30px;
   border-radius:10px;
-  box-shadow:0 15px 30px rgba(0,0,0,0.1);
-  cursor:pointer;
-  transition:all 0.3s ease;
+  box-shadow:0 15px 30px rgba(0,0,0,.1);
+  transition:.3s;
 }
 
 .project:hover{
   transform:translateY(-6px);
-  box-shadow:0 20px 40px rgba(0,0,0,0.12);
-}
-
-.project h4{
-  color:var(--blue);
-  margin-bottom:10px;
-  font-weight:600;
-}
-
-.project p{
-  font-size:14px;
-  color:#555;
 }
 
 /* CONTACT */
@@ -269,11 +242,15 @@ footer{
 }
 
 /* RESPONSIVE */
-@media(max-width:900px){
-  nav{padding:0 30px}
+@media(max-width:1200px){
   .hero-content{
     grid-template-columns:1fr;
     text-align:center;
+  }
+  .hero-image{
+    width:100%;
+    height:auto;
+    padding:60px 0;
   }
 }
 </style>
@@ -291,8 +268,7 @@ footer{
   </div>
 
   <div class="lang-switch">
-    <button onclick="setLang('es')">ES</button>
-    <button onclick="setLang('en')" class="active">EN</button>
+    <button class="active">EN</button>
   </div>
 </nav>
 
@@ -303,11 +279,10 @@ footer{
     <div class="hero-text">
       <h2>Curriculum Vitae</h2>
       <p class="subtitle">Industrial Design · 3D Modeling · Product Design</p>
-
       <p>
-        Industrial design student with a strong focus on 3D modeling as a core tool throughout the design process. 
-        I combine technical knowledge, creativity and a human-centered approach to develop functional, 
-        manufacturable and well-defined products.
+        Industrial design student with a strong focus on 3D modeling as a core tool throughout
+        the design process. I combine technical knowledge, creativity and a human-centered
+        approach to develop functional, manufacturable and well-defined products.
       </p>
 
       <div class="cv-buttons">
@@ -327,7 +302,6 @@ footer{
       <li>3D Modeling: Inventor · SolidWorks · Fusion 360 · Rhinoceros</li>
       <li>Product design & technical development</li>
       <li>Prototyping and manufacturing-oriented design</li>
-      <li>3D printing · Laser cutting</li>
     </ul>
   </div>
 </section>
@@ -336,11 +310,11 @@ footer{
 <section id="portfolio">
   <h2>Portfolio</h2>
   <div class="portfolio-grid">
-    <div class="project"><h4>Project 1</h4><p>Coming soon</p></div>
-    <div class="project"><h4>Project 2</h4><p>Coming soon</p></div>
-    <div class="project"><h4>Project 3</h4><p>Coming soon</p></div>
-    <div class="project"><h4>Project 4</h4><p>Coming soon</p></div>
-    <div class="project"><h4>Project 5</h4><p>Coming soon</p></div>
+    <div class="project">Project 1 – Coming soon</div>
+    <div class="project">Project 2 – Coming soon</div>
+    <div class="project">Project 3 – Coming soon</div>
+    <div class="project">Project 4 – Coming soon</div>
+    <div class="project">Project 5 – Coming soon</div>
   </div>
 </section>
 

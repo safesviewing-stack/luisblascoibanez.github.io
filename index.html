@@ -5,12 +5,17 @@
 <title>Portfolio | Industrial Designer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- TIPOGRAFÍA -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-family: "IBM Plex Sans", sans-serif;
 }
 
 body {
@@ -48,7 +53,7 @@ header {
 nav ul {
     display: flex;
     list-style: none;
-    gap: 28px;
+    gap: 30px;
 }
 
 nav li {
@@ -56,6 +61,7 @@ nav li {
     cursor: pointer;
     position: relative;
     font-size: 14px;
+    font-weight: 400;
 }
 
 nav li.active {
@@ -85,12 +91,12 @@ nav li:hover::after {
 }
 
 .lang span.active {
-    font-weight: bold;
+    font-weight: 600;
 }
 
 /* ===== LAYOUT ===== */
 main {
-    padding-top: 70px; /* SOLO lo necesario para el header */
+    padding-top: 70px;
 }
 
 section {
@@ -110,17 +116,30 @@ section.active {
     width: 90%;
     max-width: 1000px;
     margin: auto;
-    padding: 30px 0; /* REDUCIDO */
 }
 
+/* MÁS AIRE SOLO EN ESTAS SECCIONES */
+.spaced {
+    padding: 60px 0;
+}
+
+/* ===== TYPO ===== */
 h1 {
     font-size: 30px;
-    margin-bottom: 18px;
+    font-weight: 500;
+    margin-bottom: 24px;
 }
 
 h2 {
-    font-size: 17px;
-    margin: 18px 0 6px;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 20px 0 6px;
+}
+
+p, li {
+    font-size: 14px;
+    line-height: 1.6;
+    font-weight: 400;
 }
 
 /* ===== HOME ===== */
@@ -132,24 +151,25 @@ h2 {
 .home-text {
     background: rgba(0,0,0,0.6);
     color: white;
-    padding: 24px;
+    padding: 26px;
     max-width: 520px;
 }
 
 .home-text h1 {
     font-size: 34px;
+    font-weight: 500;
 }
 
 /* ===== PORTFOLIO ===== */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 24px;
+    gap: 26px;
 }
 
 .project {
     border-top: 1px solid #ddd;
-    padding-top: 10px;
+    padding-top: 12px;
     transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
@@ -165,7 +185,7 @@ h2 {
 .cv {
     display: grid;
     grid-template-columns: 360px 1fr;
-    gap: 36px;
+    gap: 40px;
 }
 
 .cv img {
@@ -175,7 +195,7 @@ h2 {
 
 .list {
     list-style: none;
-    margin-top: 8px;
+    margin-top: 10px;
 }
 
 .list li {
@@ -184,10 +204,11 @@ h2 {
 
 .download {
     display: inline-block;
-    margin-top: 18px;
+    margin-top: 22px;
     border-bottom: 1px solid #000;
     text-decoration: none;
     color: #000;
+    font-size: 13px;
 }
 
 /* ===== FOOTER ===== */
@@ -208,10 +229,10 @@ footer {
 
         <nav>
             <ul>
-                <li class="tab active" data-tab="home" data-es="Home" data-en="Home">Home</li>
-                <li class="tab" data-tab="portfolio" data-es="Portfolio" data-en="Portfolio">Portfolio</li>
-                <li class="tab" data-tab="cv" data-es="Currículum" data-en="Resume">Resume</li>
-                <li class="tab" data-tab="contact" data-es="Contacto" data-en="Contact">Contact</li>
+                <li class="tab active" data-tab="home">Home</li>
+                <li class="tab" data-tab="cv">CV</li>
+                <li class="tab" data-tab="portfolio">Portfolio</li>
+                <li class="tab" data-tab="contact">Contact</li>
             </ul>
         </nav>
 
@@ -239,10 +260,46 @@ footer {
     </div>
 </section>
 
+<!-- CV -->
+<section id="cv">
+    <div class="container spaced">
+        <h1>CV</h1>
+
+        <div class="cv">
+            <img src="profile.jpg" alt="Profile">
+
+            <div>
+                <h2>Profile</h2>
+                <p>
+                    Industrial designer with experience in the electrical industry,
+                    focused on functional, precise and human-centered solutions.
+                </p>
+
+                <h2>Skills</h2>
+                <ul class="list">
+                    <li>Product Design</li>
+                    <li>3D Printing & Prototyping</li>
+                    <li>Technical Design</li>
+                    <li>Manufacturing Processes</li>
+                </ul>
+
+                <h2>Education</h2>
+                <ul class="list">
+                    <li>Bachelor in Industrial Design</li>
+                </ul>
+
+                <a href="cv.pdf" class="download" download>
+                    Download CV (PDF)
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- PORTFOLIO -->
 <section id="portfolio">
-    <div class="container">
-        <h1 data-es="Portfolio" data-en="Portfolio">Portfolio</h1>
+    <div class="container spaced">
+        <h1>Portfolio</h1>
 
         <div class="grid">
             <div class="project">
@@ -261,45 +318,9 @@ footer {
     </div>
 </section>
 
-<!-- CV -->
-<section id="cv">
-    <div class="container">
-        <h1 data-es="Currículum" data-en="Resume">Resume</h1>
-
-        <div class="cv">
-            <img src="profile.jpg" alt="Profile">
-
-            <div>
-                <h2 data-es="Perfil" data-en="Profile">Profile</h2>
-                <p>
-                    Industrial designer with experience in the electrical industry,
-                    focused on functional and human-centered solutions.
-                </p>
-
-                <h2 data-es="Habilidades" data-en="Skills">Skills</h2>
-                <ul class="list">
-                    <li>Product Design</li>
-                    <li>3D Printing</li>
-                    <li>Prototyping</li>
-                    <li>Technical Design</li>
-                </ul>
-
-                <h2 data-es="Formación" data-en="Education">Education</h2>
-                <ul class="list">
-                    <li>Bachelor in Industrial Design</li>
-                </ul>
-
-                <a href="cv.pdf" class="download" download>
-                    Download CV (PDF)
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- CONTACT -->
 <section id="contact">
-    <div class="container">
+    <div class="container spaced">
         <h1>Contact</h1>
         <p>Email · LinkedIn · GitHub</p>
     </div>

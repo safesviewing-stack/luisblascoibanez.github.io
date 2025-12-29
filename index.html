@@ -9,82 +9,82 @@
 
 <body>
 
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <div class="nav-left">
-      <button id="backBtn">←</button>
-    </div>
+<header class="navbar">
+  <button id="backBtn">←</button>
 
-    <nav class="nav-center">
-      <a href="#portfolio">Portfolio</a>
-      <a href="#cv">CV</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
+  <nav class="nav-center">
+    <a href="#portfolio" data-i18n="portfolio">Portfolio</a>
+    <a href="#cv" data-i18n="cv">CV</a>
+    <a href="#contacto" data-i18n="contact">Contacto</a>
+  </nav>
 
-    <div class="nav-right">
-      <button class="lang active">ES</button>
-      <button class="lang">EN</button>
-    </div>
-  </header>
+  <div class="nav-right">
+    <button class="lang active" data-lang="es">ES</button>
+    <button class="lang" data-lang="en">EN</button>
+  </div>
+</header>
 
-  <!-- HOME -->
-  <section id="home" class="section home">
-    <div class="overlay">
-      <h1>Luis Blasco-Ibáñez Berbel</h1>
-      <p>Diseño, tecnología y pensamiento crítico</p>
-    </div>
-  </section>
+<section id="home" class="section home">
+  <div class="overlay fade-in">
+    <h1>Luis Blasco-Ibáñez Berbel</h1>
+    <p data-i18n="slogan">Diseño industrial y pensamiento visual</p>
+  </div>
+</section>
 
-  <!-- PORTFOLIO -->
-  <section id="portfolio" class="section">
-    <h2>Portfolio</h2>
-    <ul class="project-list">
-      <li>Proyecto 01</li>
-      <li>Proyecto 02</li>
-      <li>Proyecto 03</li>
-    </ul>
-  </section>
+<section id="portfolio" class="section fade-in">
+  <h2>Portfolio</h2>
 
-  <!-- CV -->
-  <section id="cv" class="section">
-    <h2>Currículum</h2>
+  <div class="projects">
+    <article class="project">
+      <h3>Proyecto 01</h3>
+      <p>Diseño conceptual y desarrollo formal.</p>
+    </article>
 
-    <div class="cv-container">
-      <img src="assets/perfil.jpg" alt="Foto de Luis" class="profile-pic" />
+    <article class="project">
+      <h3>Proyecto 02</h3>
+      <p>Prototipado y exploración de uso.</p>
+    </article>
 
-      <p class="description">
-        Diseñador con enfoque minimalista, sensibilidad estética y base técnica.
-      </p>
+    <article class="project">
+      <h3>Proyecto 03</h3>
+      <p>Investigación y diseño de producto.</p>
+    </article>
+  </div>
+</section>
 
-      <h3>Formación</h3>
-      <p>Grado en Diseño / Formación relacionada</p>
+<section id="cv" class="section fade-in">
+  <h2>Currículum</h2>
 
-      <h3>Skills</h3>
-      <ul>
-        <li>Diseño industrial</li>
-        <li>Diseño digital</li>
-        <li>Modelado 3D</li>
-        <li>Prototipado</li>
-      </ul>
+  <div class="cv-container">
+    <img src="assets/perfil.jpg" class="profile-pic" alt="Luis" />
 
-      <a href="assets/cv.pdf" class="download-btn" download>
-        Descargar CV en PDF
-      </a>
-    </div>
-  </section>
-
-  <!-- CONTACTO -->
-  <section id="contacto" class="section">
-    <h2>Contacto</h2>
-    <p>
-      Email:
-      <a href="mailto:luisblascoibanezberbel@gmail.com">
-        luisblascoibanezberbel@gmail.com
-      </a>
+    <p data-i18n="about">
+      Diseñador con enfoque minimalista, técnico y humano.
     </p>
-    <p>Teléfono: 630 511 806</p>
-  </section>
 
-  <script src="script.js"></script>
+    <h3 data-i18n="education">Formación</h3>
+    <p>Grado en Diseño</p>
+
+    <h3>Skills</h3>
+    <ul>
+      <li>Diseño industrial</li>
+      <li>Sketching</li>
+      <li>Modelado 3D</li>
+      <li>Prototipado</li>
+    </ul>
+
+    <a href="assets/cv.pdf" class="download-btn" download data-i18n="download">
+      Descargar CV en PDF
+    </a>
+  </div>
+</section>
+
+<section id="contacto" class="section fade-in">
+  <h2 data-i18n="contact">Contacto</h2>
+  <p>Email: <a href="mailto:luisblascoibanezberbel@gmail.com">luisblascoibanezberbel@gmail.com</a></p>
+  <p>Teléfono: 630 511 806</p>
+</section>
+
+<script src="script.js"></script>
 </body>
 </html>

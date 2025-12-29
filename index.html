@@ -1,299 +1,191 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Luis Blasco-Ibáñez Berbel · Industrial Design</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Typography -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio · Diseñador Industrial</title>
 
   <style>
     :root {
-      --blue: #0b385f;
-      --black: #000;
-      --gray: #f5f5f5;
-      --text: #1a1a1a;
+      --bg-color: #ffffff;
+      --text-color: #1a1a1a;
+      --secondary-text: #555;
+      --accent-blue: #2f80ed;
+      --font-main: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Inter', sans-serif;
     }
 
     body {
-      background: #fff;
-      color: var(--text);
+      font-family: var(--font-main);
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
     }
 
-    /* ---------- NAV ---------- */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+    }
+
     header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: var(--black);
-      padding: 20px 60px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 1000;
+      margin-bottom: 3rem;
     }
 
-    header h1 {
-      color: #fff;
-      font-size: 15px;
-      font-weight: 500;
-      letter-spacing: 0.4px;
-    }
-
-    nav {
-      display: flex;
-      gap: 40px;
-    }
-
-    nav button {
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: 14px;
+    .lang-switch {
+      font-size: 0.9rem;
       cursor: pointer;
-      position: relative;
+      color: var(--secondary-text);
     }
 
-    nav button::after {
-      content: "";
-      position: absolute;
-      width: 0;
-      height: 2px;
-      background: #fff;
-      bottom: -6px;
-      left: 0;
-      transition: width 0.3s ease;
+    .lang-switch span {
+      margin-left: 0.75rem;
     }
 
-    nav button:hover::after {
-      width: 100%;
-    }
-
-    /* ---------- SECTIONS ---------- */
-    section {
-      min-height: 100vh;
-      padding: 160px 10%;
-      display: none;
-      animation: fadeIn 0.6s ease;
-    }
-
-    section.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    h2 {
-      color: var(--blue);
-      font-size: 48px;
-      font-weight: 600;
-      margin-bottom: 40px;
+    h1 {
+      font-size: 2rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
     }
 
     p {
-      font-size: 16px;
-      line-height: 1.7;
-      max-width: 520px;
+      margin-bottom: 1.2rem;
+      color: var(--secondary-text);
     }
 
-    /* ---------- HOME / HERO ---------- */
-    #home {
-      display: flex;
-      align-items: center;
-      gap: 80px;
-    }
-
-    .hero-text h2 {
-      margin-bottom: 20px;
-    }
-
-    .hero-text span {
-      color: var(--blue);
-      font-weight: 500;
-    }
-
-    .hero-image img {
-      width: 440px;
-      box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-    }
-
-    /* ---------- CV ---------- */
-    .cv-layout {
-      display: flex;
-      gap: 80px;
-      align-items: flex-start;
-    }
-
-    .cv-photo img {
-      width: 360px;
-      background: #eaeaea;
-    }
-
-    .cv-content button {
-      margin-top: 30px;
-      background: var(--blue);
+    .cv-button {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.75rem 1.5rem;
+      background-color: var(--accent-blue);
       color: #fff;
-      border: none;
-      padding: 14px 28px;
-      border-radius: 30px;
-      font-size: 14px;
-      cursor: pointer;
-      transition: background 0.3s ease;
+      text-decoration: none;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      transition: background-color 0.2s ease;
     }
 
-    .cv-content button:hover {
-      background: #092e4d;
+    .cv-button:hover {
+      background-color: #1f6fe0;
     }
 
-    /* ---------- PORTFOLIO ---------- */
-    .projects {
-      margin-top: 40px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 30px;
-    }
-
-    .project-card {
-      background: var(--gray);
-      padding: 30px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .project-card:hover {
-      transform: translateY(-6px);
-    }
-
-    /* ---------- CONTACT ---------- */
-    .contact-box {
-      margin-top: 40px;
-    }
-
-    .contact-box p {
-      margin-bottom: 12px;
-    }
-
-    /* ---------- BACK HOME ---------- */
-    .back-home {
-      margin-top: 60px;
-      font-size: 14px;
-      color: var(--blue);
-      cursor: pointer;
+    footer {
+      margin-top: 4rem;
+      font-size: 0.8rem;
+      color: var(--secondary-text);
     }
   </style>
 </head>
 
 <body>
+  <div class="container">
+    <header>
+      <strong>Portfolio · Diseño Industrial</strong>
+      <div class="lang-switch">
+        Idioma:
+        <span onclick="setLanguage('es')">ES</span>
+        <span onclick="setLanguage('en')">EN</span>
+      </div>
+    </header>
 
-<header>
-  <h1>Luis Blasco-Ibáñez Berbel</h1>
-  <nav>
-    <button onclick="openSection('cv')">CV</button>
-    <button onclick="openSection('portfolio')">Portfolio</button>
-    <button onclick="openSection('contact')">Contact</button>
-  </nav>
-</header>
+    <main id="content">
+      <h1>Diseñador Industrial</h1>
 
-<!-- HOME -->
-<section id="home" class="active">
-  <div class="hero-text">
-    <h2>
-      Industrial Design<br>
-      <span>3D Modeling & Product Development</span>
-    </h2>
-    <p>
-      Industrial design focused on CAD modeling, technical development
-      and manufacturing-oriented solutions.
-    </p>
-  </div>
-
-  <div class="hero-image">
-    <img src="hero.jpg" alt="Industrial design sketches">
-  </div>
-</section>
-
-<!-- CV -->
-<section id="cv">
-  <div class="cv-layout">
-    <div class="cv-content">
-      <h2>Curriculum Vitae</h2>
       <p>
-        Industrial design student focused on 3D modeling as a core tool
-        for product definition, technical development and
-        manufacturing-oriented design.
+        Este sitio web presenta mi currículum y portfolio como diseñador industrial,
+        con un enfoque claro, funcional y humano. Ha sido concebido como un espacio
+        minimalista, elegante y limpio, donde el diseño acompaña al contenido sin distraer.
       </p>
-      <button>Download CV (PDF)</button>
-      <div class="back-home" onclick="goHome()">← Back to home</div>
-    </div>
 
-    <div class="cv-photo">
-      <img src="profile.jpg" alt="Luis Blasco-Ibáñez Berbel">
-    </div>
-  </div>
-</section>
+      <p>
+        A través de una navegación sencilla y una estética sobria, el portfolio muestra
+        proyectos de diseño de producto, desarrollo técnico y pensamiento proyectual,
+        poniendo énfasis en el proceso, la coherencia formal y la viabilidad industrial.
+      </p>
 
-<!-- PORTFOLIO -->
-<section id="portfolio">
-  <h2>Portfolio</h2>
+      <p>
+        La interfaz incorpora un botón de currículum en PDF, de color azul y con bordes
+        redondeados, diseñado para destacar de forma sutil y accesible. Además, la web
+        cuenta con cambio de idioma, facilitando una experiencia clara y adaptable a
+        distintos contextos profesionales.
+      </p>
 
-  <div class="projects">
-    <div class="project-card">Project 01 · Coming soon</div>
-    <div class="project-card">Project 02 · Coming soon</div>
-    <div class="project-card">Project 03 · Coming soon</div>
-    <div class="project-card">Project 04 · Coming soon</div>
-    <div class="project-card">Project 05 · Coming soon</div>
-  </div>
+      <p>
+        Este sitio funciona como una extensión de mi manera de diseñar: claridad visual,
+        estructura ordenada, atención al detalle y soluciones prácticas con sensibilidad humana.
+      </p>
 
-  <div class="back-home" onclick="goHome()">← Back to home</div>
-</section>
+      <a class="cv-button" href="cv.pdf" target="_blank">Descargar CV (PDF)</a>
+    </main>
 
-<!-- CONTACT -->
-<section id="contact">
-  <h2>Contact</h2>
-
-  <div class="contact-box">
-    <p>Email: yourmail@email.com</p>
-    <p>LinkedIn: linkedin.com/in/yourprofile</p>
-    <p>Location: Spain</p>
+    <footer>
+      © 2025 · Diseñador Industrial
+    </footer>
   </div>
 
-  <div class="back-home" onclick="goHome()">← Back to home</div>
-</section>
+  <script>
+    const content = {
+      es: `
+        <h1>Diseñador Industrial</h1>
+        <p>
+          Este sitio web presenta mi currículum y portfolio como diseñador industrial,
+          con un enfoque claro, funcional y humano. Ha sido concebido como un espacio
+          minimalista, elegante y limpio, donde el diseño acompaña al contenido sin distraer.
+        </p>
+        <p>
+          A través de una navegación sencilla y una estética sobria, el portfolio muestra
+          proyectos de diseño de producto, desarrollo técnico y pensamiento proyectual,
+          poniendo énfasis en el proceso, la coherencia formal y la viabilidad industrial.
+        </p>
+        <p>
+          La interfaz incorpora un botón de currículum en PDF, de color azul y con bordes
+          redondeados, diseñado para destacar de forma sutil y accesible. Además, la web
+          cuenta con cambio de idioma, facilitando una experiencia clara y adaptable a
+          distintos contextos profesionales.
+        </p>
+        <p>
+          Este sitio funciona como una extensión de mi manera de diseñar: claridad visual,
+          estructura ordenada, atención al detalle y soluciones prácticas con sensibilidad humana.
+        </p>
+        <a class="cv-button" href="cv.pdf" target="_blank">Descargar CV (PDF)</a>
+      `,
+      en: `
+        <h1>Industrial Designer</h1>
+        <p>
+          This website presents my CV and portfolio as an industrial designer, with a clear,
+          functional and human-centered approach. It has been conceived as a minimal,
+          elegant and clean space, where design supports content without distraction.
+        </p>
+        <p>
+          Through simple navigation and a sober aesthetic, the portfolio showcases product
+          design projects, technical development and design thinking, emphasizing process,
+          formal coherence and industrial feasibility.
+        </p>
+        <p>
+          The interface includes a blue, rounded PDF CV button designed to stand out in a
+          subtle and accessible way. The website also features language switching, ensuring
+          a clear and adaptable experience for different professional contexts.
+        </p>
+        <p>
+          This site works as an extension of my design approach: visual clarity, ordered
+          structure, attention to detail and practical solutions with human sensitivity.
+        </p>
+        <a class="cv-button" href="cv.pdf" target="_blank">Download CV (PDF)</a>
+      `
+    };
 
-<script>
-  function openSection(id) {
-    document.querySelectorAll('section').forEach(sec => {
-      sec.classList.remove('active');
-    });
-    document.getElementById(id).classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function goHome() {
-    document.querySelectorAll('section').forEach(sec => {
-      sec.classList.remove('active');
-    });
-    document.getElementById('home').classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-</script>
-
+    function setLanguage(lang) {
+      document.getElementById("content").innerHTML = content[lang];
+      document.documentElement.lang = lang;
+    }
+  </script>
 </body>
 </html>

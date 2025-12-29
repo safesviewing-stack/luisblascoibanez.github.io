@@ -1,90 +1,231 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Luis Blasco-Ibáñez Berbel</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <title>Portfolio | Tu Nombre</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #111;
+        }
+
+        /* NAVBAR */
+        header {
+            background-color: #000;
+            color: #fff;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .nav-container {
+            width: 90%;
+            max-width: 1200px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .back-arrow {
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+        }
+
+        nav ul li {
+            cursor: pointer;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        nav ul li.active {
+            text-decoration: underline;
+        }
+
+        .lang {
+            display: flex;
+            gap: 10px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .lang span.active {
+            font-weight: bold;
+        }
+
+        /* CONTENT */
+        main {
+            padding-top: 120px;
+            width: 90%;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        section {
+            display: none;
+            animation: fade 0.3s ease-in-out;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin-top: 30px;
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            max-width: 800px;
+        }
+
+        .project {
+            margin-bottom: 25px;
+        }
+
+        @keyframes fade {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* FOOTER */
+        footer {
+            margin-top: 80px;
+            padding: 30px 0;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
 </head>
 
 <body>
 
-<header class="navbar">
-  <button id="backBtn">←</button>
+<header>
+    <div class="nav-container">
+        <div class="back-arrow">←</div>
 
-  <nav class="nav-center">
-    <a href="#portfolio" data-i18n="portfolio">Portfolio</a>
-    <a href="#cv" data-i18n="cv">CV</a>
-    <a href="#contacto" data-i18n="contact">Contacto</a>
-  </nav>
+        <nav>
+            <ul>
+                <li class="tab active" data-tab="portfolio">Portfolio</li>
+                <li class="tab" data-tab="cv">CV</li>
+                <li class="tab" data-tab="contacto">Contacto</li>
+            </ul>
+        </nav>
 
-  <div class="nav-right">
-    <button class="lang active" data-lang="es">ES</button>
-    <button class="lang" data-lang="en">EN</button>
-  </div>
+        <div class="lang">
+            <span class="lang-btn active" data-lang="es">ES</span>
+            <span class="lang-btn" data-lang="en">EN</span>
+        </div>
+    </div>
 </header>
 
-<section id="home" class="section home">
-  <div class="overlay fade-in">
-    <h1>Luis Blasco-Ibáñez Berbel</h1>
-    <p data-i18n="slogan">Diseño industrial y pensamiento visual</p>
-  </div>
-</section>
+<main>
+    <!-- PORTFOLIO -->
+    <section id="portfolio" class="active">
+        <h1>Portfolio</h1>
 
-<section id="portfolio" class="section fade-in">
-  <h2>Portfolio</h2>
+        <div class="project">
+            <h2>Proyecto 01</h2>
+            <p>
+                Descripción breve del proyecto. Qué problema resuelve, tu rol y las herramientas utilizadas.
+            </p>
+        </div>
 
-  <div class="projects">
-    <article class="project">
-      <h3>Proyecto 01</h3>
-      <p>Diseño conceptual y desarrollo formal.</p>
-    </article>
+        <div class="project">
+            <h2>Proyecto 02</h2>
+            <p>
+                Proyecto enfocado en diseño industrial, producto, impresión 3D o experiencia de usuario.
+            </p>
+        </div>
+    </section>
 
-    <article class="project">
-      <h3>Proyecto 02</h3>
-      <p>Prototipado y exploración de uso.</p>
-    </article>
+    <!-- CV -->
+    <section id="cv">
+        <h1>Currículum</h1>
 
-    <article class="project">
-      <h3>Proyecto 03</h3>
-      <p>Investigación y diseño de producto.</p>
-    </article>
-  </div>
-</section>
+        <h2>Perfil</h2>
+        <p>
+            Diseñador industrial con experiencia en el sector eléctrico y enfoque en diseño funcional y humanizado.
+        </p>
 
-<section id="cv" class="section fade-in">
-  <h2>Currículum</h2>
+        <h2>Experiencia</h2>
+        <p>
+            <strong>Empresa X</strong> — Diseñador / Técnico<br>
+            Breve descripción de responsabilidades y logros.
+        </p>
 
-  <div class="cv-container">
-    <img src="assets/perfil.jpg" class="profile-pic" alt="Luis" />
+        <h2>Formación</h2>
+        <p>
+            Grado en Diseño Industrial y Desarrollo de Producto
+        </p>
+    </section>
 
-    <p data-i18n="about">
-      Diseñador con enfoque minimalista, técnico y humano.
-    </p>
+    <!-- CONTACTO -->
+    <section id="contacto">
+        <h1>Contacto</h1>
+        <p>Email: tunombre@email.com</p>
+        <p>LinkedIn: linkedin.com/in/tunombre</p>
+        <p>GitHub: github.com/tunombre</p>
+    </section>
+</main>
 
-    <h3 data-i18n="education">Formación</h3>
-    <p>Grado en Diseño</p>
+<footer>
+    © 2025 · Tu Nombre
+</footer>
 
-    <h3>Skills</h3>
-    <ul>
-      <li>Diseño industrial</li>
-      <li>Sketching</li>
-      <li>Modelado 3D</li>
-      <li>Prototipado</li>
-    </ul>
+<script>
+    const tabs = document.querySelectorAll('.tab');
+    const sections = document.querySelectorAll('section');
 
-    <a href="assets/cv.pdf" class="download-btn" download data-i18n="download">
-      Descargar CV en PDF
-    </a>
-  </div>
-</section>
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            sections.forEach(s => s.classList.remove('active'));
 
-<section id="contacto" class="section fade-in">
-  <h2 data-i18n="contact">Contacto</h2>
-  <p>Email: <a href="mailto:luisblascoibanezberbel@gmail.com">luisblascoibanezberbel@gmail.com</a></p>
-  <p>Teléfono: 630 511 806</p>
-</section>
+            tab.classList.add('active');
+            document.getElementById(tab.dataset.tab).classList.add('active');
+        });
+    });
 
-<script src="script.js"></script>
+    const langBtns = document.querySelectorAll('.lang-btn');
+
+    langBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            langBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            // Aquí luego puedes cambiar textos según idioma
+        });
+    });
+</script>
+
 </body>
 </html>

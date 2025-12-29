@@ -11,253 +11,88 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "IBM Plex Sans", sans-serif;
+*{margin:0;padding:0;box-sizing:border-box;font-family:"IBM Plex Sans",sans-serif}
+body{background:#fff;color:#111}
+
+/* HEADER */
+header{
+    position:fixed;top:0;width:100%;height:70px;
+    background:#000;z-index:100;display:flex;align-items:center
+}
+.nav{
+    width:90%;max-width:1200px;margin:auto;
+    display:grid;grid-template-columns:auto 1fr auto;align-items:center
+}
+.back{color:#fff;cursor:pointer;font-size:18px}
+
+nav ul{display:flex;justify-content:center;gap:36px;list-style:none}
+nav li{
+    color:#fff;cursor:pointer;font-size:12px;
+    letter-spacing:.12em;text-transform:uppercase;position:relative
+}
+nav li.active{font-weight:500}
+nav li::after{
+    content:"";position:absolute;bottom:-6px;left:0;width:0;height:1px;
+    background:#fff;transition:.25s
+}
+nav li:hover::after{width:100%}
+
+.lang span{
+    color:#fff;font-size:12px;margin-left:10px;cursor:pointer
+}
+.lang span.active{font-weight:500}
+
+/* LAYOUT */
+main{padding-top:70px}
+section{display:none;opacity:0;transform:translateY(6px);transition:.3s}
+section.active{display:block;opacity:1;transform:none}
+.container{width:90%;max-width:960px;margin:auto}
+.spaced{padding:70px 0}
+
+/* TYPO */
+h1{font-size:28px;font-weight:500;margin-bottom:28px}
+h2{font-size:15px;font-weight:500;margin:22px 0 6px}
+h3{font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase}
+p,li{font-size:14px;line-height:1.7}
+
+/* HOME */
+.home{background:url("portada.jpg") center/cover no-repeat;padding:80px 0 60px}
+.home-text{
+    background:rgba(0,0,0,.65);color:#fff;
+    padding:28px;max-width:520px
 }
 
-body {
-    background: #fff;
-    color: #111;
+/* CV */
+.cv{display:grid;grid-template-columns:340px 1fr;gap:48px}
+.cv img{width:100%;border-radius:2px}
+.list{list-style:none;margin-top:10px}
+.list li{margin-bottom:6px}
+.download{
+    display:inline-block;margin-top:24px;
+    border-bottom:1px solid #000;text-decoration:none;
+    font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#000
 }
 
-/* ================= HEADER ================= */
-header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 70px;
-    background: #000;
-    z-index: 100;
-    display: flex;
-    align-items: center;
+/* PORTFOLIO */
+.editorial-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:32px
 }
+.case{border-top:1px solid #ddd;padding-top:16px}
+.case.large{grid-column:span 2}
+.case-meta{display:flex;gap:14px;font-size:12px;color:#666;margin-bottom:14px}
+.case-block{margin-bottom:14px}
 
-.nav {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-}
+/* FOOTER */
+footer{text-align:center;padding:24px;font-size:11px;color:#777}
 
-.back {
-    color: #fff;
-    cursor: pointer;
-    font-size: 18px;
-}
-
-nav ul {
-    display: flex;
-    justify-content: center;
-    gap: 36px;
-    list-style: none;
-}
-
-nav li {
-    color: #fff;
-    cursor: pointer;
-    font-size: 12px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    font-weight: 400;
-    position: relative;
-}
-
-nav li.active {
-    font-weight: 500;
-}
-
-nav li::after {
-    content: "";
-    position: absolute;
-    bottom: -6px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: #fff;
-    transition: width 0.25s ease;
-}
-
-nav li:hover::after {
-    width: 100%;
-}
-
-.lang span {
-    color: #fff;
-    font-size: 12px;
-    margin-left: 10px;
-    cursor: pointer;
-}
-
-.lang span.active {
-    font-weight: 500;
-}
-
-/* ================= LAYOUT ================= */
-main {
-    padding-top: 70px;
-}
-
-section {
-    display: none;
-    opacity: 0;
-    transform: translateY(6px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-section.active {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.container {
-    width: 90%;
-    max-width: 960px;
-    margin: auto;
-}
-
-.spaced {
-    padding: 70px 0;
-}
-
-/* ================= TYPO ================= */
-h1 {
-    font-size: 28px;
-    font-weight: 500;
-    margin-bottom: 28px;
-}
-
-h2 {
-    font-size: 15px;
-    font-weight: 500;
-    margin: 22px 0 6px;
-}
-
-h3 {
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-}
-
-p, li {
-    font-size: 14px;
-    line-height: 1.7;
-}
-
-/* ================= HOME ================= */
-.home {
-    background: url("portada.jpg") center/cover no-repeat;
-    padding: 80px 0 60px;
-}
-
-.home-text {
-    background: rgba(0,0,0,0.65);
-    color: #fff;
-    padding: 28px;
-    max-width: 520px;
-}
-
-/* ================= CV ================= */
-.cv {
-    display: grid;
-    grid-template-columns: 340px 1fr;
-    gap: 48px;
-}
-
-.cv img {
-    width: 100%;
-    border-radius: 2px;
-}
-
-.list {
-    list-style: none;
-    margin-top: 10px;
-}
-
-.list li {
-    margin-bottom: 6px;
-}
-
-.download {
-    display: inline-block;
-    margin-top: 24px;
-    border-bottom: 1px solid #000;
-    text-decoration: none;
-    color: #000;
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-}
-
-/* ================= PORTFOLIO ================= */
-.editorial-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-}
-
-.case {
-    border-top: 1px solid #ddd;
-    padding-top: 16px;
-}
-
-.case.large {
-    grid-column: span 2;
-}
-
-.case-meta {
-    display: flex;
-    gap: 14px;
-    font-size: 12px;
-    color: #666;
-    margin-bottom: 14px;
-}
-
-.case-block {
-    margin-bottom: 14px;
-}
-
-/* ================= FOOTER ================= */
-footer {
-    text-align: center;
-    padding: 24px;
-    font-size: 11px;
-    color: #777;
-}
-
-/* ================= PRINT ================= */
-@media print {
-    header, footer, .lang, .back {
-        display: none;
-    }
-
-    main {
-        padding-top: 0;
-    }
-
-    .container, .spaced {
-        padding: 0;
-    }
-
-    h1 { font-size: 22px; }
-    h2 { font-size: 14px; }
-    p, li { font-size: 12px; }
-
-    .cv {
-        grid-template-columns: 240px 1fr;
-        gap: 24px;
-    }
-
-    .download {
-        display: none;
-    }
+/* PRINT */
+@media print{
+    header,.lang,.back,footer,.download{display:none}
+    main{padding-top:0}
+    .spaced{padding:0}
+    h1{font-size:22px} h2{font-size:14px}
+    p,li{font-size:12px}
+    .cv{grid-template-columns:240px 1fr;gap:24px}
 }
 </style>
 </head>
@@ -265,129 +100,113 @@ footer {
 <body>
 
 <header>
-    <div class="nav">
-        <div class="back" onclick="goHome()">←</div>
+<div class="nav">
+<div class="back" onclick="goHome()">←</div>
 
-        <nav>
-            <ul>
-                <li class="tab active" data-tab="home">Home</li>
-                <li class="tab" data-tab="cv">CV</li>
-                <li class="tab" data-tab="portfolio">Portfolio</li>
-                <li class="tab" data-tab="contact">Contacto</li>
-            </ul>
-        </nav>
+<nav>
+<ul>
+<li class="tab active" data-tab="home" data-es="Home" data-en="Home">Home</li>
+<li class="tab" data-tab="cv" data-es="CV" data-en="CV">CV</li>
+<li class="tab" data-tab="portfolio" data-es="Portfolio" data-en="Portfolio">Portfolio</li>
+<li class="tab" data-tab="contact" data-es="Contacto" data-en="Contact">Contacto</li>
+</ul>
+</nav>
 
-        <div class="lang">
-            <span class="lang-btn active" data-lang="es">ES</span>
-            <span class="lang-btn" data-lang="en">EN</span>
-        </div>
-    </div>
+<div class="lang">
+<span class="lang-btn active" data-lang="es">ES</span>
+<span class="lang-btn" data-lang="en">EN</span>
+</div>
+</div>
 </header>
 
 <main>
 
-<!-- HOME -->
 <section id="home" class="home active">
-    <div class="container">
-        <div class="home-text">
-            <h1>Industrial Designer</h1>
-            <p>Product · Process · Precision</p>
-        </div>
-    </div>
+<div class="container">
+<div class="home-text">
+<h1 data-es="Diseñador Industrial" data-en="Industrial Designer">
+Diseñador Industrial
+</h1>
+<p data-es="Producto · Proceso · Precisión"
+   data-en="Product · Process · Precision">
+Producto · Proceso · Precisión
+</p>
+</div>
+</div>
 </section>
 
-<!-- CV -->
 <section id="cv">
-    <div class="container spaced">
-        <h1>CV</h1>
+<div class="container spaced">
+<h1 data-es="CV" data-en="CV">CV</h1>
 
-        <div class="cv">
-            <img src="profile.jpg" alt="Profile">
+<div class="cv">
+<img src="profile.jpg" alt="Profile">
 
-            <div>
-                <h2>Profile</h2>
-                <p>
-                    Industrial designer with experience in technical environments
-                    and the electrical industry.
-                </p>
+<div>
+<h2 data-es="Perfil profesional" data-en="Professional profile">Perfil profesional</h2>
+<p data-es="Diseñador industrial con experiencia en sector eléctrico."
+   data-en="Industrial designer with experience in the electrical industry.">
+Diseñador industrial con experiencia en sector eléctrico.
+</p>
 
-                <h2>Skills</h2>
-                <ul class="list">
-                    <li>Product design</li>
-                    <li>3D printing & prototyping</li>
-                    <li>Technical development</li>
-                    <li>Manufacturing processes</li>
-                </ul>
+<h2 data-es="Habilidades" data-en="Skills">Habilidades</h2>
+<ul class="list">
+<li data-es="Diseño de producto" data-en="Product design">Diseño de producto</li>
+<li data-es="Impresión 3D" data-en="3D printing">Impresión 3D</li>
+<li data-es="Diseño técnico" data-en="Technical design">Diseño técnico</li>
+</ul>
 
-                <h2>Education</h2>
-                <ul class="list">
-                    <li>Industrial Design Degree</li>
-                </ul>
+<h2 data-es="Formación" data-en="Education">Formación</h2>
+<ul class="list">
+<li data-es="Grado en Diseño Industrial" data-en="Industrial Design Degree">
+Grado en Diseño Industrial
+</li>
+</ul>
 
-                <a href="cv.pdf" class="download" download>
-                    Download CV
-                </a>
-            </div>
-        </div>
-    </div>
+<a href="cv.pdf" class="download" download
+   data-es="Descargar CV"
+   data-en="Download CV">
+Descargar CV
+</a>
+</div>
+</div>
+</div>
 </section>
 
-<!-- PORTFOLIO -->
 <section id="portfolio">
-    <div class="container spaced">
-        <h1>Portfolio</h1>
+<div class="container spaced">
+<h1 data-es="Portfolio" data-en="Portfolio">Portfolio</h1>
 
-        <div class="editorial-grid">
+<div class="editorial-grid">
+<article class="case large">
+<h2>Electrical Enclosure</h2>
+<div class="case-meta"><span>2024</span><span>Industrial</span></div>
 
-            <article class="case large">
-                <h2>Electrical Enclosure</h2>
-                <div class="case-meta">
-                    <span>Industrial Design</span>
-                    <span>2024</span>
-                    <span>Electrical</span>
-                </div>
+<div class="case-block">
+<h3 data-es="Contexto" data-en="Context">Contexto</h3>
+<p data-es="Diseño de envolvente eléctrica industrial."
+   data-en="Design of an industrial electrical enclosure.">
+Diseño de envolvente eléctrica industrial.
+</p>
+</div>
 
-                <div class="case-block">
-                    <h3>Context</h3>
-                    <p>Design of a technical enclosure for industrial electrical installation.</p>
-                </div>
-
-                <div class="case-block">
-                    <h3>Problem</h3>
-                    <p>Reduce volume and improve maintenance accessibility.</p>
-                </div>
-
-                <div class="case-block">
-                    <h3>Process</h3>
-                    <p>Use analysis, 3D printed iterations and functional testing.</p>
-                </div>
-
-                <div class="case-block">
-                    <h3>Result</h3>
-                    <p>Compact and robust solution optimized for serial production.</p>
-                </div>
-            </article>
-
-            <article class="case">
-                <h2>3D Printed Component</h2>
-                <p>Functional prototyping and validation.</p>
-            </article>
-
-            <article class="case">
-                <h2>Technical Product</h2>
-                <p>Design focused on use and assembly.</p>
-            </article>
-
-        </div>
-    </div>
+<div class="case-block">
+<h3 data-es="Resultado" data-en="Result">Resultado</h3>
+<p data-es="Solución compacta y funcional."
+   data-en="Compact and functional solution.">
+Solución compacta y funcional.
+</p>
+</div>
+</article>
+</div>
+</div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
-    <div class="container spaced">
-        <h1>Contacto</h1>
-        <p>Email · LinkedIn · GitHub</p>
-    </div>
+<div class="container spaced">
+<h1 data-es="Contacto" data-en="Contact">Contacto</h1>
+<p>Email · LinkedIn · GitHub</p>
+</div>
 </section>
 
 </main>
@@ -395,21 +214,36 @@ footer {
 <footer>© 2025 · Industrial Designer</footer>
 
 <script>
-const tabs = document.querySelectorAll(".tab");
-const sections = document.querySelectorAll("section");
+const tabs=document.querySelectorAll(".tab");
+const sections=document.querySelectorAll("section");
+const langBtns=document.querySelectorAll(".lang-btn");
 
-tabs.forEach(tab => {
-    tab.addEventListener("click", () => {
-        tabs.forEach(t => t.classList.remove("active"));
-        sections.forEach(s => s.classList.remove("active"));
-        tab.classList.add("active");
-        document.getElementById(tab.dataset.tab).classList.add("active");
-    });
+/* Tabs */
+tabs.forEach(tab=>{
+tab.onclick=()=>{
+tabs.forEach(t=>t.classList.remove("active"));
+sections.forEach(s=>s.classList.remove("active"));
+tab.classList.add("active");
+document.getElementById(tab.dataset.tab).classList.add("active");
+};
 });
 
-function goHome() {
-    document.querySelector('[data-tab="home"]').click();
+/* Home */
+function goHome(){
+document.querySelector('[data-tab="home"]').click();
 }
+
+/* Language switch */
+langBtns.forEach(btn=>{
+btn.onclick=()=>{
+langBtns.forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
+const lang=btn.dataset.lang;
+document.querySelectorAll("[data-es]").forEach(el=>{
+el.textContent=el.dataset[lang];
+});
+};
+});
 </script>
 
 </body>

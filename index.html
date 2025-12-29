@@ -5,6 +5,11 @@
 <title>Luis Blasco-Ibáñez | Industrial Design & 3D Modeling</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- GOOGLE FONT: INTER -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
 :root{
   --blue:#0f4c81;
@@ -18,7 +23,7 @@
 /* RESET */
 *{margin:0;padding:0;box-sizing:border-box}
 body{
-  font-family:"Segoe UI", Arial, sans-serif;
+  font-family:"Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   background:var(--gray);
   color:#222;
 }
@@ -39,19 +44,49 @@ nav{
 
 nav h1{
   color:white;
-  font-size:20px;
+  font-size:18px;
   font-weight:500;
+  letter-spacing:0.2px;
+}
+
+/* MENU LINKS */
+.menu{
+  display:flex;
+  gap:40px;
 }
 
 .menu a{
+  position:relative;
   color:white;
-  margin-left:30px;
   text-decoration:none;
   font-size:15px;
+  font-weight:400;
+  letter-spacing:0.5px;
   cursor:pointer;
+  padding:6px 0;
+  transition:transform 0.25s ease, opacity 0.25s ease;
 }
 
-.menu a:hover{opacity:0.7}
+/* UNDERLINE ANIMATION */
+.menu a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:0%;
+  height:2px;
+  background:var(--blue);
+  transition:width 0.3s ease;
+}
+
+.menu a:hover{
+  transform:translateY(-2px);
+  opacity:0.9;
+}
+
+.menu a:hover::after{
+  width:100%;
+}
 
 /* LANGUAGE SWITCH */
 .lang-switch{
@@ -65,7 +100,8 @@ nav h1{
   color:white;
   padding:6px 14px;
   border-radius:20px;
-  font-size:13px;
+  font-size:12px;
+  font-weight:500;
   cursor:pointer;
   transition:all 0.3s ease;
 }
@@ -100,31 +136,34 @@ h2{
   font-size:42px;
   margin-bottom:50px;
   color:var(--blue-dark);
+  font-weight:600;
+  letter-spacing:-0.5px;
 }
 
-/* CV / HERO */
+/* HERO */
 .hero-content{
   display:grid;
-  grid-template-columns:1.2fr 1fr; /* TEXTO IZQ / FOTO DER */
+  grid-template-columns:1.2fr 1fr;
   gap:60px;
   align-items:center;
 }
 
 .subtitle{
-  font-size:18px;
+  font-size:16px;
   color:var(--blue);
-  margin-bottom:20px;
+  margin-bottom:22px;
+  font-weight:500;
 }
 
 .hero-text p{
-  font-size:16px;
-  line-height:1.7;
+  font-size:15px;
+  line-height:1.8;
   color:#333;
+  max-width:520px;
 }
 
-/* FOTO LIMPIA, SIN MARCO, FONDO BLANCO */
+/* FOTO CUADRADA */
 .hero-image{
-  background:var(--white);
   display:flex;
   justify-content:center;
   align-items:center;
@@ -132,16 +171,16 @@ h2{
 
 .hero-image img{
   width:100%;
-  max-width:380px;
+  max-width:360px;
   aspect-ratio:1 / 1;
   object-fit:cover;
-  border-radius:0;
-  box-shadow:none;
-  background:var(--white);
+  background:var(--gray);
+  border-radius:8px;
+  box-shadow:0 12px 28px rgba(0,0,0,0.14);
 }
 
-/* BOTÓN CV */
-.cv-buttons{margin-top:30px}
+/* BUTTON */
+.cv-buttons{margin-top:32px}
 
 .btn-primary{
   display:inline-block;
@@ -150,8 +189,9 @@ h2{
   color:white;
   text-decoration:none;
   border-radius:30px;
-  font-size:14px;
-  letter-spacing:0.5px;
+  font-size:13px;
+  font-weight:500;
+  letter-spacing:1px;
   transition:all 0.3s ease;
 }
 
@@ -161,16 +201,17 @@ h2{
 }
 
 /* CV BLOCKS */
-.cv-block{margin-top:50px}
+.cv-block{margin-top:60px}
 
 .cv-block h3{
-  font-size:22px;
+  font-size:20px;
   margin-bottom:15px;
+  font-weight:600;
 }
 
 .cv-block p, .cv-block li{
-  font-size:15px;
-  line-height:1.7;
+  font-size:14.5px;
+  line-height:1.8;
   color:#444;
 }
 
@@ -192,11 +233,15 @@ ul{padding-left:20px}
   transition:all 0.3s ease;
 }
 
-.project:hover{transform:translateY(-6px)}
+.project:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 40px rgba(0,0,0,0.12);
+}
 
 .project h4{
   color:var(--blue);
   margin-bottom:10px;
+  font-weight:600;
 }
 
 .project p{
@@ -210,7 +255,7 @@ ul{padding-left:20px}
 }
 
 #contact p{
-  font-size:16px;
+  font-size:15px;
   margin-bottom:10px;
 }
 
@@ -220,7 +265,7 @@ footer{
   padding:20px;
   background:#000;
   color:#aaa;
-  font-size:14px;
+  font-size:13px;
 }
 
 /* RESPONSIVE */
@@ -255,23 +300,21 @@ footer{
 <section id="cv" class="active">
   <div class="hero-content">
 
-    <!-- TEXTO IZQUIERDA -->
     <div class="hero-text">
-      <h2 data-en="Curriculum Vitae" data-es="Currículum Vitae">Curriculum Vitae</h2>
+      <h2>Curriculum Vitae</h2>
       <p class="subtitle">Industrial Design · 3D Modeling · Product Design</p>
 
-      <p data-en="Industrial design student with a strong focus on 3D modeling as a core tool throughout the design process. I combine technical knowledge, creativity and a human-centered approach to develop functional, manufacturable and well-defined products."
-         data-es="Estudiante de diseño industrial con un fuerte enfoque en el modelado 3D como herramienta central del proceso de diseño. Combino conocimiento técnico, creatividad y una visión centrada en el usuario para desarrollar productos funcionales, fabricables y bien definidos.">
+      <p>
+        Industrial design student with a strong focus on 3D modeling as a core tool throughout the design process. 
+        I combine technical knowledge, creativity and a human-centered approach to develop functional, 
+        manufacturable and well-defined products.
       </p>
 
       <div class="cv-buttons">
-        <a href="Luis_Blasco_CV.pdf" target="_blank" class="btn-primary">
-          Download CV (PDF)
-        </a>
+        <a href="#" class="btn-primary">DOWNLOAD CV</a>
       </div>
     </div>
 
-    <!-- FOTO DERECHA -->
     <div class="hero-image">
       <img src="profile.jpg" alt="Luis Blasco-Ibáñez">
     </div>
@@ -279,14 +322,7 @@ footer{
   </div>
 
   <div class="cv-block">
-    <h3 data-en="Professional Profile" data-es="Perfil profesional">Professional Profile</h3>
-    <p data-en="Strong interest in product design and development, especially in contexts where 3D modeling plays a central role in defining geometry, validating concepts and preparing products for manufacturing."
-       data-es="Interés por el diseño y desarrollo de producto, especialmente en contextos donde el modelado 3D desempeña un papel central en la definición de geometría, validación de conceptos y preparación para fabricación.">
-    </p>
-  </div>
-
-  <div class="cv-block">
-    <h3 data-en="Skills" data-es="Competencias">Skills</h3>
+    <h3>Skills</h3>
     <ul>
       <li>3D Modeling: Inventor · SolidWorks · Fusion 360 · Rhinoceros</li>
       <li>Product design & technical development</li>
@@ -294,51 +330,17 @@ footer{
       <li>3D printing · Laser cutting</li>
     </ul>
   </div>
-
-  <div class="cv-block">
-    <h3 data-en="Software" data-es="Software">Software</h3>
-    <p>Adobe Illustrator · Photoshop · InDesign · Animate · AutoCAD</p>
-  </div>
-
-  <div class="cv-block">
-    <h3 data-en="Education" data-es="Formación">Education</h3>
-    <p>
-      BSc Industrial Design Engineering – UPV (2024 – Present)<br>
-      BSc Industrial Design Engineering – UJI (2021 – 2024)<br>
-      Advanced & Intermediate Vocational Training in Electrical Installations
-    </p>
-  </div>
-
-  <div class="cv-block">
-    <h3 data-en="Languages" data-es="Idiomas">Languages</h3>
-    <p>Spanish (Native) · Valencian (B1) · English (B2)</p>
-  </div>
 </section>
 
 <!-- PORTFOLIO -->
 <section id="portfolio">
   <h2>Portfolio</h2>
   <div class="portfolio-grid">
-    <div class="project" onclick="location.href='project1.html'">
-      <h4>Project 1</h4>
-      <p>Product design – coming soon</p>
-    </div>
-    <div class="project" onclick="location.href='project2.html'">
-      <h4>Project 2</h4>
-      <p>3D modeling & prototyping – coming soon</p>
-    </div>
-    <div class="project" onclick="location.href='project3.html'">
-      <h4>Project 3</h4>
-      <p>Technical development – coming soon</p>
-    </div>
-    <div class="project" onclick="location.href='project4.html'">
-      <h4>Project 4</h4>
-      <p>Concept design – coming soon</p>
-    </div>
-    <div class="project" onclick="location.href='project5.html'">
-      <h4>Project 5</h4>
-      <p>Manufacturing-oriented design – coming soon</p>
-    </div>
+    <div class="project"><h4>Project 1</h4><p>Coming soon</p></div>
+    <div class="project"><h4>Project 2</h4><p>Coming soon</p></div>
+    <div class="project"><h4>Project 3</h4><p>Coming soon</p></div>
+    <div class="project"><h4>Project 4</h4><p>Coming soon</p></div>
+    <div class="project"><h4>Project 5</h4><p>Coming soon</p></div>
   </div>
 </section>
 
@@ -357,20 +359,6 @@ footer{
 function showSection(id){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
-}
-
-function setLang(lang){
-  document.querySelectorAll("[data-en]").forEach(el=>{
-    el.textContent = lang === "en" ? el.dataset.en : el.dataset.es;
-  });
-
-  document.querySelectorAll(".lang-switch button").forEach(btn=>{
-    btn.classList.remove("active");
-  });
-
-  document
-    .querySelector(`.lang-switch button[onclick="setLang('${lang}')"]`)
-    .classList.add("active");
 }
 </script>
 

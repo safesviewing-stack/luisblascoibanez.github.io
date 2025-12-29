@@ -12,18 +12,17 @@
 
 <style>
 :root{
-  --blue:#0f4c81;
-  --blue-dark:#0d3f6e;
-  --blue-light:#eef4f9;
   --dark:#0b0b0b;
-  --gray:#f4f4f4;
+  --gray:#f2f2f2;
+  --blue:#0f4c81;
+  --blue-light:#eef4f9;
 }
 
 /* RESET */
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
-  font-family:"Inter", system-ui, sans-serif;
+  font-family:"Inter",system-ui,sans-serif;
   background:var(--gray);
   color:#222;
 }
@@ -44,23 +43,23 @@ nav{
 
 nav h1{
   color:white;
-  font-size:16px;
+  font-size:15px;
   font-weight:500;
+  letter-spacing:.4px;
 }
 
 /* MENU */
 .menu{
   display:flex;
-  gap:36px;
+  gap:40px;
 }
 
 .menu a{
   color:white;
   text-decoration:none;
   font-size:14px;
-  letter-spacing:0.6px;
+  letter-spacing:1px;
   position:relative;
-  padding-bottom:4px;
   cursor:pointer;
 }
 
@@ -68,7 +67,7 @@ nav h1{
   content:"";
   position:absolute;
   left:0;
-  bottom:0;
+  bottom:-6px;
   width:0;
   height:2px;
   background:var(--blue);
@@ -80,12 +79,12 @@ nav h1{
 }
 
 /* LANG */
-.lang-switch{
+.lang{
   display:flex;
   gap:10px;
 }
 
-.lang-switch button{
+.lang button{
   background:transparent;
   border:1px solid #555;
   color:white;
@@ -95,9 +94,9 @@ nav h1{
   cursor:pointer;
 }
 
-.lang-switch button.active{
+.lang button.active{
   background:white;
-  color:#000;
+  color:black;
 }
 
 /* SECTIONS */
@@ -105,7 +104,7 @@ section{
   display:none;
   max-width:1200px;
   margin:auto;
-  padding:120px 40px 80px;
+  padding:120px 40px 100px;
   animation:fade .6s ease;
 }
 
@@ -116,26 +115,18 @@ section.active{display:block}
   to{opacity:1;transform:translateY(0)}
 }
 
-/* TITLES */
-h2{
-  font-size:46px;
-  margin-bottom:32px;
-  color:var(--blue-dark);
-  font-weight:600;
-}
-
 /* HERO */
 .hero{
   display:grid;
-  grid-template-columns:1fr 800px;
-  gap:70px;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
   align-items:center;
 }
 
-.subtitle{
-  font-size:15px;
+.hero h2{
+  font-size:48px;
+  margin-bottom:20px;
   color:var(--blue);
-  margin-bottom:18px;
 }
 
 .hero p{
@@ -146,70 +137,53 @@ h2{
 
 /* IMAGE */
 .hero-image{
-  width:800px;
-  height:1200px;
   display:flex;
   justify-content:center;
-  align-items:center;
 }
 
 .hero-image img{
   width:360px;
   height:360px;
   object-fit:cover;
-  background:#e6e6e6;
   border-radius:8px;
-  box-shadow:0 12px 30px rgba(0,0,0,.15);
-}
-
-/* BUTTON */
-.btn{
-  margin-top:30px;
-  display:inline-block;
-  padding:14px 30px;
-  background:var(--blue);
-  color:white;
-  text-decoration:none;
-  border-radius:30px;
-  font-size:13px;
-  letter-spacing:1px;
-  transition:.3s;
-}
-
-.btn:hover{
-  background:var(--blue-dark);
-  transform:translateY(-2px);
+  background:#ddd;
+  box-shadow:0 15px 35px rgba(0,0,0,.15);
 }
 
 /* BLOCKS */
-.block{margin-top:60px}
+.block{
+  margin-top:70px;
+}
 
 .block h3{
   font-size:20px;
-  margin-bottom:12px;
+  margin-bottom:15px;
 }
 
-.block li{
+.block ul li{
   font-size:14.5px;
-  line-height:1.8;
+  line-height:1.9;
 }
 
 /* PORTFOLIO */
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:30px;
 }
 
-.card{
+.project{
   background:white;
   padding:30px;
   border-radius:10px;
   box-shadow:0 15px 30px rgba(0,0,0,.1);
+  cursor:pointer;
   transition:.3s;
 }
 
-.card:hover{transform:translateY(-6px)}
+.project:hover{
+  transform:translateY(-6px);
+}
 
 /* CONTACT */
 #contact{
@@ -225,15 +199,10 @@ footer{
 }
 
 /* RESPONSIVE */
-@media(max-width:1200px){
+@media(max-width:900px){
   .hero{
     grid-template-columns:1fr;
     text-align:center;
-  }
-  .hero-image{
-    width:100%;
-    height:auto;
-    padding:60px 0;
   }
 }
 </style>
@@ -250,58 +219,54 @@ footer{
     <a onclick="show('contact')">Contact</a>
   </div>
 
-  <div class="lang-switch">
-    <button class="active">EN</button>
-    <button>ES</button>
+  <div class="lang">
+    <button id="enBtn" class="active" onclick="setLang('en')">EN</button>
+    <button id="esBtn" onclick="setLang('es')">ES</button>
   </div>
 </nav>
 
 <!-- CV -->
 <section id="cv" class="active">
   <div class="hero">
-
     <div>
-      <h2>Curriculum Vitae</h2>
-      <p class="subtitle">Industrial Design · 3D Modeling · Product Design</p>
-      <p>
-        Industrial design student focused on 3D modeling as a key tool throughout the
-        design process. Strong interest in product development, manufacturing-oriented
+      <h2 id="cvTitle">Curriculum Vitae</h2>
+      <p id="cvText">
+        Industrial design student with a strong focus on 3D modeling as a core
+        design tool. Interested in product development, manufacturing-oriented
         design and human-centered solutions.
       </p>
-      <a class="btn" href="#">DOWNLOAD CV</a>
     </div>
 
     <div class="hero-image">
       <img src="profile.jpg" alt="Luis Blasco-Ibáñez Berbel">
     </div>
-
   </div>
 
   <div class="block">
-    <h3>Skills</h3>
+    <h3 id="skillsTitle">Skills</h3>
     <ul>
       <li>Inventor · SolidWorks · Fusion 360 · Rhinoceros</li>
-      <li>Product development & prototyping</li>
-      <li>Technical and conceptual design</li>
+      <li>3D modeling & prototyping</li>
+      <li>Product design & technical development</li>
     </ul>
   </div>
 </section>
 
 <!-- PORTFOLIO -->
 <section id="portfolio">
-  <h2>Portfolio</h2>
+  <h2 id="portTitle">Portfolio</h2>
   <div class="grid">
-    <div class="card">Project 1 – Coming soon</div>
-    <div class="card">Project 2 – Coming soon</div>
-    <div class="card">Project 3 – Coming soon</div>
-    <div class="card">Project 4 – Coming soon</div>
-    <div class="card">Project 5 – Coming soon</div>
+    <div class="project">Project 01 – Coming soon</div>
+    <div class="project">Project 02 – Coming soon</div>
+    <div class="project">Project 03 – Coming soon</div>
+    <div class="project">Project 04 – Coming soon</div>
+    <div class="project">Project 05 – Coming soon</div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-  <h2>Contact</h2>
+  <h2 id="contactTitle">Contact</h2>
   <p>Email: luisblascoibanezberbel@gmail.com</p>
   <p>Valencia, Spain</p>
 </section>
@@ -314,6 +279,27 @@ footer{
 function show(id){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
+}
+
+function setLang(lang){
+  document.getElementById("enBtn").classList.toggle("active",lang==="en");
+  document.getElementById("esBtn").classList.toggle("active",lang==="es");
+
+  if(lang==="es"){
+    document.getElementById("cvTitle").innerText="Currículum Vitae";
+    document.getElementById("cvText").innerText=
+      "Estudiante de diseño industrial con especial interés en el modelado 3D como herramienta clave del proceso de diseño. Enfoque en desarrollo de producto, fabricación y diseño centrado en el usuario.";
+    document.getElementById("skillsTitle").innerText="Habilidades";
+    document.getElementById("portTitle").innerText="Portfolio";
+    document.getElementById("contactTitle").innerText="Contacto";
+  }else{
+    document.getElementById("cvTitle").innerText="Curriculum Vitae";
+    document.getElementById("cvText").innerText=
+      "Industrial design student with a strong focus on 3D modeling as a core design tool. Interested in product development, manufacturing-oriented design and human-centered solutions.";
+    document.getElementById("skillsTitle").innerText="Skills";
+    document.getElementById("portTitle").innerText="Portfolio";
+    document.getElementById("contactTitle").innerText="Contact";
+  }
 }
 </script>
 

@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Luis Blasco-Ibáñez Berbel | Industrial Design & 3D Modeling</title>
+<title>Luis Blasco-Ibáñez Berbel | Industrial Design</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- GOOGLE FONT -->
+<!-- FONT -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -14,13 +14,14 @@
 :root{
   --blue:#0f4c81;
   --blue-dark:#0d3f6e;
-  --blue-light:#eaf2f8;
+  --blue-light:#eef4f9;
   --dark:#0b0b0b;
   --gray:#f4f4f4;
 }
 
 /* RESET */
 *{margin:0;padding:0;box-sizing:border-box}
+
 body{
   font-family:"Inter", system-ui, sans-serif;
   background:var(--gray);
@@ -32,7 +33,7 @@ nav{
   position:fixed;
   top:0;
   width:100%;
-  height:90px;
+  height:80px;
   background:var(--dark);
   display:flex;
   align-items:center;
@@ -43,26 +44,24 @@ nav{
 
 nav h1{
   color:white;
-  font-size:18px;
+  font-size:16px;
   font-weight:500;
-  letter-spacing:0.3px;
 }
 
 /* MENU */
 .menu{
   display:flex;
-  gap:40px;
+  gap:36px;
 }
 
 .menu a{
-  position:relative;
   color:white;
   text-decoration:none;
-  font-size:15px;
-  letter-spacing:0.5px;
+  font-size:14px;
+  letter-spacing:0.6px;
+  position:relative;
+  padding-bottom:4px;
   cursor:pointer;
-  padding:6px 0;
-  transition:transform .25s ease;
 }
 
 .menu a::after{
@@ -73,18 +72,14 @@ nav h1{
   width:0;
   height:2px;
   background:var(--blue);
-  transition:width .3s ease;
-}
-
-.menu a:hover{
-  transform:translateY(-2px);
+  transition:.3s;
 }
 
 .menu a:hover::after{
   width:100%;
 }
 
-/* LANGUAGE */
+/* LANG */
 .lang-switch{
   display:flex;
   gap:10px;
@@ -110,49 +105,49 @@ section{
   display:none;
   max-width:1200px;
   margin:auto;
-  padding:150px 40px 100px;
-  animation:fadeUp .8s ease;
+  padding:120px 40px 80px;
+  animation:fade .6s ease;
 }
 
 section.active{display:block}
 
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(20px)}
+@keyframes fade{
+  from{opacity:0;transform:translateY(15px)}
   to{opacity:1;transform:translateY(0)}
 }
 
+/* TITLES */
 h2{
-  font-size:42px;
-  margin-bottom:50px;
+  font-size:46px;
+  margin-bottom:32px;
   color:var(--blue-dark);
   font-weight:600;
 }
 
 /* HERO */
-.hero-content{
+.hero{
   display:grid;
-  grid-template-columns:1.2fr 800px;
-  gap:80px;
+  grid-template-columns:1fr 800px;
+  gap:70px;
   align-items:center;
 }
 
 .subtitle{
-  font-size:16px;
+  font-size:15px;
   color:var(--blue);
-  margin-bottom:22px;
+  margin-bottom:18px;
 }
 
-.hero-text p{
+.hero p{
   font-size:15px;
   line-height:1.8;
   max-width:520px;
 }
 
-/* FOTO CONTENEDOR */
+/* IMAGE */
 .hero-image{
   width:800px;
   height:1200px;
-  background:var(--gray);
   display:flex;
   justify-content:center;
   align-items:center;
@@ -162,17 +157,16 @@ h2{
   width:360px;
   height:360px;
   object-fit:cover;
-  background:var(--gray);
+  background:#e6e6e6;
   border-radius:8px;
-  box-shadow:0 12px 28px rgba(0,0,0,.14);
+  box-shadow:0 12px 30px rgba(0,0,0,.15);
 }
 
 /* BUTTON */
-.cv-buttons{margin-top:32px}
-
-.btn-primary{
+.btn{
+  margin-top:30px;
   display:inline-block;
-  padding:14px 28px;
+  padding:14px 30px;
   background:var(--blue);
   color:white;
   text-decoration:none;
@@ -182,35 +176,32 @@ h2{
   transition:.3s;
 }
 
-.btn-primary:hover{
+.btn:hover{
   background:var(--blue-dark);
   transform:translateY(-2px);
 }
 
-/* CV BLOCKS */
-.cv-block{margin-top:60px}
+/* BLOCKS */
+.block{margin-top:60px}
 
-.cv-block h3{
+.block h3{
   font-size:20px;
-  margin-bottom:15px;
+  margin-bottom:12px;
 }
 
-.cv-block p, .cv-block li{
+.block li{
   font-size:14.5px;
   line-height:1.8;
-  color:#444;
 }
 
-ul{padding-left:20px}
-
 /* PORTFOLIO */
-.portfolio-grid{
+.grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:30px;
 }
 
-.project{
+.card{
   background:white;
   padding:30px;
   border-radius:10px;
@@ -218,21 +209,13 @@ ul{padding-left:20px}
   transition:.3s;
 }
 
-.project:hover{
-  transform:translateY(-6px);
-}
+.card:hover{transform:translateY(-6px)}
 
 /* CONTACT */
 #contact{
   background:var(--blue-light);
 }
 
-#contact p{
-  font-size:15px;
-  margin-bottom:10px;
-}
-
-/* FOOTER */
 footer{
   text-align:center;
   padding:20px;
@@ -243,7 +226,7 @@ footer{
 
 /* RESPONSIVE */
 @media(max-width:1200px){
-  .hero-content{
+  .hero{
     grid-template-columns:1fr;
     text-align:center;
   }
@@ -262,32 +245,30 @@ footer{
   <h1>Luis Blasco-Ibáñez Berbel</h1>
 
   <div class="menu">
-    <a onclick="showSection('cv')">CV</a>
-    <a onclick="showSection('portfolio')">Portfolio</a>
-    <a onclick="showSection('contact')">Contact</a>
+    <a onclick="show('cv')">CV</a>
+    <a onclick="show('portfolio')">Portfolio</a>
+    <a onclick="show('contact')">Contact</a>
   </div>
 
   <div class="lang-switch">
     <button class="active">EN</button>
+    <button>ES</button>
   </div>
 </nav>
 
 <!-- CV -->
 <section id="cv" class="active">
-  <div class="hero-content">
+  <div class="hero">
 
-    <div class="hero-text">
+    <div>
       <h2>Curriculum Vitae</h2>
       <p class="subtitle">Industrial Design · 3D Modeling · Product Design</p>
       <p>
-        Industrial design student with a strong focus on 3D modeling as a core tool throughout
-        the design process. I combine technical knowledge, creativity and a human-centered
-        approach to develop functional, manufacturable and well-defined products.
+        Industrial design student focused on 3D modeling as a key tool throughout the
+        design process. Strong interest in product development, manufacturing-oriented
+        design and human-centered solutions.
       </p>
-
-      <div class="cv-buttons">
-        <a href="#" class="btn-primary">DOWNLOAD CV</a>
-      </div>
+      <a class="btn" href="#">DOWNLOAD CV</a>
     </div>
 
     <div class="hero-image">
@@ -296,12 +277,12 @@ footer{
 
   </div>
 
-  <div class="cv-block">
+  <div class="block">
     <h3>Skills</h3>
     <ul>
-      <li>3D Modeling: Inventor · SolidWorks · Fusion 360 · Rhinoceros</li>
-      <li>Product design & technical development</li>
-      <li>Prototyping and manufacturing-oriented design</li>
+      <li>Inventor · SolidWorks · Fusion 360 · Rhinoceros</li>
+      <li>Product development & prototyping</li>
+      <li>Technical and conceptual design</li>
     </ul>
   </div>
 </section>
@@ -309,12 +290,12 @@ footer{
 <!-- PORTFOLIO -->
 <section id="portfolio">
   <h2>Portfolio</h2>
-  <div class="portfolio-grid">
-    <div class="project">Project 1 – Coming soon</div>
-    <div class="project">Project 2 – Coming soon</div>
-    <div class="project">Project 3 – Coming soon</div>
-    <div class="project">Project 4 – Coming soon</div>
-    <div class="project">Project 5 – Coming soon</div>
+  <div class="grid">
+    <div class="card">Project 1 – Coming soon</div>
+    <div class="card">Project 2 – Coming soon</div>
+    <div class="card">Project 3 – Coming soon</div>
+    <div class="card">Project 4 – Coming soon</div>
+    <div class="card">Project 5 – Coming soon</div>
   </div>
 </section>
 
@@ -330,7 +311,7 @@ footer{
 </footer>
 
 <script>
-function showSection(id){
+function show(id){
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
 }

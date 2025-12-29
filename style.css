@@ -1,1 +1,119 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
 
+body {
+  background: #fff;
+  color: #111;
+}
+
+/* NAVBAR */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background: #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  z-index: 1000;
+}
+
+.navbar button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.nav-center button {
+  margin: 0 15px;
+}
+
+.lang.active {
+  border-bottom: 2px solid #1e3a8a;
+}
+
+/* SECTIONS */
+.section {
+  min-height: 100vh;
+  padding: 120px 10%;
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+
+/* HOME */
+.home {
+  background: url("assets/portada.jpg") center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay {
+  background: rgba(0,0,0,0.45);
+  padding: 40px;
+  text-align: center;
+  color: white;
+}
+
+.overlay h1 {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.overlay p {
+  font-size: 18px;
+}
+
+/* PORTFOLIO */
+.project-list {
+  list-style: none;
+  margin-top: 40px;
+}
+
+.project-list li {
+  padding: 20px 0;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+}
+
+/* CV */
+.cv-container {
+  max-width: 600px;
+}
+
+.profile-pic {
+  width: 150px;
+  border-radius: 100%;
+  margin-bottom: 20px;
+}
+
+.description {
+  margin-bottom: 30px;
+}
+
+.download-btn {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 12px 24px;
+  background: #1e3a8a;
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+}
+
+/* CONTACTO */
+a {
+  color: #1e3a8a;
+  text-decoration: none;
+}

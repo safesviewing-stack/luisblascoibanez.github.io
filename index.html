@@ -1,230 +1,356 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Portfolio | Tu Nombre</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Portfolio | Diseñador Industrial</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        /* RESET */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
+<style>
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+}
 
-        body {
-            background-color: #ffffff;
-            color: #111;
-        }
+body {
+    background: #fff;
+    color: #111;
+}
 
-        /* NAVBAR */
-        header {
-            background-color: #000;
-            color: #fff;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 100;
-        }
+/* ================= NAVBAR ================= */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 70px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+}
 
-        .nav-container {
-            width: 90%;
-            max-width: 1200px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+.nav {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
-        .back-arrow {
-            font-size: 20px;
-            cursor: pointer;
-        }
+.back {
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 40px;
-        }
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+}
 
-        nav ul li {
-            cursor: pointer;
-            font-size: 16px;
-            letter-spacing: 0.5px;
-        }
+nav li {
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    position: relative;
+}
 
-        nav ul li.active {
-            text-decoration: underline;
-        }
+nav li.active {
+    font-weight: bold;
+}
 
-        .lang {
-            display: flex;
-            gap: 10px;
-            font-size: 14px;
-            cursor: pointer;
-        }
+nav li::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background: white;
+    transition: width 0.3s ease;
+}
 
-        .lang span.active {
-            font-weight: bold;
-        }
+nav li:hover::after {
+    width: 100%;
+}
 
-        /* CONTENT */
-        main {
-            padding-top: 120px;
-            width: 90%;
-            max-width: 1000px;
-            margin: auto;
-        }
+.lang span {
+    color: white;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 13px;
+}
 
-        section {
-            display: none;
-            animation: fade 0.3s ease-in-out;
-        }
+/* ================= CONTENT ================= */
+main {
+    padding-top: 100px;
+}
 
-        section.active {
-            display: block;
-        }
+section {
+    display: none;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.6s ease;
+}
 
-        h1 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
+section.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
 
-        h2 {
-            margin-top: 30px;
-            margin-bottom: 10px;
-            font-size: 22px;
-        }
+/* ================= HOME ================= */
+.home {
+    height: calc(100vh - 100px);
+    background: url("portada.jpg") center/cover no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    align-items: flex-end;
+}
 
-        p {
-            line-height: 1.6;
-            margin-bottom: 15px;
-            max-width: 800px;
-        }
+.home-text {
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 40px;
+    max-width: 600px;
+}
 
-        .project {
-            margin-bottom: 25px;
-        }
+.home-text h1 {
+    font-size: 42px;
+    margin-bottom: 10px;
+}
 
-        @keyframes fade {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+.home-text p {
+    font-size: 18px;
+}
 
-        /* FOOTER */
-        footer {
-            margin-top: 80px;
-            padding: 30px 0;
-            text-align: center;
-            font-size: 14px;
-            color: #666;
-        }
-    </style>
+/* ================= GENERIC ================= */
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+/* ================= AWWWARDS REVEAL ================= */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+
+/* ================= PORTFOLIO ================= */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.project {
+    border-top: 1px solid #ddd;
+    padding-top: 15px;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.project:hover {
+    transform: translateY(-6px);
+}
+
+.grid:hover .project:not(:hover) {
+    opacity: 0.4;
+}
+
+/* ================= CV ================= */
+.cv {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 40px;
+}
+
+.cv img {
+    width: 100%;
+    border-radius: 4px;
+}
+
+.download {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    border-bottom: 1px solid black;
+    color: black;
+}
+
+/* ================= FOOTER ================= */
+footer {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+}
+</style>
 </head>
 
 <body>
 
 <header>
-    <div class="nav-container">
-        <div class="back-arrow">←</div>
+    <div class="nav">
+        <div class="back" onclick="goHome()">←</div>
 
         <nav>
             <ul>
-                <li class="tab active" data-tab="portfolio">Portfolio</li>
+                <li class="tab active" data-tab="home">Home</li>
+                <li class="tab" data-tab="portfolio">Portfolio</li>
                 <li class="tab" data-tab="cv">CV</li>
-                <li class="tab" data-tab="contacto">Contacto</li>
+                <li class="tab" data-tab="contact">Contacto</li>
             </ul>
         </nav>
 
         <div class="lang">
-            <span class="lang-btn active" data-lang="es">ES</span>
-            <span class="lang-btn" data-lang="en">EN</span>
+            <span>ES</span><span>EN</span>
         </div>
     </div>
 </header>
 
 <main>
-    <!-- PORTFOLIO -->
-    <section id="portfolio" class="active">
-        <h1>Portfolio</h1>
 
-        <div class="project">
-            <h2>Proyecto 01</h2>
-            <p>
-                Descripción breve del proyecto. Qué problema resuelve, tu rol y las herramientas utilizadas.
-            </p>
+<!-- HOME -->
+<section id="home" class="home active">
+    <div class="home-text reveal visible">
+        <h1>Diseñador Industrial</h1>
+        <p>Producto · Proceso · Función · Humanización</p>
+    </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+    <div class="container">
+        <h1 class="reveal">Portfolio</h1>
+
+        <div class="grid">
+            <div class="project reveal delay-1">
+                <h2>Diseño de Producto</h2>
+                <p>Concepto, desarrollo y validación.</p>
+            </div>
+
+            <div class="project reveal delay-2">
+                <h2>Impresión 3D</h2>
+                <p>Iteración rápida y prototipado.</p>
+            </div>
+
+            <div class="project reveal delay-3">
+                <h2>Sector Eléctrico</h2>
+                <p>Diseño técnico aplicado.</p>
+            </div>
         </div>
+    </div>
+</section>
 
-        <div class="project">
-            <h2>Proyecto 02</h2>
-            <p>
-                Proyecto enfocado en diseño industrial, producto, impresión 3D o experiencia de usuario.
-            </p>
+<!-- CV -->
+<section id="cv">
+    <div class="container">
+        <h1 class="reveal">Currículum</h1>
+
+        <div class="cv">
+            <img src="profile.jpg" class="reveal delay-1" alt="Foto">
+
+            <div class="reveal delay-2">
+                <h2>Perfil</h2>
+                <p>
+                    Diseñador industrial con experiencia en sector eléctrico,
+                    enfocado en soluciones funcionales y humanizadas.
+                </p>
+
+                <h2>Formación</h2>
+                <p>Grado en Diseño Industrial y Desarrollo de Producto</p>
+
+                <a href="cv.pdf" class="download" download>Descargar CV en PDF</a>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- CV -->
-    <section id="cv">
-        <h1>Currículum</h1>
-
-        <h2>Perfil</h2>
-        <p>
-            Diseñador industrial con experiencia en el sector eléctrico y enfoque en diseño funcional y humanizado.
-        </p>
-
-        <h2>Experiencia</h2>
-        <p>
-            <strong>Empresa X</strong> — Diseñador / Técnico<br>
-            Breve descripción de responsabilidades y logros.
-        </p>
-
-        <h2>Formación</h2>
-        <p>
-            Grado en Diseño Industrial y Desarrollo de Producto
-        </p>
-    </section>
-
-    <!-- CONTACTO -->
-    <section id="contacto">
+<!-- CONTACT -->
+<section id="contact">
+    <div class="container reveal">
         <h1>Contacto</h1>
-        <p>Email: tunombre@email.com</p>
-        <p>LinkedIn: linkedin.com/in/tunombre</p>
-        <p>GitHub: github.com/tunombre</p>
-    </section>
+        <p>Email · LinkedIn · GitHub</p>
+    </div>
+</section>
+
 </main>
 
 <footer>
-    © 2025 · Tu Nombre
+© 2025 · Portfolio
 </footer>
 
 <script>
-    const tabs = document.querySelectorAll('.tab');
-    const sections = document.querySelectorAll('section');
+/* TABS */
+const tabs = document.querySelectorAll(".tab");
+const sections = document.querySelectorAll("section");
 
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            tabs.forEach(t => t.classList.remove('active'));
-            sections.forEach(s => s.classList.remove('active'));
+tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+        tabs.forEach(t => t.classList.remove("active"));
+        sections.forEach(s => s.classList.remove("active"));
 
-            tab.classList.add('active');
-            document.getElementById(tab.dataset.tab).classList.add('active');
-        });
+        tab.classList.add("active");
+        document.getElementById(tab.dataset.tab).classList.add("active");
+        revealOnScroll();
     });
+});
 
-    const langBtns = document.querySelectorAll('.lang-btn');
+/* BACK TO HOME */
+function goHome() {
+    tabs.forEach(t => t.classList.remove("active"));
+    sections.forEach(s => s.classList.remove("active"));
 
-    langBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            langBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            // Aquí luego puedes cambiar textos según idioma
-        });
+    document.querySelector('[data-tab="home"]').classList.add("active");
+    document.getElementById("home").classList.add("active");
+}
+
+/* AWWWARDS REVEAL */
+const reveals = document.querySelectorAll(".reveal");
+
+function revealOnScroll() {
+    reveals.forEach(el => {
+        const top = el.getBoundingClientRect().top;
+        if (top < window.innerHeight - 100) {
+            el.classList.add("visible");
+        }
     });
+}
+
+window.addEventListener("scroll", revealOnScroll);
+revealOnScroll();
+
+/* PARALLAX HOME */
+window.addEventListener("scroll", () => {
+    const home = document.querySelector(".home");
+    if (home) {
+        home.style.backgroundPositionY = window.scrollY * 0.3 + "px";
+    }
+});
 </script>
 
 </body>

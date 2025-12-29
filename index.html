@@ -45,6 +45,7 @@ nav li:hover::after{width:100%}
     padding:4px 8px;
     margin-left:8px;
     cursor:pointer;
+    border-radius:4px;
 }
 .lang button.active{
     background:#fff;
@@ -70,27 +71,46 @@ p,li{font-size:14px;line-height:1.7}
 .home-text h1 {margin-bottom: 14px; /* Ajusta el valor aquí para controlar la separación */}
 
 /* CV */
-.cv{display:grid;grid-template-columns:340px 1fr;gap:48px}
-.cv img{width:100%;border-radius:2px}
-.list{list-style:none;margin-top:10px}
-.list li{margin-bottom:6px}
+.cv{
+    display:grid;
+    grid-template-columns:1fr 2fr;
+    gap:48px;
+    margin-top:40px;
+}
+.cv img{
+    width:100%;
+    border-radius:8px;
+    max-width:400px;
+}
+.cv .cv-text h2{
+    margin-top:24px;
+}
+.cv .cv-text p, .cv .cv-text ul{
+    margin-top:12px;
+}
+.cv .cv-text{
+    flex: 1;
+}
 
 /* DESCARGAR CV */
 .download{
     display:inline-block;margin-top:24px;
-    border-bottom:1px solid #000;
-    text-decoration:none;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#000;
-    padding: 12px 24px;
-    background-color: white;
-    border: 2px solid #000;
+    padding:12px 24px;
+    background-color: black;
+    color: white;
+    border: 2px solid black;
     font-weight: bold;
+    text-transform: uppercase;
     text-align: center;
-    transition: background-color 0.3s, color 0.3s;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
 }
 
 .download:hover{
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
 }
 
 /* PORTFOLIO */
@@ -151,21 +171,23 @@ footer{text-align:center;padding:24px;font-size:11px;color:#777}
 <h1 id="title-cv"></h1>
 
 <div class="cv">
-<img src="profile.jpg">
+    <div>
+        <img src="profile.jpg" alt="Foto de perfil">
+    </div>
+    <div class="cv-text">
+        <h2 id="cv-profile-title"></h2>
+        <p id="cv-profile-text"></p>
 
-<div>
-<h2 id="cv-profile-title"></h2>
-<p id="cv-profile-text"></p>
+        <h2 id="cv-skills-title"></h2>
+        <ul class="list" id="cv-skills"></ul>
 
-<h2 id="cv-skills-title"></h2>
-<ul class="list" id="cv-skills"></ul>
+        <h2 id="cv-education-title"></h2>
+        <ul class="list" id="cv-education"></ul>
 
-<h2 id="cv-education-title"></h2>
-<ul class="list" id="cv-education"></ul>
-
-<a href="cv.pdf" class="download" id="cv-download"></a>
+        <a href="cv.pdf" class="download" id="cv-download"></a>
+    </div>
 </div>
-</div>
+
 </div>
 </section>
 

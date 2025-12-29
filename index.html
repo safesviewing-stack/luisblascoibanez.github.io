@@ -2,10 +2,10 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Portfolio | Industrial Designer</title>
+<title>Industrial Designer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- TYPOGRAPHY -->
+<!-- Typography -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -23,7 +23,7 @@ body {
     color: #111;
 }
 
-/* ===== NAV ===== */
+/* ================= HEADER ================= */
 header {
     position: fixed;
     top: 0;
@@ -39,33 +39,36 @@ header {
     width: 90%;
     max-width: 1200px;
     margin: auto;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
 }
 
 .back {
-    color: white;
+    color: #fff;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 nav ul {
     display: flex;
+    justify-content: center;
+    gap: 36px;
     list-style: none;
-    gap: 30px;
 }
 
 nav li {
-    color: white;
+    color: #fff;
     cursor: pointer;
-    position: relative;
-    font-size: 14px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     font-weight: 400;
+    position: relative;
 }
 
 nav li.active {
-    font-weight: 600;
+    font-weight: 500;
 }
 
 nav li::after {
@@ -75,7 +78,7 @@ nav li::after {
     left: 0;
     width: 0;
     height: 1px;
-    background: white;
+    background: #fff;
     transition: width 0.25s ease;
 }
 
@@ -84,17 +87,17 @@ nav li:hover::after {
 }
 
 .lang span {
-    color: white;
-    cursor: pointer;
-    font-size: 13px;
+    color: #fff;
+    font-size: 12px;
     margin-left: 10px;
+    cursor: pointer;
 }
 
 .lang span.active {
-    font-weight: 600;
+    font-weight: 500;
 }
 
-/* ===== LAYOUT ===== */
+/* ================= LAYOUT ================= */
 main {
     padding-top: 70px;
 }
@@ -102,7 +105,7 @@ main {
 section {
     display: none;
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(6px);
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
@@ -114,83 +117,63 @@ section.active {
 
 .container {
     width: 90%;
-    max-width: 1000px;
+    max-width: 960px;
     margin: auto;
 }
 
-/* Extra spacing for inner sections */
 .spaced {
-    padding: 60px 0;
+    padding: 70px 0;
 }
 
-/* ===== TYPO ===== */
+/* ================= TYPO ================= */
 h1 {
-    font-size: 30px;
+    font-size: 28px;
     font-weight: 500;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
 }
 
 h2 {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
-    margin: 20px 0 6px;
+    margin: 22px 0 6px;
+}
+
+h3 {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
 }
 
 p, li {
     font-size: 14px;
-    line-height: 1.6;
-    font-weight: 400;
+    line-height: 1.7;
 }
 
-/* ===== HOME ===== */
+/* ================= HOME ================= */
 .home {
     background: url("portada.jpg") center/cover no-repeat;
-    padding: 60px 0 40px;
+    padding: 80px 0 60px;
 }
 
 .home-text {
-    background: rgba(0,0,0,0.6);
-    color: white;
-    padding: 26px;
+    background: rgba(0,0,0,0.65);
+    color: #fff;
+    padding: 28px;
     max-width: 520px;
 }
 
-.home-text h1 {
-    font-size: 34px;
-    font-weight: 500;
-}
-
-/* ===== PORTFOLIO ===== */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 26px;
-}
-
-.project {
-    border-top: 1px solid #ddd;
-    padding-top: 12px;
-    transition: transform 0.25s ease, opacity 0.25s ease;
-}
-
-.project:hover {
-    transform: translateY(-4px);
-}
-
-.grid:hover .project:not(:hover) {
-    opacity: 0.45;
-}
-
-/* ===== CV ===== */
+/* ================= CV ================= */
 .cv {
     display: grid;
-    grid-template-columns: 360px 1fr;
-    gap: 40px;
+    grid-template-columns: 340px 1fr;
+    gap: 48px;
 }
 
 .cv img {
     width: 100%;
-    border-radius: 4px;
+    border-radius: 2px;
 }
 
 .list {
@@ -204,19 +187,77 @@ p, li {
 
 .download {
     display: inline-block;
-    margin-top: 22px;
+    margin-top: 24px;
     border-bottom: 1px solid #000;
     text-decoration: none;
     color: #000;
-    font-size: 13px;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
 }
 
-/* ===== FOOTER ===== */
+/* ================= PORTFOLIO ================= */
+.editorial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+.case {
+    border-top: 1px solid #ddd;
+    padding-top: 16px;
+}
+
+.case.large {
+    grid-column: span 2;
+}
+
+.case-meta {
+    display: flex;
+    gap: 14px;
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 14px;
+}
+
+.case-block {
+    margin-bottom: 14px;
+}
+
+/* ================= FOOTER ================= */
 footer {
     text-align: center;
     padding: 24px;
-    font-size: 12px;
-    color: #666;
+    font-size: 11px;
+    color: #777;
+}
+
+/* ================= PRINT ================= */
+@media print {
+    header, footer, .lang, .back {
+        display: none;
+    }
+
+    main {
+        padding-top: 0;
+    }
+
+    .container, .spaced {
+        padding: 0;
+    }
+
+    h1 { font-size: 22px; }
+    h2 { font-size: 14px; }
+    p, li { font-size: 12px; }
+
+    .cv {
+        grid-template-columns: 240px 1fr;
+        gap: 24px;
+    }
+
+    .download {
+        display: none;
+    }
 }
 </style>
 </head>
@@ -229,21 +270,10 @@ footer {
 
         <nav>
             <ul>
-                <li class="tab active" data-tab="home"
-                    data-es="Home"
-                    data-en="Home">Home</li>
-
-                <li class="tab" data-tab="cv"
-                    data-es="Curriculum vitae"
-                    data-en="Curriculum vitae">Curriculum vitae</li>
-
-                <li class="tab" data-tab="portfolio"
-                    data-es="Portfolio"
-                    data-en="Portfolio">Portfolio</li>
-
-                <li class="tab" data-tab="contact"
-                    data-es="Contacto"
-                    data-en="Contact">Contacto</li>
+                <li class="tab active" data-tab="home">Home</li>
+                <li class="tab" data-tab="cv">CV</li>
+                <li class="tab" data-tab="portfolio">Portfolio</li>
+                <li class="tab" data-tab="contact">Contacto</li>
             </ul>
         </nav>
 
@@ -260,14 +290,8 @@ footer {
 <section id="home" class="home active">
     <div class="container">
         <div class="home-text">
-            <h1 data-es="Diseñador Industrial"
-                data-en="Industrial Designer">
-                Diseñador Industrial
-            </h1>
-            <p data-es="Producto · Proceso · Función"
-               data-en="Product · Process · Function">
-               Producto · Proceso · Función
-            </p>
+            <h1>Industrial Designer</h1>
+            <p>Product · Process · Precision</p>
         </div>
     </div>
 </section>
@@ -275,41 +299,33 @@ footer {
 <!-- CV -->
 <section id="cv">
     <div class="container spaced">
-        <h1 data-es="Curriculum vitae"
-            data-en="Curriculum vitae">
-            Curriculum vitae
-        </h1>
+        <h1>CV</h1>
 
         <div class="cv">
             <img src="profile.jpg" alt="Profile">
 
             <div>
-                <h2 data-es="Perfil" data-en="Profile">Perfil</h2>
-                <p data-es="Diseñador industrial con experiencia en el sector eléctrico, enfocado en soluciones funcionales y precisas."
-                   data-en="Industrial designer with experience in the electrical industry, focused on functional and precise solutions.">
-                   Diseñador industrial con experiencia en el sector eléctrico, enfocado en soluciones funcionales y precisas.
+                <h2>Profile</h2>
+                <p>
+                    Industrial designer with experience in technical environments
+                    and the electrical industry.
                 </p>
 
-                <h2 data-es="Habilidades" data-en="Skills">Habilidades</h2>
+                <h2>Skills</h2>
                 <ul class="list">
-                    <li data-es="Diseño de producto" data-en="Product design">Diseño de producto</li>
-                    <li data-es="Impresión 3D y prototipado" data-en="3D printing and prototyping">Impresión 3D y prototipado</li>
-                    <li data-es="Diseño técnico" data-en="Technical design">Diseño técnico</li>
-                    <li data-es="Procesos de fabricación" data-en="Manufacturing processes">Procesos de fabricación</li>
+                    <li>Product design</li>
+                    <li>3D printing & prototyping</li>
+                    <li>Technical development</li>
+                    <li>Manufacturing processes</li>
                 </ul>
 
-                <h2 data-es="Formación" data-en="Education">Formación</h2>
+                <h2>Education</h2>
                 <ul class="list">
-                    <li data-es="Grado en Diseño Industrial"
-                        data-en="Bachelor in Industrial Design">
-                        Grado en Diseño Industrial
-                    </li>
+                    <li>Industrial Design Degree</li>
                 </ul>
 
-                <a href="cv.pdf" class="download" download
-                   data-es="Descargar CV (PDF)"
-                   data-en="Download CV (PDF)">
-                   Descargar CV (PDF)
+                <a href="cv.pdf" class="download" download>
+                    Download CV
                 </a>
             </div>
         </div>
@@ -319,32 +335,49 @@ footer {
 <!-- PORTFOLIO -->
 <section id="portfolio">
     <div class="container spaced">
-        <h1 data-es="Portfolio" data-en="Portfolio">Portfolio</h1>
+        <h1>Portfolio</h1>
 
-        <div class="grid">
-            <div class="project">
-                <h2 data-es="Diseño de Producto" data-en="Product Design">Diseño de Producto</h2>
-                <p data-es="Concepto y desarrollo."
-                   data-en="Concept and development.">
-                   Concepto y desarrollo.
-                </p>
-            </div>
+        <div class="editorial-grid">
 
-            <div class="project">
-                <h2 data-es="Impresión 3D" data-en="3D Printing">Impresión 3D</h2>
-                <p data-es="Prototipado y validación."
-                   data-en="Prototyping and validation.">
-                   Prototipado y validación.
-                </p>
-            </div>
+            <article class="case large">
+                <h2>Electrical Enclosure</h2>
+                <div class="case-meta">
+                    <span>Industrial Design</span>
+                    <span>2024</span>
+                    <span>Electrical</span>
+                </div>
 
-            <div class="project">
-                <h2 data-es="Industria Eléctrica" data-en="Electrical Industry">Industria Eléctrica</h2>
-                <p data-es="Diseño técnico aplicado."
-                   data-en="Applied technical design.">
-                   Diseño técnico aplicado.
-                </p>
-            </div>
+                <div class="case-block">
+                    <h3>Context</h3>
+                    <p>Design of a technical enclosure for industrial electrical installation.</p>
+                </div>
+
+                <div class="case-block">
+                    <h3>Problem</h3>
+                    <p>Reduce volume and improve maintenance accessibility.</p>
+                </div>
+
+                <div class="case-block">
+                    <h3>Process</h3>
+                    <p>Use analysis, 3D printed iterations and functional testing.</p>
+                </div>
+
+                <div class="case-block">
+                    <h3>Result</h3>
+                    <p>Compact and robust solution optimized for serial production.</p>
+                </div>
+            </article>
+
+            <article class="case">
+                <h2>3D Printed Component</h2>
+                <p>Functional prototyping and validation.</p>
+            </article>
+
+            <article class="case">
+                <h2>Technical Product</h2>
+                <p>Design focused on use and assembly.</p>
+            </article>
+
         </div>
     </div>
 </section>
@@ -352,51 +385,31 @@ footer {
 <!-- CONTACT -->
 <section id="contact">
     <div class="container spaced">
-        <h1 data-es="Contacto" data-en="Contact">Contacto</h1>
+        <h1>Contacto</h1>
         <p>Email · LinkedIn · GitHub</p>
     </div>
 </section>
 
 </main>
 
-<footer>© 2025 · Portfolio</footer>
+<footer>© 2025 · Industrial Designer</footer>
 
 <script>
 const tabs = document.querySelectorAll(".tab");
 const sections = document.querySelectorAll("section");
-const langBtns = document.querySelectorAll(".lang-btn");
 
-/* Tabs */
 tabs.forEach(tab => {
     tab.addEventListener("click", () => {
         tabs.forEach(t => t.classList.remove("active"));
         sections.forEach(s => s.classList.remove("active"));
-
         tab.classList.add("active");
         document.getElementById(tab.dataset.tab).classList.add("active");
     });
 });
 
-/* Back arrow */
 function goHome() {
     document.querySelector('[data-tab="home"]').click();
 }
-
-/* Language switch */
-langBtns.forEach(btn => {
-    btn.addEventListener("click", () => {
-        langBtns.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-
-        const lang = btn.dataset.lang;
-
-        document.querySelectorAll("[data-es]").forEach(el => {
-            if (el.dataset[lang]) {
-                el.textContent = el.dataset[lang];
-            }
-        });
-    });
-});
 </script>
 
 </body>

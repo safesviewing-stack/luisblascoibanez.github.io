@@ -7,10 +7,6 @@
 
 <!-- SEO -->
 <meta name="description" content="Industrial designer specialized in product design and 3D modeling. Portfolio and curriculum of Luis Blasco-Ibáñez Berbel.">
-<meta property="og:title" content="Luis Blasco-Ibáñez Berbel | Industrial Design">
-<meta property="og:description" content="Product design · 3D modeling · Manufacturing-oriented design">
-<meta property="og:image" content="profile.jpg">
-<meta property="og:type" content="website">
 
 <!-- FONT -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -51,6 +47,7 @@ nav h1{
   font-weight:500;
 }
 
+/* MENU */
 .menu{
   display:flex;
   gap:50px;
@@ -101,7 +98,7 @@ nav h1{
 }
 
 /* COVER */
-.cover{
+#cover{
   height:100vh;
   background:
     linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
@@ -113,13 +110,13 @@ nav h1{
   padding-left:80px;
 }
 
-.cover h2{
+#cover h2{
   color:white;
   font-size:48px;
   max-width:600px;
 }
 
-.cover p{
+#cover p{
   color:#ddd;
   margin-top:20px;
 }
@@ -134,18 +131,7 @@ section{
 
 section.active{display:block}
 
-/* REVEAL */
-.reveal{
-  opacity:0;
-  transform:translateY(30px);
-  transition:.8s ease;
-}
-.reveal.active{
-  opacity:1;
-  transform:none;
-}
-
-/* HERO */
+/* HERO CV */
 .hero{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -173,21 +159,23 @@ section.active{display:block}
   box-shadow:0 15px 35px rgba(0,0,0,.15);
 }
 
-/* BUTTON */
-.btn{
+/* BUTTON CV */
+.btn-cv{
   display:inline-block;
   margin-top:30px;
-  padding:12px 28px;
-  border:1px solid var(--blue);
-  color:var(--blue);
+  padding:14px 34px;
+  background:var(--blue);
+  color:white;
   text-decoration:none;
+  border-radius:40px;
   font-size:14px;
+  font-weight:500;
   transition:.3s;
 }
 
-.btn:hover{
-  background:var(--blue);
-  color:white;
+.btn-cv:hover{
+  background:#0d3f6e;
+  transform:translateY(-2px);
 }
 
 /* PORTFOLIO */
@@ -208,8 +196,11 @@ section.active{display:block}
 .project:hover{transform:translateY(-6px)}
 
 /* CONTACT */
-#contact{background:var(--blue-light)}
+#contact{
+  background:var(--blue-light);
+}
 
+/* FOOTER */
 footer{
   text-align:center;
   padding:20px;
@@ -221,7 +212,7 @@ footer{
 /* RESPONSIVE */
 @media(max-width:900px){
   .hero{grid-template-columns:1fr}
-  .cover{padding:40px}
+  #cover{padding:40px}
 }
 </style>
 </head>
@@ -232,38 +223,38 @@ footer{
   <h1>Luis Blasco-Ibáñez Berbel</h1>
 
   <div class="menu">
-    <a onclick="show('cv')">CV</a>
-    <a onclick="show('portfolio')">Portfolio</a>
-    <a onclick="show('contact')">Contact</a>
+    <a onclick="navigate('cv')">CV</a>
+    <a onclick="navigate('portfolio')">Portfolio</a>
+    <a onclick="navigate('contact')">Contact</a>
   </div>
 
   <div class="lang">
-    <button id="enBtn" class="active" onclick="setLang('en')">EN</button>
-    <button id="esBtn" onclick="setLang('es')">ES</button>
+    <button class="active">EN</button>
+    <button>ES</button>
   </div>
 </nav>
 
 <!-- COVER -->
-<div class="cover reveal">
+<div id="cover">
   <div>
-    <h2 id="slogan">Industrial Design driven by form, function and manufacturing</h2>
+    <h2>Industrial Design driven by form, function and manufacturing</h2>
     <p>Product · 3D Modeling · Design Engineering</p>
   </div>
 </div>
 
 <!-- CV -->
-<section id="cv" class="active">
+<section id="cv">
   <div class="hero">
-    <div class="reveal">
-      <h3 id="cvTitle">Curriculum Vitae</h3>
-      <p id="cvText">
+    <div>
+      <h3>Curriculum Vitae</h3>
+      <p>
         Industrial design student focused on 3D modeling as a core tool for product
         definition, technical development and manufacturing-oriented design.
       </p>
-      <a href="cv.html" class="btn" target="_blank">Download CV (PDF)</a>
+      <a href="cv.html" class="btn-cv" target="_blank">Download CV (PDF)</a>
     </div>
 
-    <div class="hero-image reveal">
+    <div class="hero-image">
       <img src="profile.jpg" alt="Luis Blasco-Ibáñez Berbel">
     </div>
   </div>
@@ -271,19 +262,19 @@ footer{
 
 <!-- PORTFOLIO -->
 <section id="portfolio">
-  <h3 class="reveal">Portfolio</h3>
+  <h3>Portfolio</h3>
   <div class="grid">
-    <div class="project reveal" onclick="location.href='projects/project-01.html'">Project 01 · Coming soon</div>
-    <div class="project reveal" onclick="location.href='projects/project-02.html'">Project 02 · Coming soon</div>
-    <div class="project reveal" onclick="location.href='projects/project-03.html'">Project 03 · Coming soon</div>
-    <div class="project reveal" onclick="location.href='projects/project-04.html'">Project 04 · Coming soon</div>
-    <div class="project reveal" onclick="location.href='projects/project-05.html'">Project 05 · Coming soon</div>
+    <div class="project" onclick="location.href='projects/project-01.html'">Project 01 · Coming soon</div>
+    <div class="project" onclick="location.href='projects/project-02.html'">Project 02 · Coming soon</div>
+    <div class="project" onclick="location.href='projects/project-03.html'">Project 03 · Coming soon</div>
+    <div class="project" onclick="location.href='projects/project-04.html'">Project 04 · Coming soon</div>
+    <div class="project" onclick="location.href='projects/project-05.html'">Project 05 · Coming soon</div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-  <h3 class="reveal" id="contactTitle">Contact</h3>
+  <h3>Contact</h3>
   <p>Email: luisblascoibanezberbel@gmail.com</p>
   <p>Valencia, Spain</p>
 </section>
@@ -293,36 +284,18 @@ footer{
 </footer>
 
 <script>
-function show(id){
+function navigate(id){
+  // Ocultar portada
+  document.getElementById("cover").style.display="none";
+
+  // Ocultar secciones
   document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+
+  // Mostrar sección elegida
   document.getElementById(id).classList.add("active");
+
   window.scrollTo({top:80,behavior:"smooth"});
 }
-
-/* LANGUAGE */
-function setLang(lang){
-  enBtn.classList.toggle("active",lang==="en");
-  esBtn.classList.toggle("active",lang==="es");
-
-  if(lang==="es"){
-    slogan.innerText="Diseño industrial basado en forma, función y fabricación";
-    cvTitle.innerText="Currículum Vitae";
-    cvText.innerText="Estudiante de diseño industrial con especial enfoque en el modelado 3D como herramienta clave para el desarrollo de producto y la fabricación.";
-    contactTitle.innerText="Contacto";
-  }else{
-    slogan.innerText="Industrial Design driven by form, function and manufacturing";
-    cvTitle.innerText="Curriculum Vitae";
-    cvText.innerText="Industrial design student focused on 3D modeling as a core tool for product definition, technical development and manufacturing-oriented design.";
-    contactTitle.innerText="Contact";
-  }
-}
-
-/* REVEAL */
-const reveals=document.querySelectorAll(".reveal");
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("active")});
-},{threshold:.15});
-reveals.forEach(r=>observer.observe(r));
 </script>
 
 </body>

@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* RESET */
 * {
     margin: 0;
     padding: 0;
@@ -19,16 +18,16 @@ body {
     color: #111;
 }
 
-/* ================= NAVBAR ================= */
+/* ===== NAV ===== */
 header {
     position: fixed;
     top: 0;
     width: 100%;
     height: 70px;
     background: #000;
+    z-index: 100;
     display: flex;
     align-items: center;
-    z-index: 100;
 }
 
 .nav {
@@ -36,27 +35,27 @@ header {
     max-width: 1200px;
     margin: auto;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
 }
 
 .back {
     color: white;
-    font-size: 20px;
     cursor: pointer;
+    font-size: 20px;
 }
 
 nav ul {
-    list-style: none;
     display: flex;
-    gap: 40px;
+    list-style: none;
+    gap: 30px;
 }
 
 nav li {
     color: white;
     cursor: pointer;
-    font-size: 15px;
     position: relative;
+    font-size: 14px;
 }
 
 nav li.active {
@@ -68,7 +67,7 @@ nav li::after {
     position: absolute;
     bottom: -6px;
     left: 0;
-    width: 0%;
+    width: 0;
     height: 1px;
     background: white;
     transition: width 0.3s ease;
@@ -80,21 +79,25 @@ nav li:hover::after {
 
 .lang span {
     color: white;
-    margin-left: 10px;
     cursor: pointer;
     font-size: 13px;
+    margin-left: 10px;
 }
 
-/* ================= CONTENT ================= */
+.lang span.active {
+    font-weight: bold;
+}
+
+/* ===== SECTIONS ===== */
 main {
-    padding-top: 100px;
+    padding-top: 90px;
 }
 
 section {
     display: none;
     opacity: 0;
-    transform: translateY(15px);
-    transition: all 0.6s ease;
+    transform: translateY(10px);
+    transition: all 0.4s ease;
 }
 
 section.active {
@@ -103,11 +106,27 @@ section.active {
     transform: translateY(0);
 }
 
-/* ================= HOME ================= */
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 40px 0;
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 18px;
+    margin: 20px 0 8px;
+}
+
+/* ===== HOME ===== */
 .home {
-    height: calc(100vh - 100px);
+    height: 55vh;
     background: url("portada.jpg") center/cover no-repeat;
-    background-attachment: fixed;
     display: flex;
     align-items: flex-end;
 }
@@ -115,77 +134,39 @@ section.active {
 .home-text {
     background: rgba(0,0,0,0.6);
     color: white;
-    padding: 40px;
-    max-width: 600px;
+    padding: 30px;
+    max-width: 520px;
 }
 
 .home-text h1 {
-    font-size: 42px;
-    margin-bottom: 10px;
-}
-
-.home-text p {
-    font-size: 18px;
-}
-
-/* ================= GENERIC ================= */
-.container {
-    width: 90%;
-    max-width: 1000px;
-    margin: auto;
-}
-
-h1 {
     font-size: 36px;
-    margin-bottom: 20px;
 }
 
-h2 {
-    margin-top: 25px;
-    margin-bottom: 10px;
-}
-
-/* ================= AWWWARDS REVEAL ================= */
-.reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease;
-}
-
-.reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.delay-1 { transition-delay: 0.1s; }
-.delay-2 { transition-delay: 0.2s; }
-.delay-3 { transition-delay: 0.3s; }
-
-/* ================= PORTFOLIO ================= */
+/* ===== PORTFOLIO ===== */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
 }
 
 .project {
     border-top: 1px solid #ddd;
-    padding-top: 15px;
-    transition: transform 0.4s ease, opacity 0.4s ease;
+    padding-top: 12px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .project:hover {
-    transform: translateY(-6px);
+    transform: translateY(-5px);
 }
 
 .grid:hover .project:not(:hover) {
     opacity: 0.4;
 }
 
-/* ================= CV ================= */
+/* ===== CV ===== */
 .cv {
     display: grid;
-    grid-template-columns: 250px 1fr;
+    grid-template-columns: 320px 1fr;
     gap: 40px;
 }
 
@@ -194,18 +175,28 @@ h2 {
     border-radius: 4px;
 }
 
+.list {
+    list-style: none;
+    margin-top: 10px;
+}
+
+.list li {
+    margin-bottom: 6px;
+}
+
 .download {
     display: inline-block;
     margin-top: 20px;
+    border-bottom: 1px solid #000;
     text-decoration: none;
-    border-bottom: 1px solid black;
-    color: black;
+    color: #000;
 }
 
-/* ================= FOOTER ================= */
+/* ===== FOOTER ===== */
 footer {
     text-align: center;
-    padding: 40px;
+    padding: 30px;
+    font-size: 13px;
     color: #666;
 }
 </style>
@@ -219,15 +210,16 @@ footer {
 
         <nav>
             <ul>
-                <li class="tab active" data-tab="home">Home</li>
-                <li class="tab" data-tab="portfolio">Portfolio</li>
-                <li class="tab" data-tab="cv">CV</li>
-                <li class="tab" data-tab="contact">Contacto</li>
+                <li class="tab active" data-tab="home" data-es="Home" data-en="Home">Home</li>
+                <li class="tab" data-tab="portfolio" data-es="Portfolio" data-en="Portfolio">Portfolio</li>
+                <li class="tab" data-tab="cv" data-es="Currículum" data-en="Resume">CV</li>
+                <li class="tab" data-tab="contact" data-es="Contacto" data-en="Contact">Contacto</li>
             </ul>
         </nav>
 
         <div class="lang">
-            <span>ES</span><span>EN</span>
+            <span class="lang-btn active" data-lang="es">ES</span>
+            <span class="lang-btn" data-lang="en">EN</span>
         </div>
     </div>
 </header>
@@ -236,31 +228,30 @@ footer {
 
 <!-- HOME -->
 <section id="home" class="home active">
-    <div class="home-text reveal visible">
-        <h1>Diseñador Industrial</h1>
-        <p>Producto · Proceso · Función · Humanización</p>
+    <div class="home-text">
+        <h1 data-es="Diseñador Industrial" data-en="Industrial Designer">Diseñador Industrial</h1>
+        <p data-es="Producto · Proceso · Función" data-en="Product · Process · Function">
+            Producto · Proceso · Función
+        </p>
     </div>
 </section>
 
 <!-- PORTFOLIO -->
 <section id="portfolio">
     <div class="container">
-        <h1 class="reveal">Portfolio</h1>
-
+        <h1 data-es="Portfolio" data-en="Portfolio">Portfolio</h1>
         <div class="grid">
-            <div class="project reveal delay-1">
-                <h2>Diseño de Producto</h2>
-                <p>Concepto, desarrollo y validación.</p>
+            <div class="project">
+                <h2 data-es="Diseño de Producto" data-en="Product Design">Diseño de Producto</h2>
+                <p data-es="Concepto y desarrollo." data-en="Concept and development.">Concepto y desarrollo.</p>
             </div>
-
-            <div class="project reveal delay-2">
-                <h2>Impresión 3D</h2>
-                <p>Iteración rápida y prototipado.</p>
+            <div class="project">
+                <h2 data-es="Impresión 3D" data-en="3D Printing">Impresión 3D</h2>
+                <p data-es="Prototipado y validación." data-en="Prototyping and validation.">Prototipado y validación.</p>
             </div>
-
-            <div class="project reveal delay-3">
-                <h2>Sector Eléctrico</h2>
-                <p>Diseño técnico aplicado.</p>
+            <div class="project">
+                <h2 data-es="Sector Eléctrico" data-en="Electrical Industry">Sector Eléctrico</h2>
+                <p data-es="Diseño técnico aplicado." data-en="Applied technical design.">Diseño técnico aplicado.</p>
             </div>
         </div>
     </div>
@@ -269,22 +260,37 @@ footer {
 <!-- CV -->
 <section id="cv">
     <div class="container">
-        <h1 class="reveal">Currículum</h1>
+        <h1 data-es="Currículum" data-en="Resume">Currículum</h1>
 
         <div class="cv">
-            <img src="profile.jpg" class="reveal delay-1" alt="Foto">
+            <img src="profile.jpg" alt="Foto">
 
-            <div class="reveal delay-2">
-                <h2>Perfil</h2>
-                <p>
-                    Diseñador industrial con experiencia en sector eléctrico,
-                    enfocado en soluciones funcionales y humanizadas.
+            <div>
+                <h2 data-es="Perfil" data-en="Profile">Perfil</h2>
+                <p data-es="Diseñador industrial con experiencia en sector eléctrico."
+                   data-en="Industrial designer with experience in the electrical industry.">
+                   Diseñador industrial con experiencia en sector eléctrico.
                 </p>
 
-                <h2>Formación</h2>
-                <p>Grado en Diseño Industrial y Desarrollo de Producto</p>
+                <h2 data-es="Habilidades" data-en="Skills">Habilidades</h2>
+                <ul class="list">
+                    <li>Diseño de producto</li>
+                    <li>Impresión 3D</li>
+                    <li>Prototipado</li>
+                    <li>Diseño técnico</li>
+                </ul>
 
-                <a href="cv.pdf" class="download" download>Descargar CV en PDF</a>
+                <h2 data-es="Formación" data-en="Education">Formación</h2>
+                <ul class="list">
+                    <li>Grado en Diseño Industrial</li>
+                    <li>Especialización en fabricación</li>
+                </ul>
+
+                <a href="cv.pdf" class="download" download
+                   data-es="Descargar CV en PDF"
+                   data-en="Download CV (PDF)">
+                   Descargar CV en PDF
+                </a>
             </div>
         </div>
     </div>
@@ -292,64 +298,45 @@ footer {
 
 <!-- CONTACT -->
 <section id="contact">
-    <div class="container reveal">
-        <h1>Contacto</h1>
+    <div class="container">
+        <h1 data-es="Contacto" data-en="Contact">Contacto</h1>
         <p>Email · LinkedIn · GitHub</p>
     </div>
 </section>
 
 </main>
 
-<footer>
-© 2025 · Portfolio
-</footer>
+<footer>© 2025 · Portfolio</footer>
 
 <script>
-/* TABS */
 const tabs = document.querySelectorAll(".tab");
 const sections = document.querySelectorAll("section");
+const langBtns = document.querySelectorAll(".lang-btn");
 
 tabs.forEach(tab => {
     tab.addEventListener("click", () => {
         tabs.forEach(t => t.classList.remove("active"));
         sections.forEach(s => s.classList.remove("active"));
-
         tab.classList.add("active");
         document.getElementById(tab.dataset.tab).classList.add("active");
-        revealOnScroll();
     });
 });
 
-/* BACK TO HOME */
 function goHome() {
-    tabs.forEach(t => t.classList.remove("active"));
-    sections.forEach(s => s.classList.remove("active"));
-
-    document.querySelector('[data-tab="home"]').classList.add("active");
-    document.getElementById("home").classList.add("active");
+    document.querySelector('[data-tab="home"]').click();
 }
 
-/* AWWWARDS REVEAL */
-const reveals = document.querySelectorAll(".reveal");
+/* LANG SWITCH */
+langBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+        langBtns.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
 
-function revealOnScroll() {
-    reveals.forEach(el => {
-        const top = el.getBoundingClientRect().top;
-        if (top < window.innerHeight - 100) {
-            el.classList.add("visible");
-        }
+        const lang = btn.dataset.lang;
+        document.querySelectorAll("[data-es]").forEach(el => {
+            el.textContent = el.dataset[lang];
+        });
     });
-}
-
-window.addEventListener("scroll", revealOnScroll);
-revealOnScroll();
-
-/* PARALLAX HOME */
-window.addEventListener("scroll", () => {
-    const home = document.querySelector(".home");
-    if (home) {
-        home.style.backgroundPositionY = window.scrollY * 0.3 + "px";
-    }
 });
 </script>
 

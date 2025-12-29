@@ -10,125 +10,237 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:"IBM Plex Sans",sans-serif}
-body{background:#fff;color:#111}
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"IBM Plex Sans",sans-serif
+}
 
-/* HEADER */
+body{
+    background:#fff;
+    color:#111;
+}
+
+/* ================= HEADER ================= */
 header{
-    position:fixed;top:0;width:100%;height:70px;
-    background:#000;z-index:100;display:flex;align-items:center
+    position:fixed;
+    top:0;
+    width:100%;
+    height:70px;
+    background:#000;
+    z-index:100;
+    display:flex;
+    align-items:center;
 }
-.nav{
-    width:90%;max-width:1200px;margin:auto;
-    display:grid;grid-template-columns:auto 1fr auto;align-items:center
-}
-.back{color:#fff;cursor:pointer;font-size:18px}
 
-nav ul{display:flex;justify-content:center;gap:36px;list-style:none}
+.nav{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    align-items:center;
+}
+
+.back{
+    color:#fff;
+    cursor:pointer;
+    font-size:18px;
+}
+
+/* NAV */
+nav ul{
+    display:flex;
+    justify-content:center;
+    gap:36px;
+    list-style:none;
+}
+
 nav li{
-    color:#fff;cursor:pointer;font-size:12px;
-    letter-spacing:.12em;text-transform:uppercase;position:relative
+    color:#fff;
+    cursor:pointer;
+    font-size:12px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    position:relative;
 }
+
 nav li.active{font-weight:500}
+
 nav li::after{
-    content:"";position:absolute;bottom:-6px;left:0;width:0;height:1px;
-    background:#fff;transition:.25s
+    content:"";
+    position:absolute;
+    bottom:-6px;
+    left:0;
+    width:0;
+    height:1px;
+    background:#fff;
+    transition:.25s;
 }
+
 nav li:hover::after{width:100%}
 
-/* LANGUAGE BUTTONS */
+/* LANG */
 .lang button{
     background:none;
     border:1px solid #fff;
     color:#fff;
     font-size:11px;
-    padding:4px 8px;
+    padding:4px 10px;
     margin-left:8px;
     cursor:pointer;
     border-radius:4px;
 }
+
 .lang button.active{
     background:#fff;
     color:#000;
 }
 
-/* LAYOUT */
+/* ================= LAYOUT ================= */
 main{padding-top:70px}
+
 section{display:none}
 section.active{display:block}
-.container{width:90%;max-width:960px;margin:auto}
-.spaced{padding:70px 0}
 
-/* TYPO */
-h1{font-size:28px;font-weight:500;margin-bottom:28px}
-h2{font-size:15px;font-weight:500;margin:22px 0 6px}
-h3{font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase}
-p,li{font-size:14px;line-height:1.7}
+.container{
+    width:90%;
+    max-width:960px;
+    margin:auto;
+}
 
-/* HOME */
-.home{background:url("portada.jpg") center/cover no-repeat;padding:80px 0 120px}
-.home-text{background:rgba(0,0,0,.75);color:#fff;padding:28px;max-width:520px}
-.home-text h1 {margin-bottom: 14px; /* Ajusta el valor aquí para controlar la separación */}
+.spaced{
+    padding:80px 0;
+}
 
-/* CV */
+/* ================= TYPO ================= */
+h1{
+    font-size:28px;
+    font-weight:500;
+    margin-bottom:36px;
+}
+
+h2{
+    font-size:15px;
+    font-weight:500;
+    margin-top:48px;
+    margin-bottom:10px;
+}
+
+p, li{
+    font-size:14px;
+    line-height:1.6;
+}
+
+/* ================= HOME ================= */
+.home{
+    background:url("portada.jpg") center/cover no-repeat;
+    padding:80px 0 120px;
+}
+
+.home-text{
+    background:rgba(0,0,0,.75);
+    color:#fff;
+    padding:28px;
+    max-width:520px;
+}
+
+.home-text h1{
+    margin-bottom:14px;
+}
+
+/* ================= CV ================= */
 .cv{
     display:grid;
-    grid-template-columns:1fr 2fr;
-    gap:48px;
-    margin-top:40px;
-}
-.cv img{
-    width:100%;
-    border-radius:8px;
-    max-width:400px;
-}
-.cv .cv-text h2{
-    margin-top:24px;
-}
-.cv .cv-text p, .cv .cv-text ul{
-    margin-top:12px;
-}
-.cv .cv-text{
-    flex: 1;
+    grid-template-columns:1.2fr .8fr;
+    gap:64px;
+    align-items:flex-start;
 }
 
-/* DESCARGAR CV */
+/* TEXT */
+.cv-text h2:first-child{
+    margin-top:0;
+}
+
+.list{
+    list-style:none;
+    margin-top:8px;
+}
+
+.list li{
+    margin-bottom:6px;
+}
+
+/* IMAGE */
+.cv-image{
+    display:flex;
+    justify-content:flex-end;
+}
+
+.cv-image img{
+    width:100%;
+    max-width:380px;
+    border-radius:6px;
+}
+
+/* DOWNLOAD */
 .download{
-    display:inline-block;margin-top:24px;
-    padding:12px 24px;
-    background-color: black;
-    color: white;
-    border: 2px solid black;
-    font-weight: bold;
-    text-transform: uppercase;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: all 0.3s ease;
+    display:inline-block;
+    margin-top:48px;
+    padding:12px 28px;
+    background:#000;
+    color:#fff;
+    border:1px solid #000;
+    text-decoration:none;
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    border-radius:4px;
+    transition:.25s;
 }
 
 .download:hover{
-    background-color: white;
-    color: black;
-    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+    background:#fff;
+    color:#000;
 }
 
-/* PORTFOLIO */
-.editorial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
-.case{border-top:1px solid #ddd;padding-top:16px}
-.case.large{grid-column:span 2}
+/* ================= PORTFOLIO ================= */
+.editorial-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:32px;
+}
 
-/* FOOTER */
-footer{text-align:center;padding:24px;font-size:11px;color:#777}
+.case{
+    border-top:1px solid #ddd;
+    padding-top:16px;
+}
 
-/* PRINT */
+.case.large{
+    grid-column:span 2;
+}
+
+/* ================= FOOTER ================= */
+footer{
+    text-align:center;
+    padding:24px;
+    font-size:11px;
+    color:#777;
+}
+
+/* ================= PRINT ================= */
 @media print{
     header,.lang,.back,footer,.download{display:none}
     main{padding-top:0}
     .spaced{padding:0}
     h1{font-size:22px}
     p,li{font-size:12px}
-    .cv{grid-template-columns:240px 1fr;gap:24px}
+    .cv{
+        grid-template-columns:240px 1fr;
+        gap:24px;
+    }
 }
 </style>
 </head>
@@ -137,43 +249,44 @@ footer{text-align:center;padding:24px;font-size:11px;color:#777}
 
 <header>
 <div class="nav">
-<div class="back" onclick="goHome()">←</div>
+    <div class="back" onclick="goHome()">←</div>
 
-<nav>
-<ul>
-<li class="tab active" data-tab="home">Home</li>
-<li class="tab" data-tab="cv">CV</li>
-<li class="tab" data-tab="portfolio">Portfolio</li>
-<li class="tab" data-tab="contact">Contacto</li>
-</ul>
-</nav>
+    <nav>
+        <ul>
+            <li class="tab active" data-tab="home">Home</li>
+            <li class="tab" data-tab="cv">CV</li>
+            <li class="tab" data-tab="portfolio">Portfolio</li>
+            <li class="tab" data-tab="contact">Contacto</li>
+        </ul>
+    </nav>
 
-<div class="lang">
-<button id="btn-es" class="active">ES</button>
-<button id="btn-en">EN</button>
-</div>
+    <div class="lang">
+        <button id="btn-es" class="active">ES</button>
+        <button id="btn-en">EN</button>
+    </div>
 </div>
 </header>
 
 <main>
 
+<!-- HOME -->
 <section id="home" class="home active">
 <div class="container">
-<div class="home-text">
-<h1 id="title-home"></h1>
-<p id="subtitle-home"></p>
-</div>
+    <div class="home-text">
+        <h1 id="title-home"></h1>
+        <p id="subtitle-home"></p>
+    </div>
 </div>
 </section>
 
+<!-- CV -->
 <section id="cv">
 <div class="container spaced">
 <h1 id="title-cv"></h1>
 
 <div class="cv">
-    <div>
-        <img src="profile.jpg" alt="Foto de perfil">
-    </div>
+
+    <!-- TEXT LEFT -->
     <div class="cv-text">
         <h2 id="cv-profile-title"></h2>
         <p id="cv-profile-text"></p>
@@ -186,24 +299,31 @@ footer{text-align:center;padding:24px;font-size:11px;color:#777}
 
         <a href="cv.pdf" class="download" id="cv-download"></a>
     </div>
-</div>
 
+    <!-- IMAGE RIGHT -->
+    <div class="cv-image">
+        <img src="profile.jpg" alt="Foto de perfil">
+    </div>
+
+</div>
 </div>
 </section>
 
+<!-- PORTFOLIO -->
 <section id="portfolio">
 <div class="container spaced">
 <h1 id="title-portfolio"></h1>
 
 <div class="editorial-grid">
-<article class="case large">
-<h2>Electrical Enclosure</h2>
-<p id="case-text"></p>
-</article>
+    <article class="case large">
+        <h2>Electrical Enclosure</h2>
+        <p id="case-text"></p>
+    </article>
 </div>
 </div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact">
 <div class="container spaced">
 <h1 id="title-contact"></h1>
@@ -217,14 +337,13 @@ footer{text-align:center;padding:24px;font-size:11px;color:#777}
 <footer>© 2025 · Industrial Designer</footer>
 
 <script>
-/* TEXT CONTENT */
-const content = {
+const content={
 es:{
 homeTitle:"Diseñador Industrial",
 homeSub:"Producto · Proceso · Precisión",
 cv:"CV",
 profileTitle:"Perfil profesional",
-profileText:"Diseñador industrial con experiencia en el sector eléctrico y entornos técnicos.",
+profileText:"Diseñador industrial con enfoque técnico y sensibilidad por el producto.",
 skillsTitle:"Habilidades",
 skills:["Diseño de producto","Impresión 3D","Diseño técnico","Procesos de fabricación"],
 eduTitle:"Formación",
@@ -239,7 +358,7 @@ homeTitle:"Industrial Designer",
 homeSub:"Product · Process · Precision",
 cv:"CV",
 profileTitle:"Professional profile",
-profileText:"Industrial designer with experience in technical and electrical environments.",
+profileText:"Industrial designer with a technical mindset and product-oriented approach.",
 skillsTitle:"Skills",
 skills:["Product design","3D printing","Technical design","Manufacturing processes"],
 eduTitle:"Education",
@@ -251,7 +370,6 @@ contact:"Contact"
 }
 };
 
-/* LANGUAGE SWITCH */
 function setLang(lang){
 document.getElementById("title-home").innerText=content[lang].homeTitle;
 document.getElementById("subtitle-home").innerText=content[lang].homeSub;
@@ -266,25 +384,27 @@ document.getElementById("case-text").innerText=content[lang].case;
 document.getElementById("title-contact").innerText=content[lang].contact;
 
 document.getElementById("cv-skills").innerHTML="";
-content[lang].skills.forEach(s=>document.getElementById("cv-skills").innerHTML+=`<li>${s}</li>`);
+content[lang].skills.forEach(s=>{
+document.getElementById("cv-skills").innerHTML+=`<li>${s}</li>`;
+});
+
 document.getElementById("cv-education").innerHTML="";
-content[lang].edu.forEach(e=>document.getElementById("cv-education").innerHTML+=`<li>${e}</li>`);
+content[lang].edu.forEach(e=>{
+document.getElementById("cv-education").innerHTML+=`<li>${e}</li>`;
+});
 }
 
-/* INIT */
 setLang("es");
 
-/* BUTTONS */
-document.getElementById("btn-es").onclick=()=>{setLang("es");btnToggle("es")};
-document.getElementById("btn-en").onclick=()=>{setLang("en");btnToggle("en")};
+document.getElementById("btn-es").onclick=()=>{setLang("es");toggleLang("es")};
+document.getElementById("btn-en").onclick=()=>{setLang("en");toggleLang("en")};
 
-function btnToggle(lang){
+function toggleLang(lang){
 document.getElementById("btn-es").classList.remove("active");
 document.getElementById("btn-en").classList.remove("active");
 document.getElementById(lang==="es"?"btn-es":"btn-en").classList.add("active");
 }
 
-/* TABS */
 document.querySelectorAll(".tab").forEach(tab=>{
 tab.onclick=()=>{
 document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));

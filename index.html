@@ -2,188 +2,212 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portfolio · Diseñador Industrial</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Industrial Designer</title>
 
   <style>
     :root {
-      --bg-color: #ffffff;
-      --text-color: #1a1a1a;
-      --secondary-text: #555;
-      --accent-blue: #2f80ed;
-      --font-main: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      --black: #000;
+      --white: #fff;
+      --gray: #666;
+      --font: "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      font-family: var(--font-main);
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      line-height: 1.6;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 4rem 1.5rem;
+      font-family: var(--font);
+      background: var(--white);
+      color: var(--black);
     }
 
     header {
+      padding: 2rem 3rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 3rem;
+      border-bottom: 1px solid #e5e5e5;
     }
 
-    .lang-switch {
-      font-size: 0.9rem;
-      cursor: pointer;
-      color: var(--secondary-text);
-    }
-
-    .lang-switch span {
-      margin-left: 0.75rem;
-    }
-
-    h1 {
-      font-size: 2rem;
+    header h1 {
+      font-size: 1.2rem;
       font-weight: 500;
-      margin-bottom: 1.5rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
     }
 
-    p {
-      margin-bottom: 1.2rem;
-      color: var(--secondary-text);
+    .lang {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+    }
+
+    .lang span {
+      margin-left: 1rem;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 6rem 3rem;
+    }
+
+    .hero {
+      margin-bottom: 6rem;
+    }
+
+    .hero h2 {
+      font-size: 3.5rem;
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 2rem;
+    }
+
+    .hero p {
+      max-width: 650px;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--gray);
     }
 
     .cv-button {
       display: inline-block;
-      margin-top: 2rem;
-      padding: 0.75rem 1.5rem;
-      background-color: var(--accent-blue);
-      color: #fff;
+      margin-top: 3rem;
+      padding: 0.8rem 2.5rem;
+      border: 1px solid var(--black);
       text-decoration: none;
-      border-radius: 999px;
-      font-size: 0.9rem;
-      transition: background-color 0.2s ease;
+      color: var(--black);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      transition: all 0.2s ease;
     }
 
     .cv-button:hover {
-      background-color: #1f6fe0;
+      background: var(--black);
+      color: var(--white);
+    }
+
+    section {
+      margin-bottom: 6rem;
+    }
+
+    section h3 {
+      font-size: 0.9rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 3rem;
+    }
+
+    .project {
+      border-top: 1px solid #e5e5e5;
+      padding-top: 1.5rem;
+    }
+
+    .project h4 {
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+
+    .project p {
+      font-size: 0.9rem;
+      color: var(--gray);
     }
 
     footer {
-      margin-top: 4rem;
-      font-size: 0.8rem;
-      color: var(--secondary-text);
+      padding: 3rem;
+      border-top: 1px solid #e5e5e5;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray);
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <header>
-      <strong>Portfolio · Diseño Industrial</strong>
-      <div class="lang-switch">
-        Idioma:
-        <span onclick="setLanguage('es')">ES</span>
-        <span onclick="setLanguage('en')">EN</span>
+  <header>
+    <h1>Industrial Designer</h1>
+    <div class="lang">
+      <span onclick="setLang('es')">ES</span>
+      <span onclick="setLang('en')">EN</span>
+    </div>
+  </header>
+
+  <main id="content">
+    <div class="hero">
+      <h2>Diseño industrial<br>claro, funcional y humano</h2>
+      <p>
+        Portfolio y currículum de diseñador industrial enfocado en diseño de producto,
+        desarrollo técnico y viabilidad industrial. Un espacio editorial, limpio y
+        minimalista donde el diseño acompaña al contenido sin interferencias.
+      </p>
+      <a href="cv.pdf" class="cv-button" target="_blank">Currículum PDF</a>
+    </div>
+
+    <section>
+      <h3>Proyectos seleccionados</h3>
+      <div class="projects">
+        <div class="project">
+          <h4>Producto industrial</h4>
+          <p>Concepto, desarrollo técnico y fabricación.</p>
+        </div>
+        <div class="project">
+          <h4>Sistema constructivo</h4>
+          <p>Diseño funcional orientado a producción.</p>
+        </div>
+        <div class="project">
+          <h4>Objeto cotidiano</h4>
+          <p>Uso, ergonomía y coherencia formal.</p>
+        </div>
       </div>
-    </header>
+    </section>
+  </main>
 
-    <main id="content">
-      <h1>Diseñador Industrial</h1>
-
-      <p>
-        Este sitio web presenta mi currículum y portfolio como diseñador industrial,
-        con un enfoque claro, funcional y humano. Ha sido concebido como un espacio
-        minimalista, elegante y limpio, donde el diseño acompaña al contenido sin distraer.
-      </p>
-
-      <p>
-        A través de una navegación sencilla y una estética sobria, el portfolio muestra
-        proyectos de diseño de producto, desarrollo técnico y pensamiento proyectual,
-        poniendo énfasis en el proceso, la coherencia formal y la viabilidad industrial.
-      </p>
-
-      <p>
-        La interfaz incorpora un botón de currículum en PDF, de color azul y con bordes
-        redondeados, diseñado para destacar de forma sutil y accesible. Además, la web
-        cuenta con cambio de idioma, facilitando una experiencia clara y adaptable a
-        distintos contextos profesionales.
-      </p>
-
-      <p>
-        Este sitio funciona como una extensión de mi manera de diseñar: claridad visual,
-        estructura ordenada, atención al detalle y soluciones prácticas con sensibilidad humana.
-      </p>
-
-      <a class="cv-button" href="cv.pdf" target="_blank">Descargar CV (PDF)</a>
-    </main>
-
-    <footer>
-      © 2025 · Diseñador Industrial
-    </footer>
-  </div>
+  <footer>
+    © 2025 · Portfolio de Diseño Industrial
+  </footer>
 
   <script>
-    const content = {
+    const texts = {
       es: `
-        <h1>Diseñador Industrial</h1>
-        <p>
-          Este sitio web presenta mi currículum y portfolio como diseñador industrial,
-          con un enfoque claro, funcional y humano. Ha sido concebido como un espacio
-          minimalista, elegante y limpio, donde el diseño acompaña al contenido sin distraer.
-        </p>
-        <p>
-          A través de una navegación sencilla y una estética sobria, el portfolio muestra
-          proyectos de diseño de producto, desarrollo técnico y pensamiento proyectual,
-          poniendo énfasis en el proceso, la coherencia formal y la viabilidad industrial.
-        </p>
-        <p>
-          La interfaz incorpora un botón de currículum en PDF, de color azul y con bordes
-          redondeados, diseñado para destacar de forma sutil y accesible. Además, la web
-          cuenta con cambio de idioma, facilitando una experiencia clara y adaptable a
-          distintos contextos profesionales.
-        </p>
-        <p>
-          Este sitio funciona como una extensión de mi manera de diseñar: claridad visual,
-          estructura ordenada, atención al detalle y soluciones prácticas con sensibilidad humana.
-        </p>
-        <a class="cv-button" href="cv.pdf" target="_blank">Descargar CV (PDF)</a>
+        <div class="hero">
+          <h2>Diseño industrial<br>claro, funcional y humano</h2>
+          <p>
+            Portfolio y currículum de diseñador industrial enfocado en diseño de producto,
+            desarrollo técnico y viabilidad industrial. Un espacio editorial, limpio y
+            minimalista donde el diseño acompaña al contenido sin interferencias.
+          </p>
+          <a href="cv.pdf" class="cv-button" target="_blank">Currículum PDF</a>
+        </div>
       `,
       en: `
-        <h1>Industrial Designer</h1>
-        <p>
-          This website presents my CV and portfolio as an industrial designer, with a clear,
-          functional and human-centered approach. It has been conceived as a minimal,
-          elegant and clean space, where design supports content without distraction.
-        </p>
-        <p>
-          Through simple navigation and a sober aesthetic, the portfolio showcases product
-          design projects, technical development and design thinking, emphasizing process,
-          formal coherence and industrial feasibility.
-        </p>
-        <p>
-          The interface includes a blue, rounded PDF CV button designed to stand out in a
-          subtle and accessible way. The website also features language switching, ensuring
-          a clear and adaptable experience for different professional contexts.
-        </p>
-        <p>
-          This site works as an extension of my design approach: visual clarity, ordered
-          structure, attention to detail and practical solutions with human sensitivity.
-        </p>
-        <a class="cv-button" href="cv.pdf" target="_blank">Download CV (PDF)</a>
+        <div class="hero">
+          <h2>Industrial design<br>clear and functional</h2>
+          <p>
+            Portfolio and CV of an industrial designer focused on product design,
+            technical development and industrial feasibility. An editorial, clean
+            and minimalist space where design supports content.
+          </p>
+          <a href="cv.pdf" class="cv-button" target="_blank">Download CV</a>
+        </div>
       `
     };
 
-    function setLanguage(lang) {
-      document.getElementById("content").innerHTML = content[lang];
+    function setLang(lang) {
+      document.getElementById("content").innerHTML =
+        texts[lang] + document.querySelector("section").outerHTML;
       document.documentElement.lang = lang;
     }
   </script>

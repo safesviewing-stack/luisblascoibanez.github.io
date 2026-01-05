@@ -10,12 +10,13 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
-/* RESET */
+
+/* ================= RESET ================= */
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:"IBM Plex Sans",sans-serif
+    font-family:"IBM Plex Sans",sans-serif;
 }
 
 body{
@@ -50,7 +51,7 @@ header{
     font-size:18px;
 }
 
-/* NAV */
+/* ================= NAV ================= */
 nav ul{
     display:flex;
     justify-content:center;
@@ -67,7 +68,9 @@ nav li{
     position:relative;
 }
 
-nav li.active{font-weight:500}
+nav li.active{
+    font-weight:500;
+}
 
 nav li::after{
     content:"";
@@ -80,9 +83,11 @@ nav li::after{
     transition:.25s;
 }
 
-nav li:hover::after{width:100%}
+nav li:hover::after{
+    width:100%;
+}
 
-/* LANG */
+/* ================= LANG ================= */
 .lang button{
     background:none;
     border:1px solid #fff;
@@ -100,10 +105,17 @@ nav li:hover::after{width:100%}
 }
 
 /* ================= LAYOUT ================= */
-main{padding-top:70px}
+main{
+    padding-top:70px;
+}
 
-section{display:none}
-section.active{display:block}
+section{
+    display:none;
+}
+
+section.active{
+    display:block;
+}
 
 .container{
     width:90%;
@@ -147,25 +159,30 @@ p, li{
     max-width:520px;
 }
 
-.home-text h1{margin-bottom:14px}
+.home-text h1{
+    margin-bottom:14px;
+}
 
 /* ================= CV ================= */
 .cv{
     display:grid;
     grid-template-columns:1.2fr .8fr;
     gap:64px;
-    max-width:960px;
-    margin:auto;
+    align-items:flex-start;
 }
 
-.cv-text h2:first-child{margin-top:0}
+.cv-text h2:first-child{
+    margin-top:0;
+}
 
 .list{
     list-style:none;
     margin-top:8px;
 }
 
-.list li{margin-bottom:6px}
+.list li{
+    margin-bottom:6px;
+}
 
 .cv-image{
     display:flex;
@@ -178,7 +195,7 @@ p, li{
     border-radius:6px;
 }
 
-/* DOWNLOAD */
+/* ================= DOWNLOAD ================= */
 .download{
     display:inline-block;
     margin-top:48px;
@@ -241,16 +258,32 @@ footer{
 
 /* ================= PRINT ================= */
 @media print{
-    header,.lang,.back,footer,.download{display:none}
-    main{padding-top:0}
-    .spaced{padding:0}
-    h1{font-size:22px}
-    p,li{font-size:12px}
+    header,.lang,.back,footer,.download{
+        display:none;
+    }
+
+    main{
+        padding-top:0;
+    }
+
+    .spaced{
+        padding:0;
+    }
+
+    h1{
+        font-size:22px;
+    }
+
+    p,li{
+        font-size:12px;
+    }
+
     .cv{
         grid-template-columns:240px 1fr;
         gap:24px;
     }
 }
+
 </style>
 </head>
 
@@ -294,6 +327,7 @@ footer{
 <h1 id="title-cv"></h1>
 
 <div class="cv">
+
     <div class="cv-text">
         <h2 id="cv-profile-title"></h2>
         <p id="cv-profile-text"></p>
@@ -310,6 +344,7 @@ footer{
     <div class="cv-image">
         <img src="profile.jpg" alt="Foto de perfil">
     </div>
+
 </div>
 </div>
 </section>
@@ -334,7 +369,6 @@ footer{
 <h1 id="title-contact"></h1>
 
 <div class="editorial-grid">
-
     <article class="case">
         <h2>Electrical Enclosure</h2>
         <p>Diseño y desarrollo de una envolvente eléctrica optimizada para producción.</p>
@@ -349,10 +383,9 @@ footer{
 
     <article class="case">
         <h2>Technical Product Design</h2>
-        <p>Diseño técnico enfocado a procesos industriales y optimización funcional.</p>
+        <p>Diseño técnico enfocado a procesos industriales.</p>
         <p>📧 luisblascoibanezberbel@gmail.com</p>
     </article>
-
 </div>
 
 <p style="margin-top:48px">📞 +34 630 51 18 06</p>
@@ -364,85 +397,94 @@ footer{
 <footer>© 2025 · Industrial Designer</footer>
 
 <script>
-const content={
+const content = {
 es:{
-homeTitle:"Diseñador Industrial",
-homeSub:"Producto · Proceso · Precisión",
-cv:"CV",
-profileTitle:"Perfil profesional",
-profileText:"Diseñador industrial con enfoque técnico y sensibilidad por el producto.",
-skillsTitle:"Habilidades",
-skills:["Diseño de producto","Impresión 3D","Diseño técnico","Procesos de fabricación"],
-eduTitle:"Formación",
-edu:["Grado en Diseño Industrial"],
-download:"Descargar CV",
-portfolio:"Portfolio",
-case:"Diseño y desarrollo de una envolvente eléctrica optimizada para producción.",
-contact:"Contacto"
+    homeTitle:"Diseñador Industrial",
+    homeSub:"Producto · Proceso · Precisión",
+    cv:"CV",
+    profileTitle:"Perfil profesional",
+    profileText:"Diseñador industrial con enfoque técnico y sensibilidad por el producto.",
+    skillsTitle:"Habilidades",
+    skills:["Diseño de producto","Impresión 3D","Diseño técnico","Procesos de fabricación"],
+    eduTitle:"Formación",
+    edu:["Grado en Diseño Industrial"],
+    download:"Descargar CV",
+    portfolio:"Portfolio",
+    case:"Diseño y desarrollo de una envolvente eléctrica optimizada para producción.",
+    contact:"Contacto"
 },
 en:{
-homeTitle:"Industrial Designer",
-homeSub:"Product · Process · Precision",
-cv:"CV",
-profileTitle:"Professional profile",
-profileText:"Industrial designer with a technical mindset and product-oriented approach.",
-skillsTitle:"Skills",
-skills:["Product design","3D printing","Technical design","Manufacturing processes"],
-eduTitle:"Education",
-edu:["Industrial Design Degree"],
-download:"Download CV",
-portfolio:"Portfolio",
-case:"Design and development of an electrical enclosure optimized for production.",
-contact:"Contact"
+    homeTitle:"Industrial Designer",
+    homeSub:"Product · Process · Precision",
+    cv:"CV",
+    profileTitle:"Professional profile",
+    profileText:"Industrial designer with a technical mindset and product-oriented approach.",
+    skillsTitle:"Skills",
+    skills:["Product design","3D printing","Technical design","Manufacturing processes"],
+    eduTitle:"Education",
+    edu:["Industrial Design Degree"],
+    download:"Download CV",
+    portfolio:"Portfolio",
+    case:"Design and development of an electrical enclosure optimized for production.",
+    contact:"Contact"
 }
 };
 
 function setLang(lang){
-document.getElementById("title-home").innerText=content[lang].homeTitle;
-document.getElementById("subtitle-home").innerText=content[lang].homeSub;
-document.getElementById("title-cv").innerText=content[lang].cv;
-document.getElementById("cv-profile-title").innerText=content[lang].profileTitle;
-document.getElementById("cv-profile-text").innerText=content[lang].profileText;
-document.getElementById("cv-skills-title").innerText=content[lang].skillsTitle;
-document.getElementById("cv-education-title").innerText=content[lang].eduTitle;
-document.getElementById("cv-download").innerText=content[lang].download;
-document.getElementById("title-portfolio").innerText=content[lang].portfolio;
-document.getElementById("case-text").innerText=content[lang].case;
-document.getElementById("title-contact").innerText=content[lang].contact;
+    document.getElementById("title-home").innerText = content[lang].homeTitle;
+    document.getElementById("subtitle-home").innerText = content[lang].homeSub;
+    document.getElementById("title-cv").innerText = content[lang].cv;
+    document.getElementById("cv-profile-title").innerText = content[lang].profileTitle;
+    document.getElementById("cv-profile-text").innerText = content[lang].profileText;
+    document.getElementById("cv-skills-title").innerText = content[lang].skillsTitle;
+    document.getElementById("cv-education-title").innerText = content[lang].eduTitle;
+    document.getElementById("cv-download").innerText = content[lang].download;
+    document.getElementById("title-portfolio").innerText = content[lang].portfolio;
+    document.getElementById("case-text").innerText = content[lang].case;
+    document.getElementById("title-contact").innerText = content[lang].contact;
 
-document.getElementById("cv-skills").innerHTML="";
-content[lang].skills.forEach(s=>{
-document.getElementById("cv-skills").innerHTML+=`<li>${s}</li>`;
-});
+    const skills = document.getElementById("cv-skills");
+    skills.innerHTML = "";
+    content[lang].skills.forEach(s=>{
+        skills.innerHTML += `<li>${s}</li>`;
+    });
 
-document.getElementById("cv-education").innerHTML="";
-content[lang].edu.forEach(e=>{
-document.getElementById("cv-education").innerHTML+=`<li>${e}</li>`;
-});
+    const edu = document.getElementById("cv-education");
+    edu.innerHTML = "";
+    content[lang].edu.forEach(e=>{
+        edu.innerHTML += `<li>${e}</li>`;
+    });
 }
 
 setLang("es");
 
-document.getElementById("btn-es").onclick=()=>{setLang("es");toggleLang("es")};
-document.getElementById("btn-en").onclick=()=>{setLang("en");toggleLang("en")};
+document.getElementById("btn-es").onclick = () => {
+    setLang("es");
+    toggleLang("es");
+};
+
+document.getElementById("btn-en").onclick = () => {
+    setLang("en");
+    toggleLang("en");
+};
 
 function toggleLang(lang){
-document.getElementById("btn-es").classList.remove("active");
-document.getElementById("btn-en").classList.remove("active");
-document.getElementById(lang==="es"?"btn-es":"btn-en").classList.add("active");
+    document.getElementById("btn-es").classList.remove("active");
+    document.getElementById("btn-en").classList.remove("active");
+    document.getElementById(lang==="es" ? "btn-es" : "btn-en").classList.add("active");
 }
 
 document.querySelectorAll(".tab").forEach(tab=>{
-tab.onclick=()=>{
-document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
-document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-tab.classList.add("active");
-document.getElementById(tab.dataset.tab).classList.add("active");
-};
+    tab.onclick = ()=>{
+        document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
+        document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+        tab.classList.add("active");
+        document.getElementById(tab.dataset.tab).classList.add("active");
+    };
 });
 
 function goHome(){
-document.querySelector('[data-tab="home"]').click();
+    document.querySelector('[data-tab="home"]').click();
 }
 </script>
 

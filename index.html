@@ -147,36 +147,29 @@ p, li{
     max-width:520px;
 }
 
-.home-text h1{
-    margin-bottom:14px;
-}
+.home-text h1{margin-bottom:14px}
 
 /* ================= CV ================= */
 .cv{
     display:grid;
     grid-template-columns:1.2fr .8fr;
     gap:64px;
-    align-items:flex-start;
+    max-width:960px;
+    margin:auto;
 }
 
-/* TEXT */
-.cv-text h2:first-child{
-    margin-top:0;
-}
+.cv-text h2:first-child{margin-top:0}
 
 .list{
     list-style:none;
     margin-top:8px;
 }
 
-.list li{
-    margin-bottom:6px;
-}
+.list li{margin-bottom:6px}
 
-/* IMAGE */
 .cv-image{
     display:flex;
-    justify-content:flex-end;
+    justify-content:flex-start;
 }
 
 .cv-image img{
@@ -206,7 +199,7 @@ p, li{
     color:#000;
 }
 
-/* ================= PORTFOLIO ================= */
+/* ================= PORTFOLIO & CONTACT ================= */
 .editorial-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -228,6 +221,22 @@ footer{
     padding:24px;
     font-size:11px;
     color:#777;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width:900px){
+    .cv{
+        grid-template-columns:1fr;
+        gap:48px;
+    }
+
+    .editorial-grid{
+        grid-template-columns:1fr;
+    }
+
+    .cv-image img{
+        max-width:300px;
+    }
 }
 
 /* ================= PRINT ================= */
@@ -285,8 +294,6 @@ footer{
 <h1 id="title-cv"></h1>
 
 <div class="cv">
-
-    <!-- TEXT LEFT -->
     <div class="cv-text">
         <h2 id="cv-profile-title"></h2>
         <p id="cv-profile-text"></p>
@@ -300,11 +307,9 @@ footer{
         <a href="cv.pdf" class="download" id="cv-download"></a>
     </div>
 
-    <!-- IMAGE RIGHT -->
     <div class="cv-image">
         <img src="profile.jpg" alt="Foto de perfil">
     </div>
-
 </div>
 </div>
 </section>
@@ -327,8 +332,30 @@ footer{
 <section id="contact">
 <div class="container spaced">
 <h1 id="title-contact"></h1>
-<p>📧 luisblascoibanezberbel@gmail.com</p>
-<p>📞 +34 630 51 18 06</p>
+
+<div class="editorial-grid">
+
+    <article class="case">
+        <h2>Electrical Enclosure</h2>
+        <p>Diseño y desarrollo de una envolvente eléctrica optimizada para producción.</p>
+        <p>📧 luisblascoibanezberbel@gmail.com</p>
+    </article>
+
+    <article class="case">
+        <h2>3D Printing Research</h2>
+        <p>Investigación aplicada a fabricación aditiva y validación de prototipos.</p>
+        <p>📧 luisblascoibanezberbel@gmail.com</p>
+    </article>
+
+    <article class="case">
+        <h2>Technical Product Design</h2>
+        <p>Diseño técnico enfocado a procesos industriales y optimización funcional.</p>
+        <p>📧 luisblascoibanezberbel@gmail.com</p>
+    </article>
+
+</div>
+
+<p style="margin-top:48px">📞 +34 630 51 18 06</p>
 </div>
 </section>
 

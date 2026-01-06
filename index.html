@@ -266,6 +266,17 @@ footer{
   .cv{grid-template-columns:1fr}
   .grid-3{grid-template-columns:1fr}
 }
+
+/* ================= Ajuste de imagen en "Sobre mí" ================= */
+.about-image {
+  width: auto; /* Mantiene el tamaño original de la imagen */
+  max-width: 250px; /* Hace la imagen más pequeña */
+  height: auto; /* Mantiene la proporción de la imagen */
+  border-radius: 6px; /* Bordes redondeados */
+  margin-left: 20px; /* Añade margen izquierdo para separarla del texto */
+  margin-top: 20px; /* Espaciado superior */
+  float: right; /* Coloca la imagen a la derecha */
+}
 </style>
 </head>
 
@@ -314,7 +325,9 @@ footer{
   <div class="container spaced">
     <h1 id="about-title"></h1>
     <p id="about-text"></p>
-    <img src="profile.jpg" alt="Luis Blasco-Ibáñez Berbel"> <!-- Imagen movida aquí -->
+    
+    <!-- Imagen posicionada a la derecha y tamaño ajustado -->
+    <img src="profile.jpg" alt="Luis Blasco-Ibáñez Berbel" class="about-image"> 
   </div>
 </section>
 

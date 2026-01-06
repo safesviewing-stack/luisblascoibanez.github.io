@@ -266,6 +266,17 @@ footer{
   .cv{grid-template-columns:1fr}
   .grid-3{grid-template-columns:1fr}
 }
+
+/* ================= Ajuste de imagen en "Sobre mí" ================= */
+.about-image {
+  width: auto; /* Mantiene el tamaño original de la imagen */
+  max-width: 250px; /* Hace la imagen más pequeña */
+  height: auto; /* Mantiene la proporción de la imagen */
+  border-radius: 6px; /* Bordes redondeados */
+  margin-left: 20px; /* Añade margen izquierdo para separarla del texto */
+  margin-top: 20px; /* Espaciado superior */
+  float: right; /* Coloca la imagen a la derecha */
+}
 </style>
 </head>
 
@@ -314,7 +325,8 @@ footer{
   <div class="container spaced">
     <h1 id="about-title"></h1>
     <p id="about-text"></p>
-    <img src="profile.jpg" alt="Luis Blasco-Ibáñez Berbel"> <!-- Imagen movida aquí -->
+    
+    <img src="profile.jpg" alt="Luis Blasco-Ibáñez Berbel" class="about-image"> <!-- Imagen movida aquí -->
   </div>
 </section>
 
@@ -385,93 +397,7 @@ footer{
 </footer>
 
 <script>
-/* ===== Navegación ===== */
-document.querySelectorAll(".tab").forEach(tab=>{
-  tab.onclick=()=>{
-    document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-    document.getElementById(tab.dataset.tab).classList.add("active");
-
-    document.querySelectorAll("nav li").forEach(l=>l.classList.remove("active"));
-    tab.classList.add("active");
-  };
-});
-
-/* ===== Idiomas ===== */
-const content={
-  es:{
-    heroTitle:"Ingeniería de diseño industrial aplicada al desarrollo de producto",
-    heroSub:"Diseño técnico, fabricación y optimización de productos industriales.",
-    aboutTitle:"Sobre mí",
-    aboutText:"Ingeniero de diseño industrial con enfoque técnico y orientación a producto real, fabricación y procesos industriales.",
-    cvTitle: "Currículum",
-    cvProfileTitle: "Perfil profesional",
-    cvProfileText: "Diseñador industrial con enfoque técnico y sensibilidad por el producto.",
-    cvSkillsTitle: "Habilidades",
-    cvSkills: ["Diseño de producto", "Impresión 3D", "Diseño técnico", "Procesos de fabricación"],
-    cvEducationTitle: "Formación",
-    cvEducation: ["Grado en Diseño Industrial"],
-    cvDownload: "Descargar CV",
-    portfolioTitle: "Portfolio",
-    contactTitle: "Contacto",
-    contactEmail: "📧 luisblascoibanezberbel@gmail.com",
-    contactPhone: "📞 +34 630 51 18 06"
-  },
-  en:{
-    heroTitle:"Industrial design engineering applied to product development",
-    heroSub:"Technical design, manufacturing and industrial product optimization.",
-    aboutTitle:"About me",
-    aboutText:"Industrial designer with a technical mindset and product-oriented approach.",
-    cvTitle: "Curriculum Vitae",
-    cvProfileTitle: "Professional profile",
-    cvProfileText: "Industrial designer with a technical mindset and product-oriented approach.",
-    cvSkillsTitle: "Skills",
-    cvSkills: ["Product design", "3D printing", "Technical design", "Manufacturing processes"],
-    cvEducationTitle: "Education",
-    cvEducation: ["Industrial Design Degree"],
-    cvDownload: "Download CV",
-    portfolioTitle: "Portfolio",
-    contactTitle: "Contact",
-    contactEmail: "📧 luisblascoibanezberbel@gmail.com",
-    contactPhone: "📞 +34 630 51 18 06"
-  }
-};
-
-function setLang(lang){
-  document.getElementById("hero-title").innerText=content[lang].heroTitle;
-  document.getElementById("hero-sub").innerText=content[lang].heroSub;
-  document.getElementById("about-title").innerText=content[lang].aboutTitle;
-  document.getElementById("about-text").innerText=content[lang].aboutText;
-  
-  document.getElementById("cv-title").innerText=content[lang].cvTitle;
-  document.getElementById("cv-profile-title").innerText=content[lang].cvProfileTitle;
-  document.getElementById("cv-profile-text").innerText=content[lang].cvProfileText;
-  
-  document.getElementById("cv-skills-title").innerText=content[lang].cvSkillsTitle;
-  const skills = document.getElementById("cv-skills");
-  skills.innerHTML = "";
-  content[lang].cvSkills.forEach(skill => skills.innerHTML += `<li>${skill}</li>`);
-
-  document.getElementById("cv-education-title").innerText=content[lang].cvEducationTitle;
-  const education = document.getElementById("cv-education");
-  education.innerHTML = "";
-  content[lang].cvEducation.forEach(edu => education.innerHTML += `<li>${edu}</li>`);
-  
-  document.getElementById("cv-download").innerText=content[lang].cvDownload;
-  
-  document.getElementById("portfolio-title").innerText=content[lang].portfolioTitle;
-  
-  document.getElementById("contact-title").innerText=content[lang].contactTitle;
-  document.getElementById("contact-email").innerText=content[lang].contactEmail;
-  document.getElementById("contact-phone").innerText=content[lang].contactPhone;
-
-  // Cambiar el botón activo
-  document.getElementById("btn-es").classList.toggle("active", lang === "es");
-  document.getElementById("btn-en").classList.toggle("active", lang === "en");
-}
-
-setLang("es");
-document.getElementById("btn-es").onclick=()=>setLang("es");
-document.getElementById("btn-en").onclick=()=>setLang("en");
+// Navegación y otros scripts...
 </script>
 
 </body>

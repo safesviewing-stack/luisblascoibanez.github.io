@@ -288,31 +288,20 @@ footer{
 <!-- CV -->
 <section id="cv">
   <div class="container spaced">
-    <h1>Currículum</h1>
+    <h1 id="cv-title"></h1>
 
     <div class="cv">
       <div>
-        <h2>Perfil profesional</h2>
-        <p>
-          Ingeniero de diseño industrial orientado al desarrollo de producto,
-          procesos de fabricación y validación técnica para producción.
-        </p>
+        <h2 id="cv-profile-title"></h2>
+        <p id="cv-profile-text"></p>
 
-        <h2>Habilidades técnicas</h2>
-        <ul class="list">
-          <li>Diseño de producto</li>
-          <li>Diseño técnico CAD</li>
-          <li>Impresión 3D y prototipado</li>
-          <li>Procesos de fabricación</li>
-          <li>Optimización de piezas y ensamblajes</li>
-        </ul>
+        <h2 id="cv-skills-title"></h2>
+        <ul class="list" id="cv-skills"></ul>
 
-        <h2>Formación</h2>
-        <ul class="list">
-          <li>Grado en Ingeniería de Diseño Industrial y Desarrollo de Producto</li>
-        </ul>
+        <h2 id="cv-education-title"></h2>
+        <ul class="list" id="cv-education"></ul>
 
-        <a href="cv.pdf" class="download">Descargar CV (PDF)</a>
+        <a href="cv.pdf" class="download" id="cv-download"></a>
       </div>
 
       <img src="profile.jpg" alt="Luis Blasco-Ibáñez Berbel">
@@ -323,7 +312,7 @@ footer{
 <!-- PORTFOLIO -->
 <section id="portfolio">
   <div class="container spaced">
-    <h1>Portfolio</h1>
+    <h1 id="portfolio-title"></h1>
 
     <div class="grid-3">
       <article class="case">
@@ -350,9 +339,9 @@ footer{
 <!-- CONTACT -->
 <section id="contact">
   <div class="container spaced">
-    <h1>Contacto</h1>
-    <p>📧 luisblascoibanezberbel@gmail.com</p>
-    <p>📞 +34 630 51 18 06</p>
+    <h1 id="contact-title"></h1>
+    <p id="contact-email">📧 luisblascoibanezberbel@gmail.com</p>
+    <p id="contact-phone">📞 +34 630 51 18 06</p>
   </div>
 </section>
 
@@ -380,13 +369,37 @@ const content={
     heroTitle:"Ingeniería de diseño industrial aplicada al desarrollo de producto",
     heroSub:"Diseño técnico, fabricación y optimización de productos industriales.",
     aboutTitle:"Sobre mí",
-    aboutText:"Ingeniero de diseño industrial con enfoque técnico y orientación a producto real, fabricación y procesos industriales."
+    aboutText:"Ingeniero de diseño industrial con enfoque técnico y orientación a producto real, fabricación y procesos industriales.",
+    cvTitle: "Currículum",
+    cvProfileTitle: "Perfil profesional",
+    cvProfileText: "Diseñador industrial con enfoque técnico y sensibilidad por el producto.",
+    cvSkillsTitle: "Habilidades",
+    cvSkills: ["Diseño de producto", "Impresión 3D", "Diseño técnico", "Procesos de fabricación"],
+    cvEducationTitle: "Formación",
+    cvEducation: ["Grado en Diseño Industrial"],
+    cvDownload: "Descargar CV",
+    portfolioTitle: "Portfolio",
+    contactTitle: "Contacto",
+    contactEmail: "📧 luisblascoibanezberbel@gmail.com",
+    contactPhone: "📞 +34 630 51 18 06"
   },
   en:{
     heroTitle:"Industrial design engineering applied to product development",
     heroSub:"Technical design, manufacturing and industrial product optimization.",
     aboutTitle:"About me",
-    aboutText:"Industrial design engineer focused on real-world product development and manufacturing."
+    aboutText:"Industrial designer with a technical mindset and product-oriented approach.",
+    cvTitle: "Curriculum Vitae",
+    cvProfileTitle: "Professional profile",
+    cvProfileText: "Industrial designer with a technical mindset and product-oriented approach.",
+    cvSkillsTitle: "Skills",
+    cvSkills: ["Product design", "3D printing", "Technical design", "Manufacturing processes"],
+    cvEducationTitle: "Education",
+    cvEducation: ["Industrial Design Degree"],
+    cvDownload: "Download CV",
+    portfolioTitle: "Portfolio",
+    contactTitle: "Contact",
+    contactEmail: "📧 luisblascoibanezberbel@gmail.com",
+    contactPhone: "📞 +34 630 51 18 06"
   }
 };
 
@@ -395,9 +408,28 @@ function setLang(lang){
   document.getElementById("hero-sub").innerText=content[lang].heroSub;
   document.getElementById("about-title").innerText=content[lang].aboutTitle;
   document.getElementById("about-text").innerText=content[lang].aboutText;
+  
+  document.getElementById("cv-title").innerText=content[lang].cvTitle;
+  document.getElementById("cv-profile-title").innerText=content[lang].cvProfileTitle;
+  document.getElementById("cv-profile-text").innerText=content[lang].cvProfileText;
+  
+  document.getElementById("cv-skills-title").innerText=content[lang].cvSkillsTitle;
+  const skills = document.getElementById("cv-skills");
+  skills.innerHTML = "";
+  content[lang].cvSkills.forEach(skill => skills.innerHTML += `<li>${skill}</li>`);
 
-  document.getElementById("btn-es").classList.toggle("active",lang==="es");
-  document.getElementById("btn-en").classList.toggle("active",lang==="en");
+  document.getElementById("cv-education-title").innerText=content[lang].cvEducationTitle;
+  const education = document.getElementById("cv-education");
+  education.innerHTML = "";
+  content[lang].cvEducation.forEach(edu => education.innerHTML += `<li>${edu}</li>`);
+  
+  document.getElementById("cv-download").innerText=content[lang].cvDownload;
+  
+  document.getElementById("portfolio-title").innerText=content[lang].portfolioTitle;
+  
+  document.getElementById("contact-title").innerText=content[lang].contactTitle;
+  document.getElementById("contact-email").innerText=content[lang].contactEmail;
+  document.getElementById("contact-phone").innerText=content[lang].contactPhone;
 }
 
 setLang("es");

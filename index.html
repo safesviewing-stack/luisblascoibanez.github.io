@@ -132,7 +132,7 @@ p, li{
 
 /* ================= HERO ================= */
 .home{
-  background:url('portada.jpg') center/cover no-repeat; /* Imagen de portada actualizada */
+  background:url('portada.jpg') center/cover no-repeat; /* Imagen de portada */
 }
 
 .hero{
@@ -351,7 +351,6 @@ footer{
 <section id="contact">
   <div class="container spaced">
     <h1>Contacto</h1>
-    <p>Disponible para colaboración profesional o incorporación a empresa.</p>
     <p>📧 luisblascoibanezberbel@gmail.com</p>
     <p>📞 +34 630 51 18 06</p>
   </div>
@@ -371,7 +370,7 @@ document.querySelectorAll(".tab").forEach(tab=>{
     document.getElementById(tab.dataset.tab).classList.add("active");
 
     document.querySelectorAll("nav li").forEach(l=>l.classList.remove("active"));
-    if(tab.tagName==="LI") tab.classList.add("active");
+    tab.classList.add("active");
   };
 });
 

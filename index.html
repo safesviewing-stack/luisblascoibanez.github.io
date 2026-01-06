@@ -188,7 +188,7 @@ p, li{
   color:#000;
 }
 
-secondary{
+.secondary{
   border:1px solid #fff;
   color:#fff;
 }
@@ -314,13 +314,15 @@ footer{
   <div class="container spaced">
     <h1 id="about-title"></h1>
     <p id="about-text"></p>
-    <!-- Imagen movida a la derecha del texto -->
-    <div style="display: flex; align-items: center;">
-      <div style="flex: 2;">
-        <img src="profile.jpg" alt="Luis Blasco-Ibáñez Berbel" style="max-width: 300px; border-radius: 6px;">
-      </div>
-      <div style="flex: 1;">
+    <!-- Contenedor con flexbox para ajustar la imagen a la derecha -->
+    <div style="display: flex; justify-content: flex-end; align-items: center;">
+      <!-- Contenedor del texto, a la izquierda de la imagen -->
+      <div style="flex: 1; padding-right: 20px;">
         <p id="about-text"></p>
+      </div>
+      <!-- Imagen a la derecha -->
+      <div style="flex: 0 0 auto;">
+        <img src="profile.jpg" alt="Luis Blasco-Ibáñez Berbel" style="max-width: 300px; border-radius: 6px;">
       </div>
     </div>
   </div>

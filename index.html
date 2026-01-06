@@ -178,7 +178,8 @@ p, li{
   display:grid;
   grid-template-columns:1.2fr .8fr;
   gap:64px;
-  overflow:hidden;  /* Oculta la barra de desplazamiento */
+  overflow:auto;  /* Asegura que se pueda desplazar dentro de la sección */
+  max-height:700px; /* Limita la altura de la sección del CV */
 }
 
 .list{list-style:none}
@@ -349,7 +350,6 @@ footer{
 <section id="contact">
   <div class="container spaced">
     <h1>Contacto</h1>
-    <p>Disponible para colaboración profesional o incorporación a empresa.</p>
     <p>📧 luisblascoibanezberbel@gmail.com</p>
     <p>📞 +34 630 51 18 06</p>
   </div>

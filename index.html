@@ -21,9 +21,9 @@
 body{
   background:#fff;
   color:#111;
-  display: flex;  
-  flex-direction: column; 
-  min-height: 100vh; 
+  display: flex;  /* Usamos flexbox para que el footer siempre esté al final */
+  flex-direction: column; /* Disposición en columna */
+  min-height: 100vh; /* Altura mínima 100% de la ventana */
 }
 
 /* ================= HEADER ================= */
@@ -104,7 +104,7 @@ nav li:hover::after{width:100%}
 /* ================= LAYOUT ================= */
 main{
   padding-top:70px;
-  flex-grow: 1;
+  flex-grow: 1; /* Asegura que el main ocupe el espacio disponible */
 }
 
 section{display:none}
@@ -126,41 +126,24 @@ h1{
   font-weight:500;
   margin-bottom:28px;
   opacity: 0;
-  transform: translateY(40px);
-  animation: fadeInSlideUp 1s ease-out forwards;
-  position: relative;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
+  transform: translateY(50px);
+  animation: fadeInSlideUp 1.2s ease-out forwards;
 }
 
 h2{
   font-size:16px;
   margin-bottom:10px;
   opacity: 0;
-  transform: translateY(40px);
-  animation: fadeInSlideUp 1s ease-out forwards;
-  position: relative;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
+  transform: translateY(50px);
+  animation: fadeInSlideUp 1.2s ease-out forwards;
 }
 
 p, li{
   font-size:15px;
   line-height:1.6;
   opacity: 0;
-  transform: translateY(40px);
-  animation: fadeInSlideUp 1s ease-out forwards;
-}
-
-/* Linea decorativa debajo de los títulos */
-h1::after, h2::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 1px; /* Línea fina */
-  background-color: #ddd; /* Color de la línea */
+  transform: translateY(50px);
+  animation: fadeInSlideUp 1.2s ease-out forwards;
 }
 
 /* ================= HERO ================= */
@@ -180,8 +163,8 @@ h1::after, h2::after {
   padding:40px;
   max-width:560px;
   opacity:0;
-  transform:translateY(40px);
-  animation: fadeInSlideUp 1s ease-out forwards;
+  transform:translateY(50px);
+  animation: fadeInSlideUp 1.2s ease-out forwards;
 }
 
 .hero-cta{
@@ -214,7 +197,7 @@ h1::after, h2::after {
 @keyframes fadeInSlideUp {
   0% {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(50px);
   }
   100% {
     opacity: 1;
@@ -272,7 +255,7 @@ h1::after, h2::after {
 /* ================= FOOTER ================= */
 footer{
   text-align:center;
-  padding:8px;
+  padding:10px;
   font-size:11px;
   color:#fff;
   background-color:#000;

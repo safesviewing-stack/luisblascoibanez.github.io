@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Industrial Designer</title>
+<title>Luis Blasco-Ibáñez Berbel · Industrial Design Engineer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,13 +45,6 @@ header{
     align-items:center;
 }
 
-.back{
-    color:#fff;
-    cursor:pointer;
-    font-size:18px;
-}
-
-/* ================= NAV ================= */
 nav ul{
     display:flex;
     justify-content:center;
@@ -61,16 +54,14 @@ nav ul{
 
 nav li{
     color:#fff;
-    cursor:pointer;
     font-size:12px;
     letter-spacing:.12em;
     text-transform:uppercase;
+    cursor:pointer;
     position:relative;
 }
 
-nav li.active{
-    font-weight:500;
-}
+nav li.active{font-weight:500}
 
 nav li::after{
     content:"";
@@ -83,11 +74,8 @@ nav li::after{
     transition:.25s;
 }
 
-nav li:hover::after{
-    width:100%;
-}
+nav li:hover::after{width:100%}
 
-/* ================= LANG ================= */
 .lang button{
     background:none;
     border:1px solid #fff;
@@ -105,17 +93,10 @@ nav li:hover::after{
 }
 
 /* ================= LAYOUT ================= */
-main{
-    padding-top:70px;
-}
+main{padding-top:70px}
 
-section{
-    display:none;
-}
-
-section.active{
-    display:block;
-}
+section{display:none}
+section.active{display:block}
 
 .container{
     width:90%;
@@ -124,43 +105,101 @@ section.active{
 }
 
 .spaced{
-    padding:80px 0;
+    padding:90px 0;
 }
 
 /* ================= TYPO ================= */
 h1{
-    font-size:28px;
+    font-size:32px;
     font-weight:500;
-    margin-bottom:36px;
+    margin-bottom:28px;
 }
 
 h2{
-    font-size:15px;
+    font-size:16px;
     font-weight:500;
-    margin-top:48px;
-    margin-bottom:10px;
+    margin-bottom:12px;
 }
 
 p, li{
-    font-size:14px;
-    line-height:1.6;
+    font-size:15px;
+    line-height:1.65;
 }
 
-/* ================= HOME ================= */
+/* ================= HERO ================= */
 .home{
     background:url("portada.jpg") center/cover no-repeat;
-    padding:80px 0 120px;
 }
 
-.home-text{
+.hero{
+    min-height:75vh;
+    display:flex;
+    align-items:center;
+}
+
+.hero-box{
     background:rgba(0,0,0,.75);
     color:#fff;
-    padding:28px;
-    max-width:520px;
+    padding:40px;
+    max-width:560px;
+    animation:fadeUp .8s ease;
 }
 
-.home-text h1{
-    margin-bottom:14px;
+.hero-box h1{margin-bottom:14px}
+
+.hero-cta{
+    margin-top:28px;
+    display:flex;
+    gap:16px;
+}
+
+.btn{
+    padding:12px 26px;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    border-radius:4px;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+.btn.primary{
+    background:#fff;
+    color:#000;
+}
+
+.btn.secondary{
+    border:1px solid #fff;
+    color:#fff;
+}
+
+/* ================= SECTIONS ================= */
+.section-intro{
+    max-width:680px;
+    margin-bottom:48px;
+}
+
+/* ================= SERVICES ================= */
+.grid-3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:32px;
+}
+
+.card{
+    border-top:1px solid #ddd;
+    padding-top:18px;
+}
+
+/* ================= PORTFOLIO ================= */
+.case{
+    border-top:1px solid #ddd;
+    padding-top:18px;
+}
+
+.case span{
+    font-size:12px;
+    color:#555;
 }
 
 /* ================= CV ================= */
@@ -168,120 +207,53 @@ p, li{
     display:grid;
     grid-template-columns:1.2fr .8fr;
     gap:64px;
-    align-items:flex-start;
 }
 
-.cv-text h2:first-child{
-    margin-top:0;
-}
+.list{list-style:none}
+.list li{margin-bottom:6px}
 
-.list{
-    list-style:none;
-    margin-top:8px;
-}
-
-.list li{
-    margin-bottom:6px;
-}
-
-.cv-image{
-    display:flex;
-    justify-content:flex-start;
-}
-
-.cv-image img{
+.cv img{
     width:100%;
-    max-width:380px;
+    max-width:360px;
     border-radius:6px;
 }
 
-/* ================= DOWNLOAD ================= */
 .download{
     display:inline-block;
-    margin-top:48px;
-    padding:12px 28px;
+    margin-top:32px;
+    padding:12px 26px;
     background:#000;
     color:#fff;
-    border:1px solid #000;
-    text-decoration:none;
     font-size:12px;
-    letter-spacing:.08em;
     text-transform:uppercase;
+    letter-spacing:.08em;
     border-radius:4px;
-    transition:.25s;
+    text-decoration:none;
 }
 
-.download:hover{
-    background:#fff;
-    color:#000;
-}
-
-/* ================= PORTFOLIO & CONTACT ================= */
-.editorial-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:32px;
-}
-
-.case{
-    border-top:1px solid #ddd;
-    padding-top:16px;
-}
-
-.case.large{
-    grid-column:span 2;
+/* ================= CONTACT ================= */
+.contact-box{
+    max-width:520px;
 }
 
 /* ================= FOOTER ================= */
 footer{
     text-align:center;
-    padding:24px;
+    padding:28px;
     font-size:11px;
     color:#777;
 }
 
-/* ================= RESPONSIVE ================= */
-@media (max-width:900px){
-    .cv{
-        grid-template-columns:1fr;
-        gap:48px;
-    }
-
-    .editorial-grid{
-        grid-template-columns:1fr;
-    }
-
-    .cv-image img{
-        max-width:300px;
-    }
+/* ================= ANIMATIONS ================= */
+@keyframes fadeUp{
+    from{opacity:0; transform:translateY(20px)}
+    to{opacity:1; transform:translateY(0)}
 }
 
-/* ================= PRINT ================= */
-@media print{
-    header,.lang,.back,footer,.download{
-        display:none;
-    }
-
-    main{
-        padding-top:0;
-    }
-
-    .spaced{
-        padding:0;
-    }
-
-    h1{
-        font-size:22px;
-    }
-
-    p,li{
-        font-size:12px;
-    }
-
-    .cv{
-        grid-template-columns:240px 1fr;
-        gap:24px;
-    }
+/* ================= RESPONSIVE ================= */
+@media (max-width:900px){
+    .grid-3{grid-template-columns:1fr}
+    .cv{grid-template-columns:1fr}
 }
 
 </style>
@@ -291,20 +263,19 @@ footer{
 
 <header>
 <div class="nav">
-    <div class="back" onclick="goHome()">←</div>
-
+    <div></div>
     <nav>
         <ul>
-            <li class="tab active" data-tab="home">Home</li>
-            <li class="tab" data-tab="cv">CV</li>
+            <li class="tab active" data-tab="home">Inicio</li>
+            <li class="tab" data-tab="about">Sobre mí</li>
             <li class="tab" data-tab="portfolio">Portfolio</li>
+            <li class="tab" data-tab="cv">CV</li>
             <li class="tab" data-tab="contact">Contacto</li>
         </ul>
     </nav>
-
     <div class="lang">
-        <button id="btn-es" class="active">ES</button>
-        <button id="btn-en">EN</button>
+        <button id="es" class="active">ES</button>
+        <button id="en">EN</button>
     </div>
 </div>
 </header>
@@ -313,52 +284,89 @@ footer{
 
 <!-- HOME -->
 <section id="home" class="home active">
-<div class="container">
-    <div class="home-text">
-        <h1 id="title-home"></h1>
-        <p id="subtitle-home"></p>
+<div class="container hero">
+    <div class="hero-box">
+        <h1 id="hero-title"></h1>
+        <p id="hero-sub"></p>
+
+        <div class="hero-cta">
+            <a class="btn primary tab" data-tab="portfolio">Ver portfolio</a>
+            <a class="btn secondary tab" data-tab="contact">Contactar</a>
+        </div>
     </div>
 </div>
 </section>
 
-<!-- CV -->
-<section id="cv">
+<!-- ABOUT -->
+<section id="about">
 <div class="container spaced">
-<h1 id="title-cv"></h1>
-
-<div class="cv">
-
-    <div class="cv-text">
-        <h2 id="cv-profile-title"></h2>
-        <p id="cv-profile-text"></p>
-
-        <h2 id="cv-skills-title"></h2>
-        <ul class="list" id="cv-skills"></ul>
-
-        <h2 id="cv-education-title"></h2>
-        <ul class="list" id="cv-education"></ul>
-
-        <a href="cv.pdf" class="download" id="cv-download"></a>
-    </div>
-
-    <div class="cv-image">
-        <img src="profile.jpg" alt="Foto de perfil">
-    </div>
-
+<div class="section-intro">
+<h1 id="about-title"></h1>
+<p id="about-text"></p>
 </div>
+</div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+<div class="container spaced">
+<h1 id="services-title"></h1>
+<div class="grid-3" id="services-grid"></div>
 </div>
 </section>
 
 <!-- PORTFOLIO -->
 <section id="portfolio">
 <div class="container spaced">
-<h1 id="title-portfolio"></h1>
+<h1>Portfolio</h1>
 
-<div class="editorial-grid">
-    <article class="case large">
-        <h2>Electrical Enclosure</h2>
-        <p id="case-text"></p>
-    </article>
+<div class="grid-3">
+<div class="case">
+<h2>Electrical Enclosure</h2>
+<span>Industrial product</span>
+<p>Diseño técnico y desarrollo orientado a producción industrial.</p>
+</div>
+<div class="case">
+<h2>3D Printing Prototyping</h2>
+<span>Prototipado</span>
+<p>Validación funcional mediante impresión 3D.</p>
+</div>
+<div class="case">
+<h2>Product Optimization</h2>
+<span>Engineering</span>
+<p>Optimización geométrica y de ensamblajes.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CV -->
+<section id="cv">
+<div class="container spaced">
+<h1>Currículum</h1>
+
+<div class="cv">
+<div>
+<h2>Perfil profesional</h2>
+<p>Ingeniero de diseño industrial enfocado al desarrollo de producto y procesos de fabricación.</p>
+
+<h2>Habilidades</h2>
+<ul class="list">
+<li>Diseño de producto</li>
+<li>Diseño técnico CAD</li>
+<li>Impresión 3D</li>
+<li>Procesos industriales</li>
+</ul>
+
+<h2>Formación</h2>
+<ul class="list">
+<li>Grado en Ingeniería de Diseño Industrial</li>
+</ul>
+
+<a href="cv.pdf" class="download">Descargar CV</a>
+</div>
+
+<img src="profile.jpg" alt="Luis Blasco-Ibáñez Berbel">
 </div>
 </div>
 </section>
@@ -366,126 +374,58 @@ footer{
 <!-- CONTACT -->
 <section id="contact">
 <div class="container spaced">
-<h1 id="title-contact"></h1>
-
-<div class="editorial-grid">
-    <article class="case">
-        <h2>Electrical Enclosure</h2>
-        <p>Diseño y desarrollo de una envolvente eléctrica optimizada para producción.</p>
-        <p>📧 luisblascoibanezberbel@gmail.com</p>
-    </article>
-
-    <article class="case">
-        <h2>3D Printing Research</h2>
-        <p>Investigación aplicada a fabricación aditiva y validación de prototipos.</p>
-        <p>📧 luisblascoibanezberbel@gmail.com</p>
-    </article>
-
-    <article class="case">
-        <h2>Technical Product Design</h2>
-        <p>Diseño técnico enfocado a procesos industriales.</p>
-        <p>📧 luisblascoibanezberbel@gmail.com</p>
-    </article>
+<h1>Contacto</h1>
+<div class="contact-box">
+<p>¿Interesado en colaborar o conocer más sobre mi perfil?</p>
+<p>📧 luisblascoibanezberbel@gmail.com</p>
+<p>📞 +34 630 51 18 06</p>
 </div>
-
-<p style="margin-top:48px">📞 +34 630 51 18 06</p>
 </div>
 </section>
 
 </main>
 
-<footer>© 2025 · Industrial Designer</footer>
+<footer>
+© 2025 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineer
+</footer>
 
 <script>
-const content = {
+document.querySelectorAll(".tab").forEach(tab=>{
+tab.onclick=()=>{
+document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+document.getElementById(tab.dataset.tab).classList.add("active");
+document.querySelectorAll("nav li").forEach(l=>l.classList.remove("active"));
+if(tab.tagName==="LI") tab.classList.add("active");
+};
+});
+
+const content={
 es:{
-    homeTitle:"Diseñador Industrial",
-    homeSub:"Producto · Proceso · Precisión",
-    cv:"CV",
-    profileTitle:"Perfil profesional",
-    profileText:"Diseñador industrial con enfoque técnico y sensibilidad por el producto.",
-    skillsTitle:"Habilidades",
-    skills:["Diseño de producto","Impresión 3D","Diseño técnico","Procesos de fabricación"],
-    eduTitle:"Formación",
-    edu:["Grado en Diseño Industrial"],
-    download:"Descargar CV",
-    portfolio:"Portfolio",
-    case:"Diseño y desarrollo de una envolvente eléctrica optimizada para producción.",
-    contact:"Contacto"
+heroTitle:"Ingeniería de diseño industrial aplicada al desarrollo de producto",
+heroSub:"Diseño técnico, fabricación y optimización de productos industriales.",
+aboutTitle:"Sobre mí",
+aboutText:"Ingeniero de diseño industrial con enfoque técnico y orientación a producto real."
 },
 en:{
-    homeTitle:"Industrial Designer",
-    homeSub:"Product · Process · Precision",
-    cv:"CV",
-    profileTitle:"Professional profile",
-    profileText:"Industrial designer with a technical mindset and product-oriented approach.",
-    skillsTitle:"Skills",
-    skills:["Product design","3D printing","Technical design","Manufacturing processes"],
-    eduTitle:"Education",
-    edu:["Industrial Design Degree"],
-    download:"Download CV",
-    portfolio:"Portfolio",
-    case:"Design and development of an electrical enclosure optimized for production.",
-    contact:"Contact"
+heroTitle:"Industrial design engineering applied to product development",
+heroSub:"Technical design, manufacturing and product optimization.",
+aboutTitle:"About me",
+aboutText:"Industrial design engineer focused on real-world product development."
 }
 };
 
 function setLang(lang){
-    document.getElementById("title-home").innerText = content[lang].homeTitle;
-    document.getElementById("subtitle-home").innerText = content[lang].homeSub;
-    document.getElementById("title-cv").innerText = content[lang].cv;
-    document.getElementById("cv-profile-title").innerText = content[lang].profileTitle;
-    document.getElementById("cv-profile-text").innerText = content[lang].profileText;
-    document.getElementById("cv-skills-title").innerText = content[lang].skillsTitle;
-    document.getElementById("cv-education-title").innerText = content[lang].eduTitle;
-    document.getElementById("cv-download").innerText = content[lang].download;
-    document.getElementById("title-portfolio").innerText = content[lang].portfolio;
-    document.getElementById("case-text").innerText = content[lang].case;
-    document.getElementById("title-contact").innerText = content[lang].contact;
-
-    const skills = document.getElementById("cv-skills");
-    skills.innerHTML = "";
-    content[lang].skills.forEach(s=>{
-        skills.innerHTML += `<li>${s}</li>`;
-    });
-
-    const edu = document.getElementById("cv-education");
-    edu.innerHTML = "";
-    content[lang].edu.forEach(e=>{
-        edu.innerHTML += `<li>${e}</li>`;
-    });
+document.getElementById("hero-title").innerText=content[lang].heroTitle;
+document.getElementById("hero-sub").innerText=content[lang].heroSub;
+document.getElementById("about-title").innerText=content[lang].aboutTitle;
+document.getElementById("about-text").innerText=content[lang].aboutText;
+document.getElementById("es").classList.toggle("active",lang==="es");
+document.getElementById("en").classList.toggle("active",lang==="en");
 }
 
 setLang("es");
-
-document.getElementById("btn-es").onclick = () => {
-    setLang("es");
-    toggleLang("es");
-};
-
-document.getElementById("btn-en").onclick = () => {
-    setLang("en");
-    toggleLang("en");
-};
-
-function toggleLang(lang){
-    document.getElementById("btn-es").classList.remove("active");
-    document.getElementById("btn-en").classList.remove("active");
-    document.getElementById(lang==="es" ? "btn-es" : "btn-en").classList.add("active");
-}
-
-document.querySelectorAll(".tab").forEach(tab=>{
-    tab.onclick = ()=>{
-        document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));
-        document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-        tab.classList.add("active");
-        document.getElementById(tab.dataset.tab).classList.add("active");
-    };
-});
-
-function goHome(){
-    document.querySelector('[data-tab="home"]').click();
-}
+document.getElementById("es").onclick=()=>setLang("es");
+document.getElementById("en").onclick=()=>setLang("en");
 </script>
 
 </body>

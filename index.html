@@ -119,6 +119,9 @@ h1{
   font-size:30px;
   font-weight:500;
   margin-bottom:28px;
+  opacity: 0; /* Comienza invisible */
+  transform: translateX(-100%); /* Comienza fuera de la pantalla a la izquierda */
+  animation: slideInFromLeft 1s ease-out forwards; /* Animación para entrada */
 }
 
 h2{
@@ -187,6 +190,18 @@ p, li{
   100% {
     opacity: 1;
     transform: translateY(0); /* Termina en su posición original */
+  }
+}
+
+/* ================= Animación de Slide desde la izquierda ================= */
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%); /* Comienza fuera de la pantalla */
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0); /* Termina en su posición original */
   }
 }
 
@@ -376,6 +391,10 @@ document.querySelectorAll(".tab").forEach(tab=>{
 
     document.querySelectorAll("nav li").forEach(l=>l.classList.remove("active"));
     tab.classList.add("active");
+    
+    // Animar el título correspondiente
+    const title = document.querySelector(`#${tab.dataset.tab} h1`);
+    title.classList.add("animate-title");
   };
 });
 

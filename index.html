@@ -21,9 +21,9 @@
 body{
   background:#fff;
   color:#111;
-  display: flex;  /* Usamos flexbox para que el footer siempre esté al final */
-  flex-direction: column; /* Disposición en columna */
-  min-height: 100vh; /* Altura mínima 100% de la ventana */
+  display: flex;  
+  flex-direction: column; 
+  min-height: 100vh; 
 }
 
 /* ================= HEADER ================= */
@@ -104,7 +104,7 @@ nav li:hover::after{width:100%}
 /* ================= LAYOUT ================= */
 main{
   padding-top:70px;
-  flex-grow: 1; /* Asegura que el main ocupe el espacio disponible */
+  flex-grow: 1;
 }
 
 section{display:none}
@@ -128,6 +128,9 @@ h1{
   opacity: 0;
   transform: translateY(40px);
   animation: fadeInSlideUp 1s ease-out forwards;
+  position: relative;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 h2{
@@ -136,6 +139,9 @@ h2{
   opacity: 0;
   transform: translateY(40px);
   animation: fadeInSlideUp 1s ease-out forwards;
+  position: relative;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 p, li{
@@ -144,6 +150,17 @@ p, li{
   opacity: 0;
   transform: translateY(40px);
   animation: fadeInSlideUp 1s ease-out forwards;
+}
+
+/* Linea decorativa debajo de los títulos */
+h1::after, h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px; /* Línea fina */
+  background-color: #ddd; /* Color de la línea */
 }
 
 /* ================= HERO ================= */

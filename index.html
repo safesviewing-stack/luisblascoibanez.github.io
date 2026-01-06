@@ -21,7 +21,9 @@
 body{
   background:#fff;
   color:#111;
-  overflow: hidden; /* Elimina la barra de desplazamiento global */
+  display: flex;  /* Usamos flexbox para que el footer siempre esté al final */
+  flex-direction: column; /* Disposición en columna */
+  min-height: 100vh; /* Altura mínima 100% de la ventana */
 }
 
 /* ================= HEADER ================= */
@@ -100,7 +102,11 @@ nav li:hover::after{width:100%}
 }
 
 /* ================= LAYOUT ================= */
-main{padding-top:70px}
+main{
+  padding-top:70px;
+  flex-grow: 1; /* Asegura que el main ocupe el espacio disponible */
+}
+
 section{display:none}
 section.active{display:block}
 
@@ -119,30 +125,30 @@ h1{
   font-size:30px;
   font-weight:500;
   margin-bottom:28px;
-  opacity: 0; /* Comienza invisible */
-  transform: translateY(50px); /* Comienza desplazado */
-  animation: fadeInSlideUp 1s ease-out forwards; /* Animación más lenta */
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInSlideUp 1s ease-out forwards;
 }
 
 h2{
   font-size:16px;
   margin-bottom:10px;
-  opacity: 0; /* Comienza invisible */
-  transform: translateY(50px); /* Comienza desplazado */
-  animation: fadeInSlideUp 1s ease-out forwards; /* Animación más lenta */
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInSlideUp 1s ease-out forwards;
 }
 
 p, li{
   font-size:15px;
   line-height:1.6;
-  opacity: 0; /* Comienza invisible */
-  transform: translateY(50px); /* Comienza desplazado */
-  animation: fadeInSlideUp 1s ease-out forwards; /* Animación más lenta */
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInSlideUp 1s ease-out forwards;
 }
 
 /* ================= HERO ================= */
 .home{
-  background:url('portada.jpg') center/cover no-repeat; /* Imagen de portada */
+  background:url('portada.jpg') center/cover no-repeat;
 }
 
 .hero{
@@ -156,9 +162,9 @@ p, li{
   color:#fff;
   padding:40px;
   max-width:560px;
-  opacity:0; /* Comienza invisible */
-  transform:translateY(50px); /* Comienza abajo */
-  animation: fadeInSlideUp 1s ease-out forwards; /* Animación para entrada */
+  opacity:0;
+  transform:translateY(40px);
+  animation: fadeInSlideUp 1s ease-out forwards;
 }
 
 .hero-cta{
@@ -191,11 +197,11 @@ p, li{
 @keyframes fadeInSlideUp {
   0% {
     opacity: 0;
-    transform: translateY(40px); /* Desliza desde abajo */
+    transform: translateY(40px);
   }
   100% {
     opacity: 1;
-    transform: translateY(0); /* Termina en su posición original */
+    transform: translateY(0);
   }
 }
 
@@ -204,8 +210,8 @@ p, li{
   display:grid;
   grid-template-columns:1.2fr .8fr;
   gap:64px;
-  max-height:700px; /* Limita la altura de la sección del CV */
-  overflow: hidden;  /* Elimina la barra de desplazamiento en la sección CV */
+  max-height:700px;
+  overflow: hidden;
 }
 
 .list{list-style:none}
@@ -249,10 +255,10 @@ p, li{
 /* ================= FOOTER ================= */
 footer{
   text-align:center;
-  padding:12px;
+  padding:10px;
   font-size:11px;
   color:#fff;
-  background-color:#000; /* Fondo negro */
+  background-color:#000;
 }
 
 /* ================= RESPONSIVE ================= */

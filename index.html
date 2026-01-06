@@ -115,20 +115,21 @@ section.active{display:block}
 }
 
 /* ================= TYPO ================= */
-h1{
-  font-size:30px;
-  font-weight:500;
-  margin-bottom:28px;
+h1, h2, p, li {
+  opacity: 0; /* Comienza invisible */
+  animation: fadeInUp 1s ease-out forwards; /* Aplica la animación a todos los textos */
 }
 
-h2{
-  font-size:16px;
-  margin-bottom:10px;
-}
-
-p, li{
-  font-size:15px;
-  line-height:1.6;
+/* Animación general de Fade In + Slide Up */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ================= HERO ================= */
@@ -147,6 +148,9 @@ p, li{
   color:#fff;
   padding:40px;
   max-width:560px;
+  opacity:0; /* Comienza invisible */
+  transform:translateY(50px); /* Comienza desplazado hacia abajo */
+  animation: fadeInScale 1s ease-out, slideUp 1s ease-out forwards; /* Ambas animaciones */
 }
 
 .hero-cta{
@@ -173,6 +177,29 @@ p, li{
 .secondary{
   border:1px solid #fff;
   color:#fff;
+}
+
+/* ================= Animaciones de entrada ================= */
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ================= CV ================= */

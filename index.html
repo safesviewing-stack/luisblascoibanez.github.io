@@ -91,6 +91,7 @@ nav li:hover::after{width:100%}
   margin-left:6px;
   cursor:pointer;
   border-radius:4px;
+  transition: background-color 0.3s;
 }
 
 .lang button.active{
@@ -430,6 +431,10 @@ function setLang(lang){
   document.getElementById("contact-title").innerText=content[lang].contactTitle;
   document.getElementById("contact-email").innerText=content[lang].contactEmail;
   document.getElementById("contact-phone").innerText=content[lang].contactPhone;
+
+  // Cambiar el botón activo
+  document.getElementById("btn-es").classList.toggle("active", lang === "es");
+  document.getElementById("btn-en").classList.toggle("active", lang === "en");
 }
 
 setLang("es");

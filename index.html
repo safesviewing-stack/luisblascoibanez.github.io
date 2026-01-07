@@ -2,201 +2,80 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Luis Blasco-Ibáñez Berbel · Industrial Design Engineer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css"> <!-- Vincula tu archivo de estilos externo -->
+  <title>Luis Blasco-Ibáñez - Diseñador Industrial</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Barra de navegación -->
   <header>
-    <div class="nav">
-      <div class="logo">LB</div>
-      <nav>
-        <ul>
-          <li class="tab active" data-tab="home">Inicio</li>
-          <li class="tab" data-tab="about">Sobre mí</li>
-          <li class="tab" data-tab="cv">Currículum</li>
-          <li class="tab" data-tab="portfolio">Portfolio</li>
-          <li class="tab" data-tab="contact">Contacto</li>
-        </ul>
-      </nav>
-      <div class="lang">
-        <button id="btn-es" class="active">ES</button>
-        <button id="btn-en">EN</button>
-      </div>
-    </div>
+    <nav>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#sobremi">Sobre mí</a></li>
+        <li><a href="#curriculum">Currículum</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main>
-    <!-- HOME -->
-    <section id="home" class="home active">
-      <div class="container hero">
-        <div class="hero-box">
-          <h1 id="hero-title"></h1>
-          <p id="hero-sub"></p>
-          <div class="hero-cta">
-            <a class="btn primary tab" data-tab="cv">Ver CV</a>
-            <a class="btn secondary tab" data-tab="contact">Contactar</a>
-          </div>
-        </div>
+  <!-- Sección de Inicio -->
+  <section id="inicio">
+    <div class="container">
+      <h1>Bienvenido a mi portfolio</h1>
+      <p>Soy Luis Blasco-Ibáñez, diseñador industrial y apasionado por lo artístico y lo técnico.</p>
+    </div>
+  </section>
+
+  <!-- Sección Sobre mí -->
+  <section id="sobremi">
+    <div class="container">
+      <h2>Sobre mí</h2>
+      <p>Me llamo Luis, soy un joven diseñador industrial de Valencia, con una gran pasión por la creatividad y la innovación. Estudio en la UPV y he pasado por la UJI, lo que me ha permitido formarme tanto en lo artístico como en lo técnico.</p>
+    </div>
+  </section>
+
+  <!-- Sección de Currículum -->
+  <section id="curriculum">
+    <div class="container">
+      <h2>Currículum</h2>
+      <p>Puedes ver mi currículum completo en este <a href="#" target="_blank">enlace</a>.</p>
+    </div>
+  </section>
+
+  <!-- Sección de Portfolio -->
+  <section id="portfolio">
+    <div class="container">
+      <h2>Portfolio</h2>
+      <p>Aquí puedes ver algunos de mis trabajos recientes:</p>
+      <!-- Puedes agregar imágenes o proyectos aquí -->
+      <div class="portfolio-gallery">
+        <div class="portfolio-item"><img src="https://via.placeholder.com/300" alt="Proyecto 1"></div>
+        <div class="portfolio-item"><img src="https://via.placeholder.com/300" alt="Proyecto 2"></div>
+        <div class="portfolio-item"><img src="https://via.placeholder.com/300" alt="Proyecto 3"></div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="container spaced">
-        <h1 id="about-title"></h1>
-        <div class="about-content">
-          <p id="about-text"></p>
-          <img src="profile.jpg" alt="Luis Blasco-Ibáñez Berbel" class="about-image">
-        </div>
-      </div>
-    </section>
+  <!-- Sección de Contacto -->
+  <section id="contacto">
+    <div class="container">
+      <h2>Contacto</h2>
+      <p>Si deseas ponerte en contacto conmigo, puedes hacerlo a través del siguiente formulario:</p>
+      <form action="#">
+        <input type="text" placeholder="Tu nombre" required>
+        <input type="email" placeholder="Tu correo" required>
+        <textarea placeholder="Tu mensaje" required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+  </section>
 
-    <!-- CV -->
-    <section id="cv">
-      <div class="container spaced">
-        <h1 id="cv-title"></h1>
-        <div class="cv">
-          <div>
-            <h2 id="cv-profile-title"></h2>
-            <p id="cv-profile-text"></p>
-            <h2 id="cv-skills-title"></h2>
-            <ul class="list" id="cv-skills"></ul>
-            <h2 id="cv-education-title"></h2>
-            <ul class="list" id="cv-education"></ul>
-            <a href="cv.pdf" class="download" id="cv-download"></a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PORTFOLIO -->
-    <section id="portfolio">
-      <div class="container spaced">
-        <h1 id="portfolio-title"></h1>
-        <div class="grid-3">
-          <article class="case">
-            <h2>Electrical Enclosure</h2>
-            <span>Industrial Product</span>
-            <p>Diseño técnico y desarrollo orientado a fabricación industrial.</p>
-          </article>
-          <article class="case">
-            <h2>3D Printing Prototyping</h2>
-            <span>Prototipado</span>
-            <p>Prototipos funcionales mediante impresión 3D.</p>
-          </article>
-          <article class="case">
-            <h2>Product Optimization</h2>
-            <span>Engineering</span>
-            <p>Optimización de geometrías y ensamblajes.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="container spaced">
-        <h1 id="contact-title"></h1>
-        <p id="contact-email">📧 luisblascoibanezberbel@gmail.com</p>
-        <p id="contact-phone">📞 +34 630 51 18 06</p>
-      </div>
-    </section>
-
-  </main>
-
+  <!-- Footer -->
   <footer>
-    © 2025 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineer
+    <p>&copy; 2026 Luis Blasco-Ibáñez. Todos los derechos reservados.</p>
   </footer>
-
-  <script>
-    document.querySelectorAll(".tab").forEach(tab => {
-      tab.onclick = () => {
-        document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
-        document.getElementById(tab.dataset.tab).classList.add("active");
-
-        document.querySelectorAll("nav li").forEach(l => l.classList.remove("active"));
-        tab.classList.add("active");
-      };
-    });
-
-    const content = {
-      es: {
-        heroTitle: "Ingeniería de diseño industrial aplicada al desarrollo de producto",
-        heroSub: "Diseño técnico, fabricación y optimización de productos industriales.",
-        aboutTitle: "Sobre mí",
-        aboutText: "Soy Luis Blasco-Ibáñez Berbel, un diseñador industrial de 24 años, originario de Valencia...",
-        cvTitle: "Currículum",
-        cvProfileTitle: "Perfil profesional",
-        cvProfileText: "Diseñador industrial con enfoque técnico y sensibilidad por el producto.",
-        cvSkillsTitle: "Habilidades",
-        cvSkills: ["Diseño de producto", "Impresión 3D", "Diseño técnico", "Procesos de fabricación"],
-        cvEducationTitle: "Formación",
-        cvEducation: ["Grado en Diseño Industrial"],
-        cvDownload: "Descargar CV",
-        portfolioTitle: "Portfolio",
-        contactTitle: "Contacto",
-        contactEmail: "📧 luisblascoibanezberbel@gmail.com",
-        contactPhone: "📞 +34 630 51 18 06"
-      },
-      en: {
-        heroTitle: "Industrial design engineering applied to product development",
-        heroSub: "Technical design, manufacturing and industrial product optimization.",
-        aboutTitle: "About me",
-        aboutText: "I am Luis Blasco-Ibáñez Berbel, a 24-year-old industrial designer from Valencia...",
-        cvTitle: "Curriculum Vitae",
-        cvProfileTitle: "Professional profile",
-        cvProfileText: "Industrial designer with a technical mindset and product-oriented approach.",
-        cvSkillsTitle: "Skills",
-        cvSkills: ["Product design", "3D printing", "Technical design", "Manufacturing processes"],
-        cvEducationTitle: "Education",
-        cvEducation: ["Industrial Design Degree"],
-        cvDownload: "Download CV",
-        portfolioTitle: "Portfolio",
-        contactTitle: "Contact",
-        contactEmail: "📧 luisblascoibanezberbel@gmail.com",
-        contactPhone: "📞 +34 630 51 18 06"
-      }
-    };
-
-    function setLang(lang) {
-      document.getElementById("hero-title").innerText = content[lang].heroTitle;
-      document.getElementById("hero-sub").innerText = content[lang].heroSub;
-      document.getElementById("about-title").innerText = content[lang].aboutTitle;
-      document.getElementById("about-text").innerText = content[lang].aboutText;
-
-      document.getElementById("cv-title").innerText = content[lang].cvTitle;
-      document.getElementById("cv-profile-title").innerText = content[lang].cvProfileTitle;
-      document.getElementById("cv-profile-text").innerText = content[lang].cvProfileText;
-
-      document.getElementById("cv-skills-title").innerText = content[lang].cvSkillsTitle;
-      const skills = document.getElementById("cv-skills");
-      skills.innerHTML = "";
-      content[lang].cvSkills.forEach(skill => skills.innerHTML += `<li>${skill}</li>`);
-
-      document.getElementById("cv-education-title").innerText = content[lang].cvEducationTitle;
-      const education = document.getElementById("cv-education");
-      education.innerHTML = "";
-      content[lang].cvEducation.forEach(edu => education.innerHTML += `<li>${edu}</li>`);
-
-      document.getElementById("cv-download").innerText = content[lang].cvDownload;
-
-      document.getElementById("portfolio-title").innerText = content[lang].portfolioTitle;
-
-      document.getElementById("contact-title").innerText = content[lang].contactTitle;
-      document.getElementById("contact-email").innerText = content[lang].contactEmail;
-      document.getElementById("contact-phone").innerText = content[lang].contactPhone;
-
-      document.getElementById("btn-es").classList.toggle("active", lang === "es");
-      document.getElementById("btn-en").classList.toggle("active", lang === "en");
-    }
-
-    setLang("es");
-    document.getElementById("btn-es").onclick = () => setLang("es");
-    document.getElementById("btn-en").onclick = () => setLang("en");
-  </script>
 </body>
 </html>

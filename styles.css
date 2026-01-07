@@ -2,7 +2,7 @@
 
 /* Contenedor principal de la sección */
 #cv {
-  background-color: #f4f4f4; /* Fondo suave para resaltar la sección */
+  background-color: #fff; /* Fondo suave para resaltar la sección */
   padding: 50px 0;
 }
 
@@ -13,8 +13,8 @@
   text-align: left;               /* Alineado a la izquierda */
   color: #000;                    /* Color negro igual a los otros títulos */
   margin-bottom: 15px;            /* Margen inferior */
-  border-bottom: 2px solid #000; /* Línea decorativa debajo del título */
-  padding-bottom: 5px;            /* Espaciado inferior */
+  border-bottom: 1px solid #000; /* Línea decorativa debajo del título */
+  padding-bottom: 50px;            /* Espaciado inferior */
   text-transform: capitalize;     /* Primera letra en mayúscula */
 }
 

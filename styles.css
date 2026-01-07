@@ -1,5 +1,6 @@
 /* ==================== Estilos para el apartado SOBRE MÍ ==================== */
 #about {
+  margin-top: 40px;
   padding-bottom: 50px;
 }
 
@@ -8,7 +9,7 @@
   font-weight: 600;
   text-align: left;
   color: var(--section-title-color, #333);  /* Color configurable con variable */
-  margin-top: 60px; /* Asegura que esté a la misma altura respecto a la barra superior */
+  margin-top: 20px; /* Asegura que esté a la misma altura respecto a la barra superior */
   margin-bottom: 20px;
   text-transform: capitalize;
 }

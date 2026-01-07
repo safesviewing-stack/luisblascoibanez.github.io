@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Luis Blasco-Ibáñez - Diseñador Industrial</title>
   <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- Barra de navegación -->
@@ -22,23 +22,23 @@
   </header>
 
   <!-- Sección de Inicio -->
-  <section id="inicio">
+  <section id="inicio" class="section">
     <div class="container">
       <h1>Bienvenido a mi portfolio</h1>
-      <p>Soy Luis Blasco-Ibáñez, diseñador industrial y apasionado por lo artístico y lo técnico.</p>
+      <p>Soy Luis Blasco-Ibáñez, diseñador industrial con un enfoque en lo artístico y técnico.</p>
     </div>
   </section>
 
   <!-- Sección Sobre mí -->
-  <section id="sobremi">
+  <section id="sobremi" class="section">
     <div class="container">
       <h2>Sobre mí</h2>
-      <p>Me llamo Luis, soy un joven diseñador industrial de Valencia, con una gran pasión por la creatividad y la innovación. Estudio en la UPV y he pasado por la UJI, lo que me ha permitido formarme tanto en lo artístico como en lo técnico.</p>
+      <p>Me llamo Luis, soy un joven diseñador industrial de Valencia. Estudio en la UPV y he pasado por la UJI, lo que me ha permitido formarme en lo artístico y lo técnico.</p>
     </div>
   </section>
 
   <!-- Sección de Currículum -->
-  <section id="curriculum">
+  <section id="curriculum" class="section">
     <div class="container">
       <h2>Currículum</h2>
       <p>Puedes ver mi currículum completo en este <a href="#" target="_blank">enlace</a>.</p>
@@ -46,11 +46,10 @@
   </section>
 
   <!-- Sección de Portfolio -->
-  <section id="portfolio">
+  <section id="portfolio" class="section">
     <div class="container">
       <h2>Portfolio</h2>
       <p>Aquí puedes ver algunos de mis trabajos recientes:</p>
-      <!-- Puedes agregar imágenes o proyectos aquí -->
       <div class="portfolio-gallery">
         <div class="portfolio-item"><img src="https://via.placeholder.com/300" alt="Proyecto 1"></div>
         <div class="portfolio-item"><img src="https://via.placeholder.com/300" alt="Proyecto 2"></div>
@@ -60,7 +59,7 @@
   </section>
 
   <!-- Sección de Contacto -->
-  <section id="contacto">
+  <section id="contacto" class="section">
     <div class="container">
       <h2>Contacto</h2>
       <p>Si deseas ponerte en contacto conmigo, puedes hacerlo a través del siguiente formulario:</p>
@@ -77,5 +76,17 @@
   <footer>
     <p>&copy; 2026 Luis Blasco-Ibáñez. Todos los derechos reservados.</p>
   </footer>
+
+  <script>
+    // Scroll suave
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
 </body>
 </html>

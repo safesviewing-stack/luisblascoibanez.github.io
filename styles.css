@@ -12,7 +12,7 @@
   font-size: 32px;                /* Igual que los otros títulos */
   font-weight: 600;               /* Mismo peso de fuente */
   text-align: left;               /* Alineado a la izquierda */
-  color: #333;                    /* Color negro igual a los otros títulos */
+  color: #000;                    /* Color negro igual a los otros títulos */
   margin-top: 20px;               /* Margen superior editable */
   margin-bottom: 20px;            /* Margen inferior editable */
   border-bottom: 1px solid #ccc; /* Línea decorativa gris delgada */
@@ -124,7 +124,7 @@
   font-size: 32px;               /* Tamaño mayor que otros títulos */
   font-weight: 600;              /* Mismo peso de fuente */
   text-align: left;              /* Alineado a la izquierda */
-  color: #333;                   /* Color negro igual a los otros títulos */
+  color: #000;                   /* Color negro igual a los otros títulos */
   margin-top: 20px;              /* Margen superior editable */
   margin-bottom: 20px;           /* Margen inferior editable */
   text-transform: capitalize;    /* Primera letra en mayúscula */
@@ -133,12 +133,10 @@
 /* Contenido sobre mí */
 #about-text {
   font-size: 16px;               /* Tamaño de fuente */
-  line-height: 1.8;              /* Espaciado de línea */
-  color: #555;                   /* Color de texto gris oscuro */
-  max-width: 800px;              /* Limitar el ancho del texto */
+  line-height: 1.5;              /* Espaciado de línea */
+  color: #000;                   /* Color de texto gris oscuro */
+  max-width: 900px;              /* Limitar el ancho del texto */
   margin-bottom: 30px;           /* Margen inferior editable */
-  padding: 0 20px;               /* Espaciado izquierdo y derecho */
-  margin-top: 10px;              /* Margen superior editable */
 }
 
 /* Estilo de la imagen de perfil */
@@ -154,7 +152,6 @@
   width: auto;                   /* Mantiene la proporción original de la imagen */
   max-width: 290px;              /* Limita el tamaño máximo de la imagen */
   height: auto;                  /* Mantiene la proporción de la imagen */
-  border-radius: 6px;            /* Bordes redondeados */
   animation: slideInFromRight 1s ease-out forwards; /* Animación para la imagen */
 }
 

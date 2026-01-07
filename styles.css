@@ -132,6 +132,7 @@ section {
   font-size: 14px;
   line-height: 1.65;
   max-width: 650px;
+  color: #333; 
 }
 
 #about img {

@@ -16,7 +16,7 @@ input {
   display: none;
 }
 
-/* NAV PRINCIPAL */
+/* NAV */
 .nav {
   display: flex;
   justify-content: center;
@@ -25,12 +25,13 @@ input {
   border-bottom: 1px solid #ddd;
 }
 
-.nav label {
+.nav label,
+.subnav label {
   cursor: pointer;
   font-size: 14px;
 }
 
-/* PÁGINAS */
+/* PÁGINAS PRINCIPALES */
 .page {
   position: absolute;
   inset: 0;
@@ -41,18 +42,16 @@ input {
   text-align: center;
 }
 
-/* MOSTRAR PÁGINA PRINCIPAL */
-#home:checked ~ .home,
-#about:checked ~ .about,
-#portfolio:checked ~ .portfolio,
-#cv:checked ~ .cv,
-#contact:checked ~ .contact {
+/* MOSTRAR PÁGINA ACTIVA */
+#tab-home:checked ~ .home,
+#tab-about:checked ~ .about,
+#tab-portfolio:checked ~ .portfolio,
+#tab-cv:checked ~ .cv,
+#tab-contact:checked ~ .contact {
   display: flex;
 }
 
-/* ======================
-   CURRÍCULUM
-====================== */
+/* ===== CURRÍCULUM ===== */
 .cv {
   flex-direction: column;
 }
@@ -63,17 +62,11 @@ input {
   margin-bottom: 40px;
 }
 
-.subnav label {
-  cursor: pointer;
-  font-size: 13px;
-  border-bottom: 1px solid transparent;
-}
-
 .cv-page {
   display: none;
 }
 
-/* MOSTRAR SUBSECCIONES CV */
+/* MOSTRAR SUBSECCIÓN CV */
 #cv-home:checked ~ .cv-home,
 #cv-edu:checked ~ .cv-edu,
 #cv-exp:checked ~ .cv-exp,

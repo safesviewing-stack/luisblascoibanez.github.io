@@ -1,197 +1,359 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Luis Blasco-Ibáñez · Portfolio</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luis Blasco-Ibáñez Berbel · Industrial Design Engineer</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  <style>
+    /* ================= RESET ================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "IBM Plex Sans", sans-serif;
+    }
 
-body {
-  font-family: 'Inter', sans-serif;
-  height: 100vh;
-  overflow: hidden;
-  color: #111;
-  background: #fff;
-}
+    body {
+      background: #fff;
+      color: #111;
+      display: flex; /* Usamos flexbox para que el footer siempre esté al final */
+      flex-direction: column; /* Disposición en columna */
+      min-height: 100vh; /* Altura mínima 100% de la ventana */
+    }
 
-/* ocultar radios */
-input { display: none; }
+    /* ================= HEADER ================= */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 70px;
+      background: #000;
+      z-index: 100;
+    }
 
-/* NAV PRINCIPAL */
-.nav {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  padding: 20px;
-  border-bottom: 1px solid #ddd;
-}
+    .nav {
+      max-width: 1200px;
+      width: 90%;
+      height: 100%;
+      margin: auto;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+    }
 
-.nav label {
-  cursor: pointer;
-  font-size: 14px;
-}
+    .logo {
+      color: #fff;
+      font-weight: 600;
+    }
 
-/* PÁGINAS */
-.page {
-  position: absolute;
-  inset: 0;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-  padding: 60px;
-}
+    nav ul {
+      display: flex;
+      justify-content: center;
+      gap: 36px;
+      list-style: none;
+    }
 
-/* MOSTRAR PÁGINA ACTIVA */
-#home:checked ~ .home,
-#about:checked ~ .about,
-#portfolio:checked ~ .portfolio,
-#cv:checked ~ .cv,
-#contact:checked ~ .contact {
-  display: flex;
-}
+    nav li {
+      color: #fff;
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      position: relative;
+    }
 
-/* TEXTOS */
-h1 { font-size: 2.5rem; margin-bottom: 15px; }
-h2 { font-size: 1.2rem; font-weight: 300; margin-bottom: 25px; }
-p  { max-width: 500px; font-size: 15px; }
+    nav li.active {
+      font-weight: 500;
+    }
 
-/* PORTFOLIO */
-.portfolio p {
-  margin-top: 10px;
-}
+    nav li::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #fff;
+      transition: .25s;
+    }
 
-/* ======================
-   CURRÍCULUM
-====================== */
-.cv {
-  flex-direction: column;
-}
+    nav li:hover::after {
+      width: 100%;
+    }
 
-.subnav {
-  display: flex;
-  gap: 25px;
-  margin-bottom: 40px;
-}
+    .lang button {
+      background: none;
+      border: 1px solid #fff;
+      color: #fff;
+      font-size: 11px;
+      padding: 4px 10px;
+      margin-left: 6px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
 
-.subnav label {
-  cursor: pointer;
-  font-size: 13px;
-  border-bottom: 1px solid transparent;
-}
+    .lang button.active {
+      background: #fff;
+      color: #000;
+    }
 
-.cv-page {
-  display: none;
-  text-align: center;
-}
+    /* ================= LAYOUT ================= */
+    main {
+      padding-top: 70px;
+      flex-grow: 1; /* Asegura que el main ocupe el espacio disponible */
+    }
 
-/* MOSTRAR SUBSECCIÓN CV */
-#cv-home:checked ~ .cv-home,
-#cv-edu:checked ~ .cv-edu,
-#cv-exp:checked ~ .cv-exp,
-#cv-skill:checked ~ .cv-skill {
-  display: block;
-}
-</style>
+    section {
+      display: none;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 960px;
+      margin: auto;
+    }
+
+    .spaced {
+      padding: 90px 0;
+    }
+
+    /* ================= CURRICULUM ================= */
+    #cv h1 {
+      font-size: 30px; /* Tamaño del título principal */
+      font-weight: 500;
+      margin-bottom: 40px;  /* Espacio debajo del título principal */
+    }
+
+    #cv h2, #cv h3 {
+      font-size: 22px; /* Tamaño de los subtítulos */
+      margin-bottom: 20px;  /* Espacio debajo de los subtítulos */
+      margin-top: 30px;  /* Espacio encima de los subtítulos */
+    }
+
+    #cv p, #cv li {
+      font-size: 16px; /* Tamaño del texto de los párrafos y listas */
+      line-height: 1.5;
+      margin-bottom: 20px; /* Ajusta el espacio entre los párrafos */
+    }
+
+    #cv ul {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+
+    #cv li {
+      margin-bottom: 10px;
+    }
+
+    /* ================= BUTTON ================= */
+    .btn {
+      display: inline-block;
+      padding: 12px 26px;
+      background: #000;
+      color: #fff;
+      font-size: 12px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 4px;
+      margin-top: 30px;
+    }
+
+    /* ================= Animación de Fade In + Slide Up ================= */
+    @keyframes fadeInSlideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    #cv h1, #cv h2, #cv h3, #cv p, #cv li {
+      animation: fadeInSlideUp 1s ease-out forwards;  /* Aplica la animación */
+    }
+
+    /* ================= Ajuste de imagen en "Sobre mí" ================= */
+    .about-content {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .about-image {
+      width: auto;
+      max-width: 290px;
+      height: auto;
+      margin-left: 20px;
+      animation: slideInFromRight 1s ease-out forwards;
+    }
+
+    @keyframes slideInFromRight {
+      0% {
+        transform: translateX(60%);
+        opacity: 0;
+      }
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /* ================= Estilo de texto en "Sobre mí" ================= */
+    #about-text {
+      font-size: 14px; /* Cambia el tamaño de la fuente */
+      line-height: 1.5; /* Ajusta la altura de línea para un mejor espaciado */
+      margin-bottom: 300px; /* Margen inferior para separar del resto del contenido */
+      max-width: 500px; /* Limita el ancho máximo del bloque de texto */
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- ========= NIVEL 1 ========= -->
-<input type="radio" name="main" id="home" checked>
-<input type="radio" name="main" id="about">
-<input type="radio" name="main" id="portfolio">
-<input type="radio" name="main" id="cv">
-<input type="radio" name="main" id="contact">
+  <!-- HEADER -->
+  <header>
+    <div class="nav">
+      <div class="logo">LB</div>
 
-<!-- NAV -->
-<nav class="nav">
-  <label for="home">Inicio</label>
-  <label for="about">Sobre mí</label>
-  <label for="portfolio">Portfolio</label>
-  <label for="cv">Currículum</label>
-  <label for="contact">Contacto</label>
-</nav>
+      <nav>
+        <ul>
+          <li class="tab active" data-tab="home">Inicio</li>
+          <li class="tab" data-tab="about">Sobre mí</li>
+          <li class="tab" data-tab="cv">Currículum</li>
+          <li class="tab" data-tab="portfolio">Portfolio</li>
+          <li class="tab" data-tab="contact">Contacto</li>
+        </ul>
+      </nav>
 
-<!-- INICIO -->
-<section class="page home">
-  <h1>Luis Blasco-Ibáñez</h1>
-  <h2>Diseñador Industrial y Desarrollo de Producto</h2>
-  <p>Diseñando objetos donde la forma, la función y el proceso se encuentran.</p>
-</section>
+      <div class="lang">
+        <button id="btn-es" class="active">ES</button>
+        <button id="btn-en">EN</button>
+      </div>
+    </div>
+  </header>
 
-<!-- SOBRE MÍ -->
-<section class="page about">
-  <h1>Sobre mí</h1>
-  <p>
-    Estudiante de Diseño Industrial con enfoque técnico y creativo,
-    interesado en el proceso completo de diseño.
-  </p>
-</section>
+  <main>
 
-<!-- PORTFOLIO -->
-<section class="page portfolio">
-  <h1>Portfolio</h1>
-  <p>Proyecto 01 · Proyecto 02 · Proyecto 03 · Proyecto 04 · Proyecto 05 · Proyecto 06</p>
-</section>
+    <!-- INICIO -->
+    <section id="home" class="home active">
+      <div class="container hero">
+        <div class="hero-box">
+          <h1 id="hero-title">Ingeniería de diseño industrial aplicada al desarrollo de producto</h1>
+          <p id="hero-sub">Diseño técnico, fabricación y optimización de productos industriales.</p>
 
-<!-- CURRÍCULUM -->
-<section class="page cv">
+          <div class="hero-cta">
+            <a class="btn primary tab" data-tab="cv">Ver CV</a>
+            <a class="btn secondary tab" data-tab="contact">Contactar</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <!-- NIVEL 2 -->
-  <input type="radio" name="cvtab" id="cv-home" checked>
-  <input type="radio" name="cvtab" id="cv-edu">
-  <input type="radio" name="cvtab" id="cv-exp">
-  <input type="radio" name="cvtab" id="cv-skill">
+    <!-- SOBRE MÍ -->
+    <section id="about">
+      <div class="container spaced">
+        <h1 id="about-title">Sobre mí</h1>
+        
+        <div class="about-content">
+          <p id="about-text">
+            Soy Luis Blasco-Ibáñez Berbel, un diseñador industrial de 24 años, originario de Valencia. Actualmente estudio Diseño Industrial y Desarrollo de Productos en la UPV, habiendo pasado también por la UJI. Desde siempre me han atraído tanto lo artístico como lo técnico, lo que me llevó a elegir esta carrera, ya que combina ambas pasiones. Aunque aún no tengo experiencia profesional en el campo del diseño, cuento con formación en electricidad gracias a una FP, lo que me ha proporcionado una sólida base técnica. Me considero una persona curiosa, observadora y adaptable, capaz de integrarme en diversos entornos laborales y personales. Esta capacidad de adaptación me permite aprender de cada experiencia y poder afrontar nuevos retos con una mentalidad abierta.
+          </p>
+          
+          <!-- Imagen posicionada a la derecha -->
+          <img src="profile.jpg" alt="Luis Blasco-Ibáñez Berbel" class="about-image"> 
+        </div>
+      </div>
+    </section>
 
-  <div class="subnav">
-    <label for="cv-home">Currículum</label>
-    <label for="cv-edu">Formación</label>
-    <label for="cv-exp">Experiencia</label>
-    <label for="cv-skill">Habilidades</label>
-  </div>
+    <!-- CURRICULUM -->
+    <section id="cv" class="active">
+      <div class="container spaced">
+        <h1>Currículum</h1>
 
-  <div class="cv-page cv-home">
-    <h1>Currículum</h1>
-    <p>Formación, experiencia y habilidades en diseño industrial.</p>
-  </div>
+        <!-- Perfil Profesional -->
+        <h2>Perfil Profesional</h2>
+        <p>Diseñador industrial con enfoque técnico y sensibilidad por el producto. Mi pasión por la tecnología y el diseño me lleva a buscar soluciones innovadoras que mejoren la funcionalidad y la estética. Mi formación técnica y creativa me permite abordar proyectos de diseño desde una perspectiva integral.</p>
 
-  <div class="cv-page cv-edu">
-    <h1>Formación</h1>
-    <p>Grado en Diseño Industrial y Desarrollo de Producto</p>
-    <p>Formación técnica en electricidad</p>
-  </div>
+        <!-- Experiencia Profesional -->
+        <h3>Experiencia Profesional</h3>
+        <ul>
+          <li><strong>Socorrista</strong> - Varias Piscinas | Verano 2021 - 2022</li>
+          <p>Responsable de la seguridad en diversas instalaciones acuáticas. Proporcioné primeros auxilios y garantice la seguridad de los usuarios en todo momento.</p>
+          
+          <li><strong>Montaje de Eventos</strong> - Campeonato de Atletismo, Valencia | Junio 2023 - Julio 2023</li>
+          <p>Colaboré en la organización de eventos de alto perfil, desarrollando habilidades de gestión, coordinación y trabajo en equipo.</p>
+        </ul>
 
-  <div class="cv-page cv-exp">
-    <h1>Experiencia</h1>
-    <p>Proyectos académicos</p>
-    <p>Modelado 3D y prototipado</p>
-  </div>
+        <!-- Formación Académica -->
+        <h3>Formación Académica</h3>
+        <ul>
+          <li><strong>Ingeniería en Diseño Industrial y Desarrollo de Productos</strong> - Universidad Jaume I de Castellón (2019 - 2023), actualmente cursando en la UPV.</li>
+          <li><strong>Grado Superior en Sistemas Electrotécnicos y Automatizados</strong> - Escuelas San José de Valencia (2017 - 2019)</li>
+          <li><strong>Grado Medio en Sistemas Eléctricos y Automáticos</strong> - Escuelas San José de Valencia (2015 - 2017)</li>
+          <li><strong>Educación Secundaria Obligatoria</strong> - Colegio XYZ de Valencia (2009 - 2015)</li>
+        </ul>
 
-  <div class="cv-page cv-skill">
-    <h1>Habilidades</h1>
-    <p>Diseño de producto</p>
-    <p>Modelado 3D</p>
-    <p>Impresión 3D</p>
-    <p>Prototipado</p>
-  </div>
+        <!-- Cursos y Certificaciones -->
+        <h3>Cursos y Certificaciones</h3>
+        <ul>
+          <li><strong>Curso de Modelado 3D con AutoCAD</strong> - Udemy | 2022</li>
+          <li><strong>Curso de Impresión 3D Avanzada</strong> - Coursera | 2021</li>
+          <li><strong>Diploma de Socorrista en Instalaciones Acuáticas</strong> - Real Federación Española de Salvamento y Socorrismo | 2020</li>
+          <li><strong>Certificación en Prevención de Riesgos Laborales</strong> - INVASSAT | 2019 (96 horas)</li>
+          <li><strong>Curso de Inglés Intermedio</strong> - Globe English Centre | 2019 (Inglaterra)</li>
+        </ul>
 
-</section>
+        <!-- Idiomas -->
+        <h3>Idiomas</h3>
+        <ul>
+          <li><strong>Español</strong> - Nativo</li>
+          <li><strong>Inglés</strong> - Intermedio (B1) - Certificación por Globe English Centre</li>
+        </ul>
 
-<!-- CONTACTO -->
-<section class="page contact">
-  <h1>Contacto</h1>
-  <p>tucorreo@email.com</p>
-</section>
+        <!-- Habilidades Técnicas y Software -->
+        <h3>Habilidades Técnicas y Software</h3>
+        <ul>
+          <li>Modelado y diseño 3D con **AutoCAD**, **SolidWorks**, **Fusion 360**</li>
+          <li>Diseño gráfico con **Adobe Illustrator**, **Photoshop**, **InDesign** y **Adobe Animate**</li>
+          <li>Impresión 3D y prototipado rápido (conocimientos avanzados)</li>
+          <li>Desarrollo de planos técnicos y especificaciones de fabricación</li>
+          <li>Experiencia en sistemas eléctricos y automatización industrial</li>
+          <li>Uso de herramientas de prototipado rápido y fabricación digital (CNC, corte láser, etc.)</li>
+        </ul>
+
+        <!-- Intereses y Actividades -->
+        <h3>Intereses y Actividades</h3>
+        <ul>
+          <li>Impresión 3D y creación de prototipos funcionales</li>
+          <li>Diseño gráfico para la creación de logotipos y material visual</li>
+          <li>Atletismo: Practico este deporte para mantenerme activo y equilibrado</li>
+          <li>Música: Me gusta explorar nuevos géneros y sonidos</li>
+          <li>Dibujo: La creación artística a través del dibujo es una de mis pasiones y me ayuda a mejorar mi creatividad</li>
+        </ul>
+
+        <!-- Descargar CV -->
+        <a href="cv.pdf" class="btn download" download>Descargar CV</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    © 2025 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineer
+  </footer>
 
 </body>
 </html>

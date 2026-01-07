@@ -5,9 +5,10 @@
 }
 
 body {
-  font-family: Inter, sans-serif;
+  font-family: 'Inter', sans-serif;
   height: 100vh;
   overflow: hidden;
+  color: #111;
 }
 
 /* OCULTAR RADIOS */
@@ -15,7 +16,7 @@ input {
   display: none;
 }
 
-/* NAV */
+/* NAV PRINCIPAL */
 .nav {
   display: flex;
   justify-content: center;
@@ -37,15 +38,45 @@ input {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 100vh;
   text-align: center;
 }
 
-/* MOSTRAR SEGÚN RADIO */
+/* MOSTRAR PÁGINA PRINCIPAL */
 #home:checked ~ .home,
 #about:checked ~ .about,
 #portfolio:checked ~ .portfolio,
 #cv:checked ~ .cv,
 #contact:checked ~ .contact {
   display: flex;
+}
+
+/* ======================
+   CURRÍCULUM
+====================== */
+.cv {
+  flex-direction: column;
+}
+
+.subnav {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.subnav label {
+  cursor: pointer;
+  font-size: 13px;
+  border-bottom: 1px solid transparent;
+}
+
+.cv-page {
+  display: none;
+}
+
+/* MOSTRAR SUBSECCIONES CV */
+#cv-home:checked ~ .cv-home,
+#cv-edu:checked ~ .cv-edu,
+#cv-exp:checked ~ .cv-exp,
+#cv-skill:checked ~ .cv-skill {
+  display: block;
 }

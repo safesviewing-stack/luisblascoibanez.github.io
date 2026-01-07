@@ -22,8 +22,9 @@ section {
   transition: background-color 0.3s ease; /* Transición para el hover */
 }
 
-#inicio h1 {
-  color: #fff; /* Texto blanco específicamente en el título dentro de INICIO */
+/* Título de INICIO */
+.inicio-title {
+  color: #fff; /* Texto blanco para el título dentro de INICIO */
   font-size: 36px; /* Tamaño de letra específico */
   font-weight: bold; /* Asegura que el título sea más pesado */
   text-transform: uppercase; /* Texto en mayúsculas */
@@ -53,7 +54,7 @@ section {
   font-weight: 600;
   text-align: left;
   color: var(--section-title-color, #333);  /* Color configurable con variable */
-  margin-top: 20px;
+  margin-top: 60px; /* Asegura que esté a la misma altura respecto a la barra superior */
   margin-bottom: 20px;
   text-transform: capitalize;
 }
@@ -63,6 +64,7 @@ section {
   color: #555;  /* Texto gris en "Sobre Mí" */
   line-height: 1.5;
 }
+
 
 /* ==================== Estilos para el apartado CURRÍCULUM ==================== */
 #cv {
@@ -75,7 +77,7 @@ section {
   font-weight: 600;
   text-align: left;
   color: var(--section-title-color, #333);  /* Color configurable con variable */
-  margin-top: 20px;
+  margin-top: 60px; /* Asegura que esté a la misma altura respecto a la barra superior */
   margin-bottom: 20px;
   text-transform: capitalize;
 }
@@ -114,7 +116,7 @@ section {
   font-weight: 600;
   text-align: left;
   color: var(--section-title-color, #333);  /* Color configurable con variable */
-  margin-top: 20px;
+  margin-top: 60px; /* Asegura que esté a la misma altura respecto a la barra superior */
   margin-bottom: 20px;
   text-transform: capitalize;
 }
@@ -174,62 +176,4 @@ section {
   font-weight: 600;
   text-align: left;
   color: var(--section-title-color, #333);  /* Color configurable con variable */
-  margin-top: 20px;
-  margin-bottom: 20px;
-  text-transform: capitalize;
-}
-
-#contact-email, #contact-phone {
-  font-size: 16px;
-  color: #555;
-  display: block;
-}
-
-#contact-email {
-  font-weight: 600;
-}
-
-#contact-phone {
-  color: #333;
-}
-
-/* Estilo del formulario de contacto */
-#contact-form {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-#contact-form input, #contact-form textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 16px;
-  color: #333;
-}
-
-#contact-form textarea {
-  resize: vertical;
-  height: 150px;
-}
-
-#contact-form button {
-  padding: 12px 26px;
-  background-color: #000;
-  color: #fff;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-#contact-form button:hover {
-  background-color: #333;
-}
-
+  margin-top: 60px; /* Asegura que esté a la misma altura re*

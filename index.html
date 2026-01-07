@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>Luis Blasco-Ibáñez · Diseño Industrial</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google Font -->
+  <!-- Tipografía -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
   <!-- CSS -->
@@ -13,144 +13,129 @@
 </head>
 <body>
 
-  <!-- Language Toggle (visual only) -->
-  <div class="lang-toggle">ES / EN</div>
+<!-- NAV -->
+<header class="nav">
+  <span class="logo">Luis Blasco-Ibáñez</span>
+  <nav>
+    <a href="#about">Sobre mí</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#cv">Currículum</a>
+    <a href="#contact">Contacto</a>
+  </nav>
+  <span class="lang-toggle">ES / EN</span>
+</header>
 
-  <!-- HERO -->
-  <header class="hero">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1>Luis Blasco-Ibáñez</h1>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>Luis Blasco-Ibáñez</h1>
+    <h2>Diseñador Industrial y Desarrollo de Producto</h2>
+    <p>Diseñando objetos donde la forma, la función y el proceso se encuentran.</p>
 
-      <h2>Diseñador Industrial y Desarrollo de Producto</h2>
-
-      <p class="hero-slogan">
-        Diseñando objetos donde la forma, la función y el proceso se encuentran.
-      </p>
-
-      <div class="hero-buttons">
-        <a href="#portfolio" class="btn">Ver portfolio</a>
-        <a href="#contact" class="btn outline">Contacto</a>
-      </div>
+    <div class="hero-buttons">
+      <a href="#portfolio" class="btn">Ver portfolio</a>
+      <a href="#contact" class="btn outline">Contacto</a>
     </div>
-  </header>
+  </div>
+</section>
 
-  <main>
+<!-- ABOUT -->
+<section id="about" class="section about-grid">
+  <div>
+    <h2>Sobre mí</h2>
+    <p>
+      Soy estudiante de Diseño Industrial y Desarrollo de Producto, con un fuerte
+      interés por el equilibrio entre lo artístico y lo técnico.
+    </p>
+    <p>
+      Me considero una persona curiosa, observadora y adaptable, con una constante
+      necesidad de aprender y crear.
+    </p>
+    <p>
+      Mi interés por el modelado 3D y la impresión 3D me permite entender el diseño
+      desde una perspectiva práctica y técnica.
+    </p>
+  </div>
 
-    <!-- ABOUT -->
-    <section id="about" class="section">
-      <div class="about-grid">
-        <div class="about-text">
-          <h3>Sobre mí</h3>
+  <img src="assets/images/perfil.jpg" alt="Foto personal">
+</section>
 
-          <p>
-            Soy estudiante de Diseño Industrial y Desarrollo de Producto, con un fuerte interés
-            por el equilibrio entre lo artístico y lo técnico.
-          </p>
+<!-- PORTFOLIO -->
+<section id="portfolio" class="section">
+  <h2>Portfolio</h2>
 
-          <p>
-            Me considero una persona curiosa, observadora y adaptable, con una necesidad constante
-            de aprender y crear.
-          </p>
+  <div class="portfolio-grid">
+    <div class="project">
+      <img src="assets/images/proyecto-01.jpg" alt="">
+      <h3>Proyecto 01</h3>
+      <p>Concepto de diseño de producto centrado en el usuario.</p>
+    </div>
 
-          <p>
-            Mi interés por el modelado 3D y la impresión 3D me permite entender el diseño desde una
-            perspectiva práctica y técnica.
-          </p>
-        </div>
+    <div class="project">
+      <img src="assets/images/proyecto-02.jpg" alt="">
+      <h3>Proyecto 02</h3>
+      <p>Desarrollo formal y funcional de un objeto.</p>
+    </div>
 
-        <div class="about-photo">
-          <img src="assets/images/perfil.jpg" alt="Foto personal">
-        </div>
-      </div>
-    </section>
+    <div class="project">
+      <img src="assets/images/proyecto-03.jpg" alt="">
+      <h3>Proyecto 03</h3>
+      <p>Exploración de procesos de fabricación.</p>
+    </div>
 
-    <!-- PORTFOLIO -->
-    <section id="portfolio" class="section">
-      <h3>Portfolio</h3>
+    <div class="project">
+      <img src="assets/images/proyecto-04.jpg" alt="">
+      <h3>Proyecto 04</h3>
+      <p>Diseño conceptual y prototipado.</p>
+    </div>
 
-      <div class="portfolio-grid">
-        <div class="project">
-          <img src="assets/images/proyecto-01.jpg" alt="">
-          <h4>Proyecto 01</h4>
-          <p>Concepto de diseño de producto centrado en el usuario.</p>
-        </div>
+    <div class="project">
+      <img src="assets/images/proyecto-05.jpg" alt="">
+      <h3>Proyecto 05</h3>
+      <p>Análisis de forma y función.</p>
+    </div>
 
-        <div class="project">
-          <img src="assets/images/proyecto-02.jpg" alt="">
-          <h4>Proyecto 02</h4>
-          <p>Desarrollo formal y funcional de un objeto.</p>
-        </div>
+    <div class="project">
+      <img src="assets/images/proyecto-06.jpg" alt="">
+      <h3>Proyecto 06</h3>
+      <p>Proyecto experimental.</p>
+    </div>
+  </div>
+</section>
 
-        <div class="project">
-          <img src="assets/images/proyecto-03.jpg" alt="">
-          <h4>Proyecto 03</h4>
-          <p>Exploración de procesos de fabricación.</p>
-        </div>
+<!-- CV -->
+<section id="cv" class="section cv-grid">
+  <div>
+    <h3>Formación</h3>
+    <p>Grado en Diseño Industrial y Desarrollo de Producto</p>
+    <p>Formación técnica en electricidad</p>
+  </div>
 
-        <div class="project">
-          <img src="assets/images/proyecto-04.jpg" alt="">
-          <h4>Proyecto 04</h4>
-          <p>Diseño conceptual y prototipado.</p>
-        </div>
+  <div>
+    <h3>Experiencia</h3>
+    <p>Proyectos académicos de diseño</p>
+    <p>Modelado 3D y prototipado</p>
+  </div>
 
-        <div class="project">
-          <img src="assets/images/proyecto-05.jpg" alt="">
-          <h4>Proyecto 05</h4>
-          <p>Análisis de forma y función.</p>
-        </div>
+  <div>
+    <h3>Habilidades</h3>
+    <p>Diseño de producto</p>
+    <p>Modelado 3D</p>
+    <p>Impresión 3D</p>
+    <p>Prototipado</p>
+  </div>
+</section>
 
-        <div class="project">
-          <img src="assets/images/proyecto-06.jpg" alt="">
-          <h4>Proyecto 06</h4>
-          <p>Proyecto experimental.</p>
-        </div>
-      </div>
-    </section>
+<!-- CONTACT -->
+<section id="contact" class="section contact">
+  <h2>Contacto</h2>
+  <a href="mailto:tucorreo@email.com">tucorreo@email.com</a>
+</section>
 
-    <!-- CV -->
-    <section id="cv" class="section">
-      <h3>Currículum</h3>
-
-      <div class="cv-grid">
-        <div>
-          <h4>Formación</h4>
-          <p>Grado en Diseño Industrial y Desarrollo de Producto</p>
-          <p>Formación técnica en electricidad</p>
-        </div>
-
-        <div>
-          <h4>Experiencia</h4>
-          <p>Proyectos académicos de diseño</p>
-          <p>Modelado 3D y prototipado</p>
-        </div>
-
-        <div>
-          <h4>Habilidades</h4>
-          <p>Diseño de producto</p>
-          <p>Modelado 3D</p>
-          <p>Impresión 3D</p>
-          <p>Prototipado</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="section">
-      <h3>Contacto</h3>
-
-      <p>
-        <a href="mailto:tucorreo@email.com">tucorreo@email.com</a>
-      </p>
-
-      <a href="mailto:tucorreo@email.com" class="btn">Escríbeme</a>
-    </section>
-
-  </main>
-
-  <footer>
-    <p>© 2026 · Luis Blasco-Ibáñez</p>
-  </footer>
+<footer>
+  © 2026 · Luis Blasco-Ibáñez
+</footer>
 
 </body>
 </html>

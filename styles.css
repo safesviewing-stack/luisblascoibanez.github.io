@@ -12,9 +12,7 @@ section h1 {
   font-size: 32px;           /* Tamaño mayor para títulos principales */
   font-weight: 600;          /* Mismo peso de fuente */
   text-align: left;          /* Alineado a la izquierda */
-  color: #333;               /* Color negro para los títulos */
-  margin-top: 20px;          /* Margen superior editable */
-  margin-bottom: 20px;       /* Margen inferior editable */
+  color: #fff;               /* Color negro para los títulos */
   text-transform: capitalize; /* Primera letra en mayúscula */
   padding-bottom: 5px;       /* Espaciado debajo */
 }

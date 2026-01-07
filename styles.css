@@ -39,6 +39,7 @@ section {
 
 #cv .list li {
   margin-bottom: 8px;
+  font-size: 14px; /* Ajustar el tamaño del texto pequeño aquí */
 }
 
 #cv h2 {

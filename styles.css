@@ -40,6 +40,8 @@ section {
 #cv .list li {
   margin-bottom: 8px;
   font-size: 14px; /* Ajustar el tamaño del texto pequeño aquí */
+    line-height: 1.5;  /* Aumenta el interlineado (espaciado entre las líneas de texto) */
+
 }
 
 #cv h2 {
@@ -127,8 +129,8 @@ section {
 }
 
 #about .about-text {
-  font-size: 18px;
-  line-height: 1.6;
+  font-size: 14px;
+  line-height: 1.5;
   max-width: 600px;
 }
 

@@ -1,359 +1,398 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luis Blasco-Ibáñez Berbel · Industrial Design Engineer</title>
+<meta charset="UTF-8">
+<title>Luis Blasco-Ibáñez Berbel · Industrial Design Engineer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <style>
-    /* ================= RESET ================= */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "IBM Plex Sans", sans-serif;
-    }
+<style>
+/* ================= RESET ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"IBM Plex Sans",sans-serif;
+}
 
-    body {
-      background: #fff;
-      color: #111;
-      display: flex; /* Usamos flexbox para que el footer siempre esté al final */
-      flex-direction: column; /* Disposición en columna */
-      min-height: 100vh; /* Altura mínima 100% de la ventana */
-    }
+body{
+  background:#fff;
+  color:#111;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
-    /* ================= HEADER ================= */
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      height: 70px;
-      background: #000;
-      z-index: 100;
-    }
+/* ================= HEADER ================= */
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  height:70px;
+  background:#000;
+  z-index:100;
+}
 
-    .nav {
-      max-width: 1200px;
-      width: 90%;
-      height: 100%;
-      margin: auto;
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      align-items: center;
-    }
+.nav{
+  max-width:1200px;
+  width:90%;
+  height:100%;
+  margin:auto;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+}
 
-    .logo {
-      color: #fff;
-      font-weight: 600;
-    }
+.logo{
+  color:#fff;
+  font-weight:600;
+}
 
-    nav ul {
-      display: flex;
-      justify-content: center;
-      gap: 36px;
-      list-style: none;
-    }
+nav ul{
+  display:flex;
+  justify-content:center;
+  gap:36px;
+  list-style:none;
+}
 
-    nav li {
-      color: #fff;
-      font-size: 12px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      cursor: pointer;
-      position: relative;
-    }
+nav li{
+  color:#fff;
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  cursor:pointer;
+  position:relative;
+}
 
-    nav li.active {
-      font-weight: 500;
-    }
+nav li.active{
+  font-weight:500;
+}
 
-    nav li::after {
-      content: "";
-      position: absolute;
-      bottom: -6px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: #fff;
-      transition: .25s;
-    }
+nav li::after{
+  content:"";
+  position:absolute;
+  bottom:-6px;
+  left:0;
+  width:0;
+  height:1px;
+  background:#fff;
+  transition:.25s;
+}
 
-    nav li:hover::after {
-      width: 100%;
-    }
+nav li:hover::after{width:100%}
 
-    .lang button {
-      background: none;
-      border: 1px solid #fff;
-      color: #fff;
-      font-size: 11px;
-      padding: 4px 10px;
-      margin-left: 6px;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: background-color 0.3s;
-    }
+.lang button{
+  background:none;
+  border:1px solid #fff;
+  color:#fff;
+  font-size:11px;
+  padding:4px 10px;
+  margin-left:6px;
+  cursor:pointer;
+  border-radius:4px;
+  transition: background-color 0.3s;
+}
 
-    .lang button.active {
-      background: #fff;
-      color: #000;
-    }
+.lang button.active{
+  background:#fff;
+  color:#000;
+}
 
-    /* ================= LAYOUT ================= */
-    main {
-      padding-top: 70px;
-      flex-grow: 1; /* Asegura que el main ocupe el espacio disponible */
-    }
+/* ================= LAYOUT ================= */
+main{
+  padding-top:70px;
+  flex-grow: 1;
+}
 
-    section {
-      display: none;
-    }
+section{display:none}
+section.active{display:block}
 
-    section.active {
-      display: block;
-    }
+.container{
+  width:90%;
+  max-width:960px;
+  margin:auto;
+}
 
-    .container {
-      width: 90%;
-      max-width: 960px;
-      margin: auto;
-    }
+.spaced{
+  padding:90px 0;
+}
 
-    .spaced {
-      padding: 90px 0;
-    }
+/* ================= CV ================= */
+.cv{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:64px;
+  max-height:700px;
+  overflow: hidden;
+}
 
-    /* ================= CURRICULUM ================= */
-    #cv h1 {
-      font-size: 30px; /* Tamaño del título principal */
-      font-weight: 500;
-      margin-bottom: 40px;  /* Espacio debajo del título principal */
-    }
+.list{list-style:none}
+.list li{margin-bottom:6px}
 
-    #cv h2, #cv h3 {
-      font-size: 22px; /* Tamaño de los subtítulos */
-      margin-bottom: 20px;  /* Espacio debajo de los subtítulos */
-      margin-top: 30px;  /* Espacio encima de los subtítulos */
-    }
+.cv img{
+  width:100%;
+  max-width:360px;
+  border-radius:6px;
+}
 
-    #cv p, #cv li {
-      font-size: 16px; /* Tamaño del texto de los párrafos y listas */
-      line-height: 1.5;
-      margin-bottom: 20px; /* Ajusta el espacio entre los párrafos */
-    }
+.download{
+  display:inline-block;
+  margin-top:28px;
+  padding:12px 26px;
+  background:#000;
+  color:#fff;
+  font-size:12px;
+  text-transform:uppercase;
+  text-decoration:none;
+  border-radius:4px;
+}
 
-    #cv ul {
-      list-style: none;
-      margin-bottom: 20px;
-    }
+/* ================= FOOTER ================= */
+footer{
+  text-align:center;
+  padding:8px;
+  font-size:11px;
+  color:#fff;
+  background-color:#000;
+}
 
-    #cv li {
-      margin-bottom: 10px;
-    }
+/* ================= RESPONSIVE ================= */
+@media(max-width:900px){
+  .cv{grid-template-columns:1fr}
+}
 
-    /* ================= BUTTON ================= */
-    .btn {
-      display: inline-block;
-      padding: 12px 26px;
-      background: #000;
-      color: #fff;
-      font-size: 12px;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 4px;
-      margin-top: 30px;
-    }
+/* ================= Estilo editable ================= */
+[contenteditable="true"] {
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin: 10px 0;
+}
 
-    /* ================= Animación de Fade In + Slide Up ================= */
-    @keyframes fadeInSlideUp {
-      0% {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    #cv h1, #cv h2, #cv h3, #cv p, #cv li {
-      animation: fadeInSlideUp 1s ease-out forwards;  /* Aplica la animación */
-    }
-
-    /* ================= Ajuste de imagen en "Sobre mí" ================= */
-    .about-content {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-    }
-
-    .about-image {
-      width: auto;
-      max-width: 290px;
-      height: auto;
-      margin-left: 20px;
-      animation: slideInFromRight 1s ease-out forwards;
-    }
-
-    @keyframes slideInFromRight {
-      0% {
-        transform: translateX(60%);
-        opacity: 0;
-      }
-      100% {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
-
-    /* ================= Estilo de texto en "Sobre mí" ================= */
-    #about-text {
-      font-size: 14px; /* Cambia el tamaño de la fuente */
-      line-height: 1.5; /* Ajusta la altura de línea para un mejor espaciado */
-      margin-bottom: 300px; /* Margen inferior para separar del resto del contenido */
-      max-width: 500px; /* Limita el ancho máximo del bloque de texto */
-    }
-  </style>
+</style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <div class="nav">
-      <div class="logo">LB</div>
+<header>
+  <div class="nav">
+    <div class="logo">LB</div>
 
-      <nav>
-        <ul>
-          <li class="tab active" data-tab="home">Inicio</li>
-          <li class="tab" data-tab="about">Sobre mí</li>
-          <li class="tab" data-tab="cv">Currículum</li>
-          <li class="tab" data-tab="portfolio">Portfolio</li>
-          <li class="tab" data-tab="contact">Contacto</li>
-        </ul>
-      </nav>
+    <nav>
+      <ul>
+        <li class="tab active" data-tab="home">Inicio</li>
+        <li class="tab" data-tab="about">Sobre mí</li>
+        <li class="tab" data-tab="cv">Currículum</li>
+        <li class="tab" data-tab="portfolio">Portfolio</li>
+        <li class="tab" data-tab="contact">Contacto</li>
+      </ul>
+    </nav>
 
-      <div class="lang">
-        <button id="btn-es" class="active">ES</button>
-        <button id="btn-en">EN</button>
+    <div class="lang">
+      <button id="btn-es" class="active">ES</button>
+      <button id="btn-en">EN</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- HOME -->
+<section id="home" class="home active">
+  <div class="container">
+    <div class="hero-box">
+      <h1 id="hero-title" contenteditable="true"></h1>
+      <p id="hero-sub" contenteditable="true"></p>
+
+      <div class="hero-cta">
+        <a class="btn primary tab" data-tab="cv">Ver CV</a>
+        <a class="btn secondary tab" data-tab="contact">Contactar</a>
       </div>
     </div>
-  </header>
+  </div>
+</section>
 
-  <main>
+<!-- ABOUT -->
+<section id="about">
+  <div class="container spaced">
+    <h1 id="about-title" contenteditable="true">Sobre mí</h1>
+    
+    <div class="about-content">
+      <p id="about-text" contenteditable="true">
+        Soy Luis Blasco-Ibáñez Berbel, un diseñador industrial de 24 años, originario de Valencia. Actualmente estudio Diseño Industrial y Desarrollo de Productos en la UPV, habiendo pasado también por la UJI. Desde siempre me han atraído tanto lo artístico como lo técnico, lo que me llevó a elegir esta carrera, ya que combina ambas pasiones. Aunque aún no tengo experiencia profesional en el campo del diseño, cuento con formación en electricidad gracias a una FP, lo que me ha proporcionado una sólida base técnica. Me considero una persona curiosa, observadora y adaptable, capaz de integrarme en diversos entornos laborales y personales. Esta capacidad de adaptación me permite aprender de cada experiencia y poder afrontar nuevos retos con una mentalidad abierta.
+      </p>
+      
+      <!-- Imagen posicionada a la derecha -->
+      <img src="profile.jpg" alt="Luis Blasco-Ibáñez Berbel" class="about-image"> 
+    </div>
+  </div>
+</section>
 
-    <!-- INICIO -->
-    <section id="home" class="home active">
-      <div class="container hero">
-        <div class="hero-box">
-          <h1 id="hero-title">Ingeniería de diseño industrial aplicada al desarrollo de producto</h1>
-          <p id="hero-sub">Diseño técnico, fabricación y optimización de productos industriales.</p>
+<!-- CV -->
+<section id="cv">
+  <div class="container spaced">
+    <h1 id="cv-title" contenteditable="true">Currículum</h1>
 
-          <div class="hero-cta">
-            <a class="btn primary tab" data-tab="cv">Ver CV</a>
-            <a class="btn secondary tab" data-tab="contact">Contactar</a>
-          </div>
-        </div>
+    <div class="cv">
+      <div>
+        <h2 id="cv-profile-title" contenteditable="true">Perfil profesional</h2>
+        <p id="cv-profile-text" contenteditable="true">
+          Diseñador industrial con enfoque técnico y sensibilidad por el producto.
+        </p>
+
+        <h2 id="cv-skills-title" contenteditable="true">Habilidades</h2>
+        <ul class="list" id="cv-skills" contenteditable="true">
+          <li>Diseño de producto</li>
+          <li>Impresión 3D</li>
+          <li>Diseño técnico</li>
+          <li>Procesos de fabricación</li>
+        </ul>
+
+        <h2 id="cv-education-title" contenteditable="true">Formación</h2>
+        <ul class="list" id="cv-education" contenteditable="true">
+          <li>Grado en Diseño Industrial</li>
+        </ul>
+
+        <a href="cv.pdf" class="download" id="cv-download" contenteditable="true">
+          Descargar CV
+        </a>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <!-- SOBRE MÍ -->
-    <section id="about">
-      <div class="container spaced">
-        <h1 id="about-title">Sobre mí</h1>
-        
-        <div class="about-content">
-          <p id="about-text">
-            Soy Luis Blasco-Ibáñez Berbel, un diseñador industrial de 24 años, originario de Valencia. Actualmente estudio Diseño Industrial y Desarrollo de Productos en la UPV, habiendo pasado también por la UJI. Desde siempre me han atraído tanto lo artístico como lo técnico, lo que me llevó a elegir esta carrera, ya que combina ambas pasiones. Aunque aún no tengo experiencia profesional en el campo del diseño, cuento con formación en electricidad gracias a una FP, lo que me ha proporcionado una sólida base técnica. Me considero una persona curiosa, observadora y adaptable, capaz de integrarme en diversos entornos laborales y personales. Esta capacidad de adaptación me permite aprender de cada experiencia y poder afrontar nuevos retos con una mentalidad abierta.
-          </p>
-          
-          <!-- Imagen posicionada a la derecha -->
-          <img src="profile.jpg" alt="Luis Blasco-Ibáñez Berbel" class="about-image"> 
-        </div>
-      </div>
-    </section>
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="container spaced">
+    <h1 id="portfolio-title" contenteditable="true">Portfolio</h1>
 
-    <!-- CURRICULUM -->
-    <section id="cv" class="active">
-      <div class="container spaced">
-        <h1>Currículum</h1>
+    <div class="grid-3">
+      <article class="case">
+        <h2 contenteditable="true">Electrical Enclosure</h2>
+        <span contenteditable="true">Industrial Product</span>
+        <p contenteditable="true">Diseño técnico y desarrollo orientado a fabricación industrial.</p>
+      </article>
 
-        <!-- Perfil Profesional -->
-        <h2>Perfil Profesional</h2>
-        <p>Diseñador industrial con enfoque técnico y sensibilidad por el producto. Mi pasión por la tecnología y el diseño me lleva a buscar soluciones innovadoras que mejoren la funcionalidad y la estética. Mi formación técnica y creativa me permite abordar proyectos de diseño desde una perspectiva integral.</p>
+      <article class="case">
+        <h2 contenteditable="true">3D Printing Prototyping</h2>
+        <span contenteditable="true">Prototipado</span>
+        <p contenteditable="true">Prototipos funcionales mediante impresión 3D.</p>
+      </article>
 
-        <!-- Experiencia Profesional -->
-        <h3>Experiencia Profesional</h3>
-        <ul>
-          <li><strong>Socorrista</strong> - Varias Piscinas | Verano 2021 - 2022</li>
-          <p>Responsable de la seguridad en diversas instalaciones acuáticas. Proporcioné primeros auxilios y garantice la seguridad de los usuarios en todo momento.</p>
-          
-          <li><strong>Montaje de Eventos</strong> - Campeonato de Atletismo, Valencia | Junio 2023 - Julio 2023</li>
-          <p>Colaboré en la organización de eventos de alto perfil, desarrollando habilidades de gestión, coordinación y trabajo en equipo.</p>
-        </ul>
+      <article class="case">
+        <h2 contenteditable="true">Product Optimization</h2>
+        <span contenteditable="true">Engineering</span>
+        <p contenteditable="true">Optimización de geometrías y ensamblajes.</p>
+      </article>
+    </div>
+  </div>
+</section>
 
-        <!-- Formación Académica -->
-        <h3>Formación Académica</h3>
-        <ul>
-          <li><strong>Ingeniería en Diseño Industrial y Desarrollo de Productos</strong> - Universidad Jaume I de Castellón (2019 - 2023), actualmente cursando en la UPV.</li>
-          <li><strong>Grado Superior en Sistemas Electrotécnicos y Automatizados</strong> - Escuelas San José de Valencia (2017 - 2019)</li>
-          <li><strong>Grado Medio en Sistemas Eléctricos y Automáticos</strong> - Escuelas San José de Valencia (2015 - 2017)</li>
-          <li><strong>Educación Secundaria Obligatoria</strong> - Colegio XYZ de Valencia (2009 - 2015)</li>
-        </ul>
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container spaced">
+    <h1 id="contact-title" contenteditable="true">Contacto</h1>
+    <p id="contact-email" contenteditable="true">📧 luisblascoibanezberbel@gmail.com</p>
+    <p id="contact-phone" contenteditable="true">📞 +34 630 51 18 06</p>
+  </div>
+</section>
 
-        <!-- Cursos y Certificaciones -->
-        <h3>Cursos y Certificaciones</h3>
-        <ul>
-          <li><strong>Curso de Modelado 3D con AutoCAD</strong> - Udemy | 2022</li>
-          <li><strong>Curso de Impresión 3D Avanzada</strong> - Coursera | 2021</li>
-          <li><strong>Diploma de Socorrista en Instalaciones Acuáticas</strong> - Real Federación Española de Salvamento y Socorrismo | 2020</li>
-          <li><strong>Certificación en Prevención de Riesgos Laborales</strong> - INVASSAT | 2019 (96 horas)</li>
-          <li><strong>Curso de Inglés Intermedio</strong> - Globe English Centre | 2019 (Inglaterra)</li>
-        </ul>
+</main>
 
-        <!-- Idiomas -->
-        <h3>Idiomas</h3>
-        <ul>
-          <li><strong>Español</strong> - Nativo</li>
-          <li><strong>Inglés</strong> - Intermedio (B1) - Certificación por Globe English Centre</li>
-        </ul>
+<footer>
+  © 2025 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineer
+</footer>
 
-        <!-- Habilidades Técnicas y Software -->
-        <h3>Habilidades Técnicas y Software</h3>
-        <ul>
-          <li>Modelado y diseño 3D con **AutoCAD**, **SolidWorks**, **Fusion 360**</li>
-          <li>Diseño gráfico con **Adobe Illustrator**, **Photoshop**, **InDesign** y **Adobe Animate**</li>
-          <li>Impresión 3D y prototipado rápido (conocimientos avanzados)</li>
-          <li>Desarrollo de planos técnicos y especificaciones de fabricación</li>
-          <li>Experiencia en sistemas eléctricos y automatización industrial</li>
-          <li>Uso de herramientas de prototipado rápido y fabricación digital (CNC, corte láser, etc.)</li>
-        </ul>
+<script>
+/* ===== Navegación ===== */
+document.querySelectorAll(".tab").forEach(tab=>{
+  tab.onclick=()=>{
+    document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
+    document.getElementById(tab.dataset.tab).classList.add("active");
 
-        <!-- Intereses y Actividades -->
-        <h3>Intereses y Actividades</h3>
-        <ul>
-          <li>Impresión 3D y creación de prototipos funcionales</li>
-          <li>Diseño gráfico para la creación de logotipos y material visual</li>
-          <li>Atletismo: Practico este deporte para mantenerme activo y equilibrado</li>
-          <li>Música: Me gusta explorar nuevos géneros y sonidos</li>
-          <li>Dibujo: La creación artística a través del dibujo es una de mis pasiones y me ayuda a mejorar mi creatividad</li>
-        </ul>
+    document.querySelectorAll("nav li").forEach(l=>l.classList.remove("active"));
+    tab.classList.add("active");
+  };
+});
 
-        <!-- Descargar CV -->
-        <a href="cv.pdf" class="btn download" download>Descargar CV</a>
-      </div>
-    </section>
+/* ===== Idiomas ===== */
+const content={
+  es:{
+    heroTitle:"Ingeniería de diseño industrial aplicada al desarrollo de producto",
+    heroSub:"Diseño técnico, fabricación y optimización de productos industriales.",
+    aboutTitle:"Sobre mí",
+    aboutText:"Soy Luis Blasco-Ibáñez Berbel, un diseñador industrial de 24 años, originario de Valencia. Actualmente estudio Diseño Industrial y Desarrollo de Productos en la UPV, habiendo pasado también por la UJI. Desde siempre me han atraído tanto lo artístico como lo técnico, lo que me llevó a elegir esta carrera, ya que combina ambas pasiones. Aunque aún no tengo experiencia profesional en el campo del diseño, cuento con formación en electricidad gracias a una FP, lo que me ha proporcionado una sólida base técnica. Me considero una persona curiosa, observadora y adaptable, capaz de integrarme en diversos entornos laborales y personales. Esta capacidad de adaptación me permite aprender de cada experiencia y poder afrontar nuevos retos con una mentalidad abierta.",
+    cvTitle: "Currículum",
+    cvProfileTitle: "Perfil profesional",
+    cvProfileText: "Diseñador industrial con enfoque técnico y sensibilidad por el producto.",
+    cvSkillsTitle: "Habilidades",
+    cvSkills: ["Diseño de producto", "Impresión 3D", "Diseño técnico", "Procesos de fabricación"],
+    cvEducationTitle: "Formación",
+    cvEducation: ["Grado en Diseño Industrial"],
+    cvDownload: "Descargar CV",
+    portfolioTitle: "Portfolio",
+    contactTitle: "Contacto",
+    contactEmail: "📧 luisblascoibanezberbel@gmail.com",
+    contactPhone: "📞 +34 630 51 18 06"
+  },
+  en:{
+    heroTitle:"Industrial design engineering applied to product development",
+    heroSub:"Technical design, manufacturing and industrial product optimization.",
+    aboutTitle:"About me",
+    aboutText:"I am Luis Blasco-Ibáñez Berbel, a 24-year-old industrial designer from Valencia. I am currently studying Industrial Design and Product Development at UPV, after also attending UJI. I have always been attracted to both the artistic and technical aspects, which led me to choose this career, as it combines both passions. Although I do not yet have professional experience in design, I have training in electricity thanks to a vocational program (FP), which has provided me with a solid technical foundation. I consider myself a curious, observant, and adaptable person, capable of integrating into various work and personal environments. This adaptability allows me to learn from every experience and face new challenges with an open mindset.",
+    cvTitle: "Curriculum Vitae",
+    cvProfileTitle: "Professional profile",
+    cvProfileText: "Industrial designer with a technical mindset and product-oriented approach.",
+    cvSkillsTitle: "Skills",
+    cvSkills: ["Product design", "3D printing", "Technical design", "Manufacturing processes"],
+    cvEducationTitle: "Education",
+    cvEducation: ["Industrial Design Degree"],
+    cvDownload: "Download CV",
+    portfolioTitle: "Portfolio",
+    contactTitle: "Contact",
+    contactEmail: "📧 luisblascoibanezberbel@gmail.com",
+    contactPhone: "📞 +34 630 51 18 06"
+  }
+};
 
-  </main>
+function setLang(lang){
+  document.getElementById("hero-title").innerText=content[lang].heroTitle;
+  document.getElementById("hero-sub").innerText=content[lang].heroSub;
+  document.getElementById("about-title").innerText=content[lang].aboutTitle;
+  document.getElementById("about-text").innerText=content[lang].aboutText;
+  
+  document.getElementById("cv-title").innerText=content[lang].cvTitle;
+  document.getElementById("cv-profile-title").innerText=content[lang].cvProfileTitle;
+  document.getElementById("cv-profile-text").innerText=content[lang].cvProfileText;
+  
+  document.getElementById("cv-skills-title").innerText=content[lang].cvSkillsTitle;
+  const skills = document.getElementById("cv-skills");
+  skills.innerHTML = "";
+  content[lang].cvSkills.forEach(skill => skills.innerHTML += `<li>${skill}</li>`);
 
-  <!-- FOOTER -->
-  <footer>
-    © 2025 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineer
-  </footer>
+  document.getElementById("cv-education-title").innerText=content[lang].cvEducationTitle;
+  const education = document.getElementById("cv-education");
+  education.innerHTML = "";
+  content[lang].cvEducation.forEach(edu => education.innerHTML += `<li>${edu}</li>`);
+  
+  document.getElementById("cv-download").innerText=content[lang].cvDownload;
+  
+  document.getElementById("portfolio-title").innerText=content[lang].portfolioTitle;
+  
+  document.getElementById("contact-title").innerText=content[lang].contactTitle;
+  document.getElementById("contact-email").innerText=content[lang].contactEmail;
+  document.getElementById("contact-phone").innerText=content[lang].contactPhone;
+
+  document.getElementById("btn-es").classList.toggle("active", lang === "es");
+  document.getElementById("btn-en").classList.toggle("active", lang === "en");
+}
+
+setLang("es");
+document.getElementById("btn-es").onclick=()=>setLang("es");
+document.getElementById("btn-en").onclick=()=>setLang("en");
+</script>
 
 </body>
 </html>

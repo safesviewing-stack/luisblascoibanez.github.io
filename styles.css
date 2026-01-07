@@ -10,10 +10,10 @@
 #cv-title {
   font-size: 32px;
   font-weight: 600;
-  text-align: left;
+  text-align: left;  /* Alinea el título a la izquierda */
   color: #333;
   margin-bottom: 40px;
-  text-transform: capitalize;
+  text-transform: capitalize;  /* Hace que la primera letra sea mayúscula y el resto minúsculas */
 }
 
 /* Títulos de los subtítulos (Perfil, Habilidades, Formación) */

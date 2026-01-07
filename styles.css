@@ -2,18 +2,19 @@
 
 /* Contenedor principal de la sección */
 #cv {
-  background-color: #fff; /* Fondo blanco para toda la sección */
-  padding: 50px 0;
+  background-color: #fff; /* Fondo blanco */
+  padding-top: 50px;       /* Margen superior editable */
+  padding-bottom: 50px;    /* Margen inferior editable */
 }
 
 /* Título de la sección CURRÍCULUM */
 #cv-title {
-  font-size: 24px;                /* Igual que los otros títulos */
+  font-size: 24px;                /* Tamaño igual que los otros títulos */
   font-weight: 600;               /* Mismo peso de fuente */
   text-align: left;               /* Alineado a la izquierda */
-  color: #000;                    /* Color negro igual a los otros títulos */
-  margin-bottom: 15px;            /* Margen inferior */
-  border-bottom: 1px solid #ccc; /* Línea decorativa más delgada y gris claro */
+  color: #333;                    /* Color negro igual a los otros títulos */
+  margin-bottom: 20px;            /* Margen inferior editable */
+  border-bottom: 1px solid #ccc; /* Línea decorativa gris delgada */
   padding-bottom: 5px;            /* Espaciado inferior */
   text-transform: capitalize;     /* Primera letra en mayúscula */
 }
@@ -25,8 +26,9 @@
   font-size: 24px;                /* Tamaño de fuente igual a los otros títulos */
   font-weight: 600;               /* Mismo peso de fuente */
   color: #000;                    /* Color negro */
-  margin-bottom: 15px;            /* Espaciado inferior */
-  border-bottom: 1px solid #ccc; /* Línea decorativa delgada y gris */
+  margin-top: 15px;               /* Margen superior editable */
+  margin-bottom: 15px;            /* Margen inferior editable */
+  border-bottom: 1px solid #ccc; /* Línea decorativa gris delgada */
   padding-bottom: 5px;            /* Espaciado debajo */
 }
 
@@ -37,7 +39,8 @@
   font-size: 16px;
   line-height: 1.8;
   color: #555;
-  margin-bottom: 30px;
+  margin-top: 15px;               /* Margen superior editable */
+  margin-bottom: 30px;            /* Margen inferior editable */
 }
 
 /* Estilo de los elementos de lista de habilidades y formación */
@@ -50,7 +53,7 @@
 #cv-skills li,
 #cv-education li {
   font-size: 16px;
-  margin-bottom: 10px;
+  margin-bottom: 10px;  /* Margen inferior de cada lista */
   padding-left: 15px;
   position: relative;
 }
@@ -66,7 +69,7 @@
 /* Estilo del enlace para descargar el CV */
 #cv-download {
   display: inline-block;
-  margin-top: 30px;
+  margin-top: 30px;           /* Margen superior editable */
   padding: 12px 26px;
   background-color: #000;
   color: #fff;
@@ -93,7 +96,10 @@
 
 .cv div {
   background-color: #fff;
-  padding: 20px;
+  padding-top: 20px;       /* Margen superior editable */
+  padding-bottom: 20px;    /* Margen inferior editable */
+  padding-left: 20px;      /* Espaciado izquierdo */
+  padding-right: 20px;     /* Espaciado derecho */
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }

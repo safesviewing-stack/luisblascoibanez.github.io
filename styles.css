@@ -10,10 +10,10 @@
 #cv-title {
   font-size: 32px;
   font-weight: 600;
-  text-align: center;
+  text-align: left;
   color: #333;
   margin-bottom: 40px;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 /* Títulos de los subtítulos (Perfil, Habilidades, Formación) */

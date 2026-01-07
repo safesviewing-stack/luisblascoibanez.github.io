@@ -1,58 +1,158 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Luis Blasco-Ibáñez · Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<title>Luis Blasco-Ibáñez · Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  height: 100vh;
+  overflow: hidden;
+  color: #111;
+  background: #fff;
+}
+
+/* ocultar radios */
+input { display: none; }
+
+/* NAV PRINCIPAL */
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.nav label {
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* PÁGINAS */
+.page {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 60px;
+}
+
+/* MOSTRAR PÁGINA ACTIVA */
+#home:checked ~ .home,
+#about:checked ~ .about,
+#portfolio:checked ~ .portfolio,
+#cv:checked ~ .cv,
+#contact:checked ~ .contact {
+  display: flex;
+}
+
+/* TEXTOS */
+h1 { font-size: 2.5rem; margin-bottom: 15px; }
+h2 { font-size: 1.2rem; font-weight: 300; margin-bottom: 25px; }
+p  { max-width: 500px; font-size: 15px; }
+
+/* PORTFOLIO */
+.portfolio p {
+  margin-top: 10px;
+}
+
+/* ======================
+   CURRÍCULUM
+====================== */
+.cv {
+  flex-direction: column;
+}
+
+.subnav {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.subnav label {
+  cursor: pointer;
+  font-size: 13px;
+  border-bottom: 1px solid transparent;
+}
+
+.cv-page {
+  display: none;
+  text-align: center;
+}
+
+/* MOSTRAR SUBSECCIÓN CV */
+#cv-home:checked ~ .cv-home,
+#cv-edu:checked ~ .cv-edu,
+#cv-exp:checked ~ .cv-exp,
+#cv-skill:checked ~ .cv-skill {
+  display: block;
+}
+</style>
 </head>
+
 <body>
 
-<!-- ===== NIVEL 1: RADIOS ===== -->
-<input type="radio" name="main" id="tab-home" checked>
-<input type="radio" name="main" id="tab-about">
-<input type="radio" name="main" id="tab-portfolio">
-<input type="radio" name="main" id="tab-cv">
-<input type="radio" name="main" id="tab-contact">
+<!-- ========= NIVEL 1 ========= -->
+<input type="radio" name="main" id="home" checked>
+<input type="radio" name="main" id="about">
+<input type="radio" name="main" id="portfolio">
+<input type="radio" name="main" id="cv">
+<input type="radio" name="main" id="contact">
 
-<!-- ===== NAV PRINCIPAL ===== -->
+<!-- NAV -->
 <nav class="nav">
-  <label for="tab-home">Inicio</label>
-  <label for="tab-about">Sobre mí</label>
-  <label for="tab-portfolio">Portfolio</label>
-  <label for="tab-cv">Currículum</label>
-  <label for="tab-contact">Contacto</label>
+  <label for="home">Inicio</label>
+  <label for="about">Sobre mí</label>
+  <label for="portfolio">Portfolio</label>
+  <label for="cv">Currículum</label>
+  <label for="contact">Contacto</label>
 </nav>
 
-<!-- ===== INICIO ===== -->
+<!-- INICIO -->
 <section class="page home">
   <h1>Luis Blasco-Ibáñez</h1>
-  <h2>Diseñador Industrial</h2>
-  <p>Diseñando objetos donde la forma y la función se encuentran.</p>
+  <h2>Diseñador Industrial y Desarrollo de Producto</h2>
+  <p>Diseñando objetos donde la forma, la función y el proceso se encuentran.</p>
 </section>
 
-<!-- ===== SOBRE MÍ ===== -->
+<!-- SOBRE MÍ -->
 <section class="page about">
   <h1>Sobre mí</h1>
-  <p>Diseño industrial con enfoque técnico y creativo.</p>
+  <p>
+    Estudiante de Diseño Industrial con enfoque técnico y creativo,
+    interesado en el proceso completo de diseño.
+  </p>
 </section>
 
-<!-- ===== PORTFOLIO ===== -->
+<!-- PORTFOLIO -->
 <section class="page portfolio">
   <h1>Portfolio</h1>
   <p>Proyecto 01 · Proyecto 02 · Proyecto 03 · Proyecto 04 · Proyecto 05 · Proyecto 06</p>
 </section>
 
-<!-- ===== CURRÍCULUM ===== -->
+<!-- CURRÍCULUM -->
 <section class="page cv">
 
-  <!-- NIVEL 2: RADIOS CV -->
-  <input type="radio" name="cv" id="cv-home" checked>
-  <input type="radio" name="cv" id="cv-edu">
-  <input type="radio" name="cv" id="cv-exp">
-  <input type="radio" name="cv" id="cv-skill">
+  <!-- NIVEL 2 -->
+  <input type="radio" name="cvtab" id="cv-home" checked>
+  <input type="radio" name="cvtab" id="cv-edu">
+  <input type="radio" name="cvtab" id="cv-exp">
+  <input type="radio" name="cvtab" id="cv-skill">
 
-  <!-- SUBNAV -->
   <div class="subnav">
     <label for="cv-home">Currículum</label>
     <label for="cv-edu">Formación</label>
@@ -60,27 +160,23 @@
     <label for="cv-skill">Habilidades</label>
   </div>
 
-  <!-- CV PORTADA -->
   <div class="cv-page cv-home">
     <h1>Currículum</h1>
-    <p>Formación, experiencia y habilidades.</p>
+    <p>Formación, experiencia y habilidades en diseño industrial.</p>
   </div>
 
-  <!-- FORMACIÓN -->
   <div class="cv-page cv-edu">
     <h1>Formación</h1>
     <p>Grado en Diseño Industrial y Desarrollo de Producto</p>
     <p>Formación técnica en electricidad</p>
   </div>
 
-  <!-- EXPERIENCIA -->
   <div class="cv-page cv-exp">
     <h1>Experiencia</h1>
     <p>Proyectos académicos</p>
     <p>Modelado 3D y prototipado</p>
   </div>
 
-  <!-- HABILIDADES -->
   <div class="cv-page cv-skill">
     <h1>Habilidades</h1>
     <p>Diseño de producto</p>
@@ -91,7 +187,7 @@
 
 </section>
 
-<!-- ===== CONTACTO ===== -->
+<!-- CONTACTO -->
 <section class="page contact">
   <h1>Contacto</h1>
   <p>tucorreo@email.com</p>

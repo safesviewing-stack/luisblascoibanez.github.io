@@ -5,14 +5,19 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
-  background-color: #f4f4f9;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #fff;
   color: #333;
 }
 
 header {
-  background-color: #333;
+  background-color: #000;
   padding: 1rem 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
 header nav ul {
@@ -29,6 +34,7 @@ header nav ul li a {
   color: white;
   text-decoration: none;
   font-weight: 600;
+  font-size: 1rem;
   transition: color 0.3s;
 }
 
@@ -37,7 +43,7 @@ header nav ul li a:hover {
 }
 
 section {
-  padding: 60px 0;
+  padding: 100px 0;
   text-align: center;
 }
 
@@ -53,26 +59,28 @@ section p {
 }
 
 section#inicio {
-  background-color: #1abc9c;
-  color: white;
+  background-color: #fff;
+  color: #000;
 }
 
 section#sobremi {
-  background-color: #2c3e50;
-  color: white;
+  background-color: #f4f4f4;
+  color: #333;
 }
 
 section#curriculum {
-  background-color: #ecf0f1;
+  background-color: #e0e0e0;
+  color: #333;
 }
 
 section#portfolio {
-  background-color: #34495e;
+  background-color: #333;
   color: white;
 }
 
 section#contacto {
   background-color: #f39c12;
+  color: white;
 }
 
 form {
@@ -84,7 +92,7 @@ form {
 }
 
 form input, form textarea {
-  padding: 10px;
+  padding: 12px;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -108,11 +116,8 @@ form button:hover {
 footer {
   text-align: center;
   padding: 20px;
-  background-color: #333;
+  background-color: #000;
   color: white;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
 }
 
 .portfolio-gallery {
@@ -131,4 +136,9 @@ footer {
 
 .portfolio-item img:hover {
   transform: scale(1.05);
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
 }

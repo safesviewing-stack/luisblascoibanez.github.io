@@ -18,15 +18,14 @@ body {
 }
 
 /* Language toggle */
-#lang-toggle {
+.lang-toggle {
   position: fixed;
   top: 20px;
   right: 20px;
-  background: none;
+  font-size: 12px;
   border: 1px solid var(--black);
   padding: 6px 10px;
-  font-size: 12px;
-  cursor: pointer;
+  cursor: default;
   z-index: 100;
 }
 
@@ -52,6 +51,7 @@ body {
   flex-direction: column;
   justify-content: center;
   padding: 0 10%;
+  animation: fadeUp 1s ease forwards;
 }
 
 .hero h1 {
@@ -68,7 +68,6 @@ body {
 .hero-slogan {
   margin: 20px 0;
   max-width: 500px;
-  font-size: 1rem;
 }
 
 .hero-buttons {
@@ -91,6 +90,7 @@ body {
 /* SECTIONS */
 .section {
   padding: 100px 10%;
+  animation: fadeUp 1s ease forwards;
 }
 
 h3 {
@@ -122,10 +122,6 @@ h3 {
   filter: grayscale(100%);
 }
 
-.project h4 {
-  margin: 10px 0 5px;
-}
-
 /* CV */
 .cv-grid {
   display: grid;
@@ -147,16 +143,16 @@ footer {
   color: var(--gray);
 }
 
-/* ANIMATIONS */
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease;
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
+/* ANIMATION */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* RESPONSIVE */

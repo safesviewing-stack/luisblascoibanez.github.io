@@ -1,94 +1,156 @@
-/* ================= SECCIÓN CURRICULUM ================= */
-#cv {
-  padding: 40px 0;
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "IBM Plex Sans", sans-serif;
 }
 
-#cv h2 {
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 20px;
-  border-bottom: 2px solid #000;
-  padding-bottom: 10px;
+body {
+  background: #fff;
+  color: #111;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-#cv .list {
-  margin-bottom: 30px;
+/* ================= LAYOUT ================= */
+main {
+  padding-top: 70px;
+  flex-grow: 1;
 }
 
-#cv .list li {
-  font-size: 16px;
-  line-height: 1.6;
-  margin-bottom: 10px;
+section {
+  display: none;
 }
 
-#cv .download {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 12px 30px;
-  background-color: #000;
-  color: white;
-  font-size: 14px;
-  text-transform: uppercase;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s;
+section.active {
+  display: block;
 }
 
-#cv .download:hover {
-  background-color: #444;
+.container {
+  width: 90%;
+  max-width: 960px;
+  margin: auto;
 }
 
-/* ================= SECCIÓN PORTFOLIO ================= */
+.spaced {
+  padding: 90px 0;
+}
+
+/* ================= SECCIONES ================= */
+
+/* Sección Portfolio */
 #portfolio {
-  padding: 40px 0;
+  padding: 50px 0;
 }
 
-#portfolio .grid-3 {
+.grid-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
 }
 
-#portfolio .case {
-  background: #fff;
+.case {
+  background: #f8f8f8;
   padding: 20px;
-  border: 1px solid #ddd;
   border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-#portfolio .case:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-}
-
-#portfolio .case h2 {
-  font-size: 20px;
+.case h2 {
+  font-size: 18px;
   font-weight: 600;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
-#portfolio .case span {
+.case span {
   font-size: 14px;
   color: #666;
   margin-bottom: 12px;
-  display: block;
 }
 
-#portfolio .case p {
+.case p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Sección Curriculum */
+#cv {
+  padding: 50px 0;
+}
+
+.cv {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 50px;
+}
+
+h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+ul.list {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+ul.list li {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+/* Separación entre los títulos */
+.cv h2 {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+/* Sección Sobre mí */
+#about {
+  display: flex;
+  flex-direction: column;
+  padding: 50px 0;
+}
+
+.about-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+#about-text {
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.7;
+  max-width: 550px;
 }
 
-/* ================= RESPONSIVE ================= */
-@media (max-width: 900px) {
-  #portfolio .grid-3 {
-    grid-template-columns: 1fr;
-  }
+.about-image {
+  width: auto;
+  max-width: 250px;
+  height: auto;
+  margin-left: 20px;
+  border-radius: 8px;
+}
 
-  #cv .download {
-    width: 100%;
-    text-align: center;
-  }
+/* Sección Contacto */
+#contact {
+  padding: 50px 0;
+}
+
+#contact-email,
+#contact-phone {
+  font-size: 16px;
+  margin-top: 8px;
+  color: #111;
+}
+
+footer {
+  text-align: center;
+  padding: 8px;
+  font-size: 12px;
+  color: #fff;
+  background-color: #000;
 }

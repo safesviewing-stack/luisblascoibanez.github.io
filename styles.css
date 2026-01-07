@@ -14,143 +14,130 @@ body {
   min-height: 100vh;
 }
 
-/* ================= LAYOUT ================= */
-main {
-  padding-top: 70px;
-  flex-grow: 1;
-}
-
+/* ================= SECCIONES GENERALES ================= */
 section {
-  display: none;
-}
-
-section.active {
-  display: block;
+  padding: 40px 0;
 }
 
 .container {
   width: 90%;
-  max-width: 960px;
+  max-width: 1200px;
   margin: auto;
 }
 
-.spaced {
-  padding: 90px 0;
+/* ================= CURRÍCULUM ================= */
+#cv h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
 }
 
-/* ================= SECCIONES ================= */
-
-/* Sección Portfolio */
-#portfolio {
-  padding: 50px 0;
+#cv .list {
+  list-style: none;
+  padding-left: 0;
 }
 
-.grid-3 {
+#cv .list li {
+  margin-bottom: 8px;
+}
+
+#cv h2 {
+  margin-top: 20px;
+}
+
+#cv .cv-section {
+  margin-bottom: 40px;
+}
+
+/* ================= PORTFOLIO ================= */
+#portfolio .grid-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  gap: 20px;
 }
 
-.case {
-  background: #f8f8f8;
+#portfolio .case {
+  border: 1px solid #ddd;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: #f9f9f9;
+  text-align: center;
+  transition: all 0.3s ease;
 }
 
-.case h2 {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 8px;
+#portfolio .case:hover {
+  transform: scale(1.05);
 }
 
-.case span {
+#portfolio .case h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+#portfolio .case span {
   font-size: 14px;
-  color: #666;
-  margin-bottom: 12px;
+  color: #777;
 }
 
-.case p {
-  font-size: 14px;
-  line-height: 1.5;
+#portfolio .case p {
+  font-size: 16px;
+  color: #555;
+  margin-top: 10px;
 }
 
-/* Sección Curriculum */
-#cv {
-  padding: 50px 0;
-}
-
-.cv {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 50px;
-}
-
-h2 {
-  font-size: 18px;
-  margin-bottom: 15px;
-  font-weight: 600;
-}
-
-ul.list {
-  list-style: none;
-  margin-bottom: 20px;
-}
-
-ul.list li {
-  font-size: 14px;
-  margin-bottom: 8px;
-}
-
-/* Separación entre los títulos */
-.cv h2 {
-  margin-top: 30px;
-  margin-bottom: 20px;
-}
-
-/* Sección Sobre mí */
-#about {
+/* ================= CONTACTO ================= */
+#contact form {
   display: flex;
   flex-direction: column;
-  padding: 50px 0;
+  gap: 20px;
 }
 
-.about-content {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-}
-
-#about-text {
+#contact input,
+#contact textarea {
+  padding: 12px;
   font-size: 16px;
-  line-height: 1.7;
-  max-width: 550px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
-.about-image {
-  width: auto;
-  max-width: 250px;
-  height: auto;
-  margin-left: 20px;
-  border-radius: 8px;
+#contact textarea {
+  resize: vertical;
 }
 
-/* Sección Contacto */
-#contact {
-  padding: 50px 0;
-}
-
-#contact-email,
-#contact-phone {
-  font-size: 16px;
-  margin-top: 8px;
-  color: #111;
-}
-
-footer {
-  text-align: center;
-  padding: 8px;
-  font-size: 12px;
-  color: #fff;
+#contact button {
   background-color: #000;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#contact button:hover {
+  background-color: #333;
+}
+
+/* ================= SOBRE MÍ ================= */
+#about .about-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+#about .about-text {
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+#about img {
+  max-width: 150px;
+  border-radius: 50%;
+}
+
+#about h1 {
+  font-size: 30px;
+  margin-bottom: 20px;
+  color: #333;
 }

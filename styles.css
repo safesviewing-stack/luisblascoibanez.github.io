@@ -12,7 +12,7 @@ section h1 {
   font-size: 32px;           /* Tamaño mayor para títulos principales */
   font-weight: 600;          /* Mismo peso de fuente */
   text-align: left;          /* Alineado a la izquierda */
-  color: #333;               /* Color negro para los títulos */
+  color: var(--section-title-color, #333);  /* Color configurable con variable */
   margin-top: 20px;          /* Margen superior editable */
   margin-bottom: 20px;       /* Margen inferior editable */
   text-transform: capitalize; /* Primera letra en mayúscula */
@@ -69,6 +69,7 @@ section a:hover, section button:hover {
   background-color: #333; /* Cambio de color al pasar el ratón */
 }
 
+
 /* ==================== Estilos para el apartado SOBRE MÍ ==================== */
 #about {
   padding-top: 50px;
@@ -77,6 +78,7 @@ section a:hover, section button:hover {
 
 #about-title {
   font-size: 32px;
+  color: var(--section-title-color, #333);  /* Color configurable con variable */
 }
 
 #about-text {
@@ -110,6 +112,7 @@ section a:hover, section button:hover {
   }
 }
 
+
 /* ==================== Estilos para el apartado CURRÍCULUM ==================== */
 #cv {
   padding-top: 50px;
@@ -120,13 +123,12 @@ section a:hover, section button:hover {
   font-size: 32px;
   font-weight: 600;
   text-align: left;
-  color: #333;
+  color: var(--section-title-color, #333);  /* Color configurable con variable */
   margin-top: 20px;
   margin-bottom: 20px;
   text-transform: capitalize;
 }
 
-/* Estilo para los cuadros de contenido en currículum */
 .cv {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
@@ -149,6 +151,7 @@ section a:hover, section button:hover {
   max-width: 100%;
   border-radius: 6px;
 
+
 /* ==================== Estilos para el apartado PORTFOLIO ==================== */
 #portfolio {
   padding-top: 50px;
@@ -159,7 +162,7 @@ section a:hover, section button:hover {
   font-size: 32px;
   font-weight: 600;
   text-align: left;
-  color: #000;
+  color: var(--section-title-color, #333);  /* Color configurable con variable */
   margin-top: 20px;
   margin-bottom: 20px;
   text-transform: capitalize;
@@ -207,7 +210,7 @@ section a:hover, section button:hover {
   font-size: 15px;
   color: #555;
   margin-top: 10px;
-}
+
 
 /* ==================== Estilos para el apartado CONTACTO ==================== */
 #contact {
@@ -219,7 +222,7 @@ section a:hover, section button:hover {
   font-size: 32px;
   font-weight: 600;
   text-align: left;
-  color: #000;
+  color: var(--section-title-color, #333);  /* Color configurable con variable */
   margin-top: 20px;
   margin-bottom: 20px;
   text-transform: capitalize;
@@ -228,7 +231,6 @@ section a:hover, section button:hover {
 #contact-email, #contact-phone {
   font-size: 16px;
   color: #555;
-  margin-bottom: 20px;
   display: block;
 }
 

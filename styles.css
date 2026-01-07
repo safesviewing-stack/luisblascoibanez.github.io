@@ -1,0 +1,102 @@
+/* ==================== Estilos para el apartado CURRÍCULUM ==================== */
+
+/* Contenedor principal de la sección */
+#cv {
+  background-color: #f4f4f4; /* Fondo suave para resaltar la sección */
+  padding: 50px 0;
+}
+
+/* Título de la sección */
+#cv-title {
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+  color: #333;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+}
+
+/* Títulos de los subtítulos (Perfil, Habilidades, Formación) */
+#cv-profile-title,
+#cv-skills-title,
+#cv-education-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #000; /* Línea decorativa debajo del título */
+  padding-bottom: 5px;
+}
+
+/* Estilo de los textos debajo de los subtítulos */
+#cv-profile-text,
+#cv-skills,
+#cv-education {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+/* Estilo de los elementos de lista de habilidades y formación */
+#cv-skills ul,
+#cv-education ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#cv-skills li,
+#cv-education li {
+  font-size: 16px;
+  margin-bottom: 10px;
+  padding-left: 15px;
+  position: relative;
+}
+
+#cv-skills li::before,
+#cv-education li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #000; /* Punto en los elementos de la lista */
+}
+
+/* Estilo del enlace para descargar el CV */
+#cv-download {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 12px 26px;
+  background-color: #000;
+  color: #fff;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+#cv-download:hover {
+  background-color: #333; /* Cambio de color al pasar el ratón */
+}
+
+/* Estilo de los cuadros de contenido (perfil, habilidades, formación) */
+.cv {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.cv div {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cv img {
+  max-width: 100%;
+  border-radius: 6px;
+}

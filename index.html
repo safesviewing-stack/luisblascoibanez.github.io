@@ -127,44 +127,31 @@
       padding: 90px 0;
     }
 
-    /* ================= CURRICULUM ================= */
-    #cv h1 {
+    /* ================= TYPO ================= */
+    h1 {
       font-size: 30px;
       font-weight: 500;
       margin-bottom: 28px;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeInSlideUp 1s ease-out forwards;
     }
 
-    #cv h2, #cv h3 {
-      font-size: 22px;
-      margin-bottom: 10px;
-    }
-
-    #cv ul {
-      list-style: none;
-      margin-bottom: 20px;
-    }
-
-    #cv li {
-      margin-bottom: 10px;
+    h2 {
       font-size: 16px;
+      margin-bottom: 10px;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeInSlideUp 1s ease-out forwards;
     }
 
-    /* ================= Añadir espacio entre las secciones del currículum ================= */
-    #cv section {
-      margin-bottom: 40px;  /* Añade espacio entre secciones */
-    }
-
-    /* ================= BUTTON ================= */
-    .btn {
-      display: inline-block;
-      padding: 12px 26px;
-      background: #000;
-      color: #fff;
-      font-size: 12px;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 4px;
-      margin-top: 30px;
+    p,
+    li {
+      font-size: 15px;
+      line-height: 1.6;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeInSlideUp 1s ease-out forwards;
     }
 
     /* ================= HERO ================= */
@@ -192,6 +179,26 @@
       margin-top: 24px;
       display: flex;
       gap: 16px;
+    }
+
+    .btn {
+      padding: 12px 26px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      text-decoration: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .primary {
+      background: #fff;
+      color: #000;
+    }
+
+    .secondary {
+      border: 1px solid #fff;
+      color: #fff;
     }
 
     /* ================= Animación de Fade In + Slide Up ================= */
@@ -241,6 +248,23 @@
       border-radius: 4px;
     }
 
+    /* ================= PORTFOLIO ================= */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .case {
+      border-top: 1px solid #ddd;
+      padding-top: 16px;
+    }
+
+    .case span {
+      font-size: 12px;
+      color: #666;
+    }
+
     /* ================= FOOTER ================= */
     footer {
       text-align: center;
@@ -255,6 +279,43 @@
       .cv {
         grid-template-columns: 1fr;
       }
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ================= Ajuste de imagen en "Sobre mí" ================= */
+    .about-content {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .about-image {
+      width: auto;
+      max-width: 290px;
+      height: auto;
+      margin-left: 20px;
+      animation: slideInFromRight 1s ease-out forwards;
+    }
+
+    @keyframes slideInFromRight {
+      0% {
+        transform: translateX(60%);
+        opacity: 0;
+      }
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /* ================= Estilo de texto en "Sobre mí" ================= */
+    #about-text {
+      font-size: 14px;
+      line-height: 1.5;
+      margin-bottom: 300px;
+      max-width: 500px;
     }
   </style>
 </head>
@@ -289,8 +350,8 @@
     <section id="home" class="home active">
       <div class="container hero">
         <div class="hero-box">
-          <h1 id="hero-title">Ingeniería de diseño industrial aplicada al desarrollo de producto</h1>
-          <p id="hero-sub">Diseño técnico, fabricación y optimización de productos industriales.</p>
+          <h1 id="hero-title"></h1>
+          <p id="hero-sub"></p>
 
           <div class="hero-cta">
             <a class="btn primary tab" data-tab="cv">Ver CV</a>
@@ -303,7 +364,7 @@
     <!-- SOBRE MÍ -->
     <section id="about">
       <div class="container spaced">
-        <h1 id="about-title">Sobre mí</h1>
+        <h1 id="about-title"></h1>
 
         <div class="about-content">
           <p id="about-text">
@@ -318,36 +379,29 @@
     <!-- CURRICULUM -->
     <section id="cv">
       <div class="container spaced">
-        <h1>Currículum</h1>
+        <h1 id="cv-title"></h1>
 
-        <!-- Perfil Profesional -->
-        <h2>Perfil Profesional</h2>
-        <p>Diseñador industrial con enfoque técnico y sensibilidad por el producto.</p>
+        <div class="cv">
+          <div>
+            <h2 id="cv-profile-title"></h2>
+            <p id="cv-profile-text"></p>
 
-        <!-- Habilidades -->
-        <h2>Habilidades</h2>
-        <ul class="list">
-          <li>Diseño de producto</li>
-          <li>Impresión 3D</li>
-          <li>Diseño técnico</li>
-          <li>Procesos de fabricación</li>
-        </ul>
+            <h2 id="cv-skills-title"></h2>
+            <ul class="list" id="cv-skills"></ul>
 
-        <!-- Formación -->
-        <h2>Formación</h2>
-        <ul class="list">
-          <li>Grado en Diseño Industrial</li>
-        </ul>
+            <h2 id="cv-education-title"></h2>
+            <ul class="list" id="cv-education"></ul>
 
-        <!-- Descargar CV -->
-        <a href="cv.pdf" class="download">Descargar CV</a>
+            <a href="cv.pdf" class="download" id="cv-download"></a>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- PORTFOLIO -->
     <section id="portfolio">
       <div class="container spaced">
-        <h1 id="portfolio-title">Portfolio</h1>
+        <h1 id="portfolio-title"></h1>
 
         <div class="grid-3">
           <article class="case">
@@ -374,7 +428,7 @@
     <!-- CONTACT -->
     <section id="contact">
       <div class="container spaced">
-        <h1 id="contact-title">Contacto</h1>
+        <h1 id="contact-title"></h1>
         <p id="contact-email">📧 luisblascoibanezberbel@gmail.com</p>
         <p id="contact-phone">📞 +34 630 51 18 06</p>
       </div>

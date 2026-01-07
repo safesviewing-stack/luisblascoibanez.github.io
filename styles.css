@@ -2,7 +2,7 @@
 
 /* Contenedor principal de la sección */
 #cv {
-  background-color: #fff; /* Fondo suave para resaltar la sección */
+  background-color: #fff; /* Fondo blanco para toda la sección */
   padding: 50px 0;
 }
 
@@ -13,8 +13,8 @@
   text-align: left;               /* Alineado a la izquierda */
   color: #000;                    /* Color negro igual a los otros títulos */
   margin-bottom: 15px;            /* Margen inferior */
-  border-bottom: 1px solid #000; /* Línea decorativa debajo del título */
-  padding-bottom: 50px;            /* Espaciado inferior */
+  border-bottom: 1px solid #ccc; /* Línea decorativa más delgada y gris claro */
+  padding-bottom: 5px;            /* Espaciado inferior */
   text-transform: capitalize;     /* Primera letra en mayúscula */
 }
 
@@ -22,11 +22,11 @@
 #cv-profile-title,
 #cv-skills-title,
 #cv-education-title {
-  font-size: 24px;                /* Tamaño de fuente */
+  font-size: 24px;                /* Tamaño de fuente igual a los otros títulos */
   font-weight: 600;               /* Mismo peso de fuente */
   color: #000;                    /* Color negro */
   margin-bottom: 15px;            /* Espaciado inferior */
-  border-bottom: 2px solid #000; /* Línea decorativa debajo del título */
+  border-bottom: 1px solid #ccc; /* Línea decorativa delgada y gris */
   padding-bottom: 5px;            /* Espaciado debajo */
 }
 

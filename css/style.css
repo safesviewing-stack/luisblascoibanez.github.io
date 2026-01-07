@@ -1,0 +1,174 @@
+:root {
+  --black: #111;
+  --white: #fff;
+  --gray: #777;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--black);
+  background: var(--white);
+  line-height: 1.6;
+}
+
+/* NAV */
+.nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 20px 10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255,255,255,.95);
+  z-index: 100;
+}
+
+.nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: var(--black);
+  font-size: 14px;
+}
+
+.logo {
+  font-weight: 600;
+}
+
+.lang-toggle {
+  font-size: 12px;
+  border: 1px solid var(--black);
+  padding: 5px 8px;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  background: url('../assets/images/hero-bg.jpg') center/cover no-repeat;
+  position: relative;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+}
+
+.hero-content {
+  position: relative;
+  color: white;
+  height: 100%;
+  padding: 0 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+}
+
+.hero h2 {
+  font-weight: 300;
+  margin-top: 10px;
+}
+
+.hero p {
+  max-width: 500px;
+  margin: 20px 0;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: 1px solid white;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.btn.outline {
+  background: transparent;
+}
+
+/* SECTIONS */
+.section {
+  padding: 120px 10%;
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+/* ABOUT */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+.about-grid img {
+  width: 100%;
+}
+
+/* PORTFOLIO */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.project img {
+  width: 100%;
+  filter: grayscale(100%);
+}
+
+.project h3 {
+  margin: 10px 0 5px;
+}
+
+/* CV */
+.cv-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+/* CONTACT */
+.contact a {
+  color: var(--black);
+  text-decoration: none;
+  font-size: 18px;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 40px;
+  font-size: 12px;
+  color: var(--gray);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .about-grid,
+  .portfolio-grid,
+  .cv-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+}

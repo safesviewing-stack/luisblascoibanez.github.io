@@ -1,0 +1,145 @@
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+body {
+  background: #fff;
+  color: #111;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ================= SECCIONES GENERALES ================= */
+section {
+  padding: 40px 0;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* ================= CURRÍCULUM ================= */
+#cv h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+#cv .list {
+  list-style: none;
+  padding-left: 0;
+}
+
+#cv .list li {
+  margin-bottom: 8px;
+  font-size: 14px; /* Ajustar el tamaño del texto pequeño aquí */
+    line-height: 1.5;  /* Aumenta el interlineado (espaciado entre las líneas de texto) */
+
+}
+
+#cv h2 {
+  margin-top: 40px;
+}
+
+#cv .cv-section {
+  margin-bottom: 40px;
+}
+
+/* ================= PORTFOLIO ================= */
+#portfolio .grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+#portfolio .case {
+  padding: 20px;
+  background: #e0e0e0;
+  text-align: center;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+}
+
+#portfolio .case:hover {
+  transform: scale(1.05);
+}
+
+#portfolio .case h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+#portfolio .case span {
+  font-size: 14px;
+  color: #777;
+}
+
+#portfolio .case p {
+  font-size: 16px;
+  color: #555;
+  margin-top: 10px;
+}
+
+/* ================= CONTACTO ================= */
+#contact form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#contact input,
+#contact textarea {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+#contact textarea {
+  resize: vertical;
+}
+
+#contact button {
+  background-color: #000;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#contact button:hover {
+  background-color: #333;
+}
+
+/* ================= SOBRE MÍ ================= */
+#about .about-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+#about .about-text {
+  font-size: 14px;
+  line-height: 1.65;
+  max-width: 650px;
+}
+
+#about img {
+  max-width: 290px;
+}
+
+#about h1 {
+  font-size: 30px;
+  margin-bottom: 20px;
+  color: #000;
+}

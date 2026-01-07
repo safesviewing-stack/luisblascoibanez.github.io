@@ -19,6 +19,11 @@ section h1 {
   padding-bottom: 5px;       /* Espaciado debajo */
 }
 
+/* Título dentro de #inicio en blanco */
+#inicio h1 {
+  color: #fff; /* Texto blanco específicamente en el título dentro de #inicio */
+}
+
 /* Estilo para los textos de cada sección */
 section p, section ul {
   font-size: 16px;
@@ -29,6 +34,11 @@ section p, section ul {
   max-width: 800px;            /* Limitar el ancho del texto */
   padding-left: 20px;          /* Espaciado izquierdo */
   padding-right: 20px;         /* Espaciado derecho */
+}
+
+/* Estilo para los párrafos dentro de INICIO */
+#inicio p {
+  color: #fff; /* Texto blanco en los párrafos dentro de INICIO */
 }
 
 /* Estilo de las listas */
@@ -83,7 +93,7 @@ section a:hover, section button:hover {
 
 #about-text {
   font-size: 15px;
-  color: #555;
+  color: #fff;  /* Texto blanco debajo del título */
   line-height: 1.5;
 }
 
@@ -295,6 +305,16 @@ section a:hover, section button:hover {
   border-radius: 4px;      /* Bordes redondeados */
   border-bottom: 2px solid #fff; /* Línea decorativa blanca en la parte inferior */
   transition: background-color 0.3s ease; /* Transición para el hover */
+}
+
+/* Forzar el título de INICIO en blanco */
+#inicio h1 {
+  color: #fff; /* Texto blanco específicamente en el título dentro de #inicio */
+}
+
+/* Texto dentro de INICIO (debajo del título) en blanco */
+#inicio p {
+  color: #fff; /* Texto blanco en los párrafos dentro de INICIO */
 }
 
 /* Cambio de color al pasar el ratón */

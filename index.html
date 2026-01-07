@@ -2,140 +2,53 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Luis Blasco-Ibáñez · Diseño Industrial</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Tipografía -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
-  <!-- CSS -->
+  <title>Luis Blasco-Ibáñez · Portfolio</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+<!-- CONTROLES -->
+<input type="radio" name="tab" id="home" checked>
+<input type="radio" name="tab" id="about">
+<input type="radio" name="tab" id="portfolio">
+<input type="radio" name="tab" id="cv">
+<input type="radio" name="tab" id="contact">
+
 <!-- NAV -->
-<header class="nav">
-  <span class="logo">Luis Blasco-Ibáñez</span>
-  <nav>
-    <a href="#about">Sobre mí</a>
-    <a href="#portfolio">Portfolio</a>
-    <a href="#cv">Currículum</a>
-    <a href="#contact">Contacto</a>
-  </nav>
-  <span class="lang-toggle">ES / EN</span>
-</header>
+<nav class="nav">
+  <label for="home">Inicio</label>
+  <label for="about">Sobre mí</label>
+  <label for="portfolio">Portfolio</label>
+  <label for="cv">Currículum</label>
+  <label for="contact">Contacto</label>
+</nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <h1>Luis Blasco-Ibáñez</h1>
-    <h2>Diseñador Industrial y Desarrollo de Producto</h2>
-    <p>Diseñando objetos donde la forma, la función y el proceso se encuentran.</p>
-
-    <div class="hero-buttons">
-      <a href="#portfolio" class="btn">Ver portfolio</a>
-      <a href="#contact" class="btn outline">Contacto</a>
-    </div>
-  </div>
+<!-- PANTALLAS -->
+<section class="page home">
+  <h1>Luis Blasco-Ibáñez</h1>
+  <h2>Diseñador Industrial</h2>
+  <p>Diseñando objetos donde la forma y la función se encuentran.</p>
 </section>
 
-<!-- ABOUT -->
-<section id="about" class="section about-grid">
-  <div>
-    <h2>Sobre mí</h2>
-    <p>
-      Soy estudiante de Diseño Industrial y Desarrollo de Producto, con un fuerte
-      interés por el equilibrio entre lo artístico y lo técnico.
-    </p>
-    <p>
-      Me considero una persona curiosa, observadora y adaptable, con una constante
-      necesidad de aprender y crear.
-    </p>
-    <p>
-      Mi interés por el modelado 3D y la impresión 3D me permite entender el diseño
-      desde una perspectiva práctica y técnica.
-    </p>
-  </div>
-
-  <img src="assets/images/perfil.jpg" alt="Foto personal">
+<section class="page about">
+  <h1>Sobre mí</h1>
+  <p>Diseño industrial con enfoque técnico y creativo.</p>
 </section>
 
-<!-- PORTFOLIO -->
-<section id="portfolio" class="section">
-  <h2>Portfolio</h2>
-
-  <div class="portfolio-grid">
-    <div class="project">
-      <img src="assets/images/proyecto-01.jpg" alt="">
-      <h3>Proyecto 01</h3>
-      <p>Concepto de diseño de producto centrado en el usuario.</p>
-    </div>
-
-    <div class="project">
-      <img src="assets/images/proyecto-02.jpg" alt="">
-      <h3>Proyecto 02</h3>
-      <p>Desarrollo formal y funcional de un objeto.</p>
-    </div>
-
-    <div class="project">
-      <img src="assets/images/proyecto-03.jpg" alt="">
-      <h3>Proyecto 03</h3>
-      <p>Exploración de procesos de fabricación.</p>
-    </div>
-
-    <div class="project">
-      <img src="assets/images/proyecto-04.jpg" alt="">
-      <h3>Proyecto 04</h3>
-      <p>Diseño conceptual y prototipado.</p>
-    </div>
-
-    <div class="project">
-      <img src="assets/images/proyecto-05.jpg" alt="">
-      <h3>Proyecto 05</h3>
-      <p>Análisis de forma y función.</p>
-    </div>
-
-    <div class="project">
-      <img src="assets/images/proyecto-06.jpg" alt="">
-      <h3>Proyecto 06</h3>
-      <p>Proyecto experimental.</p>
-    </div>
-  </div>
+<section class="page portfolio">
+  <h1>Portfolio</h1>
+  <p>Proyecto 01 · Proyecto 02 · Proyecto 03</p>
 </section>
 
-<!-- CV -->
-<section id="cv" class="section cv-grid">
-  <div>
-    <h3>Formación</h3>
-    <p>Grado en Diseño Industrial y Desarrollo de Producto</p>
-    <p>Formación técnica en electricidad</p>
-  </div>
-
-  <div>
-    <h3>Experiencia</h3>
-    <p>Proyectos académicos de diseño</p>
-    <p>Modelado 3D y prototipado</p>
-  </div>
-
-  <div>
-    <h3>Habilidades</h3>
-    <p>Diseño de producto</p>
-    <p>Modelado 3D</p>
-    <p>Impresión 3D</p>
-    <p>Prototipado</p>
-  </div>
+<section class="page cv">
+  <h1>Currículum</h1>
+  <p>Formación · Experiencia · Habilidades</p>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" class="section contact">
-  <h2>Contacto</h2>
-  <a href="mailto:tucorreo@email.com">tucorreo@email.com</a>
+<section class="page contact">
+  <h1>Contacto</h1>
+  <p>tucorreo@email.com</p>
 </section>
-
-<footer>
-  © 2026 · Luis Blasco-Ibáñez
-</footer>
 
 </body>
 </html>

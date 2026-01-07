@@ -1,92 +1,169 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Luis Blasco-Ibáñez - Diseñador Industrial</title>
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Luis Blasco-Ibáñez · Diseño Industrial</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- Barra de navegación -->
-  <header>
-    <nav>
-      <ul>
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#sobremi">Sobre mí</a></li>
-        <li><a href="#curriculum">Currículum</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <!-- Sección de Inicio -->
-  <section id="inicio" class="section">
-    <div class="container">
-      <h1>Bienvenido a mi portfolio</h1>
-      <p>Soy Luis Blasco-Ibáñez, diseñador industrial con un enfoque en lo artístico y técnico.</p>
-    </div>
-  </section>
+  <!-- Language Toggle -->
+  <button id="lang-toggle">EN</button>
 
-  <!-- Sección Sobre mí -->
-  <section id="sobremi" class="section">
-    <div class="container">
-      <h2>Sobre mí</h2>
-      <p>Me llamo Luis, soy un joven diseñador industrial de Valencia. Estudio en la UPV y he pasado por la UJI, lo que me ha permitido formarme en lo artístico y lo técnico.</p>
-    </div>
-  </section>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content fade-in">
+      <h1 data-es="Luis Blasco-Ibáñez"
+          data-en="Luis Blasco-Ibanez">
+      </h1>
 
-  <!-- Sección de Currículum -->
-  <section id="curriculum" class="section">
-    <div class="container">
-      <h2>Currículum</h2>
-      <p>Puedes ver mi currículum completo en este <a href="#" target="_blank">enlace</a>.</p>
-    </div>
-  </section>
+      <h2 data-es="Diseñador Industrial y Desarrollo de Producto"
+          data-en="Industrial & Product Design Student">
+      </h2>
 
-  <!-- Sección de Portfolio -->
-  <section id="portfolio" class="section">
-    <div class="container">
-      <h2>Portfolio</h2>
-      <p>Aquí puedes ver algunos de mis trabajos recientes:</p>
-      <div class="portfolio-gallery">
-        <div class="portfolio-item"><img src="https://via.placeholder.com/300" alt="Proyecto 1"></div>
-        <div class="portfolio-item"><img src="https://via.placeholder.com/300" alt="Proyecto 2"></div>
-        <div class="portfolio-item"><img src="https://via.placeholder.com/300" alt="Proyecto 3"></div>
+      <p class="hero-slogan"
+         data-es="Diseñando objetos donde la forma, la función y el proceso se encuentran."
+         data-en="Designing objects where form, function and process meet.">
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#portfolio" class="btn"
+           data-es="Ver portfolio"
+           data-en="View portfolio"></a>
+
+        <a href="#contact" class="btn outline"
+           data-es="Contacto"
+           data-en="Contact"></a>
       </div>
     </div>
-  </section>
+  </header>
 
-  <!-- Sección de Contacto -->
-  <section id="contacto" class="section">
-    <div class="container">
-      <h2>Contacto</h2>
-      <p>Si deseas ponerte en contacto conmigo, puedes hacerlo a través del siguiente formulario:</p>
-      <form action="#">
-        <input type="text" placeholder="Tu nombre" required>
-        <input type="email" placeholder="Tu correo" required>
-        <textarea placeholder="Tu mensaje" required></textarea>
-        <button type="submit">Enviar</button>
-      </form>
-    </div>
-  </section>
+  <main>
 
-  <!-- Footer -->
+    <!-- ABOUT -->
+    <section id="about" class="section fade-in">
+      <div class="about-grid">
+        <div class="about-text">
+          <h3 data-es="Sobre mí" data-en="About me"></h3>
+          <p data-es="Soy estudiante de Diseño Industrial y Desarrollo de Producto, con un fuerte interés por el equilibrio entre lo artístico y lo técnico."
+             data-en="I am an Industrial and Product Design student, with a strong interest in balancing artistic and technical aspects."></p>
+
+          <p data-es="Me considero una persona curiosa, observadora y adaptable, con una necesidad constante de aprender y crear."
+             data-en="I consider myself a curious, observant and adaptable person, always eager to learn and create."></p>
+
+          <p data-es="Mi interés por el modelado 3D y la impresión 3D me permite entender el diseño desde una perspectiva práctica."
+             data-en="My interest in 3D modeling and 3D printing allows me to approach design from a practical perspective."></p>
+        </div>
+
+        <div class="about-photo">
+          <img src="assets/images/perfil.jpg" alt="Foto personal">
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio" class="section fade-in">
+      <h3 data-es="Portfolio" data-en="Portfolio"></h3>
+
+      <div class="portfolio-grid">
+        <!-- 6 projects -->
+        <div class="project">
+          <img src="assets/images/proyecto-01.jpg" alt="">
+          <h4>Proyecto 01</h4>
+          <p data-es="Concepto de diseño de producto centrado en el usuario."
+             data-en="Product design concept focused on the user."></p>
+        </div>
+
+        <div class="project">
+          <img src="assets/images/proyecto-02.jpg" alt="">
+          <h4>Proyecto 02</h4>
+          <p data-es="Desarrollo formal y funcional de un objeto."
+             data-en="Formal and functional object development."></p>
+        </div>
+
+        <div class="project">
+          <img src="assets/images/proyecto-03.jpg" alt="">
+          <h4>Proyecto 03</h4>
+          <p data-es="Exploración de procesos de fabricación."
+             data-en="Manufacturing process exploration."></p>
+        </div>
+
+        <div class="project">
+          <img src="assets/images/proyecto-04.jpg" alt="">
+          <h4>Proyecto 04</h4>
+          <p data-es="Diseño conceptual y prototipado."
+             data-en="Concept design and prototyping."></p>
+        </div>
+
+        <div class="project">
+          <img src="assets/images/proyecto-05.jpg" alt="">
+          <h4>Proyecto 05</h4>
+          <p data-es="Análisis de forma y función."
+             data-en="Form and function analysis."></p>
+        </div>
+
+        <div class="project">
+          <img src="assets/images/proyecto-06.jpg" alt="">
+          <h4>Proyecto 06</h4>
+          <p data-es="Proyecto experimental."
+             data-en="Experimental project."></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CV -->
+    <section id="cv" class="section fade-in">
+      <h3 data-es="Currículum" data-en="Curriculum"></h3>
+
+      <div class="cv-grid">
+        <div>
+          <h4 data-es="Formación" data-en="Education"></h4>
+          <p>Grado en Diseño Industrial y Desarrollo de Producto</p>
+          <p>Formación técnica en electricidad</p>
+        </div>
+
+        <div>
+          <h4 data-es="Experiencia" data-en="Experience"></h4>
+          <p data-es="Proyectos académicos de diseño"
+             data-en="Academic design projects"></p>
+          <p data-es="Modelado 3D y prototipado"
+             data-en="3D modeling and prototyping"></p>
+        </div>
+
+        <div>
+          <h4 data-es="Habilidades" data-en="Skills"></h4>
+          <p>Diseño de producto</p>
+          <p>Modelado 3D</p>
+          <p>Impresión 3D</p>
+          <p>Prototipado</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section fade-in">
+      <h3 data-es="Contacto" data-en="Contact"></h3>
+      <p>
+        <a href="mailto:tucorreo@email.com">tucorreo@email.com</a>
+      </p>
+      <a href="mailto:tucorreo@email.com" class="btn"
+         data-es="Escríbeme"
+         data-en="Get in touch"></a>
+    </section>
+
+  </main>
+
   <footer>
-    <p>&copy; 2026 Luis Blasco-Ibáñez. Todos los derechos reservados.</p>
+    <p>© 2026 · Luis Blasco-Ibáñez</p>
   </footer>
 
-  <script>
-    // Scroll suave
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
-      });
-    });
-  </script>
+  <script src="js/main.js"></script>
 </body>
 </html>

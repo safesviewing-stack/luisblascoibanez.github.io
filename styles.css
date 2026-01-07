@@ -1,6 +1,52 @@
+/* ==================== Estilos Generales ==================== */
+
+/* Estilos comunes para todos los apartados */
+section {
+  background-color: #fff;  /* Fondo blanco para todas las secciones */
+  padding-top: 50px;        /* Margen superior */
+  padding-bottom: 50px;     /* Margen inferior */
+  margin-top: 0;            /* Asegura que no haya margen extra entre las secciones */
+}
+
+/* ==================== Estilos para el cuadro de INICIO ==================== */
+#inicio {
+  background-color: #000; /* Fondo negro */
+  color: #fff;            /* Texto blanco */
+  padding: 8px 20px;       /* Margen superior e inferior reducido */
+  margin-top: 10px;        /* Margen superior más pequeño */
+  margin-bottom: 10px;     /* Margen inferior más pequeño */
+  font-size: 16px;         /* Tamaño de letra */
+  text-transform: uppercase; /* Texto en mayúsculas */
+  text-align: center;      /* Centrado del texto */
+  border-radius: 4px;      /* Bordes redondeados */
+  border-bottom: 2px solid #fff; /* Línea decorativa blanca en la parte inferior */
+  transition: background-color 0.3s ease; /* Transición para el hover */
+}
+
+/* Título de INICIO */
+.inicio-title {
+  color: #fff; /* Texto blanco para el título dentro de INICIO */
+  font-size: 36px; /* Tamaño de letra específico */
+  font-weight: bold; /* Asegura que el título sea más pesado */
+  text-transform: uppercase; /* Texto en mayúsculas */
+  padding: 10px 0; /* Espaciado alrededor del título */
+  text-align: center; /* Centrado del texto */
+}
+
+/* Texto dentro de INICIO (debajo del título) en blanco */
+#inicio p {
+  color: #fff; /* Texto blanco en los párrafos dentro de INICIO */
+}
+
+/* Cambio de color al pasar el ratón */
+#inicio:hover {
+  background-color: #333; /* Fondo gris oscuro al pasar el ratón */
+}
+
+
 /* ==================== Estilos para el apartado SOBRE MÍ ==================== */
 #about {
-  margin-top: 40px;
+  padding-top: 50px;
   padding-bottom: 50px;
 }
 
@@ -9,7 +55,7 @@
   font-weight: 600;
   text-align: left;
   color: var(--section-title-color, #333);  /* Color configurable con variable */
-  margin-top: 20px; /* Asegura que esté a la misma altura respecto a la barra superior */
+  margin-top: 60px; /* Asegura que esté a la misma altura respecto a la barra superior */
   margin-bottom: 20px;
   text-transform: capitalize;
 }
@@ -43,4 +89,93 @@
     transform: translateX(0);
     opacity: 1;
   }
+}
+
+
+/* ==================== Estilos para el apartado CURRÍCULUM ==================== */
+#cv {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+#cv-title {
+  font-size: 32px;
+  font-weight: 600;
+  text-align: left;
+  color: var(--section-title-color, #333);  /* Color configurable con variable */
+  margin-top: 60px; /* Asegura que esté a la misma altura respecto a la barra superior */
+  margin-bottom: 20px;
+  text-transform: capitalize;
+}
+
+#cv-profile-text {
+  font-size: 15px;
+  color: #555;  /* Texto gris en la descripción del perfil */
+  line-height: 1.5;
+  margin-top: 15px;
+}
+
+.cv {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.cv div {
+  background-color: #fff;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cv img {
+  max-width: 100%;
+  border-radius: 6px;
+
+
+/* ==================== Estilos para los elementos de lista dentro del CURRÍCULUM ==================== */
+#cv-skills ul,
+#cv-education ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#cv-skills li,
+#cv-education li {
+  font-size: 16px;
+  margin-bottom: 10px;
+  padding-left: 15px;
+  position: relative;
+}
+
+#cv-skills li::before,
+#cv-education li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #000; /* Punto en los elementos de la lista */
+}
+
+/* Estilo del enlace para descargar el CV */
+#cv-download {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 12px 26px;
+  background-color: #000;
+  color: #fff;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+#cv-download:hover {
+  background-color: #333; /* Cambio de color al pasar el ratón */
 }

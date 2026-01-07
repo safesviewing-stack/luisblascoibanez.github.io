@@ -7,76 +7,38 @@ section {
   padding-bottom: 50px;     /* Margen inferior */
 }
 
-/* Título principal de cada sección */
-section h1 {
-  font-size: 32px;           /* Tamaño mayor para títulos principales */
-  font-weight: 600;          /* Mismo peso de fuente */
-  text-align: left;          /* Alineado a la izquierda */
-  color: var(--section-title-color, #333);  /* Color configurable con variable, predeterminado a #333 */
-  margin-top: 20px;          /* Margen superior */
-  margin-bottom: 20px;       /* Margen inferior */
-  text-transform: capitalize; /* Primera letra en mayúscula */
-  padding-bottom: 5px;       /* Espaciado debajo */
+/* ==================== Estilos para el cuadro de INICIO ==================== */
+#inicio {
+  background-color: #000; /* Fondo negro */
+  color: #fff;            /* Texto blanco */
+  padding: 8px 20px;       /* Margen superior e inferior reducido */
+  margin-top: 10px;        /* Margen superior más pequeño */
+  margin-bottom: 10px;     /* Margen inferior más pequeño */
+  font-size: 16px;         /* Tamaño de letra */
+  text-transform: uppercase; /* Texto en mayúsculas */
+  text-align: center;      /* Centrado del texto */
+  border-radius: 4px;      /* Bordes redondeados */
+  border-bottom: 2px solid #fff; /* Línea decorativa blanca en la parte inferior */
+  transition: background-color 0.3s ease; /* Transición para el hover */
 }
 
-/* Título dentro de #inicio en blanco */
 #inicio h1 {
-  color: #fff; /* Texto blanco específicamente en el título dentro de #inicio */
+  color: #fff; /* Texto blanco específicamente en el título dentro de INICIO */
+  font-size: 36px; /* Tamaño de letra específico */
+  font-weight: bold; /* Asegura que el título sea más pesado */
+  text-transform: uppercase; /* Texto en mayúsculas */
+  padding: 10px 0; /* Espaciado alrededor del título */
+  text-align: center; /* Centrado del texto */
 }
 
-/* Estilo para los textos de cada sección */
-section p, section ul {
-  font-size: 16px;
-  line-height: 1.8;
-  color: #555;
-  margin-top: 15px;            /* Margen superior */
-  margin-bottom: 30px;         /* Margen inferior */
-  max-width: 800px;            /* Limitar el ancho del texto */
-  padding-left: 20px;          /* Espaciado izquierdo */
-  padding-right: 20px;         /* Espaciado derecho */
-}
-
-/* Estilo para los párrafos dentro de INICIO */
+/* Texto dentro de INICIO (debajo del título) en blanco */
 #inicio p {
   color: #fff; /* Texto blanco en los párrafos dentro de INICIO */
 }
 
-/* Estilo de las listas */
-section ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-section li {
-  font-size: 16px;
-  margin-bottom: 10px;         /* Margen inferior de cada lista */
-  padding-left: 15px;
-  position: relative;
-}
-
-section li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  color: #000; /* Punto en los elementos de la lista */
-}
-
-/* Estilo de los enlaces o botones dentro de las secciones */
-section a, section button {
-  padding: 12px 26px;
-  background-color: #000;
-  color: #fff;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-  margin-top: 20px;
-}
-
-section a:hover, section button:hover {
-  background-color: #333; /* Cambio de color al pasar el ratón */
+/* Cambio de color al pasar el ratón */
+#inicio:hover {
+  background-color: #333; /* Fondo gris oscuro al pasar el ratón */
 }
 
 
@@ -88,40 +50,19 @@ section a:hover, section button:hover {
 
 #about-title {
   font-size: 32px;
+  font-weight: 600;
+  text-align: left;
   color: var(--section-title-color, #333);  /* Color configurable con variable */
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-transform: capitalize;
 }
 
 #about-text {
   font-size: 15px;
-  color: #fff;  /* Texto blanco debajo del título */
+  color: #555;  /* Texto gris en "Sobre Mí" */
   line-height: 1.5;
 }
-
-.about-content {
-  display: flex;
-  margin-top: 30px;
-  align-items: flex-start;
-  justify-content: space-between;
-}
-
-.about-image {
-  max-width: 290px;
-  width: auto;
-  height: auto;
-  animation: slideInFromRight 1s ease-out forwards;
-}
-
-@keyframes slideInFromRight {
-  0% {
-    transform: translateX(60%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
 
 /* ==================== Estilos para el apartado CURRÍCULUM ==================== */
 #cv {
@@ -292,32 +233,3 @@ section a:hover, section button:hover {
   background-color: #333;
 }
 
-/* ==================== Estilos para el cuadro de INICIO ==================== */
-#inicio {
-  background-color: #000; /* Fondo negro */
-  color: #fff;            /* Texto blanco */
-  padding: 8px 20px;       /* Margen superior e inferior reducido */
-  margin-top: 10px;        /* Margen superior más pequeño */
-  margin-bottom: 10px;     /* Margen inferior más pequeño */
-  font-size: 16px;         /* Tamaño de letra */
-  text-transform: uppercase; /* Texto en mayúsculas */
-  text-align: center;      /* Centrado del texto */
-  border-radius: 4px;      /* Bordes redondeados */
-  border-bottom: 2px solid #fff; /* Línea decorativa blanca en la parte inferior */
-  transition: background-color 0.3s ease; /* Transición para el hover */
-}
-
-/* Forzar el título de INICIO en blanco */
-#inicio h1 {
-  color: #fff; /* Texto blanco específicamente en el título dentro de #inicio */
-}
-
-/* Texto dentro de INICIO (debajo del título) en blanco */
-#inicio p {
-  color: #fff; /* Texto blanco en los párrafos dentro de INICIO */
-}
-
-/* Cambio de color al pasar el ratón */
-#inicio:hover {
-  background-color: #333; /* Fondo gris oscuro al pasar el ratón */
-}

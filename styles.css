@@ -3,8 +3,8 @@
 /* Estilos comunes para todos los apartados */
 section {
   background-color: #fff;  /* Fondo blanco para todas las secciones */
-  padding-top: 50px;        /* Margen superior editable */
-  padding-bottom: 50px;     /* Margen inferior editable */
+  padding-top: 50px;        /* Margen superior */
+  padding-bottom: 50px;     /* Margen inferior */
 }
 
 /* Título principal de cada sección */
@@ -12,9 +12,9 @@ section h1 {
   font-size: 32px;           /* Tamaño mayor para títulos principales */
   font-weight: 600;          /* Mismo peso de fuente */
   text-align: left;          /* Alineado a la izquierda */
-  color: var(--section-title-color, #fff);  /* Color configurable con variable */
-  margin-top: 20px;          /* Margen superior editable */
-  margin-bottom: 20px;       /* Margen inferior editable */
+  color: var(--section-title-color, #333);  /* Color configurable con variable, predeterminado a #333 */
+  margin-top: 20px;          /* Margen superior */
+  margin-bottom: 20px;       /* Margen inferior */
   text-transform: capitalize; /* Primera letra en mayúscula */
   padding-bottom: 5px;       /* Espaciado debajo */
 }
@@ -24,8 +24,8 @@ section p, section ul {
   font-size: 16px;
   line-height: 1.8;
   color: #555;
-  margin-top: 15px;            /* Margen superior editable */
-  margin-bottom: 30px;         /* Margen inferior editable */
+  margin-top: 15px;            /* Margen superior */
+  margin-bottom: 30px;         /* Margen inferior */
   max-width: 800px;            /* Limitar el ancho del texto */
   padding-left: 20px;          /* Espaciado izquierdo */
   padding-right: 20px;         /* Espaciado derecho */

@@ -6,26 +6,28 @@
   padding: 50px 0;
 }
 
-/* Título de la sección */
+/* Título de la sección CURRÍCULUM */
 #cv-title {
-  font-size: 32px;
-  font-weight: 600;
-  text-align: left;  /* Alinea el título a la izquierda */
-  color: #333;
-  margin-bottom: 40px;
-  text-transform: capitalize;  /* Hace que la primera letra sea mayúscula y el resto minúsculas */
+  font-size: 24px;                /* Igual que los otros títulos */
+  font-weight: 600;               /* Mismo peso de fuente */
+  text-align: left;               /* Alineado a la izquierda */
+  color: #000;                    /* Color negro igual a los otros títulos */
+  margin-bottom: 15px;            /* Margen inferior */
+  border-bottom: 2px solid #000; /* Línea decorativa debajo del título */
+  padding-bottom: 5px;            /* Espaciado inferior */
+  text-transform: capitalize;     /* Primera letra en mayúscula */
 }
 
 /* Títulos de los subtítulos (Perfil, Habilidades, Formación) */
 #cv-profile-title,
 #cv-skills-title,
 #cv-education-title {
-  font-size: 24px;
-  font-weight: 600;
-  color: #000;
-  margin-bottom: 15px;
+  font-size: 24px;                /* Tamaño de fuente */
+  font-weight: 600;               /* Mismo peso de fuente */
+  color: #000;                    /* Color negro */
+  margin-bottom: 15px;            /* Espaciado inferior */
   border-bottom: 2px solid #000; /* Línea decorativa debajo del título */
-  padding-bottom: 5px;
+  padding-bottom: 5px;            /* Espaciado debajo */
 }
 
 /* Estilo de los textos debajo de los subtítulos */

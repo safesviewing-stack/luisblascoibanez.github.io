@@ -468,17 +468,15 @@ document.querySelectorAll(".tab").forEach(tab=>{
 /* ===== Idiomas ===== */
 const content={
   es:{
-    heroTitle:"Ingeniería de diseño industrial aplicada al desarrollo de producto",
-    heroSub:"Diseño técnico, fabricación y optimización de productos industriales.",
-    aboutTitle:"Sobre mí",
-    aboutText:"Soy Luis Blasco-Ibáñez Berbel, un diseñador industrial de 24 años, originario de Valencia. Actualmente estudio Diseño Industrial y Desarrollo de Productos en la UPV. Desde siempre me han atraído tanto lo artístico como lo técnico, lo que me llevó a elegir esta carrera, ya que combina ambas pasiones. Además, cuento con formación en electricidad gracias a una FP, lo que me ha proporcionado una sólida base técnica. Me considero una persona curiosa, observadora y adaptable, capaz de integrarme en diversos entornos laborales y personales. Esta capacidad de adaptación me permite aprender de cada experiencia y afrontar nuevos retos con una mentalidad abierta.",
+    heroTitle: "Ingeniería de diseño industrial aplicada al desarrollo de producto",
+    heroSub: "Diseño técnico, fabricación y optimización de productos industriales.",
+    aboutTitle: "Sobre mí",
+    aboutText: "Soy Luis Blasco-Ibáñez Berbel, un diseñador industrial de 24 años, originario de Valencia. Actualmente estudio Diseño Industrial y Desarrollo de Productos en la UPV. Desde siempre me han atraído tanto lo artístico como lo técnico, lo que me llevó a elegir esta carrera, ya que combina ambas pasiones. Además, cuento con formación en electricidad gracias a una FP, lo que me ha proporcionado una sólida base técnica. Me considero una persona curiosa, observadora y adaptable, capaz de integrarme en diversos entornos laborales y personales. Esta capacidad de adaptación me permite aprender de cada experiencia y afrontar nuevos retos con una mentalidad abierta.",
     cvTitle: "Currículum",
-    cvProfileTitle: "Perfil profesional",
-    cvProfileText: "Diseñador industrial con enfoque técnico y sensibilidad por el producto.",
     cvSkillsTitle: "Habilidades",
     cvSkills: ["Diseño de producto", "Impresión 3D", "Diseño técnico", "Procesos de fabricación"],
     cvEducationTitle: "Formación",
-    cvEducation: ["Grado en Diseño Industrial"],
+    cvEducation: ["Grado en Diseño Industrial – UPV"],
     cvDownload: "Descargar CV",
     portfolioTitle: "Portfolio",
     contactTitle: "Contacto",
@@ -486,17 +484,15 @@ const content={
     contactPhone: "📞 +34 630 51 18 06"
   },
   en:{
-    heroTitle:"Industrial design engineering applied to product development",
-    heroSub:"Technical design, manufacturing and industrial product optimization.",
-    aboutTitle:"About me",
-    aboutText:"Soy Luis Blasco-Ibáñez Berbel, un diseñador industrial de 24 años originario de Valencia, actualmente estudiando Diseño Industrial y Desarrollo de Productos en la UPV, después de haber cursado también la UJI. Siempre me han fascinado tanto los aspectos artísticos como técnicos, y creo que esta combinación ha hecho que mi carrera sea la opción perfecta. Aunque no ha sido un camino fácil, creo que la pasión por lo que haces convierte los retos en oportunidades. Me considero una persona curiosa, observadora y con una gran capacidad de adaptación a diferentes entornos, tanto profesionales como personales.",
+    heroTitle: "Industrial design engineering applied to product development",
+    heroSub: "Technical design, manufacturing and industrial product optimization.",
+    aboutTitle: "About me",
+    aboutText: "I am Luis Blasco-Ibáñez Berbel, a 24-year-old industrial designer from Valencia. I am currently studying Industrial Design and Product Development at UPV. I have always been attracted to both the artistic and technical aspects, which led me to choose this career as it combines both passions. Additionally, I have training in electricity through a vocational program, which has provided me with a solid technical foundation. I consider myself a curious, observant, and adaptable person, capable of integrating into various professional and personal environments. This adaptability allows me to learn from each experience and face new challenges with an open mind.",
     cvTitle: "Curriculum Vitae",
-    cvProfileTitle: "Professional profile",
-    cvProfileText: "Industrial designer with a technical mindset and product-oriented approach.",
     cvSkillsTitle: "Skills",
     cvSkills: ["Product design", "3D printing", "Technical design", "Manufacturing processes"],
     cvEducationTitle: "Education",
-    cvEducation: ["Industrial Design Degree"],
+    cvEducation: ["Bachelor's in Industrial Design – UPV"],
     cvDownload: "Download CV",
     portfolioTitle: "Portfolio",
     contactTitle: "Contact",
@@ -505,37 +501,42 @@ const content={
   }
 };
 
-function setLang(lang){
-  document.getElementById("hero-title").innerText=content[lang].heroTitle;
-  document.getElementById("hero-sub").innerText=content[lang].heroSub;
-  document.getElementById("about-title").innerText=content[lang].aboutTitle;
-  document.getElementById("about-text").innerText=content[lang].aboutText;
-  
-  document.getElementById("cv-title").innerText=content[lang].cvTitle;
-  document.getElementById("cv-profile-title").innerText=content[lang].cvProfileTitle;
-  document.getElementById("cv-profile-text").innerText=content[lang].cvProfileText;
-  
-  document.getElementById("cv-skills-title").innerText=content[lang].cvSkillsTitle;
+function setLang(lang) {
+  console.log("Cambiando idioma a:", lang);  // Verifica si se ejecuta correctamente
+
+  document.getElementById("hero-title").innerText = content[lang].heroTitle;
+  document.getElementById("hero-sub").innerText = content[lang].heroSub;
+  document.getElementById("about-title").innerText = content[lang].aboutTitle;
+  document.getElementById("about-text").innerText = content[lang].aboutText;
+  document.getElementById("cv-title").innerText = content[lang].cvTitle;
+  document.getElementById("cv-skills-title").innerText = content[lang].cvSkillsTitle;
+
   const skills = document.getElementById("cv-skills");
   skills.innerHTML = "";
   content[lang].cvSkills.forEach(skill => skills.innerHTML += `<li>${skill}</li>`);
 
-  document.getElementById("cv-education-title").innerText=content[lang].cvEducationTitle;
+  document.getElementById("cv-education-title").innerText = content[lang].cvEducationTitle;
   const education = document.getElementById("cv-education");
   education.innerHTML = "";
   content[lang].cvEducation.forEach(edu => education.innerHTML += `<li>${edu}</li>`);
-  
-  document.getElementById("cv-download").innerText=content[lang].cvDownload;
-  
-  document.getElementById("portfolio-title").innerText=content[lang].portfolioTitle;
-  
-  document.getElementById("contact-title").innerText=content[lang].contactTitle;
-  document.getElementById("contact-email").innerText=content[lang].contactEmail;
-  document.getElementById("contact-phone").innerText=content[lang].contactPhone;
 
-  // Cambiar el botón activo
+  document.getElementById("cv-download").innerText = content[lang].cvDownload;
+  document.getElementById("portfolio-title").innerText = content[lang].portfolioTitle;
+  document.getElementById("contact-title").innerText = content[lang].contactTitle;
+  document.getElementById("contact-email").innerText = content[lang].contactEmail;
+  document.getElementById("contact-phone").innerText = content[lang].contactPhone;
+
+      // Cambiar el botón activo
   document.getElementById("btn-es").classList.toggle("active", lang === "es");
   document.getElementById("btn-en").classList.toggle("active", lang === "en");
+  }
+
+   // Inicializar con el idioma español
+   setLang("es");
+
+   // Cambiar el idioma al hacer clic en los botones
+   document.getElementById("btn-es").onclick = () => setLang("es");
+   document.getElementById("btn-en").onclick = () => setLang("en");
 }
 
 setLang("es");

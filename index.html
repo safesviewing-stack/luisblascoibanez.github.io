@@ -8,61 +8,49 @@
 </head>
 <body>
 
-<!-- ======================
-  NIVEL 1 · RADIOS
-====================== -->
-<input type="radio" name="main" id="home" checked>
-<input type="radio" name="main" id="about">
-<input type="radio" name="main" id="portfolio">
-<input type="radio" name="main" id="cv">
-<input type="radio" name="main" id="contact">
+<!-- ===== NIVEL 1: RADIOS ===== -->
+<input type="radio" name="main" id="tab-home" checked>
+<input type="radio" name="main" id="tab-about">
+<input type="radio" name="main" id="tab-portfolio">
+<input type="radio" name="main" id="tab-cv">
+<input type="radio" name="main" id="tab-contact">
 
-<!-- ======================
-  NAV PRINCIPAL
-====================== -->
+<!-- ===== NAV PRINCIPAL ===== -->
 <nav class="nav">
-  <label for="home">Inicio</label>
-  <label for="about">Sobre mí</label>
-  <label for="portfolio">Portfolio</label>
-  <label for="cv">Currículum</label>
-  <label for="contact">Contacto</label>
+  <label for="tab-home">Inicio</label>
+  <label for="tab-about">Sobre mí</label>
+  <label for="tab-portfolio">Portfolio</label>
+  <label for="tab-cv">Currículum</label>
+  <label for="tab-contact">Contacto</label>
 </nav>
 
-<!-- ======================
-  INICIO
-====================== -->
+<!-- ===== INICIO ===== -->
 <section class="page home">
   <h1>Luis Blasco-Ibáñez</h1>
-  <h2>Diseño Industrial y Desarrollo de Producto</h2>
-  <p>Diseñando objetos donde la forma, la función y el proceso se encuentran.</p>
+  <h2>Diseñador Industrial</h2>
+  <p>Diseñando objetos donde la forma y la función se encuentran.</p>
 </section>
 
-<!-- ======================
-  SOBRE MÍ
-====================== -->
+<!-- ===== SOBRE MÍ ===== -->
 <section class="page about">
   <h1>Sobre mí</h1>
-  <p>Perfil curioso, técnico y creativo enfocado en el proceso de diseño.</p>
+  <p>Diseño industrial con enfoque técnico y creativo.</p>
 </section>
 
-<!-- ======================
-  PORTFOLIO
-====================== -->
+<!-- ===== PORTFOLIO ===== -->
 <section class="page portfolio">
   <h1>Portfolio</h1>
   <p>Proyecto 01 · Proyecto 02 · Proyecto 03 · Proyecto 04 · Proyecto 05 · Proyecto 06</p>
 </section>
 
-<!-- ======================
-  CURRÍCULUM (CONTENEDOR)
-====================== -->
+<!-- ===== CURRÍCULUM ===== -->
 <section class="page cv">
 
-  <!-- NIVEL 2 · RADIOS -->
-  <input type="radio" name="cvtab" id="cv-home" checked>
-  <input type="radio" name="cvtab" id="cv-edu">
-  <input type="radio" name="cvtab" id="cv-exp">
-  <input type="radio" name="cvtab" id="cv-skill">
+  <!-- NIVEL 2: RADIOS CV -->
+  <input type="radio" name="cv" id="cv-home" checked>
+  <input type="radio" name="cv" id="cv-edu">
+  <input type="radio" name="cv" id="cv-exp">
+  <input type="radio" name="cv" id="cv-skill">
 
   <!-- SUBNAV -->
   <div class="subnav">
@@ -72,10 +60,10 @@
     <label for="cv-skill">Habilidades</label>
   </div>
 
-  <!-- CURRÍCULUM · PORTADA -->
+  <!-- CV PORTADA -->
   <div class="cv-page cv-home">
     <h1>Currículum</h1>
-    <p>Formación, experiencia y habilidades en diseño industrial.</p>
+    <p>Formación, experiencia y habilidades.</p>
   </div>
 
   <!-- FORMACIÓN -->
@@ -88,7 +76,7 @@
   <!-- EXPERIENCIA -->
   <div class="cv-page cv-exp">
     <h1>Experiencia</h1>
-    <p>Proyectos académicos de diseño</p>
+    <p>Proyectos académicos</p>
     <p>Modelado 3D y prototipado</p>
   </div>
 
@@ -103,9 +91,7 @@
 
 </section>
 
-<!-- ======================
-  CONTACTO
-====================== -->
+<!-- ===== CONTACTO ===== -->
 <section class="page contact">
   <h1>Contacto</h1>
   <p>tucorreo@email.com</p>

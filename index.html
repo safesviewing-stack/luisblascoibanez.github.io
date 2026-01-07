@@ -276,17 +276,30 @@ footer{
 
 .about-image {
   width: auto; /* Mantiene el tamaño original de la imagen */
-  max-width: 290px; /* Limita el tamaño máximo de la imagen */
+  max-width: 250px; /* Limita el tamaño máximo de la imagen */
   height: auto; /* Mantiene la proporción de la imagen */
   margin-left: 20px; /* Añade un pequeño margen para separarla del texto */
+  animation: slideInFromRight 1s ease-out forwards; /* Aplica la animación */
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%); /* Comienza desde la derecha */
+    opacity: 0; /* Comienza invisible */
+  }
+  100% {
+    transform: translateX(0); /* Termina en su posición original */
+    opacity: 1; /* Se vuelve completamente visible */
+  }
 }
 
 /* ================= Estilo de texto en "Sobre mí" ================= */
 #about-text {
-  font-size: 14px; /* Cambia el tamaño de la fuente (puedes ajustar el valor) */
-  line-height: 1.5; /* Ajusta la altura de línea para un mejor espaciado */
-  margin-bottom: 300px; /* Margen inferior para separar del resto del contenido */
-  max-width: 500px; /* Limita el ancho máximo del bloque de texto */
+  font-size: 18px; /* Cambia el tamaño de la fuente (puedes ajustar el valor) */
+  line-height: 1.8; /* Ajusta la altura de línea para un mejor espaciado */
+  margin-top: 20px; /* Margen superior para separar del encabezado */
+  margin-bottom: 30px; /* Margen inferior para separar del resto del contenido */
+  max-width: 800px; /* Limita el ancho máximo del bloque de texto */
 }
 </style>
 </head>
@@ -336,7 +349,6 @@ footer{
   <div class="container spaced">
     <h1 id="about-title"></h1>
     
-    <!-- Contenedor con Flexbox para alinear la imagen a la derecha del texto -->
     <div class="about-content">
       <p id="about-text">
         Soy Luis Blasco-Ibáñez Berbel, un diseñador industrial de 24 años, originario de Valencia. Actualmente estudio Diseño Industrial y Desarrollo de Productos en la UPV, habiendo pasado también por la UJI. Desde siempre me han atraído tanto lo artístico como lo técnico, lo que me llevó a elegir esta carrera, ya que combina ambas pasiones. Aunque aún no tengo experiencia profesional en el campo del diseño, cuento con formación en electricidad gracias a una FP, lo que me ha proporcionado una sólida base técnica. Me considero una persona curiosa, observadora y adaptable, capaz de integrarme en diversos entornos laborales y personales. Esta capacidad de adaptación me permite aprender de cada experiencia y poder afrontar nuevos retos con una mentalidad abierta.
@@ -366,8 +378,6 @@ footer{
 
         <a href="cv.pdf" class="download" id="cv-download"></a>
       </div>
-
-      <!-- Se ha eliminado la imagen de aquí -->
     </div>
   </div>
 </section>
@@ -450,7 +460,7 @@ const content={
     heroTitle:"Industrial design engineering applied to product development",
     heroSub:"Technical design, manufacturing and industrial product optimization.",
     aboutTitle:"About me",
-    aboutText:"I am Luis Blasco-Ibáñez Berbel, a 24-year-old industrial designer from Valencia. I am currently studying Industrial Design and Product Development at the UPV, after also attending the UJI. I have always been drawn to both the artistic and technical aspects, which led me to choose this career as it combines both passions. Although I still have no professional experience in design, I have training in electricity from a vocational course (FP), which has provided me with a solid technical foundation. I consider myself a curious, observant, and adaptable person, capable of integrating into various work and personal environments. This adaptability allows me to learn from each experience and face new challenges with an open mindset.",
+    aboutText:"I am Luis Blasco-Ibáñez Berbel, a 24-year-old industrial designer from Valencia, currently studying Industrial Design and Product Development at the UPV, after also attending the UJI. I have always been fascinated by both the artistic and technical aspects, and I believe this combination has made my career the perfect choice. Although it hasn't been an easy path, I believe that passion for what you do turns challenges into opportunities. I consider myself a curious, observant person with a great ability to adapt to different environments, both professionally and personally.",
     cvTitle: "Curriculum Vitae",
     cvProfileTitle: "Professional profile",
     cvProfileText: "Industrial designer with a technical mindset and product-oriented approach.",

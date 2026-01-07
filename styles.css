@@ -3,8 +3,6 @@
 /* Estilos comunes para todos los apartados */
 section {
   background-color: #fff;  /* Fondo blanco para todas las secciones */
-  padding-top: 50px;        /* Margen superior editable */
-  padding-bottom: 50px;     /* Margen inferior editable */
 }
 
 /* Título principal de cada sección */
@@ -13,11 +11,7 @@ section h1 {
   font-weight: 600;          /* Mismo peso de fuente */
   text-align: left;          /* Alineado a la izquierda */
   color: #333;               /* Color negro para los títulos */
-  margin-top: 20px;          /* Margen superior editable */
-  margin-bottom: 20px;       /* Margen inferior editable */
   text-transform: capitalize; /* Primera letra en mayúscula */
-  border-bottom: 1px solid #ccc; /* Línea decorativa gris delgada */
-  padding-bottom: 5px;       /* Espaciado debajo */
 }
 
 /* Estilo para los textos de cada sección */
@@ -25,8 +19,6 @@ section p, section ul {
   font-size: 16px;
   line-height: 1.8;
   color: #555;
-  margin-top: 15px;            /* Margen superior editable */
-  margin-bottom: 30px;         /* Margen inferior editable */
   max-width: 800px;            /* Limitar el ancho del texto */
   padding-left: 20px;          /* Espaciado izquierdo */
   padding-right: 20px;         /* Espaciado derecho */
@@ -63,7 +55,6 @@ section a, section button {
   text-decoration: none;
   border-radius: 4px;
   transition: background-color 0.3s ease;
-  margin-top: 20px;
 }
 
 section a:hover, section button:hover {
@@ -72,8 +63,6 @@ section a:hover, section button:hover {
 
 /* ==================== Estilos para el apartado SOBRE MÍ ==================== */
 #about {
-  padding-top: 50px;
-  padding-bottom: 50px;
 }
 
 #about-title {
@@ -88,7 +77,6 @@ section a:hover, section button:hover {
 
 .about-content {
   display: flex;
-  margin-top: 30px;
   align-items: flex-start;
   justify-content: space-between;
 }
@@ -113,8 +101,6 @@ section a:hover, section button:hover {
 
 /* ==================== Estilos para el apartado CURRÍCULUM ==================== */
 #cv {
-  padding-top: 50px;
-  padding-bottom: 50px;
 }
 
 #cv-title {
@@ -122,14 +108,9 @@ section a:hover, section button:hover {
   font-weight: 600;
   text-align: left;
   color: #333;
-  margin-top: 20px;
-  margin-bottom: 20px;
   text-transform: capitalize;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 5px;
 }
 
-/* Estilo para los cuadros de contenido en currículum */
 .cv {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
@@ -140,22 +121,17 @@ section a:hover, section button:hover {
 
 .cv div {
   background-color: #fff;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .cv img {
   max-width: 100%;
   border-radius: 6px;
+}
 
 /* ==================== Estilos para el apartado PORTFOLIO ==================== */
 #portfolio {
-  padding-top: 50px;
-  padding-bottom: 50px;
 }
 
 #portfolio-title {
@@ -163,8 +139,6 @@ section a:hover, section button:hover {
   font-weight: 600;
   text-align: left;
   color: #000;
-  margin-top: 20px;
-  margin-bottom: 20px;
   text-transform: capitalize;
 }
 
@@ -172,7 +146,6 @@ section a:hover, section button:hover {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  margin-top: 30px;
 }
 
 .case {
@@ -214,8 +187,6 @@ section a:hover, section button:hover {
 
 /* ==================== Estilos para el apartado CONTACTO ==================== */
 #contact {
-  padding-top: 50px;
-  padding-bottom: 50px;
 }
 
 #contact-title {
@@ -223,15 +194,12 @@ section a:hover, section button:hover {
   font-weight: 600;
   text-align: left;
   color: #000;
-  margin-top: 20px;
-  margin-bottom: 20px;
   text-transform: capitalize;
 }
 
 #contact-email, #contact-phone {
   font-size: 16px;
   color: #555;
-  margin-bottom: 20px;
   display: block;
 }
 

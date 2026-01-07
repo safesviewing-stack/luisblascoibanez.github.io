@@ -1,15 +1,8 @@
 /* ==================== Estilos para el apartado CURRÍCULUM ==================== */
 
-/* Contenedor principal de la sección */
-#cv {
-  background-color: #fff; /* Fondo blanco */
-  padding-top: 50px;       /* Margen superior editable */
-  padding-bottom: 50px;    /* Margen inferior editable */
-}
-
 /* Título de la sección CURRÍCULUM */
 #cv-title {
-  font-size: 24px;                /* Tamaño igual que los otros títulos */
+  font-size: 26px;                /* Tamaño igual que los otros títulos */
   font-weight: 600;               /* Mismo peso de fuente */
   text-align: left;               /* Alineado a la izquierda */
   color: #333;                    /* Color negro igual a los otros títulos */

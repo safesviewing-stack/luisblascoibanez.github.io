@@ -2,258 +2,235 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Portfolio · Industrial Design Engineer</title>
+<title>Borbála · Industrial Design Portfolio</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --bg:#ffffff;
-  --text:#111;
-  --card:#f5f5f5;
-  --accent:#000;
-}
-
-body.dark{
-  --bg:#0f0f0f;
-  --text:#f5f5f5;
-  --card:#1a1a1a;
-  --accent:#fff;
+  --bg:#0b0b0d;
+  --text:#f5f5f7;
+  --muted:#888;
+  --accent:#00f2ff;
+  --glass:rgba(255,255,255,.06);
+  --card:rgba(255,255,255,.08);
 }
 
 /* RESET */
-*{margin:0;padding:0;box-sizing:border-box;font-family:"Inter",sans-serif;}
-html{scroll-behavior:smooth;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Inter",sans-serif}
 body{
-  background:var(--bg);
+  background:radial-gradient(circle at top,#101014,#050507);
   color:var(--text);
-  min-height:100vh;
-  transition:.3s;
+  overflow-x:hidden;
 }
 
 /* LOADER */
-#loader{
-  position:fixed;
-  inset:0;
-  background:var(--bg);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
-}
-.spinner{
-  width:40px;height:40px;
-  border:3px solid #ccc;
-  border-top:3px solid var(--accent);
-  border-radius:50%;
-  animation:spin 1s linear infinite;
-}
+#loader{position:fixed;inset:0;background:#050507;display:flex;align-items:center;justify-content:center;z-index:9999}
+.loader-ring{width:60px;height:60px;border:3px solid rgba(255,255,255,.1);border-top:3px solid var(--accent);border-radius:50%;animation:spin 1s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
 /* HEADER */
 header{
   position:fixed;
   top:0;width:100%;
-  height:70px;
-  background:rgba(0,0,0,.85);
-  backdrop-filter:blur(10px);
-  color:white;
-  z-index:1000;
-}
-.nav{
-  max-width:1100px;
-  margin:auto;
-  height:100%;
+  padding:20px 40px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:0 20px;
+  backdrop-filter:blur(14px);
+  background:rgba(10,10,12,.6);
+  z-index:1000;
 }
-nav ul{display:flex;gap:30px;list-style:none}
-nav li{cursor:pointer;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
-nav li:hover{opacity:.7}
-.toggle{
+nav span{
+  margin-left:28px;
   cursor:pointer;
   font-size:12px;
-  border:1px solid white;
-  padding:4px 10px;
-  border-radius:4px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--muted);
 }
+nav span:hover{color:var(--text)}
 
-/* MAIN */
-main{padding-top:90px;}
+/* SECTIONS */
 section{
-  min-height:80vh;
-  display:none;
-  padding:80px 20px;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:120px 40px;
 }
-section.active{display:block}
+.container{max-width:1200px;width:100%}
 
 /* REVEAL */
-.reveal{
-  opacity:0;
-  transform:translateY(40px);
-  transition:.8s ease;
-}
-.reveal.visible{
-  opacity:1;
-  transform:translateY(0);
-}
+.reveal{opacity:0;transform:translateY(60px);transition:1s ease}
+.reveal.active{opacity:1;transform:translateY(0)}
 
 /* HERO */
 .hero{
-  max-width:900px;
-  margin:auto;
-  text-align:left;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
 }
-.hero h1{font-size:36px;margin-bottom:16px}
-.hero p{font-size:18px;opacity:.8}
-.hero .btns{margin-top:30px;display:flex;gap:16px}
-
-/* BUTTONS */
+.hero h2{font-size:56px;line-height:1.05}
+.hero p{margin-top:20px;font-size:18px;color:var(--muted)}
 .btn{
-  padding:12px 26px;
-  border-radius:8px;
+  margin-top:30px;
+  padding:14px 32px;
+  border-radius:30px;
   border:none;
   cursor:pointer;
-  background:var(--accent);
-  color:var(--bg);
-  transition:.25s;
-}
-.btn.secondary{
-  background:none;
-  color:var(--accent);
-  border:1px solid var(--accent);
-}
-.btn:hover{
-  transform:translateY(-3px);
-  box-shadow:0 8px 20px rgba(0,0,0,.2);
+  background:linear-gradient(135deg,var(--accent),#4affc7);
+  color:#000;
+  font-weight:600;
 }
 
-/* GRID */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:24px;
-}
-.card{
+/* FLOAT CARDS */
+.float-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.float-card{
   background:var(--card);
   padding:24px;
-  border-radius:14px;
-  transition:.3s;
+  border-radius:20px;
+  animation:float 6s ease-in-out infinite;
 }
-.card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 12px 30px rgba(0,0,0,.15);
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+/* HORIZONTAL PROJECTS */
+.horizontal{
+  display:flex;
+  gap:30px;
+  overflow-x:auto;
+  padding-bottom:20px;
 }
+.project{
+  min-width:280px;
+  background:var(--glass);
+  padding:24px;
+  border-radius:20px;
+  backdrop-filter:blur(12px);
+  transition:.4s;
+}
+.project:hover{transform:translateY(-10px) scale(1.03)}
+
+/* GALLERY */
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+.gallery img{
+  width:100%;
+  border-radius:16px;
+  transition:.4s;
+}
+.gallery img:hover{transform:scale(1.05)}
 
 /* FOOTER */
-footer{
-  text-align:center;
-  padding:16px;
-  font-size:12px;
-  opacity:.7;
-}
+footer{text-align:center;padding:60px 20px;color:var(--muted);font-size:12px}
 
 /* MOBILE */
-@media(max-width:700px){
-  .hero h1{font-size:28px}
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}
+  .hero h2{font-size:42px}
 }
 </style>
 </head>
 
 <body>
 
-<div id="loader"><div class="spinner"></div></div>
+<div id="loader"><div class="loader-ring"></div></div>
 
 <header>
-  <div class="nav">
-    <div>LB</div>
-    <nav>
-      <ul>
-        <li class="tab" data-tab="home">Inicio</li>
-        <li class="tab" data-tab="about">Sobre mí</li>
-        <li class="tab" data-tab="portfolio">Portfolio</li>
-        <li class="tab" data-tab="contact">Contacto</li>
-      </ul>
-    </nav>
-    <div class="toggle" onclick="toggleTheme()">Modo</div>
-  </div>
+  <h1>BORBÁLA</h1>
+  <nav>
+    <span onclick="go('home')">Inicio</span>
+    <span onclick="go('about')">Sobre mí</span>
+    <span onclick="go('projects')">Proyectos</span>
+    <span onclick="go('gallery')">Galería</span>
+    <span onclick="go('contact')">Contacto</span>
+  </nav>
 </header>
 
-<main>
-
-<section id="home" class="active">
-  <div class="hero reveal">
-    <h1>Diseño Industrial & Desarrollo de Producto</h1>
-    <p>Ingeniería aplicada al diseño de productos funcionales y estéticos.</p>
-    <div class="btns">
-      <button class="btn tab" data-tab="portfolio">Ver proyectos</button>
-      <button class="btn secondary tab" data-tab="contact">Contactar</button>
+<section id="home">
+  <div class="container hero reveal">
+    <div>
+      <h2>Industrial Design<br>con alma técnica</h2>
+      <p>Diseño productos donde estética, ingeniería y fabricación se unen para crear soluciones reales.</p>
+      <button class="btn" onclick="go('projects')">Ver proyectos</button>
+    </div>
+    <div class="float-grid">
+      <div class="float-card">⚙️ Ingeniería de producto</div>
+      <div class="float-card">🖨️ Impresión 3D</div>
+      <div class="float-card">📐 CAD avanzado</div>
+      <div class="float-card">🔌 Sistemas técnicos</div>
     </div>
   </div>
 </section>
 
 <section id="about">
-  <div class="reveal">
-    <h1>Sobre mí</h1>
-    <p>Soy diseñador industrial con perfil técnico y creativo, enfocado en desarrollo de producto, prototipado y fabricación.</p>
+  <div class="container reveal">
+    <h2>Sobre mí</h2>
+    <p>Soy Borbála, diseñadora industrial formada en la BME de Budapest, con pasión por el modelado 3D, la impresión 3D y el diseño técnico aplicado al producto.</p>
   </div>
 </section>
 
-<section id="portfolio">
-  <div class="reveal">
-    <h1>Portfolio</h1>
-    <div class="grid">
-      <div class="card">Producto eléctrico</div>
-      <div class="card">Prototipado 3D</div>
-      <div class="card">Optimización mecánica</div>
-      <div class="card">Diseño industrial</div>
+<section id="projects">
+  <div class="container reveal">
+    <h2>Proyectos (Scroll horizontal)</h2>
+    <div class="horizontal">
+      <div class="project">Mecanismo radial sincronizado</div>
+      <div class="project">Producto eléctrico</div>
+      <div class="project">Optimización mecánica</div>
+      <div class="project">Prototipos 3D</div>
+      <div class="project">Diseño mobiliario</div>
     </div>
   </div>
 </section>
 
-<section id="contact">
-  <div class="reveal">
-    <h1>Contacto</h1>
-    <p>📧 email@ejemplo.com</p>
-    <p>📞 +34 000 000 000</p>
+<section id="gallery">
+  <div class="container reveal">
+    <h2>Galería de proyectos</h2>
+    <div class="gallery">
+      <img src="https://picsum.photos/400/300?1">
+      <img src="https://picsum.photos/400/300?2">
+      <img src="https://picsum.photos/400/300?3">
+      <img src="https://picsum.photos/400/300?4">
+    </div>
   </div>
 </section>
 
-</main>
+<section id="model3d">
+  <div class="container reveal">
+    <h2>Modelo 3D interactivo</h2>
+    <iframe width="100%" height="480" src="https://sketchfab.com/models/7w7pAfrE3/embed"
+      frameborder="0" allowfullscreen></iframe>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container reveal">
+    <h2>Contacto</h2>
+    <p>📧 borbala.design@email.com</p>
+    <p>📞 +34 XXX XXX XXX</p>
+  </div>
+</section>
 
 <footer>
-© 2026 · Portfolio Industrial Design
+© 2026 · Borbála · Industrial Design Portfolio
 </footer>
 
 <script>
 // LOADER
 window.onload=()=>document.getElementById("loader").style.display="none";
 
-// NAV
-document.querySelectorAll(".tab").forEach(tab=>{
-  tab.onclick=()=>{
-    document.querySelectorAll("section").forEach(s=>s.classList.remove("active"));
-    document.getElementById(tab.dataset.tab).classList.add("active");
-    reveal();
-  }
-});
+// SCROLL
+function go(id){document.getElementById(id).scrollIntoView({behavior:"smooth"})}
 
-// REVEAL ANIMATION
-function reveal(){
-  document.querySelectorAll(".reveal").forEach(el=>{
-    el.classList.remove("visible");
-    setTimeout(()=>el.classList.add("visible"),100);
-  });
-}
-reveal();
-
-// THEME TOGGLE
-function toggleTheme(){
-  document.body.classList.toggle("dark");
-}
+// REVEAL
+const reveals=document.querySelectorAll(".reveal");
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("active")});
+},{threshold:.2});
+reveals.forEach(r=>observer.observe(r));
 </script>
 
 </body>

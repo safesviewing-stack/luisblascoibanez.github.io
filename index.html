@@ -4,96 +4,84 @@
 <meta charset="UTF-8">
 <title>Borbála · Industrial Design Engineer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --bg:#050507;
-  --text:#f5f5f7;
-  --muted:#888;
-  --accent:#00f2ff;
-}
-
-/* RESET */
-*{margin:0;padding:0;box-sizing:border-box;font-family:"Inter",sans-serif}
-html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
-body{background:#050507;color:var(--text);overflow-x:hidden}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
+body{background:#050507;color:#f5f5f7;overflow:hidden}
 
 /* HEADER */
 header{
-  position:fixed;
-  top:0;width:100%;
+  position:fixed;top:0;width:100%;
   padding:20px 40px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  backdrop-filter:blur(14px);
-  background:rgba(10,10,12,.6);
-  z-index:1000;
+  display:flex;justify-content:space-between;align-items:center;
+  background:#0b0b0d;z-index:1000
 }
-nav span{margin-left:28px;cursor:pointer;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#aaa}
-nav span:hover{color:white}
-.lang button{
-  background:none;border:1px solid var(--accent);color:var(--accent);
-  padding:4px 10px;border-radius:6px;cursor:pointer;font-size:11px;margin-left:10px
+nav a{
+  margin-left:20px;color:#aaa;text-decoration:none;
+  font-size:12px;letter-spacing:.15em;text-transform:uppercase
+}
+nav a:hover{color:white}
+
+/* VIEWS */
+.view{
+  position:absolute;top:80px;left:0;
+  width:100%;height:calc(100vh - 80px);
+  padding:80px 40px;
+  display:none;
+  animation:fade .6s ease;
+}
+.view.active{display:block}
+
+@keyframes fade{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.container{max-width:1100px;margin:auto}
+
+/* HOME */
+.hero{text-align:center;margin-top:80px}
+.hero h1{font-size:52px}
+.hero p{margin-top:16px;color:#aaa}
+.btn{
+  margin-top:30px;padding:14px 32px;
+  border:none;border-radius:30px;
+  background:#00f2ff;color:#000;
+  font-weight:600;cursor:pointer
 }
 
 /* SECTIONS */
-section{
-  min-height:100vh;
-  scroll-snap-align:start;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:140px 40px;
-}
-.section-box{
-  max-width:1100px;
-  width:100%;
-  padding:80px;
-  border-radius:36px;
-  background:rgba(255,255,255,.03);
-  backdrop-filter:blur(20px);
-  box-shadow:0 40px 90px rgba(0,0,0,.4);
-}
-.section-title{
-  position:absolute;
-  top:-40px;left:0;
-  font-size:64px;font-weight:700;opacity:.04
-}
-.reveal{opacity:0;transform:translateY(60px) scale(.96);transition:1s cubic-bezier(.16,.8,.24,1)}
-.reveal.active{opacity:1;transform:translateY(0) scale(1)}
-
-/* HERO */
-.hero{display:grid;grid-template-columns:1fr 1fr;gap:60px}
-.hero h2{font-size:52px;line-height:1.05}
-.hero p{margin-top:20px;font-size:18px;color:var(--muted)}
-.btn{
-  margin-top:30px;padding:14px 32px;border-radius:30px;border:none;
-  background:linear-gradient(135deg,var(--accent),#4affc7);
-  color:#000;font-weight:600;cursor:pointer
-}
+h2{font-size:40px;margin-bottom:20px}
+p{color:#aaa;line-height:1.7}
 
 /* PROJECTS */
-.horizontal{display:flex;gap:30px;overflow-x:auto}
-.project{
-  min-width:280px;background:rgba(255,255,255,.06);
-  padding:24px;border-radius:20px;transition:.4s
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:24px
 }
-.project:hover{transform:translateY(-10px) scale(1.03)}
+.card{
+  background:#111;padding:24px;border-radius:16px;
+  transition:.3s
+}
+.card:hover{transform:translateY(-8px)}
 
 /* GALLERY */
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
-.gallery img{width:100%;border-radius:16px}
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:20px
+}
+.gallery img{width:100%;border-radius:14px}
+
+/* CONTACT */
+.contact{text-align:center}
 
 /* FOOTER */
-footer{text-align:center;padding:40px;color:#777;font-size:12px}
-
-/* MOBILE */
-@media(max-width:900px){
-  .hero{grid-template-columns:1fr}
-  .hero h2{font-size:40px}
-  .section-box{padding:50px}
+footer{
+  position:fixed;bottom:10px;width:100%;
+  text-align:center;font-size:11px;color:#777
 }
 </style>
 </head>
@@ -101,120 +89,77 @@ footer{text-align:center;padding:40px;color:#777;font-size:12px}
 <body>
 
 <header>
-  <h1>BORBÁLA</h1>
+  <h2>BORBÁLA</h2>
   <nav>
-    <span onclick="go('home')">Inicio</span>
-    <span onclick="go('about')">Perfil</span>
-    <span onclick="go('projects')">Proyectos</span>
-    <span onclick="go('contact')">Contacto</span>
-    <span class="lang">
-      <button onclick="setLang('es')">ES</button>
-      <button onclick="setLang('en')">EN</button>
-    </span>
+    <a href="#" onclick="show('home')">Inicio</a>
+    <a href="#" onclick="show('about')">Perfil</a>
+    <a href="#" onclick="show('projects')">Proyectos</a>
+    <a href="#" onclick="show('gallery')">Galería</a>
+    <a href="#" onclick="show('contact')">Contacto</a>
   </nav>
 </header>
 
-<section id="home">
-  <div class="section-box reveal">
-    <div class="hero">
-      <div>
-        <h2 id="hero-title"></h2>
-        <p id="hero-sub"></p>
-        <a href="cv.pdf" class="btn" download id="hero-btn"></a>
-      </div>
-      <div>
-        <p><strong id="hero-focus"></strong></p>
-        <ul id="hero-list"></ul>
-      </div>
+<!-- HOME -->
+<div id="home" class="view active">
+  <div class="container hero">
+    <h1>Industrial Design & Product Engineering</h1>
+    <p>Buscando prácticas o primer empleo en diseño industrial y desarrollo de producto.</p>
+    <a href="cv.pdf" class="btn" download>Descargar CV</a>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="about" class="view">
+  <div class="container">
+    <h2>Perfil profesional</h2>
+    <p>Soy Borbála, diseñadora industrial formada en la BME de Budapest, interesada en integrarme en empresas de diseño y desarrollo de producto en España. Combino perfil técnico y creativo para desarrollar soluciones funcionales.</p>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div id="projects" class="view">
+  <div class="container">
+    <h2>Proyectos</h2>
+    <div class="grid">
+      <div class="card">Mecanismo radial sincronizado</div>
+      <div class="card">Producto eléctrico</div>
+      <div class="card">Optimización mecánica</div>
+      <div class="card">Prototipos 3D</div>
     </div>
   </div>
-</section>
+</div>
 
-<section id="about">
-  <div class="section-box reveal">
-    <h2 id="about-title"></h2>
-    <p id="about-text"></p>
+<!-- GALLERY -->
+<div id="gallery" class="view">
+  <div class="container">
+    <h2>Galería</h2>
+    <div class="gallery">
+      <img src="https://picsum.photos/400/300?1">
+      <img src="https://picsum.photos/400/300?2">
+      <img src="https://picsum.photos/400/300?3">
+    </div>
   </div>
-</section>
+</div>
 
-<section id="projects">
-  <div class="section-box reveal">
-    <h2 id="projects-title"></h2>
-    <div class="horizontal" id="projects-list"></div>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="section-box reveal">
-    <h2 id="contact-title"></h2>
+<!-- CONTACT -->
+<div id="contact" class="view">
+  <div class="container contact">
+    <h2>Contacto</h2>
     <p>📧 borbala.design@email.com</p>
     <p>📞 +34 XXX XXX XXX</p>
-    <p id="contact-cta"></p>
+    <p>Disponible para prácticas y primer empleo</p>
   </div>
-</section>
+</div>
 
 <footer>
 © 2026 · Borbála · Industrial Design Engineer
 </footer>
 
 <script>
-function go(id){document.getElementById(id).scrollIntoView({behavior:"smooth"})}
-
-const data={
-  es:{
-    heroTitle:"Diseño Industrial e Ingeniería de Producto",
-    heroSub:"Buscando prácticas o primer empleo en diseño industrial y desarrollo de producto.",
-    heroBtn:"Descargar CV",
-    heroFocus:"Áreas de interés:",
-    heroList:["Diseño de producto","Modelado CAD","Impresión 3D","Prototipado","Ingeniería aplicada"],
-    aboutTitle:"Perfil profesional",
-    aboutText:"Soy Borbála, diseñadora industrial formada en la BME de Budapest, con interés en integrarme en empresas del sector del diseño y desarrollo de producto en España. Me apasiona unir lo técnico y lo creativo en soluciones funcionales.",
-    projectsTitle:"Proyectos destacados",
-    projects:["Mecanismo radial sincronizado","Producto eléctrico","Optimización mecánica","Prototipos 3D"],
-    contactTitle:"Contacto profesional",
-    contactCta:"Disponible para prácticas y primer empleo."
-  },
-  en:{
-    heroTitle:"Industrial Design & Product Engineering",
-    heroSub:"Looking for internships or junior positions in industrial design and product development.",
-    heroBtn:"Download CV",
-    heroFocus:"Main interests:",
-    heroList:["Product design","CAD modeling","3D printing","Prototyping","Engineering"],
-    aboutTitle:"Professional profile",
-    aboutText:"I am Borbála, an industrial designer trained at BME Budapest, interested in joining product development and industrial design companies in Spain. I combine technical and creative skills in functional solutions.",
-    projectsTitle:"Selected projects",
-    projects:["Radial mechanism","Electrical product","Mechanical optimization","3D prototypes"],
-    contactTitle:"Professional contact",
-    contactCta:"Available for internships and junior positions."
-  }
-};
-
-function setLang(lang){
-  const d=data[lang];
-  document.getElementById("hero-title").innerText=d.heroTitle;
-  document.getElementById("hero-sub").innerText=d.heroSub;
-  document.getElementById("hero-btn").innerText=d.heroBtn;
-  document.getElementById("hero-focus").innerText=d.heroFocus;
-  const ul=document.getElementById("hero-list");
-  ul.innerHTML="";
-  d.heroList.forEach(i=>ul.innerHTML+=`<li>${i}</li>`);
-  document.getElementById("about-title").innerText=d.aboutTitle;
-  document.getElementById("about-text").innerText=d.aboutText;
-  document.getElementById("projects-title").innerText=d.projectsTitle;
-  const pl=document.getElementById("projects-list");
-  pl.innerHTML="";
-  d.projects.forEach(p=>pl.innerHTML+=`<div class="project">${p}</div>`);
-  document.getElementById("contact-title").innerText=d.contactTitle;
-  document.getElementById("contact-cta").innerText=d.contactCta;
+function show(id){
+  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
 }
-
-setLang("es");
-
-const reveals=document.querySelectorAll(".reveal");
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("active")});
-},{threshold:.25});
-reveals.forEach(r=>observer.observe(r));
 </script>
 
 </body>

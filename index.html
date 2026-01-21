@@ -7,21 +7,39 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
+:root{
+  --bg:#050507;
+  --text:#f5f5f7;
+  --muted:#888;
+  --card:#111;
+  --accent:#00f2ff;
+}
+body.light{
+  --bg:#f5f5f7;
+  --text:#111;
+  --muted:#666;
+  --card:#fff;
+}
+
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
-body{background:#050507;color:#f5f5f7;overflow:hidden}
+body{background:var(--bg);color:var(--text);overflow:hidden;transition:.3s}
 
 /* HEADER */
 header{
   position:fixed;top:0;width:100%;
   padding:20px 40px;
   display:flex;justify-content:space-between;align-items:center;
-  background:#0b0b0d;z-index:1000
+  background:var(--bg);z-index:1000
 }
 nav a{
-  margin-left:20px;color:#aaa;text-decoration:none;
-  font-size:12px;letter-spacing:.15em;text-transform:uppercase
+  margin-left:20px;color:var(--muted);text-decoration:none;
+  font-size:12px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer
 }
-nav a:hover{color:white}
+nav a:hover{color:var(--text)}
+.controls button{
+  margin-left:12px;border:none;background:none;color:var(--text);
+  cursor:pointer;font-size:12px
+}
 
 /* VIEWS */
 .view{
@@ -29,59 +47,48 @@ nav a:hover{color:white}
   width:100%;height:calc(100vh - 80px);
   padding:80px 40px;
   display:none;
-  animation:fade .6s ease;
+  animation:slide .5s ease;
 }
 .view.active{display:block}
-
-@keyframes fade{
-  from{opacity:0;transform:translateY(20px)}
-  to{opacity:1;transform:translateY(0)}
+@keyframes slide{
+  from{opacity:0;transform:translateX(40px)}
+  to{opacity:1;transform:translateX(0)}
 }
-
 .container{max-width:1100px;margin:auto}
 
 /* HOME */
 .hero{text-align:center;margin-top:80px}
-.hero h1{font-size:52px}
-.hero p{margin-top:16px;color:#aaa}
+.hero h1{font-size:48px}
+.hero p{margin-top:16px;color:var(--muted)}
 .btn{
-  margin-top:30px;padding:14px 32px;
-  border:none;border-radius:30px;
-  background:#00f2ff;color:#000;
-  font-weight:600;cursor:pointer
+  margin-top:30px;padding:14px 32px;border:none;
+  border-radius:30px;background:var(--accent);
+  color:#000;font-weight:600;cursor:pointer
 }
 
-/* SECTIONS */
-h2{font-size:40px;margin-bottom:20px}
-p{color:#aaa;line-height:1.7}
-
-/* PROJECTS */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:24px
-}
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
 .card{
-  background:#111;padding:24px;border-radius:16px;
-  transition:.3s
+  background:var(--card);padding:24px;border-radius:16px;
+  transition:.3s;cursor:pointer
 }
 .card:hover{transform:translateY(-8px)}
 
 /* GALLERY */
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:20px
-}
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
 .gallery img{width:100%;border-radius:14px}
 
-/* CONTACT */
-.contact{text-align:center}
+/* CV PREVIEW */
+.cv-box{
+  background:var(--card);padding:24px;border-radius:16px;
+  margin-top:20px
+}
+iframe{width:100%;height:400px;border:none}
 
 /* FOOTER */
 footer{
   position:fixed;bottom:10px;width:100%;
-  text-align:center;font-size:11px;color:#777
+  text-align:center;font-size:11px;color:var(--muted)
 }
 </style>
 </head>
@@ -91,48 +98,58 @@ footer{
 <header>
   <h2>BORBÁLA</h2>
   <nav>
-    <a href="#" onclick="show('home')">Inicio</a>
-    <a href="#" onclick="show('about')">Perfil</a>
-    <a href="#" onclick="show('projects')">Proyectos</a>
-    <a href="#" onclick="show('gallery')">Galería</a>
-    <a href="#" onclick="show('contact')">Contacto</a>
+    <a onclick="show('home')">Inicio</a>
+    <a onclick="show('about')">Perfil</a>
+    <a onclick="show('projects')">Proyectos</a>
+    <a onclick="show('gallery')">Galería</a>
+    <a onclick="show('cv')">CV</a>
+    <a onclick="show('contact')">Contacto</a>
   </nav>
+  <div class="controls">
+    <button onclick="toggleTheme()">🌙</button>
+    <button onclick="setLang('es')">ES</button>
+    <button onclick="setLang('en')">EN</button>
+  </div>
 </header>
 
 <!-- HOME -->
 <div id="home" class="view active">
   <div class="container hero">
-    <h1>Industrial Design & Product Engineering</h1>
-    <p>Buscando prácticas o primer empleo en diseño industrial y desarrollo de producto.</p>
-    <a href="cv.pdf" class="btn" download>Descargar CV</a>
+    <h1 id="hero-title"></h1>
+    <p id="hero-sub"></p>
+    <button class="btn" onclick="show('projects')" id="hero-btn"></button>
   </div>
 </div>
 
 <!-- ABOUT -->
 <div id="about" class="view">
   <div class="container">
-    <h2>Perfil profesional</h2>
-    <p>Soy Borbála, diseñadora industrial formada en la BME de Budapest, interesada en integrarme en empresas de diseño y desarrollo de producto en España. Combino perfil técnico y creativo para desarrollar soluciones funcionales.</p>
+    <h2 id="about-title"></h2>
+    <p id="about-text"></p>
   </div>
 </div>
 
 <!-- PROJECTS -->
 <div id="projects" class="view">
   <div class="container">
-    <h2>Proyectos</h2>
-    <div class="grid">
-      <div class="card">Mecanismo radial sincronizado</div>
-      <div class="card">Producto eléctrico</div>
-      <div class="card">Optimización mecánica</div>
-      <div class="card">Prototipos 3D</div>
-    </div>
+    <h2 id="projects-title"></h2>
+    <div class="grid" id="projects-grid"></div>
+  </div>
+</div>
+
+<!-- PROJECT DETAIL -->
+<div id="project-detail" class="view">
+  <div class="container">
+    <h2 id="detail-title"></h2>
+    <p id="detail-text"></p>
+    <button class="btn" onclick="show('projects')">Volver</button>
   </div>
 </div>
 
 <!-- GALLERY -->
 <div id="gallery" class="view">
   <div class="container">
-    <h2>Galería</h2>
+    <h2 id="gallery-title"></h2>
     <div class="gallery">
       <img src="https://picsum.photos/400/300?1">
       <img src="https://picsum.photos/400/300?2">
@@ -141,13 +158,23 @@ footer{
   </div>
 </div>
 
+<!-- CV -->
+<div id="cv" class="view">
+  <div class="container">
+    <h2 id="cv-title"></h2>
+    <div class="cv-box">
+      <iframe src="cv.pdf"></iframe>
+      <a href="cv.pdf" class="btn" download>Descargar CV</a>
+    </div>
+  </div>
+</div>
+
 <!-- CONTACT -->
 <div id="contact" class="view">
-  <div class="container contact">
-    <h2>Contacto</h2>
+  <div class="container">
+    <h2 id="contact-title"></h2>
     <p>📧 borbala.design@email.com</p>
     <p>📞 +34 XXX XXX XXX</p>
-    <p>Disponible para prácticas y primer empleo</p>
   </div>
 </div>
 
@@ -156,10 +183,88 @@ footer{
 </footer>
 
 <script>
-function show(id){
-  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
+const data={
+ es:{
+  heroTitle:"Diseño Industrial e Ingeniería de Producto",
+  heroSub:"Buscando prácticas o primer empleo en diseño industrial y desarrollo de producto.",
+  heroBtn:"Ver proyectos",
+  aboutTitle:"Perfil profesional",
+  aboutText:"Soy Borbála, diseñadora industrial formada en la BME de Budapest, con interés en integrarme en empresas del sector del diseño y desarrollo de producto en España.",
+  projectsTitle:"Proyectos",
+  projects:[
+   {title:"Mecanismo radial sincronizado",desc:"Análisis cinemático y dinámico de mecanismo."},
+   {title:"Producto eléctrico",desc:"Diseño técnico y fabricación."},
+   {title:"Optimización mecánica",desc:"Mejora de geometrías y ensamblajes."},
+   {title:"Prototipos 3D",desc:"Impresión 3D funcional."}
+  ],
+  galleryTitle:"Galería",
+  cvTitle:"Currículum Vitae",
+  contactTitle:"Contacto profesional"
+ },
+ en:{
+  heroTitle:"Industrial Design & Product Engineering",
+  heroSub:"Looking for internships or junior positions in industrial design and product development.",
+  heroBtn:"View projects",
+  aboutTitle:"Professional profile",
+  aboutText:"I am Borbála, industrial designer trained at BME Budapest, interested in joining product development companies in Spain.",
+  projectsTitle:"Projects",
+  projects:[
+   {title:"Radial mechanism",desc:"Kinematic and dynamic analysis."},
+   {title:"Electrical product",desc:"Technical design and manufacturing."},
+   {title:"Mechanical optimization",desc:"Geometry and assembly improvement."},
+   {title:"3D Prototypes",desc:"Functional 3D printing."}
+  ],
+  galleryTitle:"Gallery",
+  cvTitle:"Curriculum Vitae",
+  contactTitle:"Professional contact"
+ }
+};
+
+let lang="es";
+
+function setLang(l){
+ lang=l;
+ const d=data[l];
+ document.getElementById("hero-title").innerText=d.heroTitle;
+ document.getElementById("hero-sub").innerText=d.heroSub;
+ document.getElementById("hero-btn").innerText=d.heroBtn;
+ document.getElementById("about-title").innerText=d.aboutTitle;
+ document.getElementById("about-text").innerText=d.aboutText;
+ document.getElementById("projects-title").innerText=d.projectsTitle;
+ const grid=document.getElementById("projects-grid");
+ grid.innerHTML="";
+ d.projects.forEach(p=>{
+  grid.innerHTML+=`<div class="card" onclick="openProject('${p.title}','${p.desc}')">${p.title}</div>`;
+ });
+ document.getElementById("gallery-title").innerText=d.galleryTitle;
+ document.getElementById("cv-title").innerText=d.cvTitle;
+ document.getElementById("contact-title").innerText=d.contactTitle;
 }
+
+function openProject(title,desc){
+ document.getElementById("detail-title").innerText=title;
+ document.getElementById("detail-text").innerText=desc;
+ show("project-detail");
+}
+
+function show(id){
+ document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+}
+
+function toggleTheme(){
+ document.body.classList.toggle("light");
+}
+
+let startX=0;
+document.addEventListener("touchstart",e=>startX=e.touches[0].clientX);
+document.addEventListener("touchend",e=>{
+ const endX=e.changedTouches[0].clientX;
+ if(endX-startX>80) show("home");
+ if(startX-endX>80) show("projects");
+});
+
+setLang("es");
 </script>
 
 </body>

@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Borbála · Diseño Industrial</title>
+<title>L · BIB · Diseño Industrial</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -40,9 +40,9 @@ body{
 /* HEADER */
 header{
   position:fixed;
-  top:10px; /* bajado ligeramente */
+  top:10px;
   width:100%;
-  padding:16px 36px; /* más compacto */
+  padding:14px 28px;
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -51,16 +51,22 @@ header{
 }
 
 header h2{
-  font-size:18px; /* tamaño reducido */
+  font-size:17px;
   font-weight:600;
-  letter-spacing:.04em;
+  letter-spacing:.18em;
+}
+
+nav{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:14px;
 }
 
 nav a{
-  margin-left:18px;
   color:var(--muted);
   text-decoration:none;
-  font-size:11px; /* reducido */
+  font-size:11px;
   letter-spacing:.14em;
   text-transform:uppercase;
   cursor:pointer;
@@ -70,14 +76,18 @@ nav a:hover{
   color:var(--text);
 }
 
+.controls{
+  display:flex;
+  gap:8px;
+}
+
 .controls button{
-  margin-left:10px;
   border:1px solid var(--accent);
   background:none;
   color:var(--text);
   cursor:pointer;
   font-size:10px;
-  padding:4px 8px;
+  padding:4px 7px;
   border-radius:6px;
   opacity:.6;
   transition:.2s;
@@ -92,46 +102,44 @@ nav a:hover{
 /* VIEWS */
 .view{
   position:absolute;
-  top:90px;
+  top:80px;
   left:0;
   width:100%;
-  height:calc(100vh - 90px);
-  padding:70px 40px;
+  height:calc(100vh - 80px);
+  padding:50px 30px;
   display:none;
-  animation:slide .5s ease;
+  animation:slide .45s ease;
 }
 
-.view.active{
-  display:block;
-}
+.view.active{display:block;}
 
 @keyframes slide{
-  from{opacity:0;transform:translateX(40px)}
+  from{opacity:0;transform:translateX(30px)}
   to{opacity:1;transform:translateX(0)}
 }
 
 .container{
-  max-width:1050px;
+  max-width:1100px;
   margin:auto;
   display:flex;
   flex-direction:column;
-  gap:22px;
+  gap:20px;
 }
 
 /* TYPO */
-h1{font-size:42px;}
-h2{font-size:30px;margin-bottom:18px;}
-p{color:var(--muted);line-height:1.65;font-size:14px;}
+h1{font-size:38px;}
+h2{font-size:26px;margin-bottom:14px;}
+p{color:var(--muted);line-height:1.6;font-size:14px;}
 
 /* HOME */
-.hero{text-align:center;margin-top:60px;}
-.hero p{max-width:600px;margin:18px auto 0 auto;}
+.hero{text-align:center;margin-top:40px;}
+.hero p{max-width:600px;margin:16px auto 0 auto;}
 
 .btn{
-  margin-top:26px;
-  padding:9px 20px;
+  margin-top:22px;
+  padding:9px 18px;
   border:none;
-  border-radius:20px;
+  border-radius:18px;
   background:var(--accent);
   color:#000;
   font-weight:600;
@@ -147,17 +155,17 @@ p{color:var(--muted);line-height:1.65;font-size:14px;}
 /* GRID */
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-  gap:22px;
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:18px;
 }
 
 .card{
   background:var(--card);
-  padding:20px;
-  border-radius:14px;
+  padding:18px;
+  border-radius:12px;
   transition:.3s;
 }
-.card:hover{transform:translateY(-6px);}
+.card:hover{transform:translateY(-5px);}
 
 /* SKILLS */
 .skill span{font-size:12px;color:var(--muted);}
@@ -165,10 +173,10 @@ p{color:var(--muted);line-height:1.65;font-size:14px;}
 /* CV */
 .cv-box{
   background:var(--card);
-  padding:22px;
-  border-radius:14px;
+  padding:18px;
+  border-radius:12px;
 }
-iframe{width:100%;height:380px;border:none;}
+iframe{width:100%;height:340px;border:none;}
 
 /* FOOTER */
 footer{
@@ -179,13 +187,33 @@ footer{
   font-size:10px;
   color:var(--muted);
 }
+
+/* MOBILE OPTIMIZATION */
+@media(max-width:768px){
+  header{
+    flex-direction:column;
+    gap:10px;
+  }
+
+  nav{
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .view{
+    padding:40px 20px;
+  }
+
+  h1{font-size:30px;}
+  h2{font-size:22px;}
+}
 </style>
 </head>
 
 <body>
 
 <header>
-  <h2>BORBÁLA</h2>
+  <h2>L · BIB</h2>
   <nav>
     <a id="nav-home" onclick="show('home')"></a>
     <a id="nav-about" onclick="show('about')"></a>
@@ -249,8 +277,8 @@ footer{
 <div id="contact" class="view">
   <div class="container">
     <h2 id="contact-title"></h2>
-    <p>📧 borbala@email.com</p>
-    <p>📞 +34 XXX XXX XXX</p>
+    <p>📧 luisblascoibanezberbel@email.com</p>
+    <p>📞 +34 630 511 806</p>
   </div>
 </div>
 
@@ -261,10 +289,10 @@ const data={
  es:{
   nav:{home:"Inicio",about:"Perfil",projects:"Proyectos",skills:"Habilidades",cv:"CV",contact:"Contacto"},
   heroTitle:"Diseño Industrial y Desarrollo de Producto",
-  heroSub:"Buscando prácticas o primer empleo en empresas de diseño industrial, desarrollo de producto e ingeniería en España.",
+  heroSub:"Buscando prácticas o primer empleo en empresas de diseño industrial y desarrollo de producto en España.",
   heroBtn:"Ver proyectos",
   aboutTitle:"Perfil profesional",
-  aboutText:"Diseñadora industrial con perfil técnico-creativo, orientada al producto, fabricación y prototipado.",
+  aboutText:"Diseñador industrial con perfil técnico-creativo orientado al producto, fabricación y prototipado.",
   projectsTitle:"Proyectos",
   projects:[
    {title:"Mecanismo radial sincronizado"},
@@ -284,12 +312,12 @@ const data={
   cvTitle:"Currículum Vitae",
   cvBtn:"Descargar CV",
   contactTitle:"Contacto profesional",
-  footer:"© 2026 · Borbála · Ingeniería en Diseño Industrial"
+  footer:"Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"
  },
  en:{
   nav:{home:"Home",about:"Profile",projects:"Projects",skills:"Skills",cv:"CV",contact:"Contact"},
   heroTitle:"Industrial Design & Product Development",
-  heroSub:"Looking for internships or junior positions in industrial design and product development companies in Spain.",
+  heroSub:"Looking for internships or junior positions in industrial design and product development in Spain.",
   heroBtn:"View projects",
   aboutTitle:"Professional profile",
   aboutText:"Industrial designer with a technical and creative profile focused on product, manufacturing and prototyping.",
@@ -312,7 +340,7 @@ const data={
   cvTitle:"Curriculum Vitae",
   cvBtn:"Download CV",
   contactTitle:"Professional contact",
-  footer:"© 2026 · Borbála · Industrial Design Engineering"
+  footer:"Luis Blasco-Ibáñez Berbel · Industrial Design Engineering"
  }
 };
 

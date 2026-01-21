@@ -40,9 +40,9 @@ body{
 /* HEADER */
 header{
   position:fixed;
-  top:14px;
+  top:10px;
   width:100%;
-  padding:12px 28px;
+  padding:14px 28px;
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -51,58 +51,28 @@ header{
 }
 
 header h2{
-  font-size:16px;
+  font-size:17px;
   font-weight:600;
   letter-spacing:.05em;
 }
 
 nav{
   display:flex;
-  gap:18px;
+  gap:14px;
 }
 
-/* MENU MICROANIMATIONS */
 nav a{
-  position:relative;
   color:var(--muted);
   text-decoration:none;
   font-size:11px;
   letter-spacing:.14em;
   text-transform:uppercase;
   cursor:pointer;
-  transition:.25s;
-  padding:4px 0;
+  transition:.2s;
 }
 
-nav a::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:-4px;
-  width:0;
-  height:2px;
-  background:var(--accent);
-  transition:.25s;
-}
+nav a:hover{color:var(--text);}
 
-nav a:hover{
-  color:var(--text);
-  transform:translateY(-2px);
-}
-
-nav a:hover::after{
-  width:100%;
-}
-
-/* ACTIVE LINK */
-nav a.active{
-  color:var(--text);
-}
-nav a.active::after{
-  width:100%;
-}
-
-/* CONTROLS */
 .controls button{
   margin-left:8px;
   border:1px solid var(--accent);
@@ -119,15 +89,6 @@ nav a.active::after{
   background:var(--accent);
   color:#000;
   opacity:1;
-}
-
-/* LANGUAGE ANIMATION */
-.slide-text{
-  animation:slideText .45s ease;
-}
-@keyframes slideText{
-  from{opacity:0;transform:translateX(20px)}
-  to{opacity:1;transform:translateX(0)}
 }
 
 /* VIEWS */
@@ -190,7 +151,7 @@ p{color:var(--muted);line-height:1.6;font-size:14px;}
   gap:20px;
 }
 
-/* CARD */
+/* CARD ANIMATION */
 .card{
   background:var(--card);
   padding:18px;
@@ -203,7 +164,10 @@ p{color:var(--muted);line-height:1.6;font-size:14px;}
 .card:hover{transform:translateY(-6px) scale(1.01);}
 
 @keyframes cardIn{
-  to{opacity:1;transform:translateY(0) scale(1);}
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
 }
 
 /* CV */
@@ -265,6 +229,7 @@ footer{
   </div>
 </header>
 
+<!-- HOME -->
 <div id="home" class="view active">
   <div class="container hero">
     <h1 id="hero-title"></h1>
@@ -273,6 +238,7 @@ footer{
   </div>
 </div>
 
+<!-- ABOUT -->
 <div id="about" class="view">
   <div class="container">
     <h2 id="about-title"></h2>
@@ -280,6 +246,7 @@ footer{
   </div>
 </div>
 
+<!-- PROJECTS -->
 <div id="projects" class="view">
   <div class="container">
     <h2 id="projects-title"></h2>
@@ -287,6 +254,7 @@ footer{
   </div>
 </div>
 
+<!-- SKILLS -->
 <div id="skills" class="view">
   <div class="container">
     <h2 id="skills-title"></h2>
@@ -294,6 +262,7 @@ footer{
   </div>
 </div>
 
+<!-- CV -->
 <div id="cv" class="view">
   <div class="container">
     <h2 id="cv-title"></h2>
@@ -304,6 +273,7 @@ footer{
   </div>
 </div>
 
+<!-- CONTACT -->
 <div id="contact" class="view">
   <div class="container">
     <h2 id="contact-title"></h2>
@@ -374,14 +344,6 @@ const data={
  }
 };
 
-function animateText(){
- document.querySelectorAll("h1,h2,p,button,footer").forEach(el=>{
-  el.classList.remove("slide-text");
-  void el.offsetWidth;
-  el.classList.add("slide-text");
- });
-}
-
 function setLang(l){
  document.getElementById("btn-es").classList.remove("active");
  document.getElementById("btn-en").classList.remove("active");
@@ -417,15 +379,11 @@ function setLang(l){
  document.getElementById("cv-btn").innerText=d.cvBtn;
  document.getElementById("contact-title").innerText=d.contactTitle;
  document.getElementById("footer-text").innerText=d.footer;
-
- animateText();
 }
 
 function show(id){
  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
  document.getElementById(id).classList.add("active");
- document.querySelectorAll("nav a").forEach(a=>a.classList.remove("active"));
- document.getElementById("nav-"+id)?.classList.add("active");
 }
 
 function toggleTheme(){
@@ -433,7 +391,6 @@ function toggleTheme(){
 }
 
 setLang("es");
-show("home");
 </script>
 
 </body>

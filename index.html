@@ -40,9 +40,9 @@ body{
 /* HEADER */
 header{
   position:fixed;
-  top:10px;
+  top:10px;              /* bajado desde arriba */
   width:100%;
-  padding:14px 28px;
+  padding:14px 32px;     /* aire lateral */
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -51,11 +51,11 @@ header{
 }
 
 header h2{
-  font-size:17px;
+  font-size:17px;        /* tamaño reducido */
   font-weight:600;
   letter-spacing:.18em;
-  margin-top:10px;   /* ← ajusta este valor */
-  margin-left:10px;   /* ← mueve el nombre hacia la derecha */
+  margin-top:10px;        /* bajado respecto al header */
+  margin-left:10px;     /* movido a la derecha */
 }
 
 nav{
@@ -104,10 +104,10 @@ nav a:hover{
 /* VIEWS */
 .view{
   position:absolute;
-  top:80px;
+  top:90px;
   left:0;
   width:100%;
-  height:calc(100vh - 80px);
+  height:calc(100vh - 90px);
   padding:50px 30px;
   display:none;
   animation:slide .45s ease;
@@ -139,7 +139,7 @@ p{color:var(--muted);line-height:1.6;font-size:14px;}
 
 .btn{
   margin-top:22px;
-  padding:9px 12px;
+  padding:9px 12px;   /* longitud botón */
   border:none;
   border-radius:18px;
   background:var(--accent);
@@ -190,22 +190,18 @@ footer{
   color:var(--muted);
 }
 
-/* MOBILE OPTIMIZATION */
+/* MOBILE */
 @media(max-width:768px){
   header{
     flex-direction:column;
     gap:10px;
   }
-
   nav{
-    flex-wrap:wrap;
     justify-content:center;
   }
-
   .view{
     padding:40px 20px;
   }
-
   h1{font-size:30px;}
   h2{font-size:22px;}
 }
@@ -279,7 +275,7 @@ footer{
 <div id="contact" class="view">
   <div class="container">
     <h2 id="contact-title"></h2>
-    <p>📧 luisblascoibanezberbel@gmail.com</p>
+    <p>📧 luisblascoibanezberbel@email.com</p>
     <p>📞 +34 630 511 806</p>
   </div>
 </div>
@@ -314,7 +310,7 @@ const data={
   cvTitle:"Currículum Vitae",
   cvBtn:"Descargar CV",
   contactTitle:"Contacto profesional",
-  footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"
+  footer:"Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"
  },
  en:{
   nav:{home:"Home",about:"Profile",projects:"Projects",skills:"Skills",cv:"CV",contact:"Contact"},
@@ -342,7 +338,7 @@ const data={
   cvTitle:"Curriculum Vitae",
   cvBtn:"Download CV",
   contactTitle:"Professional contact",
-  footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Industrial design engineering"
+  footer:"Luis Blasco-Ibáñez Berbel · Industrial Design Engineering"
  }
 };
 

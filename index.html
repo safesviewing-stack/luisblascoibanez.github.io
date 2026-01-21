@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Borbála · Diseño Industrial</title>
+<title>Luis Blasco-Ibáñez · Diseño Industrial</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -109,35 +109,17 @@ nav a:hover{
   margin:auto;
   display:flex;
   flex-direction:column;
-  gap:20px;
+  gap:24px;
 }
 
 /* TYPO */
-h1{
-  font-size:48px;
-}
-
-h2{
-  font-size:38px;
-  margin-bottom:24px;
-}
-
-p{
-  color:var(--muted);
-  line-height:1.7;
-  font-size:15px;
-}
+h1{font-size:48px;}
+h2{font-size:36px;margin-bottom:20px;}
+p{color:var(--muted);line-height:1.7;font-size:15px;}
 
 /* HOME */
-.hero{
-  text-align:center;
-  margin-top:80px;
-}
-
-.hero p{
-  max-width:640px;
-  margin:20px auto 0 auto;
-}
+.hero{text-align:center;margin-top:80px;}
+.hero p{max-width:640px;margin:20px auto 0 auto;}
 
 .btn{
   margin-top:28px;
@@ -151,7 +133,6 @@ p{
   cursor:pointer;
   transition:.2s;
 }
-
 .btn:hover{
   transform:translateY(-2px);
   box-shadow:0 10px 20px rgba(0,0,0,.25);
@@ -170,22 +151,10 @@ p{
   border-radius:16px;
   transition:.3s;
 }
-
-.card:hover{
-  transform:translateY(-6px);
-}
+.card:hover{transform:translateY(-6px);}
 
 /* SKILLS */
-.skill{
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-}
-
-.skill span{
-  font-size:13px;
-  color:var(--muted);
-}
+.skill span{font-size:13px;color:var(--muted);}
 
 /* CV */
 .cv-box{
@@ -193,12 +162,7 @@ p{
   padding:24px;
   border-radius:16px;
 }
-
-iframe{
-  width:100%;
-  height:400px;
-  border:none;
-}
+iframe{width:100%;height:400px;border:none;}
 
 /* FOOTER */
 footer{
@@ -215,7 +179,7 @@ footer{
 <body>
 
 <header>
-  <h2>BORBÁLA</h2>
+  <h2>LUIS BLASCO</h2>
   <nav>
     <a id="nav-home" onclick="show('home')"></a>
     <a id="nav-about" onclick="show('about')"></a>
@@ -270,7 +234,7 @@ footer{
     <h2 id="cv-title"></h2>
     <div class="cv-box">
       <iframe src="cv.pdf"></iframe>
-      <a href="cv.pdf" class="btn" download>Descargar CV</a>
+      <a href="cv.pdf" class="btn" id="cv-btn" download></a>
     </div>
   </div>
 </div>
@@ -284,26 +248,17 @@ footer{
   </div>
 </div>
 
-<footer>
-© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño Industrial
-</footer>
+<footer id="footer-text"></footer>
 
 <script>
 const data={
  es:{
-  nav:{
-    home:"Inicio",
-    about:"Perfil",
-    projects:"Proyectos",
-    skills:"Habilidades",
-    cv:"CV",
-    contact:"Contacto"
-  },
+  nav:{home:"Inicio",about:"Perfil",projects:"Proyectos",skills:"Habilidades",cv:"CV",contact:"Contacto"},
   heroTitle:"Diseño Industrial y Desarrollo de Producto",
   heroSub:"Buscando prácticas o primer empleo en empresas de diseño industrial, ingeniería de producto o desarrollo técnico en España.",
   heroBtn:"Ver proyectos",
   aboutTitle:"Perfil profesional",
-  aboutText:"Diseñadora industrial formada en la Universidad Técnica de Budapest (BME), interesada en integrarme en empresas del sector del diseño industrial, desarrollo de producto e ingeniería en España. Perfil técnico-creativo orientado a producto, fabricación y prototipado.",
+  aboutText:"Diseñador industrial formado en la UPV, con perfil técnico-creativo orientado a producto, fabricación y prototipado.",
   projectsTitle:"Proyectos",
   projects:[
    {title:"Mecanismo radial sincronizado"},
@@ -313,31 +268,25 @@ const data={
   ],
   skillsTitle:"Habilidades técnicas y software",
   skills:[
-   {title:"SolidWorks",desc:"Modelado paramétrico, ensamblajes y planos técnicos"},
-   {title:"Fusion 360",desc:"Diseño mecánico y simulación básica"},
+   {title:"SolidWorks",desc:"Modelado paramétrico y planos técnicos"},
+   {title:"Fusion 360",desc:"Diseño mecánico"},
    {title:"AutoCAD",desc:"Dibujo técnico 2D"},
-   {title:"KeyShot",desc:"Renderizado y visualización de producto"},
-   {title:"Impresión 3D",desc:"Preparación de archivos y prototipado"},
-   {title:"Adobe Illustrator",desc:"Presentaciones y documentación gráfica"},
-   {title:"Office / Google Suite",desc:"Documentación técnica"}
+   {title:"KeyShot",desc:"Renderizado"},
+   {title:"Impresión 3D",desc:"Prototipado"},
+   {title:"Adobe Illustrator",desc:"Presentación gráfica"}
   ],
   cvTitle:"Currículum Vitae",
-  contactTitle:"Contacto profesional"
+  cvBtn:"Descargar CV",
+  contactTitle:"Contacto profesional",
+  footer:"© 2026 · Luis Blasco-Ibáñez · Ingeniería en Diseño Industrial"
  },
  en:{
-  nav:{
-    home:"Home",
-    about:"Profile",
-    projects:"Projects",
-    skills:"Skills",
-    cv:"CV",
-    contact:"Contact"
-  },
+  nav:{home:"Home",about:"Profile",projects:"Projects",skills:"Skills",cv:"CV",contact:"Contact"},
   heroTitle:"Industrial Design & Product Development",
   heroSub:"Looking for internships or junior positions in industrial design and product development companies in Spain.",
   heroBtn:"View projects",
   aboutTitle:"Professional profile",
-  aboutText:"Industrial designer trained at Budapest University of Technology (BME), aiming to join industrial design and product development companies in Spain. Technical and creative profile focused on product, manufacturing and prototyping.",
+  aboutText:"Industrial designer with a technical and creative profile focused on product, manufacturing and prototyping.",
   projectsTitle:"Projects",
   projects:[
    {title:"Radial synchronized mechanism"},
@@ -347,16 +296,17 @@ const data={
   ],
   skillsTitle:"Technical skills and software",
   skills:[
-   {title:"SolidWorks",desc:"Parametric modeling, assemblies and technical drawings"},
-   {title:"Fusion 360",desc:"Mechanical design and basic simulation"},
-   {title:"AutoCAD",desc:"2D technical drawing"},
-   {title:"KeyShot",desc:"Rendering and product visualization"},
-   {title:"3D Printing",desc:"File preparation and prototyping"},
-   {title:"Adobe Illustrator",desc:"Product presentations"},
-   {title:"Office / Google Suite",desc:"Technical documentation"}
+   {title:"SolidWorks",desc:"Parametric modeling and drawings"},
+   {title:"Fusion 360",desc:"Mechanical design"},
+   {title:"AutoCAD",desc:"2D drafting"},
+   {title:"KeyShot",desc:"Rendering"},
+   {title:"3D Printing",desc:"Prototyping"},
+   {title:"Adobe Illustrator",desc:"Graphic presentation"}
   ],
   cvTitle:"Curriculum Vitae",
-  contactTitle:"Professional contact"
+  cvBtn:"Download CV",
+  contactTitle:"Professional contact",
+  footer:"© 2026 · Luis Blasco-Ibáñez · Industrial Design Engineering"
  }
 };
 
@@ -366,7 +316,6 @@ function setLang(l){
  document.getElementById("btn-"+l).classList.add("active");
 
  const d=data[l];
-
  document.getElementById("nav-home").innerText=d.nav.home;
  document.getElementById("nav-about").innerText=d.nav.about;
  document.getElementById("nav-projects").innerText=d.nav.projects;
@@ -389,15 +338,13 @@ function setLang(l){
  const sgrid=document.getElementById("skills-grid");
  sgrid.innerHTML="";
  d.skills.forEach(s=>{
-  sgrid.innerHTML+=`
-   <div class="card skill">
-     <strong>${s.title}</strong>
-     <span>${s.desc}</span>
-   </div>`;
+  sgrid.innerHTML+=`<div class="card skill"><strong>${s.title}</strong><span>${s.desc}</span></div>`;
  });
 
  document.getElementById("cv-title").innerText=d.cvTitle;
+ document.getElementById("cv-btn").innerText=d.cvBtn;
  document.getElementById("contact-title").innerText=d.contactTitle;
+ document.getElementById("footer-text").innerText=d.footer;
 }
 
 function show(id){

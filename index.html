@@ -2,8 +2,9 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Borbála · Industrial Design Engineer</title>
+<title>Borbála · Diseño Industrial</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -14,81 +15,144 @@
   --card:#111;
   --accent:#00f2ff;
 }
+
 body.light{
   --bg:#f5f5f7;
   --text:#111;
   --muted:#666;
-  --card:#fff;
+  --card:#ffffff;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
-body{background:var(--bg);color:var(--text);overflow:hidden;transition:.3s}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  overflow:hidden;
+  transition:.3s;
+}
 
 /* HEADER */
 header{
-  position:fixed;top:0;width:100%;
+  position:fixed;
+  top:0;width:100%;
   padding:20px 40px;
   display:flex;justify-content:space-between;align-items:center;
-  background:var(--bg);z-index:1000
+  background:var(--bg);z-index:1000;
 }
+
 nav a{
-  margin-left:20px;color:var(--muted);text-decoration:none;
-  font-size:12px;letter-spacing:.15em;text-transform:uppercase;cursor:pointer
+  margin-left:20px;
+  color:var(--muted);
+  text-decoration:none;
+  font-size:12px;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  cursor:pointer;
 }
+
 nav a:hover{color:var(--text)}
+
 .controls button{
-  margin-left:12px;border:none;background:none;color:var(--text);
-  cursor:pointer;font-size:12px
+  margin-left:12px;
+  border:1px solid var(--accent);
+  background:none;
+  color:var(--text);
+  cursor:pointer;
+  font-size:11px;
+  padding:4px 10px;
+  border-radius:6px;
+  opacity:.6;
+  transition:.2s;
+}
+
+.controls button.active{
+  background:var(--accent);
+  color:#000;
+  opacity:1;
 }
 
 /* VIEWS */
 .view{
-  position:absolute;top:80px;left:0;
-  width:100%;height:calc(100vh - 80px);
+  position:absolute;
+  top:80px;left:0;
+  width:100%;
+  height:calc(100vh - 80px);
   padding:80px 40px;
   display:none;
   animation:slide .5s ease;
 }
+
 .view.active{display:block}
+
 @keyframes slide{
   from{opacity:0;transform:translateX(40px)}
   to{opacity:1;transform:translateX(0)}
 }
-.container{max-width:1100px;margin:auto}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+/* TYPO */
+h1{font-size:48px}
+h2{font-size:38px;margin-bottom:24px}
+p{color:var(--muted);line-height:1.7;font-size:15px}
 
 /* HOME */
 .hero{text-align:center;margin-top:80px}
-.hero h1{font-size:48px}
-.hero p{margin-top:16px;color:var(--muted)}
+.hero p{max-width:640px;margin:20px auto 0 auto}
 .btn{
-  margin-top:30px;padding:14px 32px;border:none;
-  border-radius:30px;background:var(--accent);
-  color:#000;font-weight:600;cursor:pointer
+  margin-top:30px;
+  padding:14px 32px;
+  border:none;
+  border-radius:30px;
+  background:var(--accent);
+  color:#000;
+  font-weight:600;
+  cursor:pointer;
 }
 
 /* GRID */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:24px;
+}
+
 .card{
-  background:var(--card);padding:24px;border-radius:16px;
-  transition:.3s;cursor:pointer
+  background:var(--card);
+  padding:22px;
+  border-radius:16px;
+  transition:.3s;
 }
-.card:hover{transform:translateY(-8px)}
 
-/* GALLERY */
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
-.gallery img{width:100%;border-radius:14px}
+.card:hover{transform:translateY(-6px)}
 
-/* CV PREVIEW */
+/* SKILLS */
+.skill{display:flex;flex-direction:column;gap:6px}
+.skill span{font-size:13px;color:var(--muted)}
+
+/* CV */
 .cv-box{
-  background:var(--card);padding:24px;border-radius:16px;
-  margin-top:20px
+  background:var(--card);
+  padding:24px;
+  border-radius:16px;
 }
+
 iframe{width:100%;height:400px;border:none}
 
 /* FOOTER */
 footer{
-  position:fixed;bottom:10px;width:100%;
-  text-align:center;font-size:11px;color:var(--muted)
+  position:fixed;
+  bottom:10px;width:100%;
+  text-align:center;
+  font-size:11px;
+  color:var(--muted);
 }
 </style>
 </head>
@@ -101,14 +165,14 @@ footer{
     <a onclick="show('home')">Inicio</a>
     <a onclick="show('about')">Perfil</a>
     <a onclick="show('projects')">Proyectos</a>
-    <a onclick="show('gallery')">Galería</a>
+    <a onclick="show('skills')">Habilidades</a>
     <a onclick="show('cv')">CV</a>
     <a onclick="show('contact')">Contacto</a>
   </nav>
   <div class="controls">
     <button onclick="toggleTheme()">🌙</button>
-    <button onclick="setLang('es')">ES</button>
-    <button onclick="setLang('en')">EN</button>
+    <button id="btn-es" onclick="setLang('es')">ES</button>
+    <button id="btn-en" onclick="setLang('en')">EN</button>
   </div>
 </header>
 
@@ -137,24 +201,11 @@ footer{
   </div>
 </div>
 
-<!-- PROJECT DETAIL -->
-<div id="project-detail" class="view">
+<!-- SKILLS -->
+<div id="skills" class="view">
   <div class="container">
-    <h2 id="detail-title"></h2>
-    <p id="detail-text"></p>
-    <button class="btn" onclick="show('projects')">Volver</button>
-  </div>
-</div>
-
-<!-- GALLERY -->
-<div id="gallery" class="view">
-  <div class="container">
-    <h2 id="gallery-title"></h2>
-    <div class="gallery">
-      <img src="https://picsum.photos/400/300?1">
-      <img src="https://picsum.photos/400/300?2">
-      <img src="https://picsum.photos/400/300?3">
-    </div>
+    <h2 id="skills-title"></h2>
+    <div class="grid" id="skills-grid"></div>
   </div>
 </div>
 
@@ -179,51 +230,70 @@ footer{
 </div>
 
 <footer>
-© 2026 · Borbála · Industrial Design Engineer
+© 2026 · Borbála · Diseño Industrial
 </footer>
 
 <script>
 const data={
  es:{
-  heroTitle:"Diseño Industrial e Ingeniería de Producto",
-  heroSub:"Buscando prácticas o primer empleo en diseño industrial y desarrollo de producto.",
+  heroTitle:"Diseño Industrial y Desarrollo de Producto",
+  heroSub:"Buscando prácticas o primer empleo en empresas de diseño industrial, ingeniería de producto o desarrollo técnico en España.",
   heroBtn:"Ver proyectos",
   aboutTitle:"Perfil profesional",
-  aboutText:"Soy Borbála, diseñadora industrial formada en la BME de Budapest, con interés en integrarme en empresas del sector del diseño y desarrollo de producto en España.",
+  aboutText:"Diseñadora industrial formada en la Universidad Técnica de Budapest (BME), interesada en integrarme en empresas del sector del diseño industrial, desarrollo de producto e ingeniería en España. Perfil técnico-creativo orientado a producto, fabricación y prototipado.",
   projectsTitle:"Proyectos",
   projects:[
-   {title:"Mecanismo radial sincronizado",desc:"Análisis cinemático y dinámico de mecanismo."},
-   {title:"Producto eléctrico",desc:"Diseño técnico y fabricación."},
-   {title:"Optimización mecánica",desc:"Mejora de geometrías y ensamblajes."},
-   {title:"Prototipos 3D",desc:"Impresión 3D funcional."}
+   {title:"Mecanismo radial sincronizado"},
+   {title:"Producto eléctrico industrial"},
+   {title:"Optimización mecánica"},
+   {title:"Prototipos mediante impresión 3D"}
   ],
-  galleryTitle:"Galería",
+  skillsTitle:"Habilidades técnicas y software",
+  skills:[
+   {title:"SolidWorks",desc:"Modelado paramétrico, ensamblajes y planos técnicos"},
+   {title:"Fusion 360",desc:"Diseño mecánico y simulación básica"},
+   {title:"AutoCAD",desc:"Dibujo técnico 2D"},
+   {title:"KeyShot",desc:"Renderizado y visualización de producto"},
+   {title:"Impresión 3D",desc:"Preparación de archivos y prototipado"},
+   {title:"Adobe Illustrator",desc:"Presentaciones y documentación gráfica"},
+   {title:"Office / Google Suite",desc:"Documentación técnica y presentaciones"}
+  ],
   cvTitle:"Currículum Vitae",
   contactTitle:"Contacto profesional"
  },
  en:{
-  heroTitle:"Industrial Design & Product Engineering",
-  heroSub:"Looking for internships or junior positions in industrial design and product development.",
+  heroTitle:"Industrial Design & Product Development",
+  heroSub:"Looking for internships or junior positions in industrial design and product development companies in Spain.",
   heroBtn:"View projects",
   aboutTitle:"Professional profile",
-  aboutText:"I am Borbála, industrial designer trained at BME Budapest, interested in joining product development companies in Spain.",
+  aboutText:"Industrial designer trained at Budapest University of Technology (BME), aiming to join industrial design and product development companies in Spain. Technical and creative profile focused on product, manufacturing and prototyping.",
   projectsTitle:"Projects",
   projects:[
-   {title:"Radial mechanism",desc:"Kinematic and dynamic analysis."},
-   {title:"Electrical product",desc:"Technical design and manufacturing."},
-   {title:"Mechanical optimization",desc:"Geometry and assembly improvement."},
-   {title:"3D Prototypes",desc:"Functional 3D printing."}
+   {title:"Radial synchronized mechanism"},
+   {title:"Industrial electrical product"},
+   {title:"Mechanical optimization"},
+   {title:"3D printed prototypes"}
   ],
-  galleryTitle:"Gallery",
+  skillsTitle:"Technical skills and software",
+  skills:[
+   {title:"SolidWorks",desc:"Parametric modeling, assemblies and technical drawings"},
+   {title:"Fusion 360",desc:"Mechanical design and basic simulation"},
+   {title:"AutoCAD",desc:"2D technical drawing"},
+   {title:"KeyShot",desc:"Rendering and product visualization"},
+   {title:"3D Printing",desc:"File preparation and prototyping"},
+   {title:"Adobe Illustrator",desc:"Product presentations"},
+   {title:"Office / Google Suite",desc:"Technical documentation"}
+  ],
   cvTitle:"Curriculum Vitae",
   contactTitle:"Professional contact"
  }
 };
 
-let lang="es";
-
 function setLang(l){
- lang=l;
+ document.getElementById("btn-es").classList.remove("active");
+ document.getElementById("btn-en").classList.remove("active");
+ document.getElementById("btn-"+l).classList.add("active");
+
  const d=data[l];
  document.getElementById("hero-title").innerText=d.heroTitle;
  document.getElementById("hero-sub").innerText=d.heroSub;
@@ -231,20 +301,24 @@ function setLang(l){
  document.getElementById("about-title").innerText=d.aboutTitle;
  document.getElementById("about-text").innerText=d.aboutText;
  document.getElementById("projects-title").innerText=d.projectsTitle;
- const grid=document.getElementById("projects-grid");
- grid.innerHTML="";
- d.projects.forEach(p=>{
-  grid.innerHTML+=`<div class="card" onclick="openProject('${p.title}','${p.desc}')">${p.title}</div>`;
+
+ const pgrid=document.getElementById("projects-grid");
+ pgrid.innerHTML="";
+ d.projects.forEach(p=>pgrid.innerHTML+=`<div class="card">${p.title}</div>`);
+
+ document.getElementById("skills-title").innerText=d.skillsTitle;
+ const sgrid=document.getElementById("skills-grid");
+ sgrid.innerHTML="";
+ d.skills.forEach(s=>{
+  sgrid.innerHTML+=`
+   <div class="card skill">
+     <strong>${s.title}</strong>
+     <span>${s.desc}</span>
+   </div>`;
  });
- document.getElementById("gallery-title").innerText=d.galleryTitle;
+
  document.getElementById("cv-title").innerText=d.cvTitle;
  document.getElementById("contact-title").innerText=d.contactTitle;
-}
-
-function openProject(title,desc){
- document.getElementById("detail-title").innerText=title;
- document.getElementById("detail-text").innerText=desc;
- show("project-detail");
 }
 
 function show(id){
@@ -255,14 +329,6 @@ function show(id){
 function toggleTheme(){
  document.body.classList.toggle("light");
 }
-
-let startX=0;
-document.addEventListener("touchstart",e=>startX=e.touches[0].clientX);
-document.addEventListener("touchend",e=>{
- const endX=e.changedTouches[0].clientX;
- if(endX-startX>80) show("home");
- if(startX-endX>80) show("projects");
-});
 
 setLang("es");
 </script>

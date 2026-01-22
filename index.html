@@ -27,6 +27,7 @@ body.light{
   padding:0;
   box-sizing:border-box;
   font-family:Inter,sans-serif;
+  cursor:none;
 }
 
 body{
@@ -34,6 +35,18 @@ body{
   color:var(--text);
   overflow:hidden;
   transition:.3s;
+}
+
+/* CURSOR */
+.cursor{
+  position:fixed;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:var(--accent);
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  z-index:2000;
 }
 
 /* HEADER */
@@ -57,22 +70,43 @@ header h2{
   margin-left:10px;
 }
 
+/* NAV */
 nav{
   display:flex;
-  gap:14px;
+  gap:18px;
 }
 
 nav a{
+  position:relative;
   color:var(--muted);
   text-decoration:none;
   font-size:11px;
   letter-spacing:.14em;
   text-transform:uppercase;
   cursor:pointer;
+  padding-bottom:6px;
 }
 
-nav a:hover{color:var(--text);}
+nav a::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:0%;
+  height:2px;
+  background:var(--accent);
+  transition:width .3s ease;
+}
 
+nav a:hover::after{width:100%;}
+nav a.active::after{width:100%;}
+
+nav a.active{
+  color:var(--text);
+  font-weight:600;
+}
+
+/* CONTROLS */
 .controls{
   display:flex;
   gap:8px;
@@ -192,19 +226,24 @@ footer{
 
 /* MOBILE */
 @media(max-width:768px){
-  header{
-    flex-direction:column;
-    gap:10px;
-  }
+  header{flex-direction:column;gap:10px;}
   nav{justify-content:center;flex-wrap:wrap;}
   .view{padding:40px 20px;}
   h1{font-size:30px;}
   h2{font-size:22px;}
 }
+
+/* MAGNETIC BUTTON */
+.magnetic{
+  position:relative;
+  display:inline-block;
+}
 </style>
 </head>
 
 <body>
+
+<div class="cursor" id="cursor"></div>
 
 <header>
   <h2>L · BIB</h2>
@@ -223,16 +262,14 @@ footer{
   </div>
 </header>
 
-<!-- HOME -->
 <div id="home" class="view active">
   <div class="container hero">
     <h1 id="hero-title"></h1>
     <p id="hero-sub"></p>
-    <button class="btn" onclick="show('projects')" id="hero-btn"></button>
+    <button class="btn magnetic" onclick="show('projects')" id="hero-btn"></button>
   </div>
 </div>
 
-<!-- ABOUT -->
 <div id="about" class="view">
   <div class="container">
     <h2 id="about-title"></h2>
@@ -240,7 +277,6 @@ footer{
   </div>
 </div>
 
-<!-- PROJECTS -->
 <div id="projects" class="view">
   <div class="container">
     <h2 id="projects-title"></h2>
@@ -248,7 +284,6 @@ footer{
   </div>
 </div>
 
-<!-- SKILLS -->
 <div id="skills" class="view">
   <div class="container">
     <h2 id="skills-title"></h2>
@@ -256,18 +291,16 @@ footer{
   </div>
 </div>
 
-<!-- CV -->
 <div id="cv" class="view">
   <div class="container">
     <h2 id="cv-title"></h2>
     <div class="cv-box">
       <iframe src="cv.pdf"></iframe>
-      <a href="cv.pdf" class="btn" id="cv-btn" download></a>
+      <a href="cv.pdf" class="btn magnetic" id="cv-btn" download></a>
     </div>
   </div>
 </div>
 
-<!-- CONTACT -->
 <div id="contact" class="view">
   <div class="container">
     <h2 id="contact-title"></h2>
@@ -279,6 +312,12 @@ footer{
 <footer id="footer-text"></footer>
 
 <script>
+const cursor=document.getElementById("cursor");
+document.addEventListener("mousemove",e=>{
+ cursor.style.left=e.clientX+"px";
+ cursor.style.top=e.clientY+"px";
+});
+
 const data={
  es:{
   nav:{home:"Inicio",about:"Perfil",projects:"Proyectos",skills:"Habilidades",cv:"CV",contact:"Contacto"},
@@ -344,12 +383,9 @@ function setLang(l){
  document.getElementById("btn-"+l).classList.add("active");
 
  const d=data[l];
- document.getElementById("nav-home").innerText=d.nav.home;
- document.getElementById("nav-about").innerText=d.nav.about;
- document.getElementById("nav-projects").innerText=d.nav.projects;
- document.getElementById("nav-skills").innerText=d.nav.skills;
- document.getElementById("nav-cv").innerText=d.nav.cv;
- document.getElementById("nav-contact").innerText=d.nav.contact;
+ Object.keys(d.nav).forEach(k=>{
+  document.getElementById("nav-"+k).innerText=d.nav[k];
+ });
 
  document.getElementById("hero-title").innerText=d.heroTitle;
  document.getElementById("hero-sub").innerText=d.heroSub;
@@ -378,6 +414,9 @@ function setLang(l){
 function show(id){
  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
  document.getElementById(id).classList.add("active");
+
+ document.querySelectorAll("nav a").forEach(a=>a.classList.remove("active"));
+ document.getElementById("nav-"+id).classList.add("active");
 }
 
 function toggleTheme(){
@@ -385,6 +424,7 @@ function toggleTheme(){
 }
 
 setLang("es");
+document.getElementById("nav-home").classList.add("active");
 </script>
 
 </body>

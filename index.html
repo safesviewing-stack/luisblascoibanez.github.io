@@ -27,7 +27,6 @@ body.light{
   padding:0;
   box-sizing:border-box;
   font-family:Inter,sans-serif;
-  cursor:none;
 }
 
 body{
@@ -35,18 +34,6 @@ body{
   color:var(--text);
   overflow:hidden;
   transition:.3s;
-}
-
-/* CURSOR */
-.cursor{
-  position:fixed;
-  width:10px;
-  height:10px;
-  border-radius:50%;
-  background:var(--accent);
-  pointer-events:none;
-  transform:translate(-50%,-50%);
-  z-index:2000;
 }
 
 /* HEADER */
@@ -73,7 +60,7 @@ header h2{
 /* NAV */
 nav{
   display:flex;
-  gap:18px;
+  gap:26px; /* más separación entre títulos */
 }
 
 nav a{
@@ -87,23 +74,30 @@ nav a{
   padding-bottom:6px;
 }
 
+/* Línea animada */
 nav a::after{
   content:"";
   position:absolute;
   left:0;
   bottom:0;
   width:0%;
-  height:2px;
+  height:1px; /* más fina */
   background:var(--accent);
   transition:width .3s ease;
 }
 
-nav a:hover::after{width:100%;}
-nav a.active::after{width:100%;}
+nav a:hover::after{
+  width:100%;
+}
 
+/* Activo */
 nav a.active{
   color:var(--text);
   font-weight:600;
+}
+
+nav a.active::after{
+  width:100%;
 }
 
 /* CONTROLS */
@@ -226,24 +220,23 @@ footer{
 
 /* MOBILE */
 @media(max-width:768px){
-  header{flex-direction:column;gap:10px;}
-  nav{justify-content:center;flex-wrap:wrap;}
+  header{
+    flex-direction:column;
+    gap:10px;
+  }
+  nav{
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:18px;
+  }
   .view{padding:40px 20px;}
   h1{font-size:30px;}
   h2{font-size:22px;}
-}
-
-/* MAGNETIC BUTTON */
-.magnetic{
-  position:relative;
-  display:inline-block;
 }
 </style>
 </head>
 
 <body>
-
-<div class="cursor" id="cursor"></div>
 
 <header>
   <h2>L · BIB</h2>
@@ -262,14 +255,16 @@ footer{
   </div>
 </header>
 
+<!-- HOME -->
 <div id="home" class="view active">
   <div class="container hero">
     <h1 id="hero-title"></h1>
     <p id="hero-sub"></p>
-    <button class="btn magnetic" onclick="show('projects')" id="hero-btn"></button>
+    <button class="btn" onclick="show('projects')" id="hero-btn"></button>
   </div>
 </div>
 
+<!-- ABOUT -->
 <div id="about" class="view">
   <div class="container">
     <h2 id="about-title"></h2>
@@ -277,6 +272,7 @@ footer{
   </div>
 </div>
 
+<!-- PROJECTS -->
 <div id="projects" class="view">
   <div class="container">
     <h2 id="projects-title"></h2>
@@ -284,6 +280,7 @@ footer{
   </div>
 </div>
 
+<!-- SKILLS -->
 <div id="skills" class="view">
   <div class="container">
     <h2 id="skills-title"></h2>
@@ -291,16 +288,18 @@ footer{
   </div>
 </div>
 
+<!-- CV -->
 <div id="cv" class="view">
   <div class="container">
     <h2 id="cv-title"></h2>
     <div class="cv-box">
       <iframe src="cv.pdf"></iframe>
-      <a href="cv.pdf" class="btn magnetic" id="cv-btn" download></a>
+      <a href="cv.pdf" class="btn" id="cv-btn" download></a>
     </div>
   </div>
 </div>
 
+<!-- CONTACT -->
 <div id="contact" class="view">
   <div class="container">
     <h2 id="contact-title"></h2>
@@ -312,12 +311,6 @@ footer{
 <footer id="footer-text"></footer>
 
 <script>
-const cursor=document.getElementById("cursor");
-document.addEventListener("mousemove",e=>{
- cursor.style.left=e.clientX+"px";
- cursor.style.top=e.clientY+"px";
-});
-
 const data={
  es:{
   nav:{home:"Inicio",about:"Perfil",projects:"Proyectos",skills:"Habilidades",cv:"CV",contact:"Contacto"},

@@ -14,23 +14,19 @@
   --card:#111;
   --accent:#00f2ff;
 }
-
 body.light{
   --bg:#f5f5f7;
   --text:#111;
   --muted:#666;
   --card:#ffffff;
 }
-
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
-
 body{
   background:var(--bg);
   color:var(--text);
   overflow:hidden;
   transition:.4s;
 }
-
 html{scroll-behavior:smooth}
 
 /* ===== LOADER ===== */
@@ -42,6 +38,7 @@ html{scroll-behavior:smooth}
   align-items:center;
   justify-content:center;
   z-index:9999;
+  transition:opacity .8s ease;
 }
 #loader span{
   font-size:22px;
@@ -52,7 +49,10 @@ html{scroll-behavior:smooth}
   0%,100%{opacity:.3}
   50%{opacity:1}
 }
-.hidden{opacity:0;pointer-events:none;transition:1s}
+#loader.hidden{
+  opacity:0;
+  pointer-events:none;
+}
 
 /* HEADER */
 header{
@@ -66,7 +66,6 @@ header{
   background:var(--bg);
   z-index:1000;
 }
-
 header h2{
   font-size:16px;
   font-weight:600;
@@ -165,7 +164,7 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
 /* GRID */
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
   gap:26px;
 }
 
@@ -185,6 +184,10 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
   object-fit:cover;
   aspect-ratio:4/3;
 }
+
+/* SKILLS */
+.skill strong{font-size:15px}
+.skill span{font-size:12px;color:var(--muted)}
 
 /* CV */
 .cv-block{
@@ -229,6 +232,7 @@ footer{
     <a id="nav-home" onclick="show('home')"></a>
     <a id="nav-about" onclick="show('about')"></a>
     <a id="nav-projects" onclick="show('projects')"></a>
+    <a id="nav-skills" onclick="show('skills')"></a>
     <a id="nav-cv" onclick="show('cv')"></a>
     <a id="nav-contact" onclick="show('contact')"></a>
   </nav>
@@ -239,6 +243,7 @@ footer{
   </div>
 </header>
 
+<!-- HOME -->
 <div id="home" class="view">
   <div class="container hero">
     <h1 id="hero-title"></h1>
@@ -247,6 +252,7 @@ footer{
   </div>
 </div>
 
+<!-- ABOUT -->
 <div id="about" class="view">
   <div class="container">
     <h2 id="about-title"></h2>
@@ -254,6 +260,7 @@ footer{
   </div>
 </div>
 
+<!-- PROJECTS -->
 <div id="projects" class="view">
   <div class="container">
     <h2 id="projects-title"></h2>
@@ -261,30 +268,40 @@ footer{
   </div>
 </div>
 
+<!-- SKILLS -->
+<div id="skills" class="view">
+  <div class="container">
+    <h2 id="skills-title"></h2>
+    <div class="grid" id="skills-grid"></div>
+  </div>
+</div>
+
+<!-- CV -->
 <div id="cv" class="view">
   <div class="container">
     <h2 id="cv-title"></h2>
     <div class="cv-block">
       <div class="cv-card">
-        <h3>Perfil</h3>
+        <h3 id="cv-profile-title"></h3>
         <p id="cv-profile"></p>
       </div>
       <div class="cv-card">
-        <h3>Empresas objetivo</h3>
+        <h3 id="cv-companies-title"></h3>
         <p id="cv-companies"></p>
       </div>
       <div class="cv-card">
-        <h3>Formación</h3>
+        <h3 id="cv-education-title"></h3>
         <p id="cv-education"></p>
       </div>
       <div class="cv-card">
-        <h3>Descarga</h3>
+        <h3 id="cv-download-title"></h3>
         <a href="cv.pdf" class="btn" id="cv-btn" download></a>
       </div>
     </div>
   </div>
 </div>
 
+<!-- CONTACT -->
 <div id="contact" class="view">
   <div class="container">
     <h2 id="contact-title"></h2>
@@ -298,7 +315,7 @@ footer{
 <script>
 const data={
  es:{
-  nav:{home:"Inicio",about:"Perfil",projects:"Proyectos",cv:"CV",contact:"Contacto"},
+  nav:{home:"Inicio",about:"Perfil",projects:"Proyectos",skills:"Habilidades",cv:"CV",contact:"Contacto"},
   heroTitle:"Diseño Industrial y Desarrollo de Producto",
   heroSub:"Perfil orientado a empresas de diseño industrial, ingeniería de producto y fabricación avanzada en España.",
   heroBtn:"Ver proyectos",
@@ -311,16 +328,31 @@ const data={
    {title:"Optimización mecánica",img:"project3.jpg"},
    {title:"Prototipos impresión 3D",img:"project4.jpg"}
   ],
+  skillsTitle:"Habilidades técnicas y software",
+  skills:[
+   {title:"SolidWorks",desc:"Modelado paramétrico, ensamblajes y planos"},
+   {title:"Fusion 360",desc:"Diseño mecánico y simulación"},
+   {title:"Inventor",desc:"Diseño industrial paramétrico"},
+   {title:"Rhinoceros",desc:"Modelado NURBS y superficies"},
+   {title:"AutoCAD",desc:"Dibujo técnico 2D"},
+   {title:"Photoshop",desc:"Presentación visual"},
+   {title:"Illustrator",desc:"Documentación gráfica"},
+   {title:"GitHub",desc:"Gestión de proyectos y versiones"}
+  ],
   cvTitle:"Currículum Vitae",
-  cvProfile:"Diseñador industrial con formación técnica y sensibilidad por producto, fabricación y ergonomía.",
-  cvCompanies:"Indra, Siemens, Acciona, CAF, Alstom, Roca, BSH, Fagor, empresas de diseño industrial y estudios de producto.",
-  cvEducation:"Grado en Diseño Industrial · Formación técnica en electricidad · Especialización en prototipado.",
+  cvProfileTitle:"Perfil",
+  cvProfile:"Diseñador industrial con sólida base técnica y sensibilidad por el producto.",
+  cvCompaniesTitle:"Empresas objetivo",
+  cvCompanies:"Siemens, Indra, Acciona, CAF, Alstom, Roca, estudios de diseño industrial.",
+  cvEducationTitle:"Formación",
+  cvEducation:"Grado en Diseño Industrial · FP en Electricidad · Especialización en prototipado.",
+  cvDownloadTitle:"Descarga",
   cvBtn:"Descargar CV",
   contactTitle:"Contacto profesional",
   footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"
  },
  en:{
-  nav:{home:"Home",about:"Profile",projects:"Projects",cv:"CV",contact:"Contact"},
+  nav:{home:"Home",about:"Profile",projects:"Projects",skills:"Skills",cv:"CV",contact:"Contact"},
   heroTitle:"Industrial Design & Product Development",
   heroSub:"Profile oriented to industrial design, engineering and advanced manufacturing companies in Spain.",
   heroBtn:"View projects",
@@ -333,10 +365,25 @@ const data={
    {title:"Mechanical optimization",img:"project3.jpg"},
    {title:"3D printed prototypes",img:"project4.jpg"}
   ],
+  skillsTitle:"Technical skills and software",
+  skills:[
+   {title:"SolidWorks",desc:"Parametric modeling and drawings"},
+   {title:"Fusion 360",desc:"Mechanical design"},
+   {title:"Inventor",desc:"Industrial CAD"},
+   {title:"Rhinoceros",desc:"Surface modeling"},
+   {title:"AutoCAD",desc:"2D drafting"},
+   {title:"Photoshop",desc:"Visual presentation"},
+   {title:"Illustrator",desc:"Graphic documentation"},
+   {title:"GitHub",desc:"Project management"}
+  ],
   cvTitle:"Curriculum Vitae",
-  cvProfile:"Industrial designer with technical background and product-oriented mindset.",
-  cvCompanies:"Indra, Siemens, Acciona, CAF, Alstom, Roca, BSH, Fagor and industrial design studios.",
-  cvEducation:"Industrial Design Degree · Technical training in electricity · Prototyping specialization.",
+  cvProfileTitle:"Profile",
+  cvProfile:"Industrial designer with strong technical background.",
+  cvCompaniesTitle:"Target companies",
+  cvCompanies:"Siemens, Indra, Acciona, CAF, Alstom, Roca, industrial design studios.",
+  cvEducationTitle:"Education",
+  cvEducation:"Industrial Design Degree · Electrical training · Prototyping specialization.",
+  cvDownloadTitle:"Download",
   cvBtn:"Download CV",
   contactTitle:"Professional contact",
   footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineering"
@@ -363,10 +410,25 @@ function setLang(l){
   </div>`;
  });
 
+ document.getElementById("skills-title").innerText=d.skillsTitle;
+ const sgrid=document.getElementById("skills-grid");
+ sgrid.innerHTML="";
+ d.skills.forEach(s=>{
+  sgrid.innerHTML+=`
+   <div class="card skill">
+     <strong>${s.title}</strong>
+     <span>${s.desc}</span>
+   </div>`;
+ });
+
  document.getElementById("cv-title").innerText=d.cvTitle;
+ document.getElementById("cv-profile-title").innerText=d.cvProfileTitle;
  document.getElementById("cv-profile").innerText=d.cvProfile;
+ document.getElementById("cv-companies-title").innerText=d.cvCompaniesTitle;
  document.getElementById("cv-companies").innerText=d.cvCompanies;
+ document.getElementById("cv-education-title").innerText=d.cvEducationTitle;
  document.getElementById("cv-education").innerText=d.cvEducation;
+ document.getElementById("cv-download-title").innerText=d.cvDownloadTitle;
  document.getElementById("cv-btn").innerText=d.cvBtn;
  document.getElementById("contact-title").innerText=d.contactTitle;
  document.getElementById("footer-text").innerText=d.footer;
@@ -387,9 +449,14 @@ function toggleTheme(){document.body.classList.toggle("light")}
 
 window.onload=()=>{
  setTimeout(()=>{
-  document.getElementById("loader").classList.add("hidden");
-  document.getElementById("home").classList.add("active");
+  const loader=document.getElementById("loader");
+  loader.classList.add("hidden");
+  setTimeout(()=>{
+    loader.style.display="none";
+    document.getElementById("home").classList.add("active");
+  },800);
  },1800);
+
  setLang("es");
  document.getElementById("nav-home").classList.add("active");
 }

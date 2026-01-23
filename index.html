@@ -60,7 +60,7 @@ header h2{
 /* NAV */
 nav{
   display:flex;
-  gap:26px; /* más separación entre títulos */
+  gap:26px;
 }
 
 nav a{
@@ -74,30 +74,25 @@ nav a{
   padding-bottom:6px;
 }
 
-/* Línea animada */
 nav a::after{
   content:"";
   position:absolute;
   left:0;
   bottom:0;
   width:0%;
-  height:1px; /* más fina */
+  height:1px;
   background:var(--accent);
   transition:width .3s ease;
 }
 
-nav a:hover::after{
+nav a:hover::after,
+nav a.active::after{
   width:100%;
 }
 
-/* Activo */
 nav a.active{
   color:var(--text);
   font-weight:600;
-}
-
-nav a.active::after{
-  width:100%;
 }
 
 /* CONTROLS */
@@ -148,7 +143,7 @@ nav a.active::after{
   margin:auto;
   display:flex;
   flex-direction:column;
-  gap:20px;
+  gap:22px;
 }
 
 /* TYPO */
@@ -160,44 +155,48 @@ p{color:var(--muted);line-height:1.6;font-size:14px;}
 .hero{text-align:center;margin-top:40px;}
 .hero p{max-width:600px;margin:16px auto 0 auto;}
 
+/* BOTÓN PRINCIPAL */
 .btn{
-  margin-top:22px;
-  padding:8px 12px;
+  margin-top:26px;
+  padding:14px 26px;
   border:none;
-  border-radius:18px;
+  border-radius:26px;
   background:var(--accent);
   color:#000;
   font-weight:600;
-  font-size:12px;
+  font-size:14px;
   cursor:pointer;
-  transition:.2s;
+  transition:.25s;
   width:fit-content;
   align-self:center;
 }
 
 .btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 8px 18px rgba(0,0,0,.25);
+  transform:scale(1.08) translateY(-2px);
+  box-shadow:0 14px 28px rgba(0,0,0,.35);
 }
 
 /* GRID */
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
-  gap:18px;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:20px;
 }
 
 .card{
   background:var(--card);
-  padding:18px;
-  border-radius:12px;
+  padding:22px;
+  border-radius:14px;
   transition:.3s;
 }
 
-.card:hover{transform:translateY(-5px);}
+.card:hover{transform:translateY(-6px);}
 
 /* SKILLS */
-.skill span{font-size:12px;color:var(--muted);}
+.skill span{
+  font-size:12px;
+  color:var(--muted);
+}
 
 /* CV */
 .cv-box{
@@ -331,8 +330,10 @@ const data={
    {title:"SolidWorks",desc:"Modelado y planos técnicos"},
    {title:"Fusion 360",desc:"Diseño mecánico"},
    {title:"AutoCAD",desc:"Dibujo técnico 2D"},
-   {title:"KeyShot",desc:"Renderizado"},
-   {title:"Impresión 3D",desc:"Prototipado"},
+   {title:"Inventor",desc:"Diseño mecánico industrial"},
+   {title:"Rhinoceros",desc:"Modelado NURBS"},
+   {title:"GitHub",desc:"Control de versiones"},
+   {title:"Photoshop",desc:"Edición gráfica"},
    {title:"Illustrator",desc:"Presentación gráfica"}
   ],
   cvTitle:"Currículum Vitae",
@@ -359,8 +360,10 @@ const data={
    {title:"SolidWorks",desc:"Parametric modeling"},
    {title:"Fusion 360",desc:"Mechanical design"},
    {title:"AutoCAD",desc:"2D drafting"},
-   {title:"KeyShot",desc:"Rendering"},
-   {title:"3D Printing",desc:"Prototyping"},
+   {title:"Inventor",desc:"Industrial mechanical design"},
+   {title:"Rhinoceros",desc:"NURBS modeling"},
+   {title:"GitHub",desc:"Version control"},
+   {title:"Photoshop",desc:"Graphic editing"},
    {title:"Illustrator",desc:"Graphic presentation"}
   ],
   cvTitle:"Curriculum Vitae",

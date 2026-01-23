@@ -31,47 +31,85 @@ body{
 /* HEADER */
 header{
   position:fixed;top:10px;width:100%;
-  padding:14px 32px;display:flex;justify-content:space-between;align-items:center;
+  padding:14px 32px;
+  display:flex;justify-content:space-between;align-items:center;
   background:var(--bg);z-index:1000
 }
-header h2{font-size:16px;font-weight:600;letter-spacing:.18em}
+header h2{
+  font-size:16px;font-weight:600;letter-spacing:.18em
+}
 
 /* NAV */
 nav{display:flex;gap:28px}
 nav a{
-  position:relative;color:var(--muted);font-size:11px;text-transform:uppercase;
-  letter-spacing:.14em;cursor:pointer;padding-bottom:6px
+  position:relative;
+  color:var(--muted);
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  cursor:pointer;
+  padding-bottom:6px;
 }
 nav a::after{
-  content:"";position:absolute;left:0;bottom:0;width:0;height:1px;
-  background:var(--accent);transition:.3s
+  content:"";
+  position:absolute;
+  left:0;bottom:0;
+  width:0;height:1px;
+  background:var(--accent);
+  transition:.3s;
 }
-nav a:hover::after, nav a.active::after{width:100%}
-nav a.active{color:var(--text);font-weight:600}
+nav a:hover::after,
+nav a.active::after{width:100%}
+nav a.active{
+  color:var(--text);
+  font-weight:600;
+}
 
 /* CONTROLS */
 .controls{display:flex;gap:8px}
 .controls button{
-  border:1px solid var(--accent);background:none;color:var(--text);
-  font-size:10px;padding:4px 7px;border-radius:6px;opacity:.6;cursor:pointer;
+  border:1px solid var(--accent);
+  background:none;color:var(--text);
+  font-size:10px;padding:4px 7px;
+  border-radius:6px;
+  opacity:.6;cursor:pointer;
   transition:.25s
 }
 .controls button:hover{transform:scale(1.1)}
-.controls button.active{background:var(--accent);color:#000;opacity:1}
+.controls button.active{
+  background:var(--accent);
+  color:#000;opacity:1
+}
 
 /* VIEWS */
 .view{
-  position:absolute;top:90px;width:100%;
-  height:calc(100vh - 90px);padding:60px 30px;display:none;
+  position:absolute;
+  top:90px;
+  width:100%;
+  height:calc(100vh - 90px);
+  padding:60px 30px;
+  display:none;
 }
 .view.active{display:block}
 
-/* ANIMACIONES */
-.fade-up{opacity:0;transform:translateY(20px);animation:fadeUp .7s forwards}
-@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+/* CONTAINER */
+.container{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:26px;
+}
 
-/* CONTENEDOR */
-.container{max-width:1100px;margin:auto;display:flex;flex-direction:column;gap:26px}
+/* ANIMACIONES */
+.fade-up{
+  opacity:0;
+  transform:translateY(20px);
+  animation:fadeUp .7s forwards
+}
+@keyframes fadeUp{
+  to{opacity:1;transform:translateY(0)}
+}
 
 /* TYPO */
 h1{font-size:40px}
@@ -84,8 +122,12 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
 
 /* BOTONES */
 .btn{
-  margin-top:28px;padding:14px 30px;border:none;border-radius:28px;
-  background:var(--accent);color:#000;font-weight:600;font-size:14px;
+  margin-top:28px;
+  padding:14px 30px;
+  border:none;border-radius:28px;
+  background:var(--accent);
+  color:#000;font-weight:600;
+  font-size:14px;
   cursor:pointer;
   transition:.3s
 }
@@ -95,11 +137,17 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
 }
 
 /* GRID */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:26px;
+}
 
 /* TARJETAS */
 .card, .cv-item{
-  background:var(--card);padding:24px;border-radius:16px;
+  background:var(--card);
+  padding:24px;
+  border-radius:16px;
   transition:.35s
 }
 .card:hover, .cv-item:hover{
@@ -108,10 +156,21 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
 }
 
 /* CV */
-.cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.cv-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:26px;
+}
 
 /* FOOTER */
-footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;color:var(--muted)}
+footer{
+  position:fixed;
+  bottom:22px;
+  width:100%;
+  text-align:center;
+  font-size:10px;
+  color:var(--muted)
+}
 
 /* MOBILE */
 @media(max-width:800px){
@@ -180,10 +239,10 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
   <div class="container fade-up">
     <h2 id="cv-title"></h2>
     <div class="cv-grid">
-      <div class="cv-item">Industrial Design Degree – BME</div>
-      <div class="cv-item">Furniture Design Studio Experience</div>
-      <div class="cv-item">FP in Electricity</div>
-      <div class="cv-item">Available for internships in Spain</div>
+      <div class="cv-item">🎓 Industrial Design – BME</div>
+      <div class="cv-item">🪑 Furniture Design Studio</div>
+      <div class="cv-item">⚡ FP Electricity</div>
+      <div class="cv-item">🇪🇸 Seeking opportunities in Spain</div>
     </div>
     <a href="cv.pdf" class="btn" download id="cv-btn"></a>
   </div>
@@ -237,31 +296,27 @@ const data={
 };
 
 function setLang(lang){
- document.querySelector(".view.active .container").style.opacity=0;
- setTimeout(()=>{
-  const d=data[lang];
-  Object.keys(d.nav).forEach(k=>document.getElementById("nav-"+k).innerText=d.nav[k]);
-  hero-title.innerText=d.heroTitle;
-  hero-sub.innerText=d.heroSub;
-  hero-btn.innerText=d.heroBtn;
-  about-title.innerText=d.aboutTitle;
-  about-text.innerText=d.aboutText;
-  projects-title.innerText=d.projectsTitle;
+ const d=data[lang];
+ Object.keys(d.nav).forEach(k=>document.getElementById("nav-"+k).innerText=d.nav[k]);
 
-  projects-grid.innerHTML="";
-  d.projects.forEach(p=>projects-grid.innerHTML+=`<div class="card">${p}</div>`);
+ hero-title.innerText=d.heroTitle;
+ hero-sub.innerText=d.heroSub;
+ hero-btn.innerText=d.heroBtn;
+ about-title.innerText=d.aboutTitle;
+ about-text.innerText=d.aboutText;
+ projects-title.innerText=d.projectsTitle;
 
-  skills-title.innerText=d.skillsTitle;
-  skills-grid.innerHTML="";
-  d.skills.forEach(s=>skills-grid.innerHTML+=`<div class="card">${s}</div>`);
+ projects-grid.innerHTML="";
+ d.projects.forEach(p=>projects-grid.innerHTML+=`<div class="card">${p}</div>`);
 
-  cv-title.innerText=d.cvTitle;
-  cv-btn.innerText=d.cvBtn;
-  contact-title.innerText=d.contactTitle;
-  footer-text.innerText=d.footer;
+ skills-title.innerText=d.skillsTitle;
+ skills-grid.innerHTML="";
+ d.skills.forEach(s=>skills-grid.innerHTML+=`<div class="card">${s}</div>`);
 
-  document.querySelector(".view.active .container").style.opacity=1;
- },200);
+ cv-title.innerText=d.cvTitle;
+ cv-btn.innerText=d.cvBtn;
+ contact-title.innerText=d.contactTitle;
+ footer-text.innerText=d.footer;
 
  document.getElementById("btn-es").classList.toggle("active",lang==="es");
  document.getElementById("btn-en").classList.toggle("active",lang==="en");

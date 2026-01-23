@@ -85,15 +85,14 @@ nav a::after{
   transition:width .3s ease;
 }
 
-nav a:hover::after,
-nav a.active::after{
-  width:100%;
-}
+nav a:hover::after{width:100%}
 
 nav a.active{
   color:var(--text);
   font-weight:600;
 }
+
+nav a.active::after{width:100%}
 
 /* CONTROLS */
 .controls{
@@ -143,7 +142,7 @@ nav a.active{
   margin:auto;
   display:flex;
   flex-direction:column;
-  gap:22px;
+  gap:24px;
 }
 
 /* TYPO */
@@ -155,32 +154,31 @@ p{color:var(--muted);line-height:1.6;font-size:14px;}
 .hero{text-align:center;margin-top:40px;}
 .hero p{max-width:600px;margin:16px auto 0 auto;}
 
-/* BOTÓN PRINCIPAL */
 .btn{
   margin-top:26px;
-  padding:14px 26px;
+  padding:12px 22px; /* más grande */
   border:none;
-  border-radius:26px;
+  border-radius:22px;
   background:var(--accent);
   color:#000;
   font-weight:600;
-  font-size:14px;
+  font-size:13px;
   cursor:pointer;
-  transition:.25s;
+  transition:.2s;
   width:fit-content;
   align-self:center;
 }
 
 .btn:hover{
-  transform:scale(1.08) translateY(-2px);
-  box-shadow:0 14px 28px rgba(0,0,0,.35);
+  transform:translateY(-2px);
+  box-shadow:0 8px 18px rgba(0,0,0,.25);
 }
 
 /* GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-  gap:20px;
+  gap:22px;
 }
 
 .card{
@@ -201,8 +199,8 @@ p{color:var(--muted);line-height:1.6;font-size:14px;}
 /* CV */
 .cv-box{
   background:var(--card);
-  padding:18px;
-  border-radius:12px;
+  padding:20px;
+  border-radius:14px;
 }
 
 iframe{width:100%;height:340px;border:none;}
@@ -210,7 +208,7 @@ iframe{width:100%;height:340px;border:none;}
 /* FOOTER */
 footer{
   position:fixed;
-  bottom:8px;
+  bottom:22px; /* subido */
   width:100%;
   text-align:center;
   font-size:10px;
@@ -254,7 +252,6 @@ footer{
   </div>
 </header>
 
-<!-- HOME -->
 <div id="home" class="view active">
   <div class="container hero">
     <h1 id="hero-title"></h1>
@@ -263,7 +260,6 @@ footer{
   </div>
 </div>
 
-<!-- ABOUT -->
 <div id="about" class="view">
   <div class="container">
     <h2 id="about-title"></h2>
@@ -271,7 +267,6 @@ footer{
   </div>
 </div>
 
-<!-- PROJECTS -->
 <div id="projects" class="view">
   <div class="container">
     <h2 id="projects-title"></h2>
@@ -279,7 +274,6 @@ footer{
   </div>
 </div>
 
-<!-- SKILLS -->
 <div id="skills" class="view">
   <div class="container">
     <h2 id="skills-title"></h2>
@@ -287,7 +281,6 @@ footer{
   </div>
 </div>
 
-<!-- CV -->
 <div id="cv" class="view">
   <div class="container">
     <h2 id="cv-title"></h2>
@@ -298,7 +291,6 @@ footer{
   </div>
 </div>
 
-<!-- CONTACT -->
 <div id="contact" class="view">
   <div class="container">
     <h2 id="contact-title"></h2>
@@ -329,12 +321,13 @@ const data={
   skills:[
    {title:"SolidWorks",desc:"Modelado y planos técnicos"},
    {title:"Fusion 360",desc:"Diseño mecánico"},
+   {title:"Inventor",desc:"Diseño paramétrico"},
+   {title:"Rhinoceros",desc:"Modelado orgánico"},
    {title:"AutoCAD",desc:"Dibujo técnico 2D"},
-   {title:"Inventor",desc:"Diseño mecánico industrial"},
-   {title:"Rhinoceros",desc:"Modelado NURBS"},
    {title:"GitHub",desc:"Control de versiones"},
    {title:"Photoshop",desc:"Edición gráfica"},
-   {title:"Illustrator",desc:"Presentación gráfica"}
+   {title:"Illustrator",desc:"Presentación gráfica"},
+   {title:"Impresión 3D",desc:"Prototipado"}
   ],
   cvTitle:"Currículum Vitae",
   cvBtn:"Descargar CV",
@@ -359,12 +352,13 @@ const data={
   skills:[
    {title:"SolidWorks",desc:"Parametric modeling"},
    {title:"Fusion 360",desc:"Mechanical design"},
+   {title:"Inventor",desc:"Parametric CAD"},
+   {title:"Rhinoceros",desc:"Surface modeling"},
    {title:"AutoCAD",desc:"2D drafting"},
-   {title:"Inventor",desc:"Industrial mechanical design"},
-   {title:"Rhinoceros",desc:"NURBS modeling"},
    {title:"GitHub",desc:"Version control"},
    {title:"Photoshop",desc:"Graphic editing"},
-   {title:"Illustrator",desc:"Graphic presentation"}
+   {title:"Illustrator",desc:"Graphic presentation"},
+   {title:"3D Printing",desc:"Prototyping"}
   ],
   cvTitle:"Curriculum Vitae",
   cvBtn:"Download CV",
@@ -382,6 +376,9 @@ function setLang(l){
  Object.keys(d.nav).forEach(k=>{
   document.getElementById("nav-"+k).innerText=d.nav[k];
  });
+
+ document.body.style.opacity=0;
+ setTimeout(()=>document.body.style.opacity=1,150);
 
  document.getElementById("hero-title").innerText=d.heroTitle;
  document.getElementById("hero-sub").innerText=d.heroSub;

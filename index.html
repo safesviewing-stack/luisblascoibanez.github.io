@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>L·BIB · Diseño Industrial</title>
+<title>L·BIB · Industrial Design</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -24,14 +24,14 @@ body.light{
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
 
-html{scroll-behavior:smooth;}
-
 body{
   background:var(--bg);
   color:var(--text);
   overflow:hidden;
   transition:.4s;
 }
+
+html{scroll-behavior:smooth}
 
 /* ===== LOADER ===== */
 #loader{
@@ -42,10 +42,9 @@ body{
   align-items:center;
   justify-content:center;
   z-index:9999;
-  animation:fadeOut 1s ease 2s forwards;
 }
 #loader span{
-  font-size:20px;
+  font-size:22px;
   letter-spacing:.3em;
   animation:pulse 1.5s infinite;
 }
@@ -53,9 +52,7 @@ body{
   0%,100%{opacity:.3}
   50%{opacity:1}
 }
-@keyframes fadeOut{
-  to{opacity:0;visibility:hidden}
-}
+.hidden{opacity:0;pointer-events:none;transition:1s}
 
 /* HEADER */
 header{
@@ -75,12 +72,10 @@ header h2{
   font-weight:600;
   letter-spacing:.18em;
   margin-top:10px;
-  margin-left:10px;
 }
 
 /* NAV */
 nav{display:flex;gap:28px}
-
 nav a{
   position:relative;
   color:var(--muted);
@@ -90,23 +85,17 @@ nav a{
   text-transform:uppercase;
   cursor:pointer;
   padding-bottom:6px;
-  transition:.2s;
 }
-
 nav a::after{
   content:"";
   position:absolute;
-  left:0;
-  bottom:0;
-  width:0%;
-  height:1px;
+  left:0;bottom:0;
+  width:0;height:1px;
   background:var(--accent);
-  transition:width .3s ease;
+  transition:.3s;
 }
-
-nav a:hover::after{width:100%}
+nav a:hover::after, nav a.active::after{width:100%}
 nav a.active{color:var(--text);font-weight:600}
-nav a.active::after{width:100%}
 
 /* CONTROLS */
 .controls{display:flex;gap:8px}
@@ -114,12 +103,11 @@ nav a.active::after{width:100%}
   border:1px solid var(--accent);
   background:none;
   color:var(--text);
-  cursor:pointer;
   font-size:10px;
   padding:4px 7px;
   border-radius:6px;
   opacity:.6;
-  transition:.2s;
+  cursor:pointer;
 }
 .controls button.active{background:var(--accent);color:#000;opacity:1}
 
@@ -132,20 +120,15 @@ nav a.active::after{width:100%}
   height:calc(100vh - 90px);
   padding:60px 30px;
   display:none;
-  transform:scale(.96);
   opacity:0;
-  transition:.5s ease;
+  transform:translateY(20px);
+  transition:.6s ease;
 }
-
 .view.active{
   display:block;
-  transform:scale(1);
   opacity:1;
+  transform:translateY(0);
 }
-
-/* MOTION */
-.fade-in{animation:fadeIn .6s ease forwards}
-@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 
 .container{
   max-width:1100px;
@@ -157,13 +140,12 @@ nav a.active::after{width:100%}
 
 /* TYPO */
 h1{font-size:40px}
-h2{font-size:26px;margin-bottom:14px}
+h2{font-size:26px}
 p{color:var(--muted);line-height:1.6;font-size:14px}
 
 /* HERO */
 .hero{text-align:center;margin-top:40px}
 .hero p{max-width:620px;margin:18px auto}
-
 .btn{
   margin-top:28px;
   padding:14px 28px;
@@ -174,20 +156,17 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
   font-weight:600;
   font-size:14px;
   cursor:pointer;
-  transition:.25s;
+  transition:.3s;
   width:fit-content;
   align-self:center;
 }
-.btn:hover{
-  transform:scale(1.08) translateY(-2px);
-  box-shadow:0 14px 28px rgba(0,0,0,.35);
-}
+.btn:hover{transform:scale(1.08);box-shadow:0 12px 25px rgba(0,0,0,.3)}
 
 /* GRID */
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:24px;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:26px;
 }
 
 .card{
@@ -196,7 +175,29 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
   border-radius:16px;
   transition:.3s;
 }
-.card:hover{transform:translateY(-8px)}
+.card:hover{transform:translateY(-6px)}
+
+/* PROJECT IMAGES */
+.project-img{
+  width:100%;
+  border-radius:10px;
+  margin-bottom:12px;
+  object-fit:cover;
+  aspect-ratio:4/3;
+}
+
+/* CV */
+.cv-block{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:32px;
+}
+.cv-card{
+  background:var(--card);
+  padding:22px;
+  border-radius:14px;
+}
+.cv-card h3{margin-bottom:10px}
 
 /* FOOTER */
 footer{
@@ -209,11 +210,11 @@ footer{
 }
 
 /* MOBILE */
-@media(max-width:768px){
+@media(max-width:800px){
   header{flex-direction:column;gap:10px}
-  nav{flex-wrap:wrap;gap:16px;justify-content:center}
+  nav{flex-wrap:wrap;justify-content:center}
+  .cv-block{grid-template-columns:1fr}
   h1{font-size:30px}
-  h2{font-size:22px}
 }
 </style>
 </head>
@@ -228,7 +229,6 @@ footer{
     <a id="nav-home" onclick="show('home')"></a>
     <a id="nav-about" onclick="show('about')"></a>
     <a id="nav-projects" onclick="show('projects')"></a>
-    <a id="nav-skills" onclick="show('skills')"></a>
     <a id="nav-cv" onclick="show('cv')"></a>
     <a id="nav-contact" onclick="show('contact')"></a>
   </nav>
@@ -239,8 +239,8 @@ footer{
   </div>
 </header>
 
-<div id="home" class="view active">
-  <div class="container hero fade-in">
+<div id="home" class="view">
+  <div class="container hero">
     <h1 id="hero-title"></h1>
     <p id="hero-sub"></p>
     <button class="btn" onclick="show('projects')" id="hero-btn"></button>
@@ -248,38 +248,45 @@ footer{
 </div>
 
 <div id="about" class="view">
-  <div class="container fade-in">
+  <div class="container">
     <h2 id="about-title"></h2>
     <p id="about-text"></p>
   </div>
 </div>
 
 <div id="projects" class="view">
-  <div class="container fade-in">
+  <div class="container">
     <h2 id="projects-title"></h2>
     <div class="grid" id="projects-grid"></div>
   </div>
 </div>
 
-<div id="skills" class="view">
-  <div class="container fade-in">
-    <h2 id="skills-title"></h2>
-    <div class="grid" id="skills-grid"></div>
-  </div>
-</div>
-
 <div id="cv" class="view">
-  <div class="container fade-in">
+  <div class="container">
     <h2 id="cv-title"></h2>
-    <div class="card">
-      <p>CV disponible para descarga</p>
-      <a href="cv.pdf" class="btn" id="cv-btn" download></a>
+    <div class="cv-block">
+      <div class="cv-card">
+        <h3>Perfil</h3>
+        <p id="cv-profile"></p>
+      </div>
+      <div class="cv-card">
+        <h3>Empresas objetivo</h3>
+        <p id="cv-companies"></p>
+      </div>
+      <div class="cv-card">
+        <h3>Formación</h3>
+        <p id="cv-education"></p>
+      </div>
+      <div class="cv-card">
+        <h3>Descarga</h3>
+        <a href="cv.pdf" class="btn" id="cv-btn" download></a>
+      </div>
     </div>
   </div>
 </div>
 
 <div id="contact" class="view">
-  <div class="container fade-in">
+  <div class="container">
     <h2 id="contact-title"></h2>
     <p>📧 luisblascoibanezberbel@email.com</p>
     <p>📞 +34 630 511 806</p>
@@ -291,33 +298,45 @@ footer{
 <script>
 const data={
  es:{
-  nav:{home:"Inicio",about:"Perfil",projects:"Proyectos",skills:"Habilidades",cv:"CV",contact:"Contacto"},
+  nav:{home:"Inicio",about:"Perfil",projects:"Proyectos",cv:"CV",contact:"Contacto"},
   heroTitle:"Diseño Industrial y Desarrollo de Producto",
-  heroSub:"Buscando prácticas o primer empleo en diseño industrial y desarrollo de producto en España.",
+  heroSub:"Perfil orientado a empresas de diseño industrial, ingeniería de producto y fabricación avanzada en España.",
   heroBtn:"Ver proyectos",
   aboutTitle:"Perfil profesional",
-  aboutText:"Diseñador industrial con enfoque técnico y creativo.",
+  aboutText:"Diseñador industrial con enfoque técnico y creativo, especializado en desarrollo de producto, prototipado y procesos industriales.",
   projectsTitle:"Proyectos",
-  projects:["Mecanismo radial sincronizado","Producto eléctrico","Optimización mecánica","Prototipos 3D"],
-  skillsTitle:"Habilidades técnicas",
-  skills:["SolidWorks","Fusion 360","Inventor","Rhinoceros","AutoCAD","GitHub","Photoshop","Illustrator","Impresión 3D"],
+  projects:[
+   {title:"Mecanismo radial sincronizado",img:"project1.jpg"},
+   {title:"Producto eléctrico industrial",img:"project2.jpg"},
+   {title:"Optimización mecánica",img:"project3.jpg"},
+   {title:"Prototipos impresión 3D",img:"project4.jpg"}
+  ],
   cvTitle:"Currículum Vitae",
+  cvProfile:"Diseñador industrial con formación técnica y sensibilidad por producto, fabricación y ergonomía.",
+  cvCompanies:"Indra, Siemens, Acciona, CAF, Alstom, Roca, BSH, Fagor, empresas de diseño industrial y estudios de producto.",
+  cvEducation:"Grado en Diseño Industrial · Formación técnica en electricidad · Especialización en prototipado.",
   cvBtn:"Descargar CV",
   contactTitle:"Contacto profesional",
   footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"
  },
  en:{
-  nav:{home:"Home",about:"Profile",projects:"Projects",skills:"Skills",cv:"CV",contact:"Contact"},
+  nav:{home:"Home",about:"Profile",projects:"Projects",cv:"CV",contact:"Contact"},
   heroTitle:"Industrial Design & Product Development",
-  heroSub:"Looking for junior positions in industrial design and product development in Spain.",
+  heroSub:"Profile oriented to industrial design, engineering and advanced manufacturing companies in Spain.",
   heroBtn:"View projects",
   aboutTitle:"Professional profile",
-  aboutText:"Industrial designer focused on product and manufacturing.",
+  aboutText:"Industrial designer focused on product development, prototyping and industrial processes.",
   projectsTitle:"Projects",
-  projects:["Radial synchronized mechanism","Electrical product","Mechanical optimization","3D prototypes"],
-  skillsTitle:"Technical skills",
-  skills:["SolidWorks","Fusion 360","Inventor","Rhinoceros","AutoCAD","GitHub","Photoshop","Illustrator","3D Printing"],
+  projects:[
+   {title:"Radial synchronized mechanism",img:"project1.jpg"},
+   {title:"Industrial electrical product",img:"project2.jpg"},
+   {title:"Mechanical optimization",img:"project3.jpg"},
+   {title:"3D printed prototypes",img:"project4.jpg"}
+  ],
   cvTitle:"Curriculum Vitae",
+  cvProfile:"Industrial designer with technical background and product-oriented mindset.",
+  cvCompanies:"Indra, Siemens, Acciona, CAF, Alstom, Roca, BSH, Fagor and industrial design studios.",
+  cvEducation:"Industrial Design Degree · Technical training in electricity · Prototyping specialization.",
   cvBtn:"Download CV",
   contactTitle:"Professional contact",
   footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineering"
@@ -336,17 +355,24 @@ function setLang(l){
 
  const pgrid=document.getElementById("projects-grid");
  pgrid.innerHTML="";
- d.projects.forEach(p=>pgrid.innerHTML+=`<div class="card">${p}</div>`);
-
- document.getElementById("skills-title").innerText=d.skillsTitle;
- const sgrid=document.getElementById("skills-grid");
- sgrid.innerHTML="";
- d.skills.forEach(s=>sgrid.innerHTML+=`<div class="card">${s}</div>`);
+ d.projects.forEach(p=>{
+  pgrid.innerHTML+=`
+  <div class="card">
+    <img src="${p.img}" class="project-img">
+    <strong>${p.title}</strong>
+  </div>`;
+ });
 
  document.getElementById("cv-title").innerText=d.cvTitle;
+ document.getElementById("cv-profile").innerText=d.cvProfile;
+ document.getElementById("cv-companies").innerText=d.cvCompanies;
+ document.getElementById("cv-education").innerText=d.cvEducation;
  document.getElementById("cv-btn").innerText=d.cvBtn;
  document.getElementById("contact-title").innerText=d.contactTitle;
  document.getElementById("footer-text").innerText=d.footer;
+
+ document.body.style.opacity=0;
+ setTimeout(()=>document.body.style.opacity=1,200);
 }
 
 function show(id){
@@ -358,8 +384,15 @@ function show(id){
 }
 
 function toggleTheme(){document.body.classList.toggle("light")}
-setLang("es");
-document.getElementById("nav-home").classList.add("active");
+
+window.onload=()=>{
+ setTimeout(()=>{
+  document.getElementById("loader").classList.add("hidden");
+  document.getElementById("home").classList.add("active");
+ },1800);
+ setLang("es");
+ document.getElementById("nav-home").classList.add("active");
+}
 </script>
 
 </body>

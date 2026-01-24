@@ -41,8 +41,7 @@ header{
   position:fixed;top:10px;width:100%;
   padding:14px 32px;
   display:flex;justify-content:space-between;align-items:center;
-  background:linear-gradient(to bottom,rgba(5,5,7,.9),rgba(5,5,7,.25));
-  z-index:1000
+  background:var(--bg);z-index:1000
 }
 header h2{font-size:16px;font-weight:600;letter-spacing:.18em}
 
@@ -70,97 +69,76 @@ nav a.active{color:var(--text);font-weight:600}
 
 /* VIEWS */
 .view{
-  position:absolute;top:0;width:100%;
-  height:100vh;
+  position:absolute;top:90px;width:100%;
+  height:calc(100vh - 90px);
   display:none;
 }
 .view.active{display:block}
 
-/* HERO BACKGROUND */
-.hero-bg{
+/* HOME SLIDER */
+.home-bg{
+  position:absolute;inset:0;z-index:-1;
+}
+.home-bg::after{
+  content:"";
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom, rgba(5,5,7,.75), rgba(5,5,7,.85));
+}
+.slide{
   position:absolute;
   inset:0;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  animation:slideShow 18s infinite;
 }
-.hero-bg img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  filter:brightness(.55) contrast(1.05);
-}
-.hero-overlay{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to top,rgba(5,5,7,.95),rgba(5,5,7,.55),rgba(5,5,7,.95));
+.slide:nth-child(1){background-image:url("reloj1.jpg");animation-delay:0s}
+.slide:nth-child(2){background-image:url("brazo1.jpg");animation-delay:6s}
+.slide:nth-child(3){background-image:url("secador3.jpg");animation-delay:12s}
+
+@keyframes slideShow{
+  0%{opacity:0}
+  10%{opacity:1}
+  30%{opacity:1}
+  40%{opacity:0}
+  100%{opacity:0}
 }
 
-/* HERO CONTENT */
-.hero-content{
-  position:relative;
-  z-index:2;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:0 30px;
-}
-.hero-content h1{font-size:42px}
-.hero-content p{max-width:620px;margin:18px auto;color:#ccc}
-
-/* BOTÓN */
-.btn{
-  margin-top:24px;
-  padding:14px 30px;
-  border:none;
-  border-radius:28px;
-  background:var(--accent);
-  color:#000;
-  font-weight:600;
-  cursor:pointer;
-  transition:.3s
-}
-.btn:hover{transform:scale(1.1);box-shadow:0 14px 30px rgba(0,242,255,.35)}
-
-@media(max-width:900px){
-  .hero-bg{grid-template-columns:1fr}
-  .hero-bg img:nth-child(2),
-  .hero-bg img:nth-child(3){display:none}
-  .hero-content h1{font-size:32px}
-}
-
-/* SECTION STYLES */
-.section{
-  padding:120px 30px;
+/* CONTAINER */
+.container{
   max-width:1100px;
   margin:auto;
+  padding:60px 30px;
+  display:flex;
+  flex-direction:column;
+  gap:26px;
 }
-.section h2{font-size:26px;margin-bottom:18px}
-.section p{color:var(--muted);max-width:640px}
 
-/* PROJECTS */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px;margin-top:30px}
-.project-btn{
-  background:var(--card);
-  border-radius:16px;
-  overflow:hidden;
-  cursor:pointer;
-  transition:.3s;
+/* HERO */
+.hero{text-align:center;margin-top:80px}
+.hero p{max-width:620px;margin:18px auto}
+
+/* BUTTON */
+.btn{
+  margin-top:28px;padding:14px 28px;border:none;border-radius:28px;
+  background:var(--accent);color:#000;font-weight:600;font-size:14px;
+  cursor:pointer;transition:.35s cubic-bezier(.4,0,.2,1);
 }
-.project-btn img{width:100%;aspect-ratio:4/3;object-fit:cover}
-.project-btn span{display:block;padding:16px;font-weight:600}
-.project-btn:hover{transform:translateY(-6px)}
+.btn:hover{
+  transform:scale(1.1);
+  box-shadow:0 14px 30px rgba(0,242,255,.35);
+}
 
-/* SKILLS */
-.card{background:var(--card);padding:22px;border-radius:14px}
+/* OTHER SECTIONS */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px}
+.card{background:var(--card);padding:24px;border-radius:16px}
+footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;color:var(--muted)}
 
-/* CV */
-.cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
-
-/* FOOTER */
-footer{text-align:center;padding:60px 0;color:var(--muted);font-size:11px}
+@media(max-width:800px){
+  header{flex-direction:column;gap:10px}
+  nav{flex-wrap:wrap;justify-content:center}
+  h1{font-size:30px}
+}
 </style>
 </head>
 
@@ -171,94 +149,69 @@ footer{text-align:center;padding:60px 0;color:var(--muted);font-size:11px}
 <header>
   <h2>L · BIB</h2>
   <nav>
-    <a onclick="scrollToId('home')" class="active">Inicio</a>
-    <a onclick="scrollToId('about')">Perfil</a>
-    <a onclick="scrollToId('projects')">Proyectos</a>
-    <a onclick="scrollToId('skills')">Habilidades</a>
-    <a onclick="scrollToId('cv')">CV</a>
-    <a onclick="scrollToId('contact')">Contacto</a>
+    <a id="nav-home" onclick="show('home')">Inicio</a>
+    <a id="nav-about" onclick="show('about')">Perfil</a>
+    <a id="nav-projects" onclick="show('projects')">Proyectos</a>
+    <a id="nav-contact" onclick="show('contact')">Contacto</a>
   </nav>
-  <div class="controls">
-    <button onclick="toggleTheme()">🌙</button>
-  </div>
 </header>
 
-<!-- HERO -->
+<!-- HOME -->
 <div id="home" class="view active">
-  <div class="hero-bg">
-    <img src="secador3.jpg">
-    <img src="reloj1.jpg">
-    <img src="brazo1.jpg">
+  <div class="home-bg">
+    <div class="slide"></div>
+    <div class="slide"></div>
+    <div class="slide"></div>
   </div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <h1>Diseño Industrial y Desarrollo de Producto</h1>
-    <p>Perfil técnico-creativo orientado a empresas de diseño industrial.</p>
-    <button class="btn" onclick="scrollToId('projects')">Ver proyectos</button>
+  <div class="container hero">
+    <h1>Diseño Industrial & Producto</h1>
+    <p>Perfil técnico y creativo orientado al desarrollo de productos innovadores.</p>
+    <button class="btn" onclick="show('projects')">Ver proyectos</button>
   </div>
 </div>
 
 <!-- ABOUT -->
-<div id="about" class="section">
-  <h2>Sobre mí</h2>
-  <p>Diseñador industrial con perfil técnico y creativo, enfocado en producto, impresión 3D y desarrollo de soluciones funcionales.</p>
+<div id="about" class="view">
+  <div class="container">
+    <h2>Sobre mí</h2>
+    <p>Diseñador industrial con perfil técnico y creativo, apasionado por el detalle y la innovación.</p>
+  </div>
 </div>
 
 <!-- PROJECTS -->
-<div id="projects" class="section">
-  <h2>Proyectos</h2>
-  <div class="grid">
-    <div class="project-btn"><img src="project1.jpg"><span>Mecanismo radial sincronizado</span></div>
-    <div class="project-btn"><img src="project2.jpg"><span>Producto eléctrico industrial</span></div>
-    <div class="project-btn"><img src="project3.jpg"><span>Optimización mecánica</span></div>
-    <div class="project-btn"><img src="project4.jpg"><span>Prototipos impresión 3D</span></div>
-  </div>
-</div>
-
-<!-- SKILLS -->
-<div id="skills" class="section">
-  <h2>Habilidades</h2>
-  <div class="grid">
-    <div class="card">SolidWorks</div>
-    <div class="card">Fusion 360</div>
-    <div class="card">AutoCAD</div>
-    <div class="card">Inventor</div>
-    <div class="card">Rhinoceros</div>
-    <div class="card">Photoshop</div>
-  </div>
-</div>
-
-<!-- CV -->
-<div id="cv" class="section">
-  <h2>CV</h2>
-  <div class="cv-grid">
-    <div class="card">🎓 Grado en Diseño Industrial – BME</div>
-    <div class="card">⚡ FP Electricidad</div>
-    <div class="card">🛠️ Experiencia en producto</div>
-    <div class="card">📄 <a href="cv.pdf" download style="color:var(--accent)">Descargar CV</a></div>
+<div id="projects" class="view">
+  <div class="container">
+    <h2>Proyectos</h2>
+    <div class="grid">
+      <div class="card">Proyecto 1</div>
+      <div class="card">Proyecto 2</div>
+      <div class="card">Proyecto 3</div>
+    </div>
   </div>
 </div>
 
 <!-- CONTACT -->
-<div id="contact" class="section">
-  <h2>Contacto</h2>
-  <p>📧 luisblascoibanezberbel@email.com</p>
-  <p>📞 +34 630 511 806</p>
+<div id="contact" class="view">
+  <div class="container">
+    <h2>Contacto</h2>
+    <p>📧 tuemail@email.com</p>
+  </div>
 </div>
 
-<footer>© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial</footer>
+<footer>© 2026 · Portfolio Diseño Industrial</footer>
 
 <script>
-function scrollToId(id){
-  document.getElementById(id).scrollIntoView({behavior:"smooth"});
+function show(id){
+  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+  document.querySelectorAll("nav a").forEach(a=>a.classList.remove("active"));
+  document.getElementById("nav-"+id)?.classList.add("active");
 }
-function toggleTheme(){document.body.classList.toggle("light")}
+
 window.addEventListener("load",()=>{
-  const loader=document.getElementById("page-loader");
   setTimeout(()=>{
-    loader.classList.add("hidden");
-    setTimeout(()=>loader.style.display="none",500);
-  },900);
+    document.getElementById("page-loader").classList.add("hidden");
+  },1200);
 });
 </script>
 

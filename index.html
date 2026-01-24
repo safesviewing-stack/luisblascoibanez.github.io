@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>L·BIB · Industrial Design</title>
+<title>L·BIB · Industrial Design Portfolio</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -90,61 +90,53 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
 /* GRID */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px}
 
-/* PROJECT CARDS */
+/* PROJECTS */
 .project-btn{
   position:relative;background:var(--card);border:none;border-radius:16px;
-  padding:0;overflow:hidden;cursor:pointer;
-  transition:.4s cubic-bezier(.4,0,.2,1);
-  display:flex;flex-direction:column
+  overflow:hidden;cursor:pointer;transition:.4s
 }
 .project-btn img{
-  width:100%;aspect-ratio:4/3;object-fit:cover;
-  transition:.6s cubic-bezier(.4,0,.2,1)
+  width:100%;aspect-ratio:4/3;object-fit:cover;transition:.5s
 }
-.project-btn span{padding:16px;font-weight:600;font-size:14px;background:var(--card)}
-.project-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(0,0,0,.6),rgba(0,0,0,0));
-  opacity:0;transition:.4s
+.project-btn span{
+  display:block;padding:16px;font-weight:600;background:var(--card)
 }
-.project-btn:hover{transform:translateY(-10px) scale(1.03)}
+.project-btn:hover{transform:translateY(-8px) scale(1.03)}
 .project-btn:hover img{transform:scale(1.1)}
-.project-btn:hover .project-overlay{opacity:1}
 
-/* SKILLS FLOAT */
-.skill-card{
-  background:var(--card);
-  padding:26px;
-  border-radius:16px;
-  text-align:center;
-  font-weight:600;
-  transition:.35s cubic-bezier(.4,0,.2,1);
+/* MODAL */
+.modal{
+  position:fixed;inset:0;background:rgba(0,0,0,.75);
+  display:none;align-items:center;justify-content:center;z-index:2000
 }
-.skill-card:hover{
-  transform:translateY(-10px) scale(1.04);
-  box-shadow:0 12px 30px rgba(0,0,0,.35);
+.modal.active{display:flex}
+.modal-content{
+  background:var(--card);padding:30px;border-radius:18px;
+  max-width:700px;width:90%;animation:fadeUp .4s ease
 }
+.modal-content img{width:100%;border-radius:12px;margin-bottom:16px}
+.modal-close{
+  margin-top:12px;color:var(--accent);cursor:pointer;font-size:13px
+}
+
+/* CARDS */
+.card{background:var(--card);padding:24px;border-radius:16px;transition:.3s}
+.card:hover{transform:translateY(-6px)}
 
 /* CV */
 .cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
-.cv-item{background:var(--card);padding:22px;border-radius:14px}
 
 /* FOOTER */
 footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;color:var(--muted)}
 
 /* ANIMATIONS */
-.fade-up{opacity:0;transform:translateY(20px);animation:fadeUp .8s ease forwards}
-.delay-1{animation-delay:.1s}
-.delay-2{animation-delay:.2s}
-.delay-3{animation-delay:.3s}
+.fade-up{opacity:0;transform:translateY(20px);animation:fadeUp .8s forwards}
 @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
 
-/* MOBILE */
 @media(max-width:800px){
   header{flex-direction:column;gap:10px}
   nav{flex-wrap:wrap;justify-content:center}
   .cv-grid{grid-template-columns:1fr}
-  h1{font-size:30px}
 }
 </style>
 </head>
@@ -170,95 +162,140 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
   </div>
 </header>
 
-<!-- HOME -->
 <div id="home" class="view">
   <div class="container hero">
-    <h1 class="fade-up delay-1" id="hero-title"></h1>
-    <p class="fade-up delay-2" id="hero-sub"></p>
-    <button class="btn fade-up delay-3" onclick="show('projects')" id="hero-btn"></button>
+    <h1 id="hero-title" class="fade-up"></h1>
+    <p id="hero-sub" class="fade-up"></p>
+    <button class="btn fade-up" onclick="show('projects')" id="hero-btn"></button>
   </div>
 </div>
 
-<!-- PROJECTS -->
+<div id="about" class="view">
+  <div class="container">
+    <h2 id="about-title" class="fade-up"></h2>
+    <p id="about-text" class="fade-up"></p>
+  </div>
+</div>
+
 <div id="projects" class="view">
   <div class="container">
-    <h2 class="fade-up delay-1" id="projects-title"></h2>
+    <h2 id="projects-title" class="fade-up"></h2>
     <div class="grid" id="projects-grid"></div>
   </div>
 </div>
 
-<!-- SKILLS -->
 <div id="skills" class="view">
   <div class="container">
-    <h2 class="fade-up delay-1" id="skills-title"></h2>
+    <h2 id="skills-title" class="fade-up"></h2>
     <div class="grid" id="skills-grid"></div>
+  </div>
+</div>
+
+<div id="cv" class="view">
+  <div class="container">
+    <h2 id="cv-title" class="fade-up"></h2>
+    <div class="cv-grid fade-up">
+      <div class="card">🎓 Industrial Design Degree – BME</div>
+      <div class="card">⚙️ Electrical Engineering FP</div>
+      <div class="card">🛠 Product Design & Prototyping</div>
+      <div class="card"><a href="cv.pdf" style="color:var(--accent)" download>Download CV</a></div>
+    </div>
+  </div>
+</div>
+
+<div id="contact" class="view">
+  <div class="container">
+    <h2 id="contact-title" class="fade-up"></h2>
+    <p class="fade-up">📧 luisblascoibanezberbel@email.com</p>
+    <p class="fade-up">📞 +34 630 511 806</p>
   </div>
 </div>
 
 <footer id="footer-text"></footer>
 
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <img id="modal-img">
+    <h3 id="modal-title"></h3>
+    <p id="modal-desc"></p>
+    <div class="modal-close" onclick="closeModal()">Cerrar</div>
+  </div>
+</div>
+
 <script>
 const data={
  es:{
-  nav:{home:"Inicio",projects:"Proyectos",skills:"Habilidades"},
+  nav:{home:"Inicio",about:"Perfil",projects:"Proyectos",skills:"Habilidades",cv:"CV",contact:"Contacto"},
   heroTitle:"Diseño Industrial y Desarrollo de Producto",
-  heroSub:"Perfil técnico-creativo orientado a empresas de diseño industrial en España.",
+  heroSub:"Perfil técnico-creativo orientado a empresas de diseño industrial.",
   heroBtn:"Ver proyectos",
+  aboutTitle:"Sobre mí",
+  aboutText:"Diseñador industrial con formación técnica y creativa, enfocado en producto, fabricación y prototipado.",
   projectsTitle:"Proyectos",
   projects:[
-   {title:"Mecanismo radial sincronizado",img:"project1.jpg"},
-   {title:"Producto eléctrico industrial",img:"project2.jpg"},
-   {title:"Optimización mecánica",img:"project3.jpg"},
-   {title:"Prototipos impresión 3D",img:"project4.jpg"}
+   {title:"Mecanismo radial sincronizado",desc:"Sistema mecánico de precisión",img:"project1.jpg"},
+   {title:"Producto eléctrico industrial",desc:"Diseño técnico industrial",img:"project2.jpg"},
+   {title:"Optimización mecánica",desc:"Rediseño funcional",img:"project3.jpg"},
+   {title:"Prototipos 3D",desc:"Impresión y validación",img:"project4.jpg"}
   ],
   skillsTitle:"Habilidades técnicas",
   skills:["SolidWorks","Fusion 360","AutoCAD","Inventor","Rhinoceros","GitHub","Photoshop"],
+  cvTitle:"Currículum Vitae",
+  contactTitle:"Contacto",
   footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"
  },
  en:{
-  nav:{home:"Home",projects:"Projects",skills:"Skills"},
+  nav:{home:"Home",about:"Profile",projects:"Projects",skills:"Skills",cv:"CV",contact:"Contact"},
   heroTitle:"Industrial Design & Product Development",
   heroSub:"Technical and creative profile focused on industrial design companies.",
   heroBtn:"View projects",
+  aboutTitle:"About me",
+  aboutText:"Industrial designer focused on product, manufacturing and prototyping.",
   projectsTitle:"Projects",
   projects:[
-   {title:"Radial synchronized mechanism",img:"project1.jpg"},
-   {title:"Industrial electrical product",img:"project2.jpg"},
-   {title:"Mechanical optimization",img:"project3.jpg"},
-   {title:"3D printed prototypes",img:"project4.jpg"}
+   {title:"Radial synchronized mechanism",desc:"Precision mechanical system",img:"project1.jpg"},
+   {title:"Industrial electrical product",desc:"Technical industrial design",img:"project2.jpg"},
+   {title:"Mechanical optimization",desc:"Functional redesign",img:"project3.jpg"},
+   {title:"3D Prototypes",desc:"Printing and validation",img:"project4.jpg"}
   ],
   skillsTitle:"Technical skills",
   skills:["SolidWorks","Fusion 360","AutoCAD","Inventor","Rhinoceros","GitHub","Photoshop"],
+  cvTitle:"Curriculum Vitae",
+  contactTitle:"Contact",
   footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineering"
  }
 };
 
-function setLang(l){
- const d=data[l];
- document.getElementById("nav-home").innerText=d.nav.home;
- document.getElementById("nav-projects").innerText=d.nav.projects;
- document.getElementById("nav-skills").innerText=d.nav.skills;
+let lang="es";
 
+function setLang(l){
+ lang=l;
+ const d=data[l];
+ Object.keys(d.nav).forEach(k=>document.getElementById("nav-"+k).innerText=d.nav[k]);
  document.getElementById("hero-title").innerText=d.heroTitle;
  document.getElementById("hero-sub").innerText=d.heroSub;
  document.getElementById("hero-btn").innerText=d.heroBtn;
-
+ document.getElementById("about-title").innerText=d.aboutTitle;
+ document.getElementById("about-text").innerText=d.aboutText;
  document.getElementById("projects-title").innerText=d.projectsTitle;
  document.getElementById("skills-title").innerText=d.skillsTitle;
+ document.getElementById("cv-title").innerText=d.cvTitle;
+ document.getElementById("contact-title").innerText=d.contactTitle;
  document.getElementById("footer-text").innerText=d.footer;
 
  const pgrid=document.getElementById("projects-grid");
  pgrid.innerHTML="";
- d.projects.forEach(p=>pgrid.innerHTML+=`
-  <button class="project-btn fade-up">
-    <div class="project-overlay"></div>
+ d.projects.forEach(p=>{
+  pgrid.innerHTML+=`
+  <button class="project-btn" onclick="openModal('${p.title}','${p.desc}','${p.img}')">
     <img src="${p.img}">
     <span>${p.title}</span>
-  </button>`);
+  </button>`;
+ });
 
  const sgrid=document.getElementById("skills-grid");
  sgrid.innerHTML="";
- d.skills.forEach(s=>sgrid.innerHTML+=`<div class="skill-card fade-up">${s}</div>`);
+ d.skills.forEach(s=>sgrid.innerHTML+=`<div class="card">${s}</div>`);
 }
 
 function show(id){
@@ -267,6 +304,14 @@ function show(id){
  document.querySelectorAll("nav a").forEach(a=>a.classList.remove("active"));
  document.getElementById("nav-"+id).classList.add("active");
 }
+
+function openModal(title,desc,img){
+ document.getElementById("modal").classList.add("active");
+ document.getElementById("modal-title").innerText=title;
+ document.getElementById("modal-desc").innerText=desc;
+ document.getElementById("modal-img").src=img;
+}
+function closeModal(){document.getElementById("modal").classList.remove("active")}
 
 function toggleTheme(){document.body.classList.toggle("light")}
 

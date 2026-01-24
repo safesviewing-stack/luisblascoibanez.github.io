@@ -23,16 +23,6 @@ body.light{
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
 body{background:var(--bg);color:var(--text);overflow:hidden;transition:.4s}
 
-/* LOADER */
-#loader{
-  position:fixed;inset:0;background:#000;
-  display:flex;align-items:center;justify-content:center;
-  z-index:9999;transition:.8s
-}
-#loader span{font-size:22px;letter-spacing:.3em;animation:pulse 1.5s infinite}
-@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
-#loader.hidden{opacity:0;pointer-events:none}
-
 /* HEADER */
 header{
   position:fixed;top:10px;width:100%;
@@ -72,6 +62,29 @@ nav a.active{color:var(--text);font-weight:600}
 /* CONTAINER */
 .container{max-width:1100px;margin:auto;display:flex;flex-direction:column;gap:24px}
 
+/* ENTRY ANIMATION */
+.section-animate{
+  opacity:0;
+  transform:translateY(20px);
+  animation:fadeUp .8s ease forwards;
+}
+.section-delay-1{animation-delay:.1s}
+.section-delay-2{animation-delay:.2s}
+.section-delay-3{animation-delay:.3s}
+.section-delay-4{animation-delay:.4s}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* LANGUAGE TRANSITION */
+.lang-fade{
+  opacity:0;
+  transform:translateY(8px);
+  transition:.35s ease;
+}
+.lang-fade.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
 /* TYPO */
 h1{font-size:40px}
 h2{font-size:26px}
@@ -90,7 +103,7 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
 /* GRID */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px}
 
-/* PROJECT CARDS */
+/* PROJECTS (NO TOCAR) */
 .project-btn{
   position:relative;
   background:var(--card);
@@ -127,7 +140,7 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
 .project-btn:hover img{transform:scale(1.1)}
 .project-btn:hover .project-overlay{opacity:1}
 
-/* CARDS */
+/* SKILLS (NO TOCAR) */
 .card{background:var(--card);padding:24px;border-radius:16px;transition:.3s}
 .card:hover{transform:translateY(-6px)}
 
@@ -137,25 +150,6 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
 
 /* FOOTER */
 footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;color:var(--muted)}
-
-/* ENTRY ANIMATION */
-.fade-up{opacity:0;transform:translateY(20px);animation:fadeUp .8s ease forwards}
-.delay-1{animation-delay:.1s}
-.delay-2{animation-delay:.2s}
-.delay-3{animation-delay:.3s}
-.delay-4{animation-delay:.4s}
-@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
-
-/* LANGUAGE TRANSITION */
-.lang-transition{
-  opacity:0;
-  transform:translateY(10px);
-  transition:.3s;
-}
-.lang-transition.show{
-  opacity:1;
-  transform:translateY(0);
-}
 
 /* MOBILE */
 @media(max-width:800px){
@@ -168,8 +162,6 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 </head>
 
 <body>
-
-<div id="loader"><span>L · BIB</span></div>
 
 <header>
   <h2>L · BIB</h2>
@@ -188,37 +180,42 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
   </div>
 </header>
 
-<div id="home" class="view">
-  <div class="container hero lang-transition">
+<!-- HOME -->
+<div id="home" class="view active">
+  <div class="container hero section-animate lang-fade">
     <h1 id="hero-title"></h1>
     <p id="hero-sub"></p>
     <button class="btn" onclick="show('projects')" id="hero-btn"></button>
   </div>
 </div>
 
+<!-- ABOUT -->
 <div id="about" class="view">
-  <div class="container lang-transition">
+  <div class="container section-animate lang-fade">
     <h2 id="about-title"></h2>
     <p id="about-text"></p>
   </div>
 </div>
 
+<!-- PROJECTS -->
 <div id="projects" class="view">
-  <div class="container lang-transition">
+  <div class="container section-animate lang-fade">
     <h2 id="projects-title"></h2>
     <div class="grid" id="projects-grid"></div>
   </div>
 </div>
 
+<!-- SKILLS -->
 <div id="skills" class="view">
-  <div class="container lang-transition">
+  <div class="container section-animate lang-fade">
     <h2 id="skills-title"></h2>
     <div class="grid" id="skills-grid"></div>
   </div>
 </div>
 
+<!-- CV -->
 <div id="cv" class="view">
-  <div class="container lang-transition">
+  <div class="container section-animate lang-fade">
     <h2 id="cv-title"></h2>
     <div class="cv-grid">
       <div class="cv-item">🎓 Grado en Diseño Industrial – BME</div>
@@ -229,8 +226,9 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
   </div>
 </div>
 
+<!-- CONTACT -->
 <div id="contact" class="view">
-  <div class="container lang-transition">
+  <div class="container section-animate lang-fade">
     <h2 id="contact-title"></h2>
     <p>📧 luisblascoibanezberbel@email.com</p>
     <p>📞 +34 630 511 806</p>
@@ -284,7 +282,7 @@ const data={
 };
 
 function animateLang(){
- document.querySelectorAll(".lang-transition").forEach(el=>{
+ document.querySelectorAll(".lang-fade").forEach(el=>{
    el.classList.remove("show");
    setTimeout(()=>el.classList.add("show"),50);
  });
@@ -333,13 +331,8 @@ function show(id){
 
 function toggleTheme(){document.body.classList.toggle("light")}
 
-window.onload=()=>{
- setTimeout(()=>{
-  document.getElementById("loader").classList.add("hidden");
-  show("home");
- },1500);
- setLang("es");
-};
+setLang("es");
+document.getElementById("nav-home").classList.add("active");
 </script>
 
 </body>

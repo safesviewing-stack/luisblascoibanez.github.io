@@ -72,34 +72,19 @@ nav a.active{color:var(--text);font-weight:600}
 }
 .view.active{display:block}
 
-/* SECTION ENTRY */
-.section-enter{
-  opacity:0;
-  transform:translateY(25px);
-  animation:sectionIn .7s ease forwards;
-}
-@keyframes sectionIn{to{opacity:1;transform:translateY(0)}}
-
-/* HERO ENTRY */
-.hero-enter{
-  opacity:0;
-  transform:translateY(25px);
-  animation:heroIn .9s ease forwards;
-}
-@keyframes heroIn{to{opacity:1;transform:translateY(0)}}
-
-/* TITLE & CONTENT ENTRY */
+/* ANIMACIONES TIPO FRAMER */
 .title-enter{
   opacity:0;
-  transform:translateY(18px);
+  transform:translateY(20px);
   animation:titleIn .6s ease forwards;
 }
 .content-enter{
   opacity:0;
-  transform:translateY(18px);
+  transform:translateY(20px);
   animation:contentIn .6s ease forwards;
   animation-delay:.25s;
 }
+
 @keyframes titleIn{to{opacity:1;transform:translateY(0)}}
 @keyframes contentIn{to{opacity:1;transform:translateY(0)}}
 
@@ -212,52 +197,31 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
   </div>
 </div>
 
-<!-- ABOUT -->
-<div id="about" class="view">
-  <div class="container lang-fade show">
-    <h2 id="about-title" class="title-enter"></h2>
-    <div class="content-enter">
-      <p id="about-text"></p>
-    </div>
-  </div>
-</div>
-
 <!-- PROJECTS -->
 <div id="projects" class="view">
   <div class="container lang-fade show">
-    <h2 id="projects-title"></h2>
-    <div class="grid" id="projects-grid"></div>
+    <h2 id="projects-title" class="title-enter"></h2>
+    <div class="grid content-enter" id="projects-grid"></div>
   </div>
 </div>
 
 <!-- SKILLS -->
 <div id="skills" class="view">
   <div class="container lang-fade show">
-    <h2 id="skills-title"></h2>
-    <div class="grid" id="skills-grid"></div>
+    <h2 id="skills-title" class="title-enter"></h2>
+    <div class="grid content-enter" id="skills-grid"></div>
   </div>
 </div>
 
 <!-- CV -->
 <div id="cv" class="view">
   <div class="container lang-fade show">
-    <h2 id="cv-title"></h2>
-    <div class="cv-grid">
+    <h2 id="cv-title" class="title-enter"></h2>
+    <div class="cv-grid content-enter">
       <div class="cv-item">🎓 Grado en Diseño Industrial – BME</div>
       <div class="cv-item">⚡ FP Electricidad</div>
       <div class="cv-item">🛠️ Experiencia en producto</div>
       <div class="cv-item">📄 <a href="cv.pdf" download style="color:var(--accent)">Descargar CV</a></div>
-    </div>
-  </div>
-</div>
-
-<!-- CONTACT -->
-<div id="contact" class="view">
-  <div class="container lang-fade show">
-    <h2 id="contact-title" class="title-enter"></h2>
-    <div class="content-enter">
-      <p>📧 luisblascoibanezberbel@email.com</p>
-      <p>📞 +34 630 511 806</p>
     </div>
   </div>
 </div>
@@ -271,8 +235,6 @@ const data={
   heroTitle:"Diseño Industrial y Desarrollo de Producto",
   heroSub:"Perfil técnico-creativo orientado a empresas de diseño industrial.",
   heroBtn:"Ver proyectos",
-  aboutTitle:"Sobre mí",
-  aboutText:"Diseñador industrial con perfil técnico y creativo, enfocado en producto, fabricación y prototipado.",
   projectsTitle:"Proyectos",
   projects:[
    {title:"Mecanismo radial sincronizado",img:"project1.jpg"},
@@ -283,7 +245,6 @@ const data={
   skillsTitle:"Habilidades técnicas",
   skills:["SolidWorks","Fusion 360","AutoCAD","Inventor","Rhinoceros","GitHub","Photoshop"],
   cvTitle:"Currículum Vitae",
-  contactTitle:"Contacto",
   footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"
  },
  en:{
@@ -291,8 +252,6 @@ const data={
   heroTitle:"Industrial Design & Product Development",
   heroSub:"Technical and creative profile for industrial design companies.",
   heroBtn:"View projects",
-  aboutTitle:"About me",
-  aboutText:"Industrial designer with technical and creative focus on product and prototyping.",
   projectsTitle:"Projects",
   projects:[
    {title:"Radial synchronized mechanism",img:"project1.jpg"},
@@ -303,34 +262,19 @@ const data={
   skillsTitle:"Technical skills",
   skills:["SolidWorks","Fusion 360","AutoCAD","Inventor","Rhinoceros","GitHub","Photoshop"],
   cvTitle:"Curriculum Vitae",
-  contactTitle:"Contact",
   footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineering"
  }
 };
 
-function animateLang(){
- document.querySelectorAll(".lang-fade").forEach(el=>{
-   el.classList.remove("show");
-   setTimeout(()=>el.classList.add("show"),50);
- });
-}
-
 function setLang(l){
- document.getElementById("btn-es").classList.remove("active");
- document.getElementById("btn-en").classList.remove("active");
- document.getElementById("btn-"+l).classList.add("active");
-
  const d=data[l];
  Object.keys(d.nav).forEach(k=>document.getElementById("nav-"+k).innerText=d.nav[k]);
  document.getElementById("hero-title").innerText=d.heroTitle;
  document.getElementById("hero-sub").innerText=d.heroSub;
  document.getElementById("hero-btn").innerText=d.heroBtn;
- document.getElementById("about-title").innerText=d.aboutTitle;
- document.getElementById("about-text").innerText=d.aboutText;
  document.getElementById("projects-title").innerText=d.projectsTitle;
  document.getElementById("skills-title").innerText=d.skillsTitle;
  document.getElementById("cv-title").innerText=d.cvTitle;
- document.getElementById("contact-title").innerText=d.contactTitle;
  document.getElementById("footer-text").innerText=d.footer;
 
  const pgrid=document.getElementById("projects-grid");
@@ -344,18 +288,12 @@ function setLang(l){
  const sgrid=document.getElementById("skills-grid");
  sgrid.innerHTML="";
  d.skills.forEach(s=>sgrid.innerHTML+=`<div class="card">${s}</div>`);
-
- animateLang();
 }
 
 function show(id){
  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
  const section=document.getElementById(id);
  section.classList.add("active");
-
- section.classList.remove("section-enter");
- void section.offsetWidth;
- section.classList.add("section-enter");
 
  document.querySelectorAll("nav a").forEach(a=>a.classList.remove("active"));
  document.getElementById("nav-"+id).classList.add("active");
@@ -366,15 +304,8 @@ function toggleTheme(){document.body.classList.toggle("light")}
 window.addEventListener("load",()=>{
  setLang("es");
  document.getElementById("nav-home").classList.add("active");
-
- setTimeout(()=>{
-   document.getElementById("page-loader").classList.add("hidden");
-   setTimeout(()=>{
-     const home=document.getElementById("home");
-     home.classList.add("active");
-     home.classList.add("hero-enter");
-   },300);
- },1400);
+ document.getElementById("page-loader").classList.add("hidden");
+ document.getElementById("home").classList.add("active");
 });
 </script>
 

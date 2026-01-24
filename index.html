@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>L·BIB · Industrial Design</title>
+<title>L·BIB · Industrial Design Portfolio</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -21,56 +21,71 @@ body.light{
   --card:#ffffff;
 }
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
-body{background:var(--bg);color:var(--text);overflow:hidden;transition:.4s}
-
-/* LOADER */
-#loader{
-  position:fixed;inset:0;background:#000;
-  display:flex;align-items:center;justify-content:center;
-  z-index:9999;transition:.8s
+body{
+  background:var(--bg);
+  color:var(--text);
+  overflow:hidden;
+  transition:.4s;
 }
-#loader span{font-size:22px;letter-spacing:.3em;animation:pulse 1.5s infinite}
-@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
-#loader.hidden{opacity:0;pointer-events:none}
 
 /* HEADER */
 header{
-  position:fixed;top:10px;width:100%;
-  padding:14px 32px;display:flex;justify-content:space-between;align-items:center;
+  position:fixed;top:12px;width:100%;
+  padding:14px 32px;
+  display:flex;justify-content:space-between;align-items:center;
   background:var(--bg);z-index:1000
 }
-header h2{font-size:16px;font-weight:600;letter-spacing:.18em}
+header h2{
+  font-size:16px;font-weight:600;letter-spacing:.18em
+}
 
 /* NAV */
-nav{display:flex;gap:28px}
+nav{display:flex;gap:30px}
 nav a{
-  position:relative;color:var(--muted);font-size:11px;text-transform:uppercase;
-  letter-spacing:.14em;cursor:pointer;padding-bottom:6px
+  position:relative;color:var(--muted);
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  cursor:pointer;padding-bottom:6px
 }
 nav a::after{
-  content:"";position:absolute;left:0;bottom:0;width:0;height:1px;
-  background:var(--accent);transition:.3s
+  content:"";position:absolute;left:0;bottom:0;
+  width:0;height:1px;background:var(--accent);transition:.3s
 }
-nav a:hover::after, nav a.active::after{width:100%}
+nav a:hover::after,nav a.active::after{width:100%}
 nav a.active{color:var(--text);font-weight:600}
 
 /* CONTROLS */
 .controls{display:flex;gap:8px}
 .controls button{
-  border:1px solid var(--accent);background:none;color:var(--text);
-  font-size:10px;padding:4px 7px;border-radius:6px;opacity:.6;cursor:pointer
+  border:1px solid var(--accent);
+  background:none;color:var(--text);
+  font-size:10px;padding:4px 7px;border-radius:6px;
+  opacity:.6;cursor:pointer;transition:.25s
 }
+.controls button:hover{transform:scale(1.1)}
 .controls button.active{background:var(--accent);color:#000;opacity:1}
 
-/* VIEWS */
+/* SECTIONS */
 .view{
-  position:absolute;top:90px;width:100%;
-  height:calc(100vh - 90px);padding:60px 30px;display:none
+  position:absolute;top:100px;width:100%;
+  height:calc(100vh - 100px);
+  padding:60px 30px;display:none;
 }
 .view.active{display:block}
 
-/* CONTAINER */
-.container{max-width:1100px;margin:auto;display:flex;flex-direction:column;gap:24px}
+/* ANIMACIONES */
+.fade{
+  animation:fade .5s ease;
+}
+@keyframes fade{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* CONTENEDOR */
+.container{
+  max-width:1100px;margin:auto;
+  display:flex;flex-direction:column;gap:26px;
+}
 
 /* TYPO */
 h1{font-size:40px}
@@ -80,33 +95,60 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
 /* HERO */
 .hero{text-align:center;margin-top:40px}
 .hero p{max-width:620px;margin:18px auto}
+
+/* BOTONES */
 .btn{
-  margin-top:28px;padding:14px 28px;border:none;border-radius:28px;
-  background:var(--accent);color:#000;font-weight:600;font-size:14px;
+  margin-top:28px;padding:14px 30px;border:none;
+  border-radius:28px;background:var(--accent);
+  color:#000;font-weight:600;font-size:14px;
   cursor:pointer;transition:.3s
 }
-.btn:hover{transform:scale(1.08);box-shadow:0 12px 25px rgba(0,0,0,.3)}
+.btn:hover{
+  transform:scale(1.15);
+  box-shadow:0 16px 28px rgba(0,0,0,.35);
+}
 
 /* GRID */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:26px;
+}
 
-/* CARD */
-.card{background:var(--card);padding:24px;border-radius:16px;transition:.3s}
-.card:hover{transform:translateY(-6px)}
+/* TARJETAS */
+.card{
+  background:var(--card);
+  padding:24px;border-radius:16px;
+  transition:.35s
+}
+.card:hover{
+  transform:translateY(-8px) scale(1.02);
+  box-shadow:0 18px 30px rgba(0,0,0,.35);
+}
 
-/* ANIMATIONS */
-.fade-up{opacity:0;transform:translateY(20px);animation:fadeUp .8s forwards}
-@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+/* PROYECTOS */
+.project img{
+  width:100%;border-radius:10px;margin-bottom:12px;
+}
 
 /* CV */
-.cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
-.cv-item{background:var(--card);padding:22px;border-radius:14px}
-
-/* CONTACT */
-.contact-item{font-size:15px}
+.cv-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:26px
+}
+.cv-item{
+  background:var(--card);
+  padding:22px;border-radius:16px;
+  transition:.35s
+}
+.cv-item:hover{
+  transform:translateY(-6px);
+}
 
 /* FOOTER */
-footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;color:var(--muted)}
+footer{
+  position:fixed;bottom:22px;width:100%;
+  text-align:center;font-size:10px;color:var(--muted)
+}
 
 /* MOBILE */
 @media(max-width:800px){
@@ -119,8 +161,6 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 </head>
 
 <body>
-
-<div id="loader"><span>L · BIB</span></div>
 
 <header>
   <h2>L · BIB</h2>
@@ -140,53 +180,58 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 </header>
 
 <!-- HOME -->
-<div id="home" class="view">
+<div id="home" class="view active fade">
   <div class="container hero">
-    <h1 class="fade-up" id="hero-title"></h1>
-    <p class="fade-up" id="hero-sub"></p>
-    <button class="btn fade-up" onclick="show('projects')" id="hero-btn"></button>
+    <h1 id="hero-title"></h1>
+    <p id="hero-sub"></p>
+    <button class="btn" onclick="show('projects')" id="hero-btn"></button>
   </div>
 </div>
 
 <!-- ABOUT -->
-<div id="about" class="view">
+<div id="about" class="view fade">
   <div class="container">
-    <h2 class="fade-up" id="about-title"></h2>
-    <p class="fade-up" id="about-text"></p>
+    <h2 id="about-title"></h2>
+    <p id="about-text"></p>
   </div>
 </div>
 
 <!-- PROJECTS -->
-<div id="projects" class="view">
+<div id="projects" class="view fade">
   <div class="container">
-    <h2 class="fade-up" id="projects-title"></h2>
+    <h2 id="projects-title"></h2>
     <div class="grid" id="projects-grid"></div>
   </div>
 </div>
 
 <!-- SKILLS -->
-<div id="skills" class="view">
+<div id="skills" class="view fade">
   <div class="container">
-    <h2 class="fade-up" id="skills-title"></h2>
+    <h2 id="skills-title"></h2>
     <div class="grid" id="skills-grid"></div>
   </div>
 </div>
 
 <!-- CV -->
-<div id="cv" class="view">
+<div id="cv" class="view fade">
   <div class="container">
-    <h2 class="fade-up" id="cv-title"></h2>
-    <div class="cv-grid" id="cv-grid"></div>
-    <a href="cv.pdf" class="btn fade-up" id="cv-btn" download></a>
+    <h2 id="cv-title"></h2>
+    <div class="cv-grid">
+      <div class="cv-item">🎓 Industrial Design – BME</div>
+      <div class="cv-item">🪑 Furniture Design Studio (Hungary)</div>
+      <div class="cv-item">⚡ FP Electricity</div>
+      <div class="cv-item">🇪🇸 Available for internships & junior roles in Spain</div>
+    </div>
+    <a href="cv.pdf" class="btn" download id="cv-btn"></a>
   </div>
 </div>
 
 <!-- CONTACT -->
-<div id="contact" class="view">
+<div id="contact" class="view fade">
   <div class="container">
-    <h2 class="fade-up" id="contact-title"></h2>
-    <p class="fade-up contact-item">📧 luisblascoibanezberbel@email.com</p>
-    <p class="fade-up contact-item">📞 +34 630 511 806</p>
+    <h2 id="contact-title"></h2>
+    <p>📧 luisblascoibanezberbel@email.com</p>
+    <p>📞 +34 630 511 806</p>
   </div>
 </div>
 
@@ -197,28 +242,20 @@ const data={
  es:{
   nav:{home:"Inicio",about:"Perfil",projects:"Proyectos",skills:"Habilidades",cv:"CV",contact:"Contacto"},
   heroTitle:"Diseño Industrial y Desarrollo de Producto",
-  heroSub:"Perfil orientado a empresas de diseño industrial, ingeniería de producto y fabricación avanzada en España.",
+  heroSub:"Buscando prácticas o primer empleo en empresas de diseño industrial en España.",
   heroBtn:"Ver proyectos",
   aboutTitle:"Perfil profesional",
-  aboutText:"Diseñador industrial con enfoque técnico y creativo, especializado en desarrollo de producto, prototipado y procesos industriales.",
-  projectsTitle:"Proyectos",
+  aboutText:"Diseñador industrial con perfil técnico-creativo, orientado a producto, fabricación y prototipado. Experiencia en mobiliario, electricidad y diseño mecánico.",
+  projectsTitle:"Proyectos destacados",
   projects:[
-   "Mecanismo radial sincronizado",
-   "Producto eléctrico industrial",
-   "Optimización mecánica",
-   "Prototipos impresión 3D"
+    {title:"Mecanismo radial sincronizado",img:"https://images.unsplash.com/photo-1581090700227-1e37b190418e"},
+    {title:"Producto eléctrico industrial",img:"https://images.unsplash.com/photo-1581092334651-ddf26d34c7b6"},
+    {title:"Optimización mecánica",img:"https://images.unsplash.com/photo-1556155092-8707de31f9c4"},
+    {title:"Prototipos impresión 3D",img:"https://images.unsplash.com/photo-1581091012184-7f7b3fa4b87e"}
   ],
   skillsTitle:"Habilidades técnicas y software",
-  skills:[
-   "SolidWorks","Fusion 360","Inventor","Rhinoceros","Photoshop","GitHub"
-  ],
+  skills:["SolidWorks","Fusion 360","AutoCAD","Inventor","Rhinoceros","Photoshop","GitHub","Impresión 3D"],
   cvTitle:"Currículum Vitae",
-  cv:[
-   "Grado en Diseño Industrial",
-   "FP en Electricidad",
-   "Especialización en prototipado e impresión 3D",
-   "Experiencia en proyectos mecánicos"
-  ],
   cvBtn:"Descargar CV",
   contactTitle:"Contacto profesional",
   footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"
@@ -226,69 +263,56 @@ const data={
  en:{
   nav:{home:"Home",about:"Profile",projects:"Projects",skills:"Skills",cv:"CV",contact:"Contact"},
   heroTitle:"Industrial Design & Product Development",
-  heroSub:"Profile oriented to industrial design, product engineering and advanced manufacturing companies in Spain.",
+  heroSub:"Looking for internships or junior roles in Spain in industrial design companies.",
   heroBtn:"View projects",
   aboutTitle:"Professional profile",
-  aboutText:"Industrial designer focused on product development, prototyping and industrial processes.",
-  projectsTitle:"Projects",
+  aboutText:"Industrial designer with technical and creative background, focused on product, manufacturing and prototyping.",
+  projectsTitle:"Featured projects",
   projects:[
-   "Radial synchronized mechanism",
-   "Industrial electrical product",
-   "Mechanical optimization",
-   "3D printed prototypes"
+    {title:"Radial synchronized mechanism",img:"https://images.unsplash.com/photo-1581090700227-1e37b190418e"},
+    {title:"Industrial electrical product",img:"https://images.unsplash.com/photo-1581092334651-ddf26d34c7b6"},
+    {title:"Mechanical optimization",img:"https://images.unsplash.com/photo-1556155092-8707de31f9c4"},
+    {title:"3D printed prototypes",img:"https://images.unsplash.com/photo-1581091012184-7f7b3fa4b87e"}
   ],
   skillsTitle:"Technical skills and software",
-  skills:[
-   "SolidWorks","Fusion 360","Inventor","Rhinoceros","Photoshop","GitHub"
-  ],
+  skills:["SolidWorks","Fusion 360","AutoCAD","Inventor","Rhinoceros","Photoshop","GitHub","3D Printing"],
   cvTitle:"Curriculum Vitae",
-  cv:[
-   "Industrial Design Degree",
-   "Electrical technical training",
-   "Specialization in prototyping and 3D printing",
-   "Mechanical project experience"
-  ],
   cvBtn:"Download CV",
   contactTitle:"Professional contact",
   footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineering"
  }
 };
 
-function fadeLanguage(){
- document.body.style.opacity=0;
- setTimeout(()=>{document.body.style.opacity=1},200);
-}
-
-function setLang(l){
- fadeLanguage();
- const d=data[l];
+function setLang(lang){
+ const d=data[lang];
  Object.keys(d.nav).forEach(k=>document.getElementById("nav-"+k).innerText=d.nav[k]);
- document.getElementById("hero-title").innerText=d.heroTitle;
- document.getElementById("hero-sub").innerText=d.heroSub;
- document.getElementById("hero-btn").innerText=d.heroBtn;
- document.getElementById("about-title").innerText=d.aboutTitle;
- document.getElementById("about-text").innerText=d.aboutText;
- document.getElementById("projects-title").innerText=d.projectsTitle;
+ hero-title.innerText=d.heroTitle;
+ hero-sub.innerText=d.heroSub;
+ hero-btn.innerText=d.heroBtn;
+ about-title.innerText=d.aboutTitle;
+ about-text.innerText=d.aboutText;
+ projects-title.innerText=d.projectsTitle;
 
- const pgrid=document.getElementById("projects-grid");
- pgrid.innerHTML="";
- d.projects.forEach(p=>pgrid.innerHTML+=`<div class="card fade-up">${p}</div>`);
+ projects-grid.innerHTML="";
+ d.projects.forEach(p=>{
+  projects-grid.innerHTML+=`
+   <div class="card project">
+    <img src="${p.img}" alt="${p.title}">
+    <strong>${p.title}</strong>
+   </div>`;
+ });
 
- document.getElementById("skills-title").innerText=d.skillsTitle;
- const sgrid=document.getElementById("skills-grid");
- sgrid.innerHTML="";
- d.skills.forEach(s=>sgrid.innerHTML+=`<div class="card fade-up">${s}</div>`);
+ skills-title.innerText=d.skillsTitle;
+ skills-grid.innerHTML="";
+ d.skills.forEach(s=>skills-grid.innerHTML+=`<div class="card">${s}</div>`);
 
- document.getElementById("cv-title").innerText=d.cvTitle;
- const cvg=document.getElementById("cv-grid");
- cvg.innerHTML="";
- d.cv.forEach(i=>cvg.innerHTML+=`<div class="cv-item fade-up">${i}</div>`);
- document.getElementById("cv-btn").innerText=d.cvBtn;
- document.getElementById("contact-title").innerText=d.contactTitle;
- document.getElementById("footer-text").innerText=d.footer;
+ cv-title.innerText=d.cvTitle;
+ cv-btn.innerText=d.cvBtn;
+ contact-title.innerText=d.contactTitle;
+ footer-text.innerText=d.footer;
 
- document.getElementById("btn-es").classList.toggle("active",l==="es");
- document.getElementById("btn-en").classList.toggle("active",l==="en");
+ document.getElementById("btn-es").classList.toggle("active",lang==="es");
+ document.getElementById("btn-en").classList.toggle("active",lang==="en");
 }
 
 function show(id){
@@ -300,17 +324,8 @@ function show(id){
 
 function toggleTheme(){document.body.classList.toggle("light")}
 
-window.onload=()=>{
- setTimeout(()=>{
-  const loader=document.getElementById("loader");
-  loader.classList.add("hidden");
-  setTimeout(()=>{
-    loader.style.display="none";
-    show("home");
-  },800);
- },1500);
- setLang("es");
-}
+setLang("es");
+document.getElementById("nav-home").classList.add("active");
 </script>
 
 </body>

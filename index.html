@@ -88,6 +88,21 @@ nav a.active{color:var(--text);font-weight:600}
 }
 @keyframes heroIn{to{opacity:1;transform:translateY(0)}}
 
+/* TITLE & CONTENT ENTRY */
+.title-enter{
+  opacity:0;
+  transform:translateY(18px);
+  animation:titleIn .6s ease forwards;
+}
+.content-enter{
+  opacity:0;
+  transform:translateY(18px);
+  animation:contentIn .6s ease forwards;
+  animation-delay:.25s;
+}
+@keyframes titleIn{to{opacity:1;transform:translateY(0)}}
+@keyframes contentIn{to{opacity:1;transform:translateY(0)}}
+
 /* LANGUAGE TRANSITION */
 .lang-fade{
   opacity:0;
@@ -189,17 +204,21 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 <!-- HOME -->
 <div id="home" class="view">
   <div class="container hero lang-fade show">
-    <h1 id="hero-title"></h1>
-    <p id="hero-sub"></p>
-    <button class="btn" onclick="show('projects')" id="hero-btn"></button>
+    <h1 id="hero-title" class="title-enter"></h1>
+    <div class="content-enter">
+      <p id="hero-sub"></p>
+      <button class="btn" onclick="show('projects')" id="hero-btn"></button>
+    </div>
   </div>
 </div>
 
 <!-- ABOUT -->
 <div id="about" class="view">
   <div class="container lang-fade show">
-    <h2 id="about-title"></h2>
-    <p id="about-text"></p>
+    <h2 id="about-title" class="title-enter"></h2>
+    <div class="content-enter">
+      <p id="about-text"></p>
+    </div>
   </div>
 </div>
 
@@ -235,9 +254,11 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 <!-- CONTACT -->
 <div id="contact" class="view">
   <div class="container lang-fade show">
-    <h2 id="contact-title"></h2>
-    <p>📧 luisblascoibanezberbel@email.com</p>
-    <p>📞 +34 630 511 806</p>
+    <h2 id="contact-title" class="title-enter"></h2>
+    <div class="content-enter">
+      <p>📧 luisblascoibanezberbel@email.com</p>
+      <p>📞 +34 630 511 806</p>
+    </div>
   </div>
 </div>
 
@@ -348,13 +369,11 @@ window.addEventListener("load",()=>{
 
  setTimeout(()=>{
    document.getElementById("page-loader").classList.add("hidden");
-
    setTimeout(()=>{
      const home=document.getElementById("home");
      home.classList.add("active");
      home.classList.add("hero-enter");
    },300);
-
  },1400);
 });
 </script>

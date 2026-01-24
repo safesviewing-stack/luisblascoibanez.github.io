@@ -76,7 +76,7 @@ nav a.active{color:var(--text);font-weight:600}
 }
 .view.active{display:block}
 
-/* FRAMER */
+/* FRAMER STYLE */
 .title-framer{
   opacity:0;transform:translateY(18px);
   animation:titleIn .7s cubic-bezier(.4,0,.2,1) forwards;
@@ -88,8 +88,11 @@ nav a.active{color:var(--text);font-weight:600}
 }
 @keyframes titleIn{to{opacity:1;transform:translateY(0)}}
 @keyframes contentIn{to{opacity:1;transform:translateY(0)}}
+
+/* CASCADE */
 .stagger-item{
-  opacity:0;transform:translateY(20px);
+  opacity:0;
+  transform:translateY(20px);
   animation:staggerIn .6s cubic-bezier(.4,0,.2,1) forwards;
 }
 @keyframes staggerIn{to{opacity:1;transform:translateY(0)}}
@@ -104,14 +107,40 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
 
 /* HERO */
 .hero{text-align:center;margin-top:40px}
+.hero p{max-width:620px;margin:18px auto}
 
-/* BUTTON */
+/* MICROINTERACTION BUTTON */
 .btn{
   margin-top:28px;padding:14px 28px;border:none;border-radius:28px;
   background:var(--accent);color:#000;font-weight:600;font-size:14px;
   cursor:pointer;transition:.35s cubic-bezier(.4,0,.2,1);
 }
 .btn:hover{transform:scale(1.1);box-shadow:0 14px 30px rgba(0,242,255,.35)}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px}
+
+/* PROJECTS */
+.project-btn{
+  background:var(--card);
+  border:none;
+  border-radius:16px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:.4s cubic-bezier(.4,0,.2,1);
+  display:flex;
+  flex-direction:column;
+}
+.project-btn img{
+  width:100%;aspect-ratio:4/3;object-fit:cover;
+  transition:.6s cubic-bezier(.4,0,.2,1)
+}
+.project-btn span{padding:16px;font-weight:600;font-size:14px}
+.project-btn:hover{
+  transform:translateY(-10px) scale(1.03);
+  box-shadow:0 18px 40px rgba(0,242,255,.12)
+}
+.project-btn:hover img{transform:scale(1.1)}
 
 /* HERO RENDERS */
 .hero-renders{
@@ -124,7 +153,6 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
   position:relative;
   border-radius:20px;
   overflow:hidden;
-  background:#000;
   aspect-ratio:4/5;
   cursor:pointer;
   transition:.5s cubic-bezier(.4,0,.2,1);
@@ -139,7 +167,7 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
   content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(to top,rgba(0,0,0,.55),transparent 50%);
+  background:linear-gradient(to top,rgba(0,0,0,.6),transparent 55%);
 }
 .render-card span{
   position:absolute;
@@ -147,7 +175,6 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
   left:18px;
   font-size:14px;
   font-weight:600;
-  letter-spacing:.08em;
 }
 .render-card:hover{
   transform:translateY(-12px) scale(1.03);
@@ -170,7 +197,10 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
   <h2>L · BIB</h2>
   <nav>
     <a id="nav-home" onclick="show('home')"></a>
+    <a id="nav-about" onclick="show('about')"></a>
     <a id="nav-projects" onclick="show('projects')"></a>
+    <a id="nav-skills" onclick="show('skills')"></a>
+    <a id="nav-cv" onclick="show('cv')"></a>
     <a id="nav-contact" onclick="show('contact')"></a>
   </nav>
   <div class="controls">
@@ -182,7 +212,7 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
 
 <!-- HOME -->
 <div id="home" class="view">
-  <div class="container hero">
+  <div class="container hero lang-wrapper show">
     <h1 id="hero-title" class="title-framer"></h1>
     <div class="content-framer">
       <p id="hero-sub"></p>
@@ -190,51 +220,38 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
     </div>
 
     <div class="hero-renders content-framer">
-      <div class="render-card stagger-item" style="animation-delay:.2s">
-        <img src="brazo1.jpg">
-        <span>Brazo robótico</span>
+      <div class="render-card stagger-item" style="animation-delay:.15s">
+        <img src="brazo1.jpg"><span>Brazo robótico</span>
       </div>
-      <div class="render-card stagger-item" style="animation-delay:.3s">
-        <img src="secador3.jpg">
-        <span>Secador plegable</span>
+      <div class="render-card stagger-item" style="animation-delay:.25s">
+        <img src="secador3.jpg"><span>Secador plegable</span>
       </div>
-      <div class="render-card stagger-item" style="animation-delay:.4s">
-        <img src="reloj1.jpg">
-        <span>Reloj conceptual</span>
+      <div class="render-card stagger-item" style="animation-delay:.35s">
+        <img src="reloj1.jpg"><span>Reloj conceptual</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- PROJECTS -->
-<div id="projects" class="view">
-  <div class="container">
-    <h2>Proyectos</h2>
-    <p>Aquí puedes ampliar cada proyecto con fichas detalladas.</p>
-  </div>
-</div>
-
-<!-- CONTACT -->
-<div id="contact" class="view">
-  <div class="container">
-    <h2>Contacto</h2>
-    <p>📧 luisblascoibanezberbel@email.com</p>
-    <p>📞 +34 630 511 806</p>
-  </div>
-</div>
+<!-- RESTO DE SECCIONES ORIGINALES -->
+<div id="about" class="view"><div class="container"><h2>Sobre mí</h2><p>Diseñador industrial técnico y creativo.</p></div></div>
+<div id="projects" class="view"><div class="container"><h2>Proyectos</h2></div></div>
+<div id="skills" class="view"><div class="container"><h2>Habilidades</h2></div></div>
+<div id="cv" class="view"><div class="container"><h2>CV</h2></div></div>
+<div id="contact" class="view"><div class="container"><h2>Contacto</h2></div></div>
 
 <script>
 const data={
  es:{
-  nav:{home:"Inicio",projects:"Proyectos",contact:"Contacto"},
+  nav:{home:"Inicio",about:"Perfil",projects:"Proyectos",skills:"Habilidades",cv:"CV",contact:"Contacto"},
   heroTitle:"Diseño Industrial y Desarrollo de Producto",
-  heroSub:"Perfil técnico-creativo orientado al diseño de producto e ingeniería.",
+  heroSub:"Perfil técnico-creativo orientado a empresas de diseño industrial.",
   heroBtn:"Ver proyectos"
  },
  en:{
-  nav:{home:"Home",projects:"Projects",contact:"Contact"},
+  nav:{home:"Home",about:"Profile",projects:"Projects",skills:"Skills",cv:"CV",contact:"Contact"},
   heroTitle:"Industrial Design & Product Development",
-  heroSub:"Technical and creative profile focused on product design and engineering.",
+  heroSub:"Technical and creative profile for industrial design companies.",
   heroBtn:"View projects"
  }
 };

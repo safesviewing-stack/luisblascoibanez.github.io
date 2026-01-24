@@ -93,7 +93,8 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
 /* PROJECTS */
 .project-btn{
   position:relative;background:var(--card);border:none;border-radius:16px;
-  overflow:hidden;cursor:pointer;transition:.4s
+  overflow:hidden;cursor:pointer;transition:.4s;
+  opacity:0;transform:translateY(20px); /* NUEVO */
 }
 .project-btn img{
   width:100%;aspect-ratio:4/3;object-fit:cover;transition:.5s
@@ -120,7 +121,11 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
 }
 
 /* CARDS */
-.card{background:var(--card);padding:24px;border-radius:16px;transition:.3s}
+.card{
+  background:var(--card);padding:24px;border-radius:16px;
+  transition:.3s;
+  opacity:0;transform:translateY(20px); /* NUEVO */
+}
 .card:hover{transform:translateY(-6px)}
 
 /* CV */
@@ -132,6 +137,11 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 /* ANIMATIONS */
 .fade-up{opacity:0;transform:translateY(20px);animation:fadeUp .8s forwards}
 @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* NUEVO: animación para cajas dinámicas */
+.animate-in{
+  animation:fadeUp .6s forwards;
+}
 
 @media(max-width:800px){
   header{flex-direction:column;gap:10px}
@@ -268,9 +278,21 @@ const data={
 
 let lang="es";
 
+function animateBoxes(container){
+  const items=container.children;
+  [...items].forEach((el,i)=>{
+    el.classList.remove("animate-in");
+    setTimeout(()=>el.classList.add("animate-in"),i*120);
+  });
+}
+
 function setLang(l){
  lang=l;
  const d=data[l];
+
+ document.body.style.opacity=0; // NUEVO efecto cambio idioma
+ setTimeout(()=>{document.body.style.opacity=1},200);
+
  Object.keys(d.nav).forEach(k=>document.getElementById("nav-"+k).innerText=d.nav[k]);
  document.getElementById("hero-title").innerText=d.heroTitle;
  document.getElementById("hero-sub").innerText=d.heroSub;
@@ -292,10 +314,12 @@ function setLang(l){
     <span>${p.title}</span>
   </button>`;
  });
+ animateBoxes(pgrid); // NUEVO
 
  const sgrid=document.getElementById("skills-grid");
  sgrid.innerHTML="";
  d.skills.forEach(s=>sgrid.innerHTML+=`<div class="card">${s}</div>`);
+ animateBoxes(sgrid); // NUEVO
 }
 
 function show(id){

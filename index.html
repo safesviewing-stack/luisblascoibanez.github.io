@@ -90,17 +90,36 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
 /* GRID */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px}
 
-/* PROJECT BUTTONS */
+/* PROJECT BUTTONS (sin glow azul) */
 .project-btn{
-  background:var(--card);border:none;border-radius:16px;padding:0;
-  overflow:hidden;cursor:pointer;transition:.4s;display:flex;flex-direction:column
+  background:var(--card);
+  border:none;
+  border-radius:16px;
+  padding:0;
+  overflow:hidden;
+  cursor:pointer;
+  transition:.35s;
+  display:flex;
+  flex-direction:column;
 }
 .project-btn img{
-  width:100%;aspect-ratio:4/3;object-fit:cover;transition:.4s
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:cover;
+  transition:.4s;
 }
-.project-btn span{padding:16px;font-weight:600;font-size:14px}
-.project-btn:hover{transform:translateY(-8px) scale(1.03);box-shadow:0 18px 40px rgba(0,242,255,.15)}
-.project-btn:hover img{transform:scale(1.08);filter:brightness(1.15)}
+.project-btn span{
+  padding:16px;
+  font-weight:600;
+  font-size:14px;
+}
+.project-btn:hover{
+  transform:translateY(-6px) scale(1.02);
+  box-shadow:0 14px 30px rgba(0,0,0,.35);
+}
+.project-btn:hover img{
+  transform:scale(1.05);
+}
 
 /* CARDS */
 .card{background:var(--card);padding:24px;border-radius:16px;transition:.3s}
@@ -112,6 +131,21 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
 
 /* FOOTER */
 footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;color:var(--muted)}
+
+/* ANIMATIONS */
+.fade-up{
+  opacity:0;
+  transform:translateY(20px);
+  animation:fadeUp .8s ease forwards;
+}
+.delay-1{animation-delay:.1s}
+.delay-2{animation-delay:.2s}
+.delay-3{animation-delay:.3s}
+.delay-4{animation-delay:.4s}
+
+@keyframes fadeUp{
+  to{opacity:1;transform:translateY(0)}
+}
 
 /* MOBILE */
 @media(max-width:800px){
@@ -147,24 +181,24 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 <!-- HOME -->
 <div id="home" class="view">
   <div class="container hero">
-    <h1 id="hero-title"></h1>
-    <p id="hero-sub"></p>
-    <button class="btn" onclick="show('projects')" id="hero-btn"></button>
+    <h1 class="fade-up delay-1" id="hero-title"></h1>
+    <p class="fade-up delay-2" id="hero-sub"></p>
+    <button class="btn fade-up delay-3" onclick="show('projects')" id="hero-btn"></button>
   </div>
 </div>
 
 <!-- ABOUT -->
 <div id="about" class="view">
   <div class="container">
-    <h2 id="about-title"></h2>
-    <p id="about-text"></p>
+    <h2 class="fade-up delay-1" id="about-title"></h2>
+    <p class="fade-up delay-2" id="about-text"></p>
   </div>
 </div>
 
 <!-- PROJECTS -->
 <div id="projects" class="view">
   <div class="container">
-    <h2 id="projects-title"></h2>
+    <h2 class="fade-up delay-1" id="projects-title"></h2>
     <div class="grid" id="projects-grid"></div>
   </div>
 </div>
@@ -172,7 +206,7 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 <!-- SKILLS -->
 <div id="skills" class="view">
   <div class="container">
-    <h2 id="skills-title"></h2>
+    <h2 class="fade-up delay-1" id="skills-title"></h2>
     <div class="grid" id="skills-grid"></div>
   </div>
 </div>
@@ -180,11 +214,11 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 <!-- CV -->
 <div id="cv" class="view">
   <div class="container">
-    <h2 id="cv-title"></h2>
-    <div class="cv-grid">
+    <h2 class="fade-up delay-1" id="cv-title"></h2>
+    <div class="cv-grid fade-up delay-2">
       <div class="cv-item">🎓 Grado en Diseño Industrial – BME</div>
       <div class="cv-item">⚙️ FP Electricidad – Formación técnica</div>
-      <div class="cv-item">🛠️ Experiencia en mobiliario y producto</div>
+      <div class="cv-item">🛠️ Experiencia en diseño de producto</div>
       <div class="cv-item">📄 <a href="cv.pdf" download style="color:var(--accent)">Descargar CV</a></div>
     </div>
   </div>
@@ -193,9 +227,9 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 <!-- CONTACT -->
 <div id="contact" class="view">
   <div class="container">
-    <h2 id="contact-title"></h2>
-    <p>📧 luisblascoibanezberbel@email.com</p>
-    <p>📞 +34 630 511 806</p>
+    <h2 class="fade-up delay-1" id="contact-title"></h2>
+    <p class="fade-up delay-2">📧 luisblascoibanezberbel@email.com</p>
+    <p class="fade-up delay-3">📞 +34 630 511 806</p>
   </div>
 </div>
 
@@ -218,10 +252,7 @@ const data={
    {title:"Prototipos impresión 3D",img:"project4.jpg"}
   ],
   skillsTitle:"Habilidades técnicas",
-  skills:[
-   {title:"SolidWorks"},{title:"Fusion 360"},{title:"AutoCAD"},
-   {title:"Inventor"},{title:"Rhinoceros"},{title:"GitHub"},{title:"Photoshop"}
-  ],
+  skills:["SolidWorks","Fusion 360","AutoCAD","Inventor","Rhinoceros","GitHub","Photoshop"],
   cvTitle:"Currículum Vitae",
   contactTitle:"Contacto",
   footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"
@@ -241,10 +272,7 @@ const data={
    {title:"3D printed prototypes",img:"project4.jpg"}
   ],
   skillsTitle:"Technical skills",
-  skills:[
-   {title:"SolidWorks"},{title:"Fusion 360"},{title:"AutoCAD"},
-   {title:"Inventor"},{title:"Rhinoceros"},{title:"GitHub"},{title:"Photoshop"}
-  ],
+  skills:["SolidWorks","Fusion 360","AutoCAD","Inventor","Rhinoceros","GitHub","Photoshop"],
   cvTitle:"Curriculum Vitae",
   contactTitle:"Contact",
   footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineering"
@@ -268,14 +296,14 @@ function setLang(l){
  const pgrid=document.getElementById("projects-grid");
  pgrid.innerHTML="";
  d.projects.forEach(p=>pgrid.innerHTML+=`
-  <button class="project-btn">
+  <button class="project-btn fade-up">
     <img src="${p.img}">
     <span>${p.title}</span>
   </button>`);
 
  const sgrid=document.getElementById("skills-grid");
  sgrid.innerHTML="";
- d.skills.forEach(s=>sgrid.innerHTML+=`<div class="card">${s.title}</div>`);
+ d.skills.forEach(s=>sgrid.innerHTML+=`<div class="card fade-up">${s}</div>`);
 }
 
 function show(id){

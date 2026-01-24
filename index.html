@@ -23,6 +23,19 @@ body.light{
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
 body{background:var(--bg);color:var(--text);overflow:hidden;transition:.4s}
 
+/* LOADER */
+#page-loader{
+  position:fixed;inset:0;background:#050507;
+  display:flex;align-items:center;justify-content:center;
+  z-index:9999;transition:.9s;
+}
+#page-loader span{
+  font-size:22px;letter-spacing:.3em;
+  color:#fff;animation:pulse 1.4s infinite;
+}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
+#page-loader.hidden{opacity:0;visibility:hidden}
+
 /* HEADER */
 header{
   position:fixed;top:10px;width:100%;
@@ -59,31 +72,27 @@ nav a.active{color:var(--text);font-weight:600}
 }
 .view.active{display:block}
 
-/* CONTAINER */
-.container{max-width:1100px;margin:auto;display:flex;flex-direction:column;gap:24px}
-
-/* ENTRY ANIMATION */
-.section-animate{
+/* SECTION ENTRY */
+.section-enter{
   opacity:0;
-  transform:translateY(20px);
-  animation:fadeUp .8s ease forwards;
+  transform:translateY(25px);
+  animation:sectionIn .7s ease forwards;
 }
-.section-delay-1{animation-delay:.1s}
-.section-delay-2{animation-delay:.2s}
-.section-delay-3{animation-delay:.3s}
-.section-delay-4{animation-delay:.4s}
-@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+@keyframes sectionIn{to{opacity:1;transform:translateY(0)}}
 
 /* LANGUAGE TRANSITION */
 .lang-fade{
   opacity:0;
-  transform:translateY(8px);
+  transform:translateY(6px);
   transition:.35s ease;
 }
 .lang-fade.show{
   opacity:1;
   transform:translateY(0);
 }
+
+/* CONTAINER */
+.container{max-width:1100px;margin:auto;display:flex;flex-direction:column;gap:24px}
 
 /* TYPO */
 h1{font-size:40px}
@@ -103,13 +112,11 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
 /* GRID */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px}
 
-/* PROJECTS (NO TOCAR) */
+/* PROJECTS */
 .project-btn{
-  position:relative;
   background:var(--card);
   border:none;
   border-radius:16px;
-  padding:0;
   overflow:hidden;
   cursor:pointer;
   transition:.4s cubic-bezier(.4,0,.2,1);
@@ -117,30 +124,19 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
   flex-direction:column;
 }
 .project-btn img{
-  width:100%;
-  aspect-ratio:4/3;
-  object-fit:cover;
-  transition:.6s cubic-bezier(.4,0,.2,1);
+  width:100%;aspect-ratio:4/3;object-fit:cover;
+  transition:.6s cubic-bezier(.4,0,.2,1)
 }
 .project-btn span{
-  padding:16px;
-  font-weight:600;
-  font-size:14px;
-  z-index:2;
-  background:var(--card);
+  padding:16px;font-weight:600;font-size:14px;
 }
-.project-overlay{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to top,rgba(0,0,0,.6),rgba(0,0,0,0));
-  opacity:0;
-  transition:.4s;
+.project-btn:hover{
+  transform:translateY(-10px) scale(1.03);
+  box-shadow:0 18px 40px rgba(0,242,255,.12)
 }
-.project-btn:hover{transform:translateY(-10px) scale(1.03)}
 .project-btn:hover img{transform:scale(1.1)}
-.project-btn:hover .project-overlay{opacity:1}
 
-/* SKILLS (NO TOCAR) */
+/* SKILLS */
 .card{background:var(--card);padding:24px;border-radius:16px;transition:.3s}
 .card:hover{transform:translateY(-6px)}
 
@@ -163,6 +159,8 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 
 <body>
 
+<div id="page-loader"><span>L · BIB</span></div>
+
 <header>
   <h2>L · BIB</h2>
   <nav>
@@ -182,7 +180,7 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 
 <!-- HOME -->
 <div id="home" class="view active">
-  <div class="container hero section-animate lang-fade">
+  <div class="container hero lang-fade show">
     <h1 id="hero-title"></h1>
     <p id="hero-sub"></p>
     <button class="btn" onclick="show('projects')" id="hero-btn"></button>
@@ -191,7 +189,7 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 
 <!-- ABOUT -->
 <div id="about" class="view">
-  <div class="container section-animate lang-fade">
+  <div class="container lang-fade show">
     <h2 id="about-title"></h2>
     <p id="about-text"></p>
   </div>
@@ -199,7 +197,7 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 
 <!-- PROJECTS -->
 <div id="projects" class="view">
-  <div class="container section-animate lang-fade">
+  <div class="container lang-fade show">
     <h2 id="projects-title"></h2>
     <div class="grid" id="projects-grid"></div>
   </div>
@@ -207,7 +205,7 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 
 <!-- SKILLS -->
 <div id="skills" class="view">
-  <div class="container section-animate lang-fade">
+  <div class="container lang-fade show">
     <h2 id="skills-title"></h2>
     <div class="grid" id="skills-grid"></div>
   </div>
@@ -215,12 +213,12 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 
 <!-- CV -->
 <div id="cv" class="view">
-  <div class="container section-animate lang-fade">
+  <div class="container lang-fade show">
     <h2 id="cv-title"></h2>
     <div class="cv-grid">
       <div class="cv-item">🎓 Grado en Diseño Industrial – BME</div>
-      <div class="cv-item">⚙️ FP Electricidad – Formación técnica</div>
-      <div class="cv-item">🛠️ Experiencia en diseño de producto</div>
+      <div class="cv-item">⚡ FP Electricidad</div>
+      <div class="cv-item">🛠️ Experiencia en producto</div>
       <div class="cv-item">📄 <a href="cv.pdf" download style="color:var(--accent)">Descargar CV</a></div>
     </div>
   </div>
@@ -228,7 +226,7 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 
 <!-- CONTACT -->
 <div id="contact" class="view">
-  <div class="container section-animate lang-fade">
+  <div class="container lang-fade show">
     <h2 id="contact-title"></h2>
     <p>📧 luisblascoibanezberbel@email.com</p>
     <p>📞 +34 630 511 806</p>
@@ -242,7 +240,7 @@ const data={
  es:{
   nav:{home:"Inicio",about:"Perfil",projects:"Proyectos",skills:"Habilidades",cv:"CV",contact:"Contacto"},
   heroTitle:"Diseño Industrial y Desarrollo de Producto",
-  heroSub:"Perfil técnico-creativo orientado a empresas de diseño industrial en España.",
+  heroSub:"Perfil técnico-creativo orientado a empresas de diseño industrial.",
   heroBtn:"Ver proyectos",
   aboutTitle:"Sobre mí",
   aboutText:"Diseñador industrial con perfil técnico y creativo, enfocado en producto, fabricación y prototipado.",
@@ -262,10 +260,10 @@ const data={
  en:{
   nav:{home:"Home",about:"Profile",projects:"Projects",skills:"Skills",cv:"CV",contact:"Contact"},
   heroTitle:"Industrial Design & Product Development",
-  heroSub:"Technical and creative profile focused on industrial design companies.",
+  heroSub:"Technical and creative profile for industrial design companies.",
   heroBtn:"View projects",
   aboutTitle:"About me",
-  aboutText:"Industrial designer with a technical and creative profile focused on product and prototyping.",
+  aboutText:"Industrial designer with technical and creative focus on product and prototyping.",
   projectsTitle:"Projects",
   projects:[
    {title:"Radial synchronized mechanism",img:"project1.jpg"},
@@ -310,7 +308,6 @@ function setLang(l){
  pgrid.innerHTML="";
  d.projects.forEach(p=>pgrid.innerHTML+=`
   <button class="project-btn">
-    <div class="project-overlay"></div>
     <img src="${p.img}">
     <span>${p.title}</span>
   </button>`);
@@ -324,15 +321,26 @@ function setLang(l){
 
 function show(id){
  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
- document.getElementById(id).classList.add("active");
+ const section=document.getElementById(id);
+ section.classList.add("active");
+
+ section.classList.remove("section-enter");
+ void section.offsetWidth;
+ section.classList.add("section-enter");
+
  document.querySelectorAll("nav a").forEach(a=>a.classList.remove("active"));
  document.getElementById("nav-"+id).classList.add("active");
 }
 
 function toggleTheme(){document.body.classList.toggle("light")}
 
-setLang("es");
-document.getElementById("nav-home").classList.add("active");
+window.addEventListener("load",()=>{
+ setTimeout(()=>{
+   document.getElementById("page-loader").classList.add("hidden");
+ },1400);
+ setLang("es");
+ document.getElementById("nav-home").classList.add("active");
+});
 </script>
 
 </body>

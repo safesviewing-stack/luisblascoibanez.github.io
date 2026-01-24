@@ -90,15 +90,16 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
 /* GRID */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px}
 
-/* PROJECT BUTTONS (sin glow azul) */
+/* PROJECT CARDS */
 .project-btn{
+  position:relative;
   background:var(--card);
   border:none;
   border-radius:16px;
   padding:0;
   overflow:hidden;
   cursor:pointer;
-  transition:.35s;
+  transition:.4s cubic-bezier(.4,0,.2,1);
   display:flex;
   flex-direction:column;
 }
@@ -106,19 +107,30 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
   width:100%;
   aspect-ratio:4/3;
   object-fit:cover;
-  transition:.4s;
+  transition:.6s cubic-bezier(.4,0,.2,1);
 }
 .project-btn span{
   padding:16px;
   font-weight:600;
   font-size:14px;
+  z-index:2;
+  background:var(--card);
+}
+.project-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.6),rgba(0,0,0,0));
+  opacity:0;
+  transition:.4s;
 }
 .project-btn:hover{
-  transform:translateY(-6px) scale(1.02);
-  box-shadow:0 14px 30px rgba(0,0,0,.35);
+  transform:translateY(-10px) scale(1.03);
 }
 .project-btn:hover img{
-  transform:scale(1.05);
+  transform:scale(1.1);
+}
+.project-btn:hover .project-overlay{
+  opacity:1;
 }
 
 /* CARDS */
@@ -142,10 +154,7 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 .delay-2{animation-delay:.2s}
 .delay-3{animation-delay:.3s}
 .delay-4{animation-delay:.4s}
-
-@keyframes fadeUp{
-  to{opacity:1;transform:translateY(0)}
-}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
 
 /* MOBILE */
 @media(max-width:800px){
@@ -297,6 +306,7 @@ function setLang(l){
  pgrid.innerHTML="";
  d.projects.forEach(p=>pgrid.innerHTML+=`
   <button class="project-btn fade-up">
+    <div class="project-overlay"></div>
     <img src="${p.img}">
     <span>${p.title}</span>
   </button>`);

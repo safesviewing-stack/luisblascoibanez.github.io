@@ -90,16 +90,46 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
 /* GRID */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px}
 
-/* CARD */
-.card{background:var(--card);padding:24px;border-radius:16px;transition:.3s}
-.card:hover{transform:translateY(-6px)}
-
-/* IMAGES */
-.project-img{width:100%;border-radius:10px;margin-bottom:12px;aspect-ratio:4/3;object-fit:cover}
+/* PROJECT BUTTONS */
+.project-btn{
+  background:var(--card);
+  border:none;
+  border-radius:16px;
+  padding:0;
+  overflow:hidden;
+  cursor:pointer;
+  transition:.4s;
+  display:flex;
+  flex-direction:column;
+  text-align:left;
+}
+.project-btn img{
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:cover;
+  transition:.4s;
+}
+.project-btn span{
+  padding:16px;
+  font-weight:600;
+  font-size:14px;
+}
+.project-btn:hover{
+  transform:translateY(-8px) scale(1.03);
+  box-shadow:0 18px 40px rgba(0,242,255,.15);
+}
+.project-btn:hover img{
+  transform:scale(1.08);
+  filter:brightness(1.15);
+}
 
 /* ANIMATIONS */
 .fade-up{opacity:0;transform:translateY(20px);animation:fadeUp .8s forwards}
 @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* SKILLS */
+.card{background:var(--card);padding:24px;border-radius:16px;transition:.3s}
+.card:hover{transform:translateY(-6px)}
 
 /* CV */
 .cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
@@ -148,45 +178,11 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
   </div>
 </div>
 
-<!-- ABOUT -->
-<div id="about" class="view">
-  <div class="container">
-    <h2 class="fade-up" id="about-title"></h2>
-    <p class="fade-up" id="about-text"></p>
-  </div>
-</div>
-
 <!-- PROJECTS -->
 <div id="projects" class="view">
   <div class="container">
     <h2 class="fade-up" id="projects-title"></h2>
     <div class="grid" id="projects-grid"></div>
-  </div>
-</div>
-
-<!-- SKILLS -->
-<div id="skills" class="view">
-  <div class="container">
-    <h2 class="fade-up" id="skills-title"></h2>
-    <div class="grid" id="skills-grid"></div>
-  </div>
-</div>
-
-<!-- CV -->
-<div id="cv" class="view">
-  <div class="container">
-    <h2 class="fade-up" id="cv-title"></h2>
-    <div class="cv-grid" id="cv-grid"></div>
-    <a href="cv.pdf" class="btn fade-up" id="cv-btn" download></a>
-  </div>
-</div>
-
-<!-- CONTACT -->
-<div id="contact" class="view">
-  <div class="container">
-    <h2 class="fade-up" id="contact-title"></h2>
-    <p class="fade-up">📧 luisblascoibanezberbel@email.com</p>
-    <p class="fade-up">📞 +34 630 511 806</p>
   </div>
 </div>
 
@@ -197,10 +193,8 @@ const data={
  es:{
   nav:{home:"Inicio",about:"Perfil",projects:"Proyectos",skills:"Habilidades",cv:"CV",contact:"Contacto"},
   heroTitle:"Diseño Industrial y Desarrollo de Producto",
-  heroSub:"Perfil orientado a empresas de diseño industrial, ingeniería de producto y fabricación avanzada en España.",
+  heroSub:"Perfil orientado a empresas de diseño industrial e ingeniería de producto.",
   heroBtn:"Ver proyectos",
-  aboutTitle:"Perfil profesional",
-  aboutText:"Diseñador industrial con enfoque técnico y creativo, especializado en desarrollo de producto, prototipado y procesos industriales.",
   projectsTitle:"Proyectos",
   projects:[
    {title:"Mecanismo radial sincronizado",img:"project1.jpg"},
@@ -208,33 +202,13 @@ const data={
    {title:"Optimización mecánica",img:"project3.jpg"},
    {title:"Prototipos impresión 3D",img:"project4.jpg"}
   ],
-  skillsTitle:"Habilidades técnicas y software",
-  skills:[
-   {title:"SolidWorks",desc:"Modelado paramétrico"},
-   {title:"Fusion 360",desc:"Diseño mecánico"},
-   {title:"Inventor",desc:"CAD industrial"},
-   {title:"Rhinoceros",desc:"Superficies"},
-   {title:"Photoshop",desc:"Presentación visual"},
-   {title:"GitHub",desc:"Control de versiones"}
-  ],
-  cvTitle:"Currículum Vitae",
-  cv:[
-   "Grado en Diseño Industrial",
-   "FP en Electricidad",
-   "Especialización en prototipado e impresión 3D",
-   "Experiencia en proyectos mecánicos"
-  ],
-  cvBtn:"Descargar CV",
-  contactTitle:"Contacto profesional",
   footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"
  },
  en:{
   nav:{home:"Home",about:"Profile",projects:"Projects",skills:"Skills",cv:"CV",contact:"Contact"},
   heroTitle:"Industrial Design & Product Development",
-  heroSub:"Profile oriented to industrial design, product engineering and advanced manufacturing companies in Spain.",
+  heroSub:"Profile oriented to industrial design and product engineering companies.",
   heroBtn:"View projects",
-  aboutTitle:"Professional profile",
-  aboutText:"Industrial designer focused on product development, prototyping and industrial processes.",
   projectsTitle:"Projects",
   projects:[
    {title:"Radial synchronized mechanism",img:"project1.jpg"},
@@ -242,72 +216,30 @@ const data={
    {title:"Mechanical optimization",img:"project3.jpg"},
    {title:"3D printed prototypes",img:"project4.jpg"}
   ],
-  skillsTitle:"Technical skills and software",
-  skills:[
-   {title:"SolidWorks",desc:"Parametric modeling"},
-   {title:"Fusion 360",desc:"Mechanical design"},
-   {title:"Inventor",desc:"Industrial CAD"},
-   {title:"Rhinoceros",desc:"Surface modeling"},
-   {title:"Photoshop",desc:"Visual presentation"},
-   {title:"GitHub",desc:"Version control"}
-  ],
-  cvTitle:"Curriculum Vitae",
-  cv:[
-   "Industrial Design Degree",
-   "Electrical technical training",
-   "Specialization in prototyping and 3D printing",
-   "Mechanical project experience"
-  ],
-  cvBtn:"Download CV",
-  contactTitle:"Professional contact",
   footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineering"
  }
 };
 
 function setLang(l){
- document.body.style.opacity="0";
- setTimeout(()=>document.body.style.opacity="1",200);
-
  const d=data[l];
- Object.keys(d.nav).forEach(k=>document.getElementById("nav-"+k).innerText=d.nav[k]);
+ document.getElementById("nav-home").innerText=d.nav.home;
+ document.getElementById("nav-projects").innerText=d.nav.projects;
  document.getElementById("hero-title").innerText=d.heroTitle;
  document.getElementById("hero-sub").innerText=d.heroSub;
  document.getElementById("hero-btn").innerText=d.heroBtn;
- document.getElementById("about-title").innerText=d.aboutTitle;
- document.getElementById("about-text").innerText=d.aboutText;
  document.getElementById("projects-title").innerText=d.projectsTitle;
 
- const pgrid=document.getElementById("projects-grid");
- pgrid.innerHTML="";
+ const grid=document.getElementById("projects-grid");
+ grid.innerHTML="";
  d.projects.forEach(p=>{
-  pgrid.innerHTML+=`
-   <div class="card fade-up">
-    <img src="${p.img}" class="project-img">
-    <strong>${p.title}</strong>
-   </div>`;
+  grid.innerHTML+=`
+   <button class="project-btn fade-up">
+     <img src="${p.img}">
+     <span>${p.title}</span>
+   </button>`;
  });
 
- document.getElementById("skills-title").innerText=d.skillsTitle;
- const sgrid=document.getElementById("skills-grid");
- sgrid.innerHTML="";
- d.skills.forEach(s=>{
-  sgrid.innerHTML+=`
-   <div class="card fade-up">
-    <strong>${s.title}</strong>
-    <span>${s.desc}</span>
-   </div>`;
- });
-
- document.getElementById("cv-title").innerText=d.cvTitle;
- const cvg=document.getElementById("cv-grid");
- cvg.innerHTML="";
- d.cv.forEach(i=>cvg.innerHTML+=`<div class="cv-item fade-up">${i}</div>`);
- document.getElementById("cv-btn").innerText=d.cvBtn;
- document.getElementById("contact-title").innerText=d.contactTitle;
  document.getElementById("footer-text").innerText=d.footer;
-
- document.getElementById("btn-es").classList.toggle("active",l==="es");
- document.getElementById("btn-en").classList.toggle("active",l==="en");
 }
 
 function show(id){
@@ -321,12 +253,8 @@ function toggleTheme(){document.body.classList.toggle("light")}
 
 window.onload=()=>{
  setTimeout(()=>{
-  const loader=document.getElementById("loader");
-  loader.classList.add("hidden");
-  setTimeout(()=>{
-    loader.style.display="none";
-    show("home");
-  },800);
+  document.getElementById("loader").classList.add("hidden");
+  show("home");
  },1500);
  setLang("es");
 }

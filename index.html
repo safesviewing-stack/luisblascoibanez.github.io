@@ -77,7 +77,7 @@ nav a.active{color:var(--text);font-weight:600}
 .view.active{display:block}
 #home.view{overflow:hidden}
 
-/* FRAMER */
+/* ANIMACIONES */
 .title-framer{opacity:0;transform:translateY(18px);animation:titleIn .7s forwards}
 .content-framer{opacity:0;transform:translateY(18px);animation:contentIn .7s forwards;animation-delay:.22s}
 @keyframes titleIn{to{opacity:1;transform:translateY(0)}}
@@ -97,7 +97,7 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
 .hero{text-align:center;margin-top:20px}
 .hero p{max-width:620px;margin:18px auto}
 
-/* BUTTON */
+/* BOTON */
 .btn{
   margin-top:20px;padding:14px 28px;border:none;border-radius:28px;
   background:var(--accent);color:#000;font-weight:600;font-size:14px;
@@ -339,16 +339,16 @@ function setLang(l){
 
    const d=data[l];
    Object.keys(d.nav).forEach(k=>document.getElementById("nav-"+k).innerText=d.nav[k]);
-   hero-title.innerText=d.heroTitle;
-   hero-sub.innerText=d.heroSub;
-   hero-btn.innerText=d.heroBtn;
-   about-title.innerText=d.aboutTitle;
-   about-text.innerText=d.aboutText;
-   projects-title.innerText=d.projectsTitle;
-   skills-title.innerText=d.skillsTitle;
-   cv-title.innerText=d.cvTitle;
-   contact-title.innerText=d.contactTitle;
-   footer-text.innerText=d.footer;
+   document.getElementById("hero-title").innerText=d.heroTitle;
+   document.getElementById("hero-sub").innerText=d.heroSub;
+   document.getElementById("hero-btn").innerText=d.heroBtn;
+   document.getElementById("about-title").innerText=d.aboutTitle;
+   document.getElementById("about-text").innerText=d.aboutText;
+   document.getElementById("projects-title").innerText=d.projectsTitle;
+   document.getElementById("skills-title").innerText=d.skillsTitle;
+   document.getElementById("cv-title").innerText=d.cvTitle;
+   document.getElementById("contact-title").innerText=d.contactTitle;
+   document.getElementById("footer-text").innerText=d.footer;
 
    const pgrid=document.getElementById("projects-grid");
    pgrid.innerHTML="";
@@ -375,12 +375,17 @@ function show(id){
 function toggleTheme(){document.body.classList.toggle("light")}
 
 window.addEventListener("load",()=>{
- setLang("es");
- document.getElementById("nav-home").classList.add("active");
- setTimeout(()=>{
-   document.getElementById("page-loader").classList.add("hidden");
-   setTimeout(()=>{document.getElementById("home").classList.add("active")},250);
- },1200);
+  setLang("es");
+  document.getElementById("nav-home").classList.add("active");
+
+  const loader=document.getElementById("page-loader");
+  setTimeout(()=>{
+    loader.classList.add("hidden");
+    setTimeout(()=>{
+      loader.style.display="none";
+      document.getElementById("home").classList.add("active");
+    },500);
+  },900);
 });
 </script>
 

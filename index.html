@@ -80,6 +80,14 @@ nav a.active{color:var(--text);font-weight:600}
 }
 @keyframes sectionIn{to{opacity:1;transform:translateY(0)}}
 
+/* HERO ENTRY */
+.hero-enter{
+  opacity:0;
+  transform:translateY(25px);
+  animation:heroIn .9s ease forwards;
+}
+@keyframes heroIn{to{opacity:1;transform:translateY(0)}}
+
 /* LANGUAGE TRANSITION */
 .lang-fade{
   opacity:0;
@@ -179,7 +187,7 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 </header>
 
 <!-- HOME -->
-<div id="home" class="view active">
+<div id="home" class="view">
   <div class="container hero lang-fade show">
     <h1 id="hero-title"></h1>
     <p id="hero-sub"></p>
@@ -335,11 +343,19 @@ function show(id){
 function toggleTheme(){document.body.classList.toggle("light")}
 
 window.addEventListener("load",()=>{
- setTimeout(()=>{
-   document.getElementById("page-loader").classList.add("hidden");
- },1400);
  setLang("es");
  document.getElementById("nav-home").classList.add("active");
+
+ setTimeout(()=>{
+   document.getElementById("page-loader").classList.add("hidden");
+
+   setTimeout(()=>{
+     const home=document.getElementById("home");
+     home.classList.add("active");
+     home.classList.add("hero-enter");
+   },300);
+
+ },1400);
 });
 </script>
 

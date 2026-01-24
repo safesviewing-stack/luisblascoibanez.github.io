@@ -75,30 +75,39 @@ nav a.active{color:var(--text);font-weight:600}
 }
 .view.active{display:block}
 
-/* FRAMER STYLE ANIMATIONS */
+/* FRAMER STYLE */
 .title-framer{
-  opacity:0;
-  transform:translateY(18px);
+  opacity:0;transform:translateY(18px);
   animation:titleIn .7s cubic-bezier(.4,0,.2,1) forwards;
 }
 .content-framer{
-  opacity:0;
-  transform:translateY(18px);
+  opacity:0;transform:translateY(18px);
   animation:contentIn .7s cubic-bezier(.4,0,.2,1) forwards;
   animation-delay:.22s;
 }
 @keyframes titleIn{to{opacity:1;transform:translateY(0)}}
 @keyframes contentIn{to{opacity:1;transform:translateY(0)}}
 
-/* LANGUAGE FADE */
-.lang-fade{
+/* CASCADE */
+.stagger-item{
   opacity:0;
-  transform:translateY(6px);
-  transition:.35s ease;
+  transform:translateY(20px);
+  animation:staggerIn .6s cubic-bezier(.4,0,.2,1) forwards;
 }
-.lang-fade.show{
+@keyframes staggerIn{
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* LANGUAGE FADE */
+.lang-wrapper.hide{
+  opacity:0;
+  transform:translateY(8px);
+  transition:.25s ease;
+}
+.lang-wrapper.show{
   opacity:1;
   transform:translateY(0);
+  transition:.35s ease;
 }
 
 /* CONTAINER */
@@ -202,7 +211,7 @@ footer{
 
 <!-- HOME -->
 <div id="home" class="view">
-  <div class="container hero lang-fade show">
+  <div class="container hero lang-wrapper show">
     <h1 id="hero-title" class="title-framer"></h1>
     <div class="content-framer">
       <p id="hero-sub"></p>
@@ -213,7 +222,7 @@ footer{
 
 <!-- ABOUT -->
 <div id="about" class="view">
-  <div class="container lang-fade show">
+  <div class="container lang-wrapper show">
     <h2 id="about-title" class="title-framer"></h2>
     <div class="content-framer">
       <p id="about-text"></p>
@@ -223,7 +232,7 @@ footer{
 
 <!-- PROJECTS -->
 <div id="projects" class="view">
-  <div class="container lang-fade show">
+  <div class="container lang-wrapper show">
     <h2 id="projects-title" class="title-framer"></h2>
     <div class="grid content-framer" id="projects-grid"></div>
   </div>
@@ -231,7 +240,7 @@ footer{
 
 <!-- SKILLS -->
 <div id="skills" class="view">
-  <div class="container lang-fade show">
+  <div class="container lang-wrapper show">
     <h2 id="skills-title" class="title-framer"></h2>
     <div class="grid content-framer" id="skills-grid"></div>
   </div>
@@ -239,7 +248,7 @@ footer{
 
 <!-- CV -->
 <div id="cv" class="view">
-  <div class="container lang-fade show">
+  <div class="container lang-wrapper show">
     <h2 id="cv-title" class="title-framer"></h2>
     <div class="cv-grid content-framer">
       <div class="cv-item">🎓 Grado en Diseño Industrial – BME</div>
@@ -252,7 +261,7 @@ footer{
 
 <!-- CONTACT -->
 <div id="contact" class="view">
-  <div class="container lang-fade show">
+  <div class="container lang-wrapper show">
     <h2 id="contact-title" class="title-framer"></h2>
     <div class="content-framer">
       <p>📧 luisblascoibanezberbel@email.com</p>
@@ -307,44 +316,50 @@ const data={
  }
 };
 
-function animateLang(){
- document.querySelectorAll(".lang-fade").forEach(el=>{
-   el.classList.remove("show");
-   setTimeout(()=>el.classList.add("show"),50);
- });
+function animateLangTransition(callback){
+ const wrappers=document.querySelectorAll(".lang-wrapper");
+ wrappers.forEach(w=>w.classList.add("hide"));
+ setTimeout(()=>{
+   callback();
+   wrappers.forEach(w=>{
+     w.classList.remove("hide");
+     w.classList.add("show");
+   });
+ },260);
 }
 
 function setLang(l){
- document.getElementById("btn-es").classList.remove("active");
- document.getElementById("btn-en").classList.remove("active");
- document.getElementById("btn-"+l).classList.add("active");
+ animateLangTransition(()=>{
+   document.getElementById("btn-es").classList.remove("active");
+   document.getElementById("btn-en").classList.remove("active");
+   document.getElementById("btn-"+l).classList.add("active");
 
- const d=data[l];
- Object.keys(d.nav).forEach(k=>document.getElementById("nav-"+k).innerText=d.nav[k]);
- document.getElementById("hero-title").innerText=d.heroTitle;
- document.getElementById("hero-sub").innerText=d.heroSub;
- document.getElementById("hero-btn").innerText=d.heroBtn;
- document.getElementById("about-title").innerText=d.aboutTitle;
- document.getElementById("about-text").innerText=d.aboutText;
- document.getElementById("projects-title").innerText=d.projectsTitle;
- document.getElementById("skills-title").innerText=d.skillsTitle;
- document.getElementById("cv-title").innerText=d.cvTitle;
- document.getElementById("contact-title").innerText=d.contactTitle;
- document.getElementById("footer-text").innerText=d.footer;
+   const d=data[l];
+   Object.keys(d.nav).forEach(k=>document.getElementById("nav-"+k).innerText=d.nav[k]);
+   document.getElementById("hero-title").innerText=d.heroTitle;
+   document.getElementById("hero-sub").innerText=d.heroSub;
+   document.getElementById("hero-btn").innerText=d.heroBtn;
+   document.getElementById("about-title").innerText=d.aboutTitle;
+   document.getElementById("about-text").innerText=d.aboutText;
+   document.getElementById("projects-title").innerText=d.projectsTitle;
+   document.getElementById("skills-title").innerText=d.skillsTitle;
+   document.getElementById("cv-title").innerText=d.cvTitle;
+   document.getElementById("contact-title").innerText=d.contactTitle;
+   document.getElementById("footer-text").innerText=d.footer;
 
- const pgrid=document.getElementById("projects-grid");
- pgrid.innerHTML="";
- d.projects.forEach(p=>pgrid.innerHTML+=`
-  <button class="project-btn">
-    <img src="${p.img}">
-    <span>${p.title}</span>
-  </button>`);
+   const pgrid=document.getElementById("projects-grid");
+   pgrid.innerHTML="";
+   d.projects.forEach((p,i)=>pgrid.innerHTML+=`
+    <button class="project-btn stagger-item" style="animation-delay:${i*0.08}s">
+      <img src="${p.img}">
+      <span>${p.title}</span>
+    </button>`);
 
- const sgrid=document.getElementById("skills-grid");
- sgrid.innerHTML="";
- d.skills.forEach(s=>sgrid.innerHTML+=`<div class="card">${s}</div>`);
-
- animateLang();
+   const sgrid=document.getElementById("skills-grid");
+   sgrid.innerHTML="";
+   d.skills.forEach((s,i)=>sgrid.innerHTML+=`
+    <div class="card stagger-item" style="animation-delay:${i*0.08}s">${s}</div>`);
+ });
 }
 
 function show(id){

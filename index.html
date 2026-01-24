@@ -177,7 +177,7 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
   <div class="container">
     <h2 class="fade-up" id="cv-title"></h2>
     <div class="cv-grid" id="cv-grid"></div>
-    <a href="cv.pdf" class="btn" id="cv-btn" download></a>
+    <a href="cv.pdf" class="btn fade-up" id="cv-btn" download></a>
   </div>
 </div>
 
@@ -185,8 +185,8 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 <div id="contact" class="view">
   <div class="container">
     <h2 class="fade-up" id="contact-title"></h2>
-    <p>📧 luisblascoibanezberbel@email.com</p>
-    <p>📞 +34 630 511 806</p>
+    <p class="fade-up">📧 luisblascoibanezberbel@email.com</p>
+    <p class="fade-up">📞 +34 630 511 806</p>
   </div>
 </div>
 
@@ -265,6 +265,9 @@ const data={
 };
 
 function setLang(l){
+ document.body.style.opacity="0";
+ setTimeout(()=>document.body.style.opacity="1",200);
+
  const d=data[l];
  Object.keys(d.nav).forEach(k=>document.getElementById("nav-"+k).innerText=d.nav[k]);
  document.getElementById("hero-title").innerText=d.heroTitle;
@@ -309,8 +312,7 @@ function setLang(l){
 
 function show(id){
  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
- const view=document.getElementById(id);
- view.classList.add("active");
+ document.getElementById(id).classList.add("active");
  document.querySelectorAll("nav a").forEach(a=>a.classList.remove("active"));
  document.getElementById("nav-"+id).classList.add("active");
 }
@@ -326,7 +328,6 @@ window.onload=()=>{
     show("home");
   },800);
  },1500);
-
  setLang("es");
 }
 </script>

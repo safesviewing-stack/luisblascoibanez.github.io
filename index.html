@@ -72,41 +72,18 @@ nav a.active{color:var(--text);font-weight:600}
   position:absolute;top:90px;width:100%;
   height:calc(100vh - 90px);padding:60px 30px;
   display:none;
+  overflow-y:auto;
 }
 .view.active{display:block}
+#home.view{overflow:hidden}
 
-/* FRAMER STYLE */
-.title-framer{
-  opacity:0;transform:translateY(18px);
-  animation:titleIn .7s cubic-bezier(.4,0,.2,1) forwards;
-}
-.content-framer{
-  opacity:0;transform:translateY(18px);
-  animation:contentIn .7s cubic-bezier(.4,0,.2,1) forwards;
-  animation-delay:.22s;
-}
+/* FRAMER */
+.title-framer{opacity:0;transform:translateY(18px);animation:titleIn .7s forwards}
+.content-framer{opacity:0;transform:translateY(18px);animation:contentIn .7s forwards;animation-delay:.22s}
 @keyframes titleIn{to{opacity:1;transform:translateY(0)}}
 @keyframes contentIn{to{opacity:1;transform:translateY(0)}}
-
-/* CASCADE */
-.stagger-item{
-  opacity:0;
-  transform:translateY(20px);
-  animation:staggerIn .6s cubic-bezier(.4,0,.2,1) forwards;
-}
+.stagger-item{opacity:0;transform:translateY(20px);animation:staggerIn .6s forwards}
 @keyframes staggerIn{to{opacity:1;transform:translateY(0)}}
-
-/* LANGUAGE TRANSITION */
-.lang-wrapper.hide{
-  opacity:0;
-  transform:scale(.96);
-  transition:.25s ease;
-}
-.lang-wrapper.show{
-  opacity:1;
-  transform:scale(1);
-  transition:.35s ease;
-}
 
 /* CONTAINER */
 .container{max-width:1100px;margin:auto;display:flex;flex-direction:column;gap:26px}
@@ -117,27 +94,61 @@ h2{font-size:26px}
 p{color:var(--muted);line-height:1.6;font-size:14px}
 
 /* HERO */
-.hero{text-align:center;margin-top:40px}
+.hero{text-align:center;margin-top:20px}
 .hero p{max-width:620px;margin:18px auto}
 
-/* MICROINTERACTION BUTTON */
+/* BUTTON */
 .btn{
-  margin-top:28px;padding:14px 28px;border:none;border-radius:28px;
+  margin-top:20px;padding:14px 28px;border:none;border-radius:28px;
   background:var(--accent);color:#000;font-weight:600;font-size:14px;
-  cursor:pointer;transition:.35s cubic-bezier(.4,0,.2,1);
-  position:relative;overflow:hidden;
+  cursor:pointer;transition:.35s
 }
-.btn::after{
-  content:"";position:absolute;inset:0;
-  background:radial-gradient(circle at center,rgba(255,255,255,.35),transparent 60%);
-  opacity:0;transition:.35s;
+.btn:hover{transform:scale(1.1);box-shadow:0 14px 30px rgba(0,242,255,.35)}
+
+/* HERO RENDERS */
+.hero-renders{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  height:calc(100vh - 360px);
 }
-.btn:hover{
-  transform:scale(1.1);
-  box-shadow:0 14px 30px rgba(0,242,255,.35);
+.render-card{
+  position:relative;
+  border-radius:20px;
+  overflow:hidden;
+  cursor:pointer;
+  transition:.5s;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
-.btn:hover::after{opacity:1}
-.btn:active{transform:scale(.96)}
+.render-card img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  background:#000;
+}
+.render-card span{
+  position:absolute;
+  bottom:14px;
+  left:14px;
+  font-size:13px;
+  font-weight:600;
+}
+.render-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.55),transparent 60%);
+}
+.render-card:hover{transform:translateY(-10px) scale(1.03)}
+
+@media(max-width:900px){
+  .hero-renders{grid-template-columns:1fr;height:auto}
+  .render-card{max-height:260px}
+  h1{font-size:30px}
+}
 
 /* GRID */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px}
@@ -149,20 +160,13 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
   border-radius:16px;
   overflow:hidden;
   cursor:pointer;
-  transition:.4s cubic-bezier(.4,0,.2,1);
+  transition:.4s;
   display:flex;
   flex-direction:column;
 }
-.project-btn img{
-  width:100%;aspect-ratio:4/3;object-fit:cover;
-  transition:.6s cubic-bezier(.4,0,.2,1)
-}
-.project-btn span{padding:16px;font-weight:600;font-size:14px}
-.project-btn:hover{
-  transform:translateY(-10px) scale(1.03);
-  box-shadow:0 18px 40px rgba(0,242,255,.12)
-}
-.project-btn:hover img{transform:scale(1.1)}
+.project-btn img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.project-btn span{padding:16px;font-weight:600}
+.project-btn:hover{transform:translateY(-10px) scale(1.03)}
 
 /* SKILLS */
 .card{background:var(--card);padding:24px;border-radius:16px;transition:.3s}
@@ -174,51 +178,6 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
 
 /* FOOTER */
 footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;color:var(--muted)}
-
-/* HERO RENDERS */
-.hero-renders{
-  margin-top:50px;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:22px;
-}
-.render-card{
-  position:relative;
-  border-radius:20px;
-  overflow:hidden;
-  aspect-ratio:4/5;
-  cursor:pointer;
-  transition:.5s cubic-bezier(.4,0,.2,1);
-}
-.render-card img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition:.6s cubic-bezier(.4,0,.2,1);
-}
-.render-card::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to top,rgba(0,0,0,.6),transparent 55%);
-}
-.render-card span{
-  position:absolute;
-  bottom:18px;
-  left:18px;
-  font-size:14px;
-  font-weight:600;
-}
-.render-card:hover{
-  transform:translateY(-12px) scale(1.03);
-  box-shadow:0 22px 50px rgba(0,242,255,.18);
-}
-.render-card:hover img{transform:scale(1.08)}
-
-@media(max-width:900px){
-  .hero-renders{grid-template-columns:1fr}
-  h1{font-size:30px}
-}
 </style>
 </head>
 
@@ -270,9 +229,7 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 <div id="about" class="view">
   <div class="container lang-wrapper show">
     <h2 id="about-title" class="title-framer"></h2>
-    <div class="content-framer">
-      <p id="about-text"></p>
-    </div>
+    <div class="content-framer"><p id="about-text"></p></div>
   </div>
 </div>
 
@@ -382,16 +339,16 @@ function setLang(l){
 
    const d=data[l];
    Object.keys(d.nav).forEach(k=>document.getElementById("nav-"+k).innerText=d.nav[k]);
-   document.getElementById("hero-title").innerText=d.heroTitle;
-   document.getElementById("hero-sub").innerText=d.heroSub;
-   document.getElementById("hero-btn").innerText=d.heroBtn;
-   document.getElementById("about-title").innerText=d.aboutTitle;
-   document.getElementById("about-text").innerText=d.aboutText;
-   document.getElementById("projects-title").innerText=d.projectsTitle;
-   document.getElementById("skills-title").innerText=d.skillsTitle;
-   document.getElementById("cv-title").innerText=d.cvTitle;
-   document.getElementById("contact-title").innerText=d.contactTitle;
-   document.getElementById("footer-text").innerText=d.footer;
+   hero-title.innerText=d.heroTitle;
+   hero-sub.innerText=d.heroSub;
+   hero-btn.innerText=d.heroBtn;
+   about-title.innerText=d.aboutTitle;
+   about-text.innerText=d.aboutText;
+   projects-title.innerText=d.projectsTitle;
+   skills-title.innerText=d.skillsTitle;
+   cv-title.innerText=d.cvTitle;
+   contact-title.innerText=d.contactTitle;
+   footer-text.innerText=d.footer;
 
    const pgrid=document.getElementById("projects-grid");
    pgrid.innerHTML="";
@@ -410,8 +367,7 @@ function setLang(l){
 
 function show(id){
  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
- const section=document.getElementById(id);
- section.classList.add("active");
+ document.getElementById(id).classList.add("active");
  document.querySelectorAll("nav a").forEach(a=>a.classList.remove("active"));
  document.getElementById("nav-"+id).classList.add("active");
 }

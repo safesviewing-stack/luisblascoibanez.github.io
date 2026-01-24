@@ -29,7 +29,10 @@ body{background:var(--bg);color:var(--text);overflow:hidden;transition:.4s}
   display:flex;align-items:center;justify-content:center;
   z-index:9999;transition:.8s ease;
 }
-#page-loader span{font-size:22px;letter-spacing:.3em;animation:pulse 1.4s infinite}
+#page-loader span{
+  font-size:22px;letter-spacing:.3em;
+  animation:pulse 1.4s infinite;
+}
 @keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
 #page-loader.hidden{opacity:0;visibility:hidden}
 
@@ -68,17 +71,42 @@ nav a.active{color:var(--text);font-weight:600}
 .view{
   position:absolute;top:90px;width:100%;
   height:calc(100vh - 90px);padding:60px 30px;
-  display:none;overflow-y:auto;
+  display:none;
 }
 .view.active{display:block}
 
-/* ANIMACIONES */
-.title-framer{opacity:0;transform:translateY(18px);animation:titleIn .7s forwards}
-.content-framer{opacity:0;transform:translateY(18px);animation:contentIn .7s forwards;animation-delay:.22s}
+/* FRAMER STYLE */
+.title-framer{
+  opacity:0;transform:translateY(18px);
+  animation:titleIn .7s cubic-bezier(.4,0,.2,1) forwards;
+}
+.content-framer{
+  opacity:0;transform:translateY(18px);
+  animation:contentIn .7s cubic-bezier(.4,0,.2,1) forwards;
+  animation-delay:.22s;
+}
 @keyframes titleIn{to{opacity:1;transform:translateY(0)}}
 @keyframes contentIn{to{opacity:1;transform:translateY(0)}}
-.stagger-item{opacity:0;transform:translateY(20px);animation:staggerIn .6s forwards}
+
+/* CASCADE */
+.stagger-item{
+  opacity:0;
+  transform:translateY(20px);
+  animation:staggerIn .6s cubic-bezier(.4,0,.2,1) forwards;
+}
 @keyframes staggerIn{to{opacity:1;transform:translateY(0)}}
+
+/* LANGUAGE TRANSITION */
+.lang-wrapper.hide{
+  opacity:0;
+  transform:scale(.96);
+  transition:.25s ease;
+}
+.lang-wrapper.show{
+  opacity:1;
+  transform:scale(1);
+  transition:.35s ease;
+}
 
 /* CONTAINER */
 .container{max-width:1100px;margin:auto;display:flex;flex-direction:column;gap:26px}
@@ -92,13 +120,24 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
 .hero{text-align:center;margin-top:40px}
 .hero p{max-width:620px;margin:18px auto}
 
-/* BOTON */
+/* MICROINTERACTION BUTTON */
 .btn{
   margin-top:28px;padding:14px 28px;border:none;border-radius:28px;
   background:var(--accent);color:#000;font-weight:600;font-size:14px;
-  cursor:pointer;transition:.35s
+  cursor:pointer;transition:.35s cubic-bezier(.4,0,.2,1);
+  position:relative;overflow:hidden;
 }
-.btn:hover{transform:scale(1.1);box-shadow:0 14px 30px rgba(0,242,255,.35)}
+.btn::after{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at center,rgba(255,255,255,.35),transparent 60%);
+  opacity:0;transition:.35s;
+}
+.btn:hover{
+  transform:scale(1.1);
+  box-shadow:0 14px 30px rgba(0,242,255,.35);
+}
+.btn:hover::after{opacity:1}
+.btn:active{transform:scale(.96)}
 
 /* GRID */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px}
@@ -110,13 +149,31 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
   border-radius:16px;
   overflow:hidden;
   cursor:pointer;
-  transition:.4s;
+  transition:.4s cubic-bezier(.4,0,.2,1);
   display:flex;
   flex-direction:column;
 }
-.project-btn img{width:100%;aspect-ratio:4/3;object-fit:cover}
-.project-btn span{padding:16px;font-weight:600}
-.project-btn:hover{transform:translateY(-10px) scale(1.03)}
+.project-btn img{
+  width:100%;aspect-ratio:4/3;object-fit:cover;
+  transition:.6s cubic-bezier(.4,0,.2,1)
+}
+.project-btn span{padding:16px;font-weight:600;font-size:14px}
+.project-btn:hover{
+  transform:translateY(-10px) scale(1.03);
+  box-shadow:0 18px 40px rgba(0,242,255,.12)
+}
+.project-btn:hover img{transform:scale(1.1)}
+
+/* SKILLS */
+.card{background:var(--card);padding:24px;border-radius:16px;transition:.3s}
+.card:hover{transform:translateY(-6px)}
+
+/* CV */
+.cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.cv-item{background:var(--card);padding:22px;border-radius:14px}
+
+/* FOOTER */
+footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;color:var(--muted)}
 
 /* HERO RENDERS */
 .hero-renders{
@@ -131,17 +188,32 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
   overflow:hidden;
   aspect-ratio:4/5;
   cursor:pointer;
-  transition:.5s
+  transition:.5s cubic-bezier(.4,0,.2,1);
 }
-.render-card img{width:100%;height:100%;object-fit:cover}
+.render-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:.6s cubic-bezier(.4,0,.2,1);
+}
 .render-card::after{
-  content:"";position:absolute;inset:0;
+  content:"";
+  position:absolute;
+  inset:0;
   background:linear-gradient(to top,rgba(0,0,0,.6),transparent 55%);
 }
 .render-card span{
-  position:absolute;bottom:18px;left:18px;font-weight:600
+  position:absolute;
+  bottom:18px;
+  left:18px;
+  font-size:14px;
+  font-weight:600;
 }
-.render-card:hover{transform:translateY(-12px) scale(1.03)}
+.render-card:hover{
+  transform:translateY(-12px) scale(1.03);
+  box-shadow:0 22px 50px rgba(0,242,255,.18);
+}
+.render-card:hover img{transform:scale(1.08)}
 
 @media(max-width:900px){
   .hero-renders{grid-template-columns:1fr}
@@ -196,46 +268,51 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
 
 <!-- ABOUT -->
 <div id="about" class="view">
-  <div class="container">
-    <h2 id="about-title"></h2>
-    <p id="about-text"></p>
+  <div class="container lang-wrapper show">
+    <h2 id="about-title" class="title-framer"></h2>
+    <div class="content-framer">
+      <p id="about-text"></p>
+    </div>
   </div>
 </div>
 
 <!-- PROJECTS -->
 <div id="projects" class="view">
-  <div class="container">
-    <h2 id="projects-title"></h2>
-    <div class="grid" id="projects-grid"></div>
+  <div class="container lang-wrapper show">
+    <h2 id="projects-title" class="title-framer"></h2>
+    <div class="grid content-framer" id="projects-grid"></div>
   </div>
 </div>
 
 <!-- SKILLS -->
 <div id="skills" class="view">
-  <div class="container">
-    <h2 id="skills-title"></h2>
-    <div class="grid" id="skills-grid"></div>
+  <div class="container lang-wrapper show">
+    <h2 id="skills-title" class="title-framer"></h2>
+    <div class="grid content-framer" id="skills-grid"></div>
   </div>
 </div>
 
 <!-- CV -->
 <div id="cv" class="view">
-  <div class="container">
-    <h2 id="cv-title"></h2>
-    <div class="grid">
-      <div class="project-btn"><span>🎓 Grado en Diseño Industrial – BME</span></div>
-      <div class="project-btn"><span>⚡ FP Electricidad</span></div>
-      <div class="project-btn"><span>🛠️ Experiencia en producto</span></div>
+  <div class="container lang-wrapper show">
+    <h2 id="cv-title" class="title-framer"></h2>
+    <div class="cv-grid content-framer">
+      <div class="cv-item">🎓 Grado en Diseño Industrial – BME</div>
+      <div class="cv-item">⚡ FP Electricidad</div>
+      <div class="cv-item">🛠️ Experiencia en producto</div>
+      <div class="cv-item">📄 <a href="cv.pdf" download style="color:var(--accent)">Descargar CV</a></div>
     </div>
   </div>
 </div>
 
 <!-- CONTACT -->
 <div id="contact" class="view">
-  <div class="container">
-    <h2 id="contact-title"></h2>
-    <p>📧 luisblascoibanezberbel@email.com</p>
-    <p>📞 +34 630 511 806</p>
+  <div class="container lang-wrapper show">
+    <h2 id="contact-title" class="title-framer"></h2>
+    <div class="content-framer">
+      <p>📧 luisblascoibanezberbel@email.com</p>
+      <p>📞 +34 630 511 806</p>
+    </div>
   </div>
 </div>
 
@@ -252,15 +329,16 @@ const data={
   aboutText:"Diseñador industrial con perfil técnico y creativo.",
   projectsTitle:"Proyectos",
   projects:[
-   {title:"Brazo robótico",img:"brazo1.jpg"},
-   {title:"Secador plegable",img:"secador3.jpg"},
-   {title:"Reloj conceptual",img:"reloj1.jpg"}
+   {title:"Mecanismo radial sincronizado",img:"project1.jpg"},
+   {title:"Producto eléctrico industrial",img:"project2.jpg"},
+   {title:"Optimización mecánica",img:"project3.jpg"},
+   {title:"Prototipos impresión 3D",img:"project4.jpg"}
   ],
   skillsTitle:"Habilidades técnicas",
-  skills:["SolidWorks","Fusion 360","AutoCAD","Inventor","Rhinoceros","Photoshop","Renderizado"],
+  skills:["SolidWorks","Fusion 360","AutoCAD","Inventor","Rhinoceros","GitHub","Photoshop"],
   cvTitle:"Currículum Vitae",
   contactTitle:"Contacto",
-  footer:"© 2026 · Luis Blasco-Ibáñez Berbel"
+  footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"
  },
  en:{
   nav:{home:"Home",about:"Profile",projects:"Projects",skills:"Skills",cv:"CV",contact:"Contact"},
@@ -271,64 +349,83 @@ const data={
   aboutText:"Industrial designer with technical and creative focus.",
   projectsTitle:"Projects",
   projects:[
-   {title:"Robotic arm",img:"brazo1.jpg"},
-   {title:"Foldable dryer",img:"secador3.jpg"},
-   {title:"Concept watch",img:"reloj1.jpg"}
+   {title:"Radial synchronized mechanism",img:"project1.jpg"},
+   {title:"Industrial electrical product",img:"project2.jpg"},
+   {title:"Mechanical optimization",img:"project3.jpg"},
+   {title:"3D printed prototypes",img:"project4.jpg"}
   ],
   skillsTitle:"Technical skills",
-  skills:["SolidWorks","Fusion 360","AutoCAD","Inventor","Rhinoceros","Photoshop","Rendering"],
+  skills:["SolidWorks","Fusion 360","AutoCAD","Inventor","Rhinoceros","GitHub","Photoshop"],
   cvTitle:"Curriculum Vitae",
   contactTitle:"Contact",
-  footer:"© 2026 · Luis Blasco-Ibáñez Berbel"
+  footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineering"
  }
 };
 
+function animateLangTransition(callback){
+ const wrappers=document.querySelectorAll(".lang-wrapper");
+ wrappers.forEach(w=>w.classList.add("hide"));
+ setTimeout(()=>{
+   callback();
+   wrappers.forEach(w=>{
+     w.classList.remove("hide");
+     w.classList.add("show");
+   });
+ },280);
+}
+
 function setLang(l){
- const d=data[l];
- Object.keys(d.nav).forEach(k=>document.getElementById("nav-"+k).innerText=d.nav[k]);
- hero-title.innerText=d.heroTitle;
- hero-sub.innerText=d.heroSub;
- hero-btn.innerText=d.heroBtn;
- about-title.innerText=d.aboutTitle;
- about-text.innerText=d.aboutText;
- projects-title.innerText=d.projectsTitle;
- skills-title.innerText=d.skillsTitle;
- cv-title.innerText=d.cvTitle;
- contact-title.innerText=d.contactTitle;
- footer-text.innerText=d.footer;
+ animateLangTransition(()=>{
+   document.getElementById("btn-es").classList.remove("active");
+   document.getElementById("btn-en").classList.remove("active");
+   document.getElementById("btn-"+l).classList.add("active");
 
- projects-grid.innerHTML="";
- d.projects.forEach(p=>{
-  projects-grid.innerHTML+=`
-   <button class="project-btn stagger-item">
-     <img src="${p.img}">
-     <span>${p.title}</span>
-   </button>`;
+   const d=data[l];
+   Object.keys(d.nav).forEach(k=>document.getElementById("nav-"+k).innerText=d.nav[k]);
+   document.getElementById("hero-title").innerText=d.heroTitle;
+   document.getElementById("hero-sub").innerText=d.heroSub;
+   document.getElementById("hero-btn").innerText=d.heroBtn;
+   document.getElementById("about-title").innerText=d.aboutTitle;
+   document.getElementById("about-text").innerText=d.aboutText;
+   document.getElementById("projects-title").innerText=d.projectsTitle;
+   document.getElementById("skills-title").innerText=d.skillsTitle;
+   document.getElementById("cv-title").innerText=d.cvTitle;
+   document.getElementById("contact-title").innerText=d.contactTitle;
+   document.getElementById("footer-text").innerText=d.footer;
+
+   const pgrid=document.getElementById("projects-grid");
+   pgrid.innerHTML="";
+   d.projects.forEach((p,i)=>pgrid.innerHTML+=`
+    <button class="project-btn stagger-item" style="animation-delay:${i*0.08}s">
+      <img src="${p.img}">
+      <span>${p.title}</span>
+    </button>`);
+
+   const sgrid=document.getElementById("skills-grid");
+   sgrid.innerHTML="";
+   d.skills.forEach((s,i)=>sgrid.innerHTML+=`
+    <div class="card stagger-item" style="animation-delay:${i*0.08}s">${s}</div>`);
  });
-
- skills-grid.innerHTML="";
- d.skills.forEach(s=>{
-  skills-grid.innerHTML+=`<div class="project-btn stagger-item"><span>${s}</span></div>`;
- });
-
- btn-es.classList.toggle("active",l==="es");
- btn-en.classList.toggle("active",l==="en");
 }
 
 function show(id){
  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
- document.getElementById(id).classList.add("active");
+ const section=document.getElementById(id);
+ section.classList.add("active");
  document.querySelectorAll("nav a").forEach(a=>a.classList.remove("active"));
  document.getElementById("nav-"+id).classList.add("active");
 }
 
 function toggleTheme(){document.body.classList.toggle("light")}
 
-window.onload=()=>{
+window.addEventListener("load",()=>{
  setLang("es");
- show("home");
- setTimeout(()=>page-loader.classList.add("hidden"),900);
-};
+ document.getElementById("nav-home").classList.add("active");
+ setTimeout(()=>{
+   document.getElementById("page-loader").classList.add("hidden");
+   setTimeout(()=>{document.getElementById("home").classList.add("active")},250);
+ },1200);
+});
 </script>
 
 </body>

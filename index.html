@@ -2,267 +2,306 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>L·BIB · Industrial Design</title>
+<title>Borbála · Industrial Design Portfolio</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --bg:#050507;
-  --text:#f5f5f7;
-  --muted:#888;
-  --card:#111;
-  --accent:#00f2ff;
+  --bg:#0b0c10;
+  --text:#f3f3f3;
+  --muted:#9a9a9a;
+  --accent:#c8ff00;
 }
-body.light{
-  --bg:#f5f5f7;
-  --text:#111;
-  --muted:#666;
-  --card:#ffffff;
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,sans-serif;
 }
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
-body{background:var(--bg);color:var(--text);overflow:hidden;transition:.4s}
-
-/* LOADER */
-#page-loader{
-  position:fixed;inset:0;background:#050507;
-  display:flex;align-items:center;justify-content:center;
-  z-index:9999;transition:.8s ease;
+h1,h2,h3{
+  font-family:Playfair Display,serif;
 }
-#page-loader span{
-  font-size:22px;letter-spacing:.3em;
-  animation:pulse 1.4s infinite;
-}
-@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
-#page-loader.hidden{opacity:0;visibility:hidden}
-
-/* HEADER */
+section{padding:140px 8vw}
 header{
-  position:fixed;top:10px;width:100%;
-  padding:14px 32px;
-  display:flex;justify-content:space-between;align-items:center;
-  background:var(--bg);z-index:1000
+  position:fixed;
+  top:0;width:100%;
+  padding:28px 8vw;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(11,12,16,.85);
+  backdrop-filter:blur(6px);
+  z-index:100;
 }
-header h2{font-size:16px;font-weight:600;letter-spacing:.18em}
-
-/* NAV */
-nav{display:flex;gap:28px}
+header span{
+  font-size:13px;
+  letter-spacing:.22em;
+}
 nav a{
-  position:relative;color:var(--muted);font-size:11px;
-  text-transform:uppercase;letter-spacing:.14em;
-  cursor:pointer;padding-bottom:6px
+  margin-left:26px;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.18em;
+  color:var(--muted);
+  text-decoration:none;
+  cursor:pointer;
+  transition:.3s;
 }
-nav a::after{
-  content:"";position:absolute;left:0;bottom:0;width:0;height:1px;
-  background:var(--accent);transition:.3s ease
+nav a:hover{color:var(--accent)}
+.lang-switch{
+  display:flex;
+  gap:10px;
+  margin-left:30px;
 }
-nav a:hover::after, nav a.active::after{width:100%}
-nav a.active{color:var(--text);font-weight:600}
-
-/* CONTROLS */
-.controls{display:flex;gap:8px}
-.controls button{
-  border:1px solid var(--accent);background:none;color:var(--text);
-  font-size:10px;padding:4px 7px;border-radius:6px;opacity:.6;cursor:pointer
+.lang-switch button{
+  background:none;
+  border:1px solid var(--accent);
+  color:var(--accent);
+  font-size:10px;
+  padding:4px 8px;
+  cursor:pointer;
+  letter-spacing:.12em;
 }
-.controls button.active{background:var(--accent);color:#000;opacity:1}
-
-/* VIEWS */
-.view{
-  position:absolute;top:90px;width:100%;
-  height:calc(100vh - 90px);padding:60px 30px;
-  display:none;
-  overflow-y:auto;
+.lang-switch button.active{
+  background:var(--accent);
+  color:#000;
 }
-.view.active{display:block}
-
-/* FRAMER */
-.title-framer{
-  opacity:0;transform:translateY(18px);
-  animation:titleIn .7s cubic-bezier(.4,0,.2,1) forwards;
-}
-.content-framer{
-  opacity:0;transform:translateY(18px);
-  animation:contentIn .7s cubic-bezier(.4,0,.2,1) forwards;
-  animation-delay:.22s;
-}
-@keyframes titleIn{to{opacity:1;transform:translateY(0)}}
-@keyframes contentIn{to{opacity:1;transform:translateY(0)}}
-.stagger-item{
-  opacity:0;transform:translateY(20px);
-  animation:staggerIn .6s cubic-bezier(.4,0,.2,1) forwards;
-}
-@keyframes staggerIn{to{opacity:1;transform:translateY(0)}}
-
-/* CONTAINER */
-.container{max-width:1100px;margin:auto;display:flex;flex-direction:column;gap:26px}
-
-/* TYPO */
-h1{font-size:40px}
-h2{font-size:26px}
-p{color:var(--muted);line-height:1.6;font-size:14px}
 
 /* HERO */
-.hero{text-align:center;margin-top:40px}
-
-/* BUTTON */
-.btn{
-  margin-top:28px;padding:14px 28px;border:none;border-radius:28px;
-  background:var(--accent);color:#000;font-weight:600;font-size:14px;
-  cursor:pointer;transition:.35s cubic-bezier(.4,0,.2,1);
-}
-.btn:hover{transform:scale(1.1);box-shadow:0 14px 30px rgba(0,242,255,.35)}
-
-/* HERO RENDERS */
-.hero-renders{
-  margin-top:50px;
+.hero{
+  min-height:100vh;
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:22px;
+  grid-template-columns:1fr 1.4fr;
+  gap:90px;
+  align-items:center;
 }
-.render-card{
-  position:relative;
-  border-radius:20px;
-  overflow:hidden;
-  background:#000;
-  aspect-ratio:4/5;
-  cursor:pointer;
-  transition:.5s cubic-bezier(.4,0,.2,1);
+.hero-text h1{
+  font-size:64px;
+  line-height:1.05;
+  margin-bottom:28px;
 }
-.render-card img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transition:.6s cubic-bezier(.4,0,.2,1);
+.hero-text p{
+  max-width:420px;
+  line-height:1.8;
+  font-size:15px;
+  color:var(--muted);
 }
-.render-card::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to top,rgba(0,0,0,.55),transparent 50%);
+.hero-text em{color:var(--accent);font-style:normal}
+.hero-gallery{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  grid-auto-rows:260px;
+  gap:26px;
 }
-.render-card span{
-  position:absolute;
-  bottom:18px;
-  left:18px;
-  font-size:14px;
-  font-weight:600;
-  letter-spacing:.08em;
+.hero-gallery .img{position:relative;overflow:hidden}
+.hero-gallery img{width:100%;height:100%;object-fit:cover;transition:.6s}
+.hero-gallery .img:hover img{transform:scale(1.08)}
+.hero-gallery span{
+  position:absolute;bottom:18px;left:18px;
+  font-size:12px;letter-spacing:.12em
 }
-.render-card:hover{
-  transform:translateY(-12px) scale(1.03);
-  box-shadow:0 22px 50px rgba(0,242,255,.18);
+.hero-gallery .big{grid-row:span 2}
+
+/* ABOUT */
+.about{
+  max-width:1000px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
 }
-.render-card:hover img{transform:scale(1.08)}
+.about h2{font-size:42px;margin-bottom:30px}
+.about p{line-height:1.8;color:var(--muted);font-size:15px}
+
+/* PROJECTS */
+.projects{max-width:1200px;margin:auto}
+.projects h2{font-size:46px;margin-bottom:100px}
+.project{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:70px;
+  margin-bottom:140px;
+  align-items:center;
+}
+.project img{width:100%}
+.project h3{font-size:30px;margin-bottom:20px}
+.project p{color:var(--muted);line-height:1.8}
+
+/* MANIFESTO */
+.manifesto{text-align:center;max-width:800px;margin:auto}
+.manifesto h2{font-size:40px;margin-bottom:26px}
+.manifesto p{font-size:16px;line-height:1.9;color:var(--muted)}
+
+/* CONTACT */
+.contact{text-align:center}
+.contact h2{font-size:42px;margin-bottom:26px}
+.contact p{color:var(--muted);font-size:14px;line-height:1.8}
+
+footer{text-align:center;padding:50px;font-size:11px;color:var(--muted)}
 
 @media(max-width:900px){
-  .hero-renders{grid-template-columns:1fr}
-  h1{font-size:30px}
+  .hero,.about,.project{grid-template-columns:1fr}
+  .hero-text h1{font-size:44px}
 }
 </style>
 </head>
 
 <body>
 
-<div id="page-loader"><span>L · BIB</span></div>
-
 <header>
-  <h2>L · BIB</h2>
+  <span>BORBÁLA · DESIGN</span>
   <nav>
-    <a id="nav-home" onclick="show('home')"></a>
-    <a id="nav-projects" onclick="show('projects')"></a>
-    <a id="nav-contact" onclick="show('contact')"></a>
+    <a onclick="scrollToSection('home')" id="nav-home"></a>
+    <a onclick="scrollToSection('about')" id="nav-about"></a>
+    <a onclick="scrollToSection('projects')" id="nav-projects"></a>
+    <a onclick="scrollToSection('contact')" id="nav-contact"></a>
+    <span class="lang-switch">
+      <button id="btn-es" onclick="setLang('es')">ES</button>
+      <button id="btn-en" onclick="setLang('en')">EN</button>
+    </span>
   </nav>
-  <div class="controls">
-    <button onclick="toggleTheme()">🌙</button>
-    <button id="btn-es" onclick="setLang('es')">ES</button>
-    <button id="btn-en" onclick="setLang('en')">EN</button>
-  </div>
 </header>
 
-<!-- HOME -->
-<div id="home" class="view">
-  <div class="container hero">
-    <h1 id="hero-title" class="title-framer"></h1>
-    <div class="content-framer">
-      <p id="hero-sub"></p>
-      <button class="btn" onclick="show('projects')" id="hero-btn"></button>
+<section class="hero" id="home">
+  <div class="hero-text">
+    <h1 id="hero-title"></h1>
+    <p id="hero-text"></p>
+  </div>
+  <div class="hero-gallery">
+    <div class="img big"><img src="brazo1.jpg"><span id="cap1"></span></div>
+    <div class="img"><img src="secador3.jpg"><span id="cap2"></span></div>
+    <div class="img"><img src="reloj1.jpg"><span id="cap3"></span></div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div>
+    <h2 id="about-title"></h2>
+    <p id="about-1"></p>
+  </div>
+  <div>
+    <p id="about-2"></p>
+  </div>
+</section>
+
+<section class="projects" id="projects">
+  <h2 id="projects-title"></h2>
+
+  <div class="project">
+    <img src="brazo1.jpg">
+    <div>
+      <h3 id="p1-title"></h3>
+      <p id="p1-text"></p>
     </div>
+  </div>
 
-    <div class="hero-renders content-framer">
-      <div class="render-card stagger-item" style="animation-delay:.2s">
-        <img src="brazo1.jpg">
-        <span>Brazo robótico</span>
-      </div>
-      <div class="render-card stagger-item" style="animation-delay:.3s">
-        <img src="secador3.jpg">
-        <span>Secador plegable</span>
-      </div>
-      <div class="render-card stagger-item" style="animation-delay:.4s">
-        <img src="reloj1.jpg">
-        <span>Reloj conceptual</span>
-      </div>
+  <div class="project">
+    <div>
+      <h3 id="p2-title"></h3>
+      <p id="p2-text"></p>
+    </div>
+    <img src="secador3.jpg">
+  </div>
+
+  <div class="project">
+    <img src="reloj1.jpg">
+    <div>
+      <h3 id="p3-title"></h3>
+      <p id="p3-text"></p>
     </div>
   </div>
-</div>
+</section>
 
-<!-- PROJECTS -->
-<div id="projects" class="view">
-  <div class="container">
-    <h2>Proyectos</h2>
-    <p>Aquí puedes ampliar cada proyecto con fichas detalladas.</p>
-  </div>
-</div>
+<section class="manifesto">
+  <h2 id="manifesto-title"></h2>
+  <p id="manifesto-text"></p>
+</section>
 
-<!-- CONTACT -->
-<div id="contact" class="view">
-  <div class="container">
-    <h2>Contacto</h2>
-    <p>📧 luisblascoibanezberbel@email.com</p>
-    <p>📞 +34 630 511 806</p>
-  </div>
-</div>
+<section class="contact" id="contact">
+  <h2 id="contact-title"></h2>
+  <p id="contact-text"></p>
+</section>
+
+<footer id="footer"></footer>
 
 <script>
 const data={
  es:{
-  nav:{home:"Inicio",projects:"Proyectos",contact:"Contacto"},
-  heroTitle:"Diseño Industrial y Desarrollo de Producto",
-  heroSub:"Perfil técnico-creativo orientado al diseño de producto e ingeniería.",
-  heroBtn:"Ver proyectos"
+  nav:{home:"Inicio",about:"Sobre mí",projects:"Proyectos",contact:"Contacto"},
+  heroTitle:"Diseñar objetos con empatía",
+  heroText:"Diseñadora industrial que conecta ingeniería, forma y emoción. Me interesa cómo los objetos dialogan con las personas y construyen experiencias.",
+  captions:["Brazo robótico","Secador plegable","Reloj conceptual"],
+  aboutTitle:"Sobre mí",
+  about1:"Graduada en Diseño Industrial en la Universidad Técnica de Budapest (BME), con experiencia en diseño de mobiliario y pasión por el diseño funcional y emocional.",
+  about2:"Combino pensamiento técnico con sensibilidad estética, trabajando desde el concepto hasta el prototipo e industrialización. La impresión 3D forma parte de mi proceso creativo.",
+  projectsTitle:"Proyectos seleccionados",
+  p1:{title:"Brazo robótico",text:"Investigación formal y mecánica de sistemas articulados orientados a producto industrial."},
+  p2:{title:"Secador plegable",text:"Diseño centrado en usuario optimizando volumen, ergonomía y viabilidad industrial."},
+  p3:{title:"Reloj conceptual",text:"Exploración de lenguaje formal y percepción del tiempo en diseño emocional."},
+  manifestoTitle:"Manifiesto",
+  manifestoText:"Creo en el diseño como puente entre técnica y emoción. Objetos honestos, bien construidos y humanos.",
+  contactTitle:"Contacto",
+  contactText:"borbala@email.com<br>Disponible para oportunidades junior y freelance en Europa.",
+  footer:"© 2026 · Borbála · Industrial Design Portfolio"
  },
  en:{
-  nav:{home:"Home",projects:"Projects",contact:"Contact"},
-  heroTitle:"Industrial Design & Product Development",
-  heroSub:"Technical and creative profile focused on product design and engineering.",
-  heroBtn:"View projects"
+  nav:{home:"Home",about:"About",projects:"Work",contact:"Contact"},
+  heroTitle:"Designing objects with empathy",
+  heroText:"Industrial designer connecting engineering, form and emotion. I explore how objects communicate with people and shape experiences.",
+  captions:["Robotic arm","Foldable dryer","Concept watch"],
+  aboutTitle:"About me",
+  about1:"Graduated in Industrial Design at Budapest University of Technology (BME), with experience in furniture design and a passion for functional and emotional products.",
+  about2:"I combine technical thinking with aesthetic sensitivity, working from concept to prototyping and industrialization. 3D printing is part of my creative process.",
+  projectsTitle:"Selected work",
+  p1:{title:"Robotic arm",text:"Formal and mechanical research of articulated systems for industrial products."},
+  p2:{title:"Foldable dryer",text:"User-centered design optimizing volume, ergonomics and industrial feasibility."},
+  p3:{title:"Concept watch",text:"Exploration of form language and time perception in emotional design."},
+  manifestoTitle:"Manifesto",
+  manifestoText:"I believe design is a bridge between technique and emotion. Honest, well-built and human objects.",
+  contactTitle:"Contact",
+  contactText:"borbala@email.com<br>Available for junior positions and freelance projects across Europe.",
+  footer:"© 2026 · Borbála · Industrial Design Portfolio"
  }
 };
 
-function setLang(l){
- const d=data[l];
- Object.keys(d.nav).forEach(k=>document.getElementById("nav-"+k).innerText=d.nav[k]);
+function setLang(lang){
+ const d=data[lang];
+ document.getElementById("nav-home").innerText=d.nav.home;
+ document.getElementById("nav-about").innerText=d.nav.about;
+ document.getElementById("nav-projects").innerText=d.nav.projects;
+ document.getElementById("nav-contact").innerText=d.nav.contact;
  document.getElementById("hero-title").innerText=d.heroTitle;
- document.getElementById("hero-sub").innerText=d.heroSub;
- document.getElementById("hero-btn").innerText=d.heroBtn;
- document.getElementById("btn-es").classList.toggle("active",l==="es");
- document.getElementById("btn-en").classList.toggle("active",l==="en");
+ document.getElementById("hero-text").innerText=d.heroText;
+ document.getElementById("cap1").innerText=d.captions[0];
+ document.getElementById("cap2").innerText=d.captions[1];
+ document.getElementById("cap3").innerText=d.captions[2];
+ document.getElementById("about-title").innerText=d.aboutTitle;
+ document.getElementById("about-1").innerText=d.about1;
+ document.getElementById("about-2").innerText=d.about2;
+ document.getElementById("projects-title").innerText=d.projectsTitle;
+ document.getElementById("p1-title").innerText=d.p1.title;
+ document.getElementById("p1-text").innerText=d.p1.text;
+ document.getElementById("p2-title").innerText=d.p2.title;
+ document.getElementById("p2-text").innerText=d.p2.text;
+ document.getElementById("p3-title").innerText=d.p3.title;
+ document.getElementById("p3-text").innerText=d.p3.text;
+ document.getElementById("manifesto-title").innerText=d.manifestoTitle;
+ document.getElementById("manifesto-text").innerText=d.manifestoText;
+ document.getElementById("contact-title").innerText=d.contactTitle;
+ document.getElementById("contact-text").innerHTML=d.contactText;
+ document.getElementById("footer").innerText=d.footer;
+
+ document.getElementById("btn-es").classList.toggle("active",lang==="es");
+ document.getElementById("btn-en").classList.toggle("active",lang==="en");
 }
 
-function show(id){
- document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
- document.getElementById(id).classList.add("active");
- document.querySelectorAll("nav a").forEach(a=>a.classList.remove("active"));
- document.getElementById("nav-"+id).classList.add("active");
+function scrollToSection(id){
+ document.getElementById(id).scrollIntoView({behavior:"smooth"});
 }
 
-function toggleTheme(){document.body.classList.toggle("light")}
-
-window.addEventListener("load",()=>{
- setLang("es");
- show("home");
- setTimeout(()=>document.getElementById("page-loader").classList.add("hidden"),900);
-});
+setLang("en");
 </script>
 
 </body>

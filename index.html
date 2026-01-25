@@ -476,8 +476,12 @@ function toggleTheme(){document.body.classList.toggle("light")}
 window.addEventListener("load",()=>{
  setLang("es");
  document.getElementById("nav-home").classList.add("active");
+
  setTimeout(()=>{
    document.getElementById("page-loader").classList.add("hidden");
+   setTimeout(()=>{
+     document.getElementById("home").classList.add("active");
+   },500); // Delay antes de que entre la animación de inicio
  },1600);
 });
 </script>

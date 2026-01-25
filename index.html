@@ -46,7 +46,10 @@ body{background:var(--bg);color:var(--text);overflow:hidden;transition:.4s}
   60%{opacity:1;transform:scale(1);filter:blur(0)}
   100%{opacity:1;transform:scale(1)}
 }
-#page-loader.hidden{opacity:0;visibility:hidden}
+#page-loader.hidden{
+  opacity:0;
+  visibility:hidden;
+}
 
 /* HEADER */
 header{
@@ -362,27 +365,29 @@ function setLang(l){
 
    const d=data[l];
    Object.keys(d.nav).forEach(k=>document.getElementById("nav-"+k).innerText=d.nav[k]);
-   hero-title.innerText=d.heroTitle;
-   hero-sub.innerText=d.heroSub;
-   hero-btn.innerText=d.heroBtn;
-   about-title.innerText=d.aboutTitle;
-   about-text.innerText=d.aboutText;
-   projects-title.innerText=d.projectsTitle;
-   skills-title.innerText=d.skillsTitle;
-   cv-title.innerText=d.cvTitle;
-   contact-title.innerText=d.contactTitle;
-   footer-text.innerText=d.footer;
+   document.getElementById("hero-title").innerText=d.heroTitle;
+   document.getElementById("hero-sub").innerText=d.heroSub;
+   document.getElementById("hero-btn").innerText=d.heroBtn;
+   document.getElementById("about-title").innerText=d.aboutTitle;
+   document.getElementById("about-text").innerText=d.aboutText;
+   document.getElementById("projects-title").innerText=d.projectsTitle;
+   document.getElementById("skills-title").innerText=d.skillsTitle;
+   document.getElementById("cv-title").innerText=d.cvTitle;
+   document.getElementById("contact-title").innerText=d.contactTitle;
+   document.getElementById("footer-text").innerText=d.footer;
 
-   projects-grid.innerHTML="";
-   d.projects.forEach((p,i)=>projects-grid.innerHTML+=`
-     <button class="project-btn stagger-item" style="animation-delay:${i*0.08}s">
+   const pgrid=document.getElementById("projects-grid");
+   pgrid.innerHTML="";
+   d.projects.forEach((p,i)=>pgrid.innerHTML+=`
+    <button class="project-btn stagger-item" style="animation-delay:${i*0.08}s">
       <img src="${p.img}">
       <span>${p.title}</span>
-     </button>`);
+    </button>`);
 
-   skills-grid.innerHTML="";
-   d.skills.forEach((s,i)=>skills-grid.innerHTML+=`
-     <div class="card stagger-item" style="animation-delay:${i*0.08}s">${s}</div>`);
+   const sgrid=document.getElementById("skills-grid");
+   sgrid.innerHTML="";
+   d.skills.forEach((s,i)=>sgrid.innerHTML+=`
+    <div class="card stagger-item" style="animation-delay:${i*0.08}s">${s}</div>`);
 
    restartAnimations();
  });
@@ -390,7 +395,8 @@ function setLang(l){
 
 function show(id){
  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
- document.getElementById(id).classList.add("active");
+ const section=document.getElementById(id);
+ section.classList.add("active");
  document.querySelectorAll("nav a").forEach(a=>a.classList.remove("active"));
  document.getElementById("nav-"+id).classList.add("active");
  document.body.classList.toggle("home-active",id==="home");
@@ -401,17 +407,17 @@ function toggleTheme(){document.body.classList.toggle("light")}
 
 window.addEventListener("load",()=>{
  setLang("es");
- nav-home.classList.add("active");
+ document.getElementById("nav-home").classList.add("active");
 
  setTimeout(()=>{
-   page-loader.classList.add("hidden");
+   document.getElementById("page-loader").classList.add("hidden");
 
    setTimeout(()=>{
-     home.classList.add("active");
+     document.getElementById("home").classList.add("active");
      restartAnimations();
-   },400);
+   },400);  // delay antes de la animación de inicio
 
- },1600);
+ },1600); // duración del loader
 });
 </script>
 

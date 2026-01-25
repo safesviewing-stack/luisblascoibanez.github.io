@@ -48,17 +48,34 @@ header{
   background:transparent;
   z-index:1000;
 }
+
+/* LOGO SOLO EN HOME */
 header h2.logo{
-  font-size:19px;
+  font-size:18px;
   letter-spacing:.22em;
   font-weight:400;
   margin-left:12px;
   color:rgba(245,245,247,0.75);
+  transition:opacity .3s ease, transform .3s ease;
 }
 header h2.logo .sep{
   font-weight:700;
   margin:0 4px;
   opacity:0.9;
+}
+body:not(.home-active) header h2.logo{
+  opacity:0;
+  transform:translateY(-8px);
+  pointer-events:none;
+}
+
+/* ANIMACION LOGO ENTRADA */
+@keyframes logoFadeIn{
+  from{opacity:0;transform:translateY(-12px)}
+  to{opacity:1;transform:translateY(0)}
+}
+body.home-active header h2.logo{
+  animation:logoFadeIn .5s cubic-bezier(.4,0,.2,1);
 }
 
 /* NAV */
@@ -80,7 +97,7 @@ nav a::after{
   width:0;
   height:1px;
   background:var(--accent);
-  transition:.3s ease;
+  transition:.3s ease
 }
 nav a:hover::after,
 nav a.active::after{width:100%}
@@ -115,7 +132,7 @@ nav a.active{color:var(--text);font-weight:600}
 }
 .view.active{display:block}
 
-/* FONDO DECORATIVO HOME */
+/* FONDO HOME */
 #home{
   position:relative;
   overflow:hidden;
@@ -235,7 +252,7 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 </style>
 </head>
 
-<body>
+<body class="home-active">
 
 <div id="page-loader"><span>L · BIB</span></div>
 
@@ -257,7 +274,7 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 </header>
 
 <!-- HOME -->
-<div id="home" class="view">
+<div id="home" class="view active">
   <div class="container hero lang-wrapper show">
     <h1 id="hero-title" class="title-framer"></h1>
     <div class="content-framer">
@@ -373,7 +390,6 @@ function animateLangTransition(callback){
  },280);
 }
 
-/* 🔥 REINICIA LAS ANIMACIONES INTERNAS */
 function restartAnimations(){
  document.querySelectorAll(".title-framer, .content-framer").forEach(el=>{
    el.style.animation="none";
@@ -414,7 +430,7 @@ function setLang(l){
    d.skills.forEach((s,i)=>sgrid.innerHTML+=`
     <div class="card stagger-item" style="animation-delay:${i*0.08}s">${s}</div>`);
 
-   restartAnimations(); /* 👈 CLAVE */
+   restartAnimations();
  });
 }
 
@@ -424,6 +440,16 @@ function show(id){
  section.classList.add("active");
  document.querySelectorAll("nav a").forEach(a=>a.classList.remove("active"));
  document.getElementById("nav-"+id).classList.add("active");
+
+ if(id==="home"){
+   document.body.classList.add("home-active");
+   const logo=document.querySelector("header h2.logo");
+   logo.style.animation="none";
+   logo.offsetHeight;
+   logo.style.animation="";
+ }else{
+   document.body.classList.remove("home-active");
+ }
 }
 
 function toggleTheme(){document.body.classList.toggle("light")}
@@ -431,10 +457,6 @@ function toggleTheme(){document.body.classList.toggle("light")}
 window.addEventListener("load",()=>{
  setLang("es");
  document.getElementById("nav-home").classList.add("active");
- setTimeout(()=>{
-   document.getElementById("page-loader").classList.add("hidden");
-   setTimeout(()=>{document.getElementById("home").classList.add("active")},250);
- },1200);
 });
 </script>
 

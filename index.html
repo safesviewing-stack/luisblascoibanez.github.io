@@ -45,35 +45,27 @@ header{
   display:flex;
   justify-content:space-between;
   align-items:flex-end;
-  background:transparent; /* ELIMINA FRANJA NEGRA */
+  background:transparent;
   z-index:1000;
 }
-header h2{
-  font-size:17px;
-  font-weight:600;
-  letter-spacing:.28em
-  transform:translateX(15px);
-  color:rgba(245,245,247,0.75); /* MÁS CLARO */
-}
-
 header h2.logo{
-  font-size:17px;
-  letter-spacing:.28em;   /* MÁS espacio entre letras */
+  font-size:19px;
+  letter-spacing:.22em;
   font-weight:400;
   margin-left:12px;
+  color:rgba(245,245,247,0.75);
 }
 header h2.logo .sep{
-  font-weight:600;
-  margin:0 4px;  /* SEPARACIÓN A LOS LADOS DEL PUNTO */
+  font-weight:700;
+  margin:0 4px;
   opacity:0.9;
 }
-
 
 /* NAV */
 nav{display:flex;gap:28px}
 nav a{
   position:relative;
-  color:rgba(245,245,247,0.75); /* MÁS CLARO */
+  color:rgba(245,245,247,0.75);
   font-size:11px;
   text-transform:uppercase;
   letter-spacing:.14em;
@@ -130,7 +122,7 @@ nav a.active{color:var(--text);font-weight:600}
 }
 #home::before{
   content:"";
-  position:fixed; /* CLAVE */
+  position:fixed;
   top:0;
   left:0;
   width:100vw;
@@ -140,10 +132,7 @@ nav a.active{color:var(--text);font-weight:600}
     url("reloj1.jpg") center/cover no-repeat;
   z-index:-1;
 }
-#home .container{
-  position:relative;
-  z-index:1;
-}
+#home .container{position:relative;z-index:1}
 
 /* ANIMACIONES */
 .title-framer{
@@ -181,13 +170,7 @@ nav a.active{color:var(--text);font-weight:600}
 }
 
 /* CONTAINER */
-.container{
-  max-width:1100px;
-  margin:auto;
-  display:flex;
-  flex-direction:column;
-  gap:26px
-}
+.container{max-width:1100px;margin:auto;display:flex;flex-direction:column;gap:26px}
 
 /* TYPO */
 h1{font-size:40px}
@@ -240,14 +223,7 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
 .cv-item{background:var(--card);padding:22px;border-radius:14px}
 
 /* FOOTER */
-footer{
-  position:fixed;
-  bottom:22px;
-  width:100%;
-  text-align:center;
-  font-size:10px;
-  color:var(--muted)
-}
+footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;color:var(--muted)}
 
 /* MOBILE */
 @media(max-width:800px){
@@ -397,6 +373,15 @@ function animateLangTransition(callback){
  },280);
 }
 
+/* 🔥 REINICIA LAS ANIMACIONES INTERNAS */
+function restartAnimations(){
+ document.querySelectorAll(".title-framer, .content-framer").forEach(el=>{
+   el.style.animation="none";
+   el.offsetHeight;
+   el.style.animation="";
+ });
+}
+
 function setLang(l){
  animateLangTransition(()=>{
    document.getElementById("btn-es").classList.remove("active");
@@ -428,6 +413,8 @@ function setLang(l){
    sgrid.innerHTML="";
    d.skills.forEach((s,i)=>sgrid.innerHTML+=`
     <div class="card stagger-item" style="animation-delay:${i*0.08}s">${s}</div>`);
+
+   restartAnimations(); /* 👈 CLAVE */
  });
 }
 

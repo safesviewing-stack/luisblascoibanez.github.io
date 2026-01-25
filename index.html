@@ -111,12 +111,15 @@ nav a.active{color:var(--text);font-weight:600}
 }
 #home::before{
   content:"";
-  position:absolute;
-  inset:0;
+  position:fixed; /* CLAVE */
+  top:0;
+  left:0;
+  width:100vw;
+  height:100vh;
   background:
     linear-gradient(rgba(5,5,7,.65),rgba(5,5,7,.65)),
     url("reloj1.jpg") center/cover no-repeat;
-  z-index:0;
+  z-index:-1;
 }
 #home .container{
   position:relative;

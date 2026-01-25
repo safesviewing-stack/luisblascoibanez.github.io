@@ -34,7 +34,7 @@ body::before{
   z-index:-2;
 }
 
-/* LOADER NUEVO MINIMAL */
+/* LOADER PREMIUM */
 #page-loader{
   position:fixed;
   inset:0;
@@ -48,7 +48,7 @@ body::before{
   transition:opacity .8s ease, visibility .8s ease;
 }
 
-#page-loader .loader-logo{
+.loader-logo{
   font-size:18px;
   letter-spacing:.28em;
   font-weight:400;
@@ -56,7 +56,7 @@ body::before{
   animation:logoFade 1.2s ease forwards;
 }
 
-#page-loader .loader-line{
+.loader-line{
   width:0;
   height:1px;
   background:var(--accent);
@@ -64,12 +64,25 @@ body::before{
   animation-delay:.4s;
 }
 
-@keyframes logoFade{
-  to{opacity:1}
+@keyframes logoFade{to{opacity:1}}
+@keyframes lineDraw{to{width:160px}}
+
+/* RETRACCIÓN DE LÍNEA */
+#page-loader.exit .loader-line{
+  animation:lineRetract .6s ease forwards;
+}
+@keyframes lineRetract{to{width:0}}
+
+/* TRANSFORMACIÓN LOGO AL HEADER */
+#page-loader.exit .loader-logo{
+  animation:logoToHeader .8s cubic-bezier(.4,0,.2,1) forwards;
 }
 
-@keyframes lineDraw{
-  to{width:160px}
+@keyframes logoToHeader{
+  to{
+    transform:translate(-38vw,-38vh) scale(.7);
+    opacity:0;
+  }
 }
 
 #page-loader.hidden{
@@ -89,18 +102,21 @@ header{
   z-index:1000;
 }
 
-/* LOGO */
+/* LOGO HEADER */
 header h2.logo{
   font-size:18px;
   letter-spacing:.22em;
   font-weight:400;
   color:rgba(245,245,247,.75);
   transition:.3s ease;
+  opacity:0;
+  transform:translateY(-10px);
 }
 header h2.logo .sep{font-weight:700;margin:0 4px}
-body:not(.home-active) header h2.logo{
-  opacity:0;
-  transform:translateY(-8px);
+
+body.home-active header h2.logo{
+  opacity:1;
+  transform:translateY(0);
 }
 
 /* NAV */
@@ -226,7 +242,7 @@ footer{
 
 <body class="home-active">
 
-<!-- LOADER NUEVO -->
+<!-- LOADER PREMIUM -->
 <div id="page-loader">
   <div class="loader-logo">L · BIB</div>
   <div class="loader-line"></div>
@@ -421,12 +437,18 @@ window.addEventListener("load",()=>{
  document.getElementById("nav-home").classList.add("active");
 
  setTimeout(()=>{
-   document.getElementById("page-loader").classList.add("hidden");
+   const loader=document.getElementById("page-loader");
+   loader.classList.add("exit");
 
    setTimeout(()=>{
-     document.getElementById("home").classList.add("active");
-     restartAnimations();
-   },350);
+     loader.classList.add("hidden");
+
+     setTimeout(()=>{
+       document.getElementById("home").classList.add("active");
+       restartAnimations();
+     },300);
+
+   },600);
 
  },1600);
 });

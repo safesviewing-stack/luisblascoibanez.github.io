@@ -18,33 +18,60 @@ body.light{
   --bg:#f5f5f7;
   --text:#111;
   --muted:#666;
-  --card:#ffffff;
+  --card:#fff;
 }
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
 body{background:var(--bg);color:var(--text);overflow:hidden;transition:.4s}
 
-/* LOADER */
+/* FONDO GLOBAL */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    linear-gradient(rgba(5,5,7,.8),rgba(5,5,7,.8)),
+    url("reloj1.jpg") center/cover no-repeat;
+  z-index:-2;
+}
+
+/* LOADER NUEVO */
 #page-loader{
   position:fixed;
   inset:0;
   background:#050507;
   display:flex;
-  align-items:center;
+  flex-direction:column;
   justify-content:center;
+  align-items:center;
+  gap:26px;
   z-index:9999;
   transition:opacity 1s ease, visibility 1s ease;
 }
-#page-loader span{
-  font-size:32px;
-  letter-spacing:.35em;
-  font-weight:400;
-  opacity:0;
-  animation:logoIntro 1.6s cubic-bezier(.22,1,.36,1) forwards;
+.loader-bars{
+  display:flex;
+  gap:8px;
 }
-@keyframes logoIntro{
-  0%{opacity:0;transform:scale(1.4);filter:blur(8px)}
-  60%{opacity:1;transform:scale(1);filter:blur(0)}
-  100%{opacity:1;transform:scale(1)}
+.loader-bars span{
+  width:4px;
+  height:40px;
+  background:var(--accent);
+  border-radius:2px;
+  animation:barPulse 1s ease-in-out infinite;
+}
+.loader-bars span:nth-child(2){animation-delay:.15s}
+.loader-bars span:nth-child(3){animation-delay:.3s}
+.loader-bars span:nth-child(4){animation-delay:.45s}
+
+@keyframes barPulse{
+  0%,100%{transform:scaleY(.4);opacity:.4}
+  50%{transform:scaleY(1);opacity:1}
+}
+
+#page-loader h2{
+  letter-spacing:.4em;
+  font-weight:300;
+  font-size:18px;
+  opacity:.8;
 }
 #page-loader.hidden{
   opacity:0;
@@ -60,28 +87,21 @@ header{
   display:flex;
   justify-content:space-between;
   align-items:flex-end;
-  background:transparent;
   z-index:1000;
 }
 
 /* LOGO */
 header h2.logo{
-  font-size:19px;
+  font-size:18px;
   letter-spacing:.22em;
   font-weight:400;
-  margin-left:12px;
   color:rgba(245,245,247,.75);
   transition:.3s ease;
 }
 header h2.logo .sep{font-weight:700;margin:0 4px}
-body:not(.home-active) header h2.logo{opacity:0;transform:translateY(-8px)}
-
-@keyframes logoFadeIn{
-  from{opacity:0;transform:translateY(-12px)}
-  to{opacity:1;transform:translateY(0)}
-}
-body.home-active header h2.logo{
-  animation:logoFadeIn .5s cubic-bezier(.4,0,.2,1);
+body:not(.home-active) header h2.logo{
+  opacity:0;
+  transform:translateY(-8px);
 }
 
 /* NAV */
@@ -103,7 +123,8 @@ nav a::after{
   background:var(--accent);
   transition:.3s ease;
 }
-nav a:hover::after,nav a.active::after{width:100%}
+nav a:hover::after,
+nav a.active::after{width:100%}
 nav a.active{color:var(--text);font-weight:600}
 
 /* CONTROLS */
@@ -118,7 +139,11 @@ nav a.active{color:var(--text);font-weight:600}
   opacity:.6;
   cursor:pointer;
 }
-.controls button.active{background:var(--accent);color:#000;opacity:1}
+.controls button.active{
+  background:var(--accent);
+  color:#000;
+  opacity:1;
+}
 
 /* VIEWS */
 .view{
@@ -131,18 +156,7 @@ nav a.active{color:var(--text);font-weight:600}
 }
 .view.active{display:block}
 
-/* HOME BACKGROUND */
-#home::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:
-    linear-gradient(rgba(5,5,7,.8),rgba(5,5,7,.8)),
-    url("reloj1.jpg") center/cover no-repeat;
-  z-index:-1;
-}
-
-/* ANIMACIONES DE ENTRADA */
+/* ANIMACIONES TEXTO */
 .title-framer{
   opacity:0;
   transform:translateY(22px);
@@ -152,7 +166,7 @@ nav a.active{color:var(--text);font-weight:600}
   opacity:0;
   transform:translateY(22px);
   animation:contentIn .7s cubic-bezier(.4,0,.2,1) forwards;
-  animation-delay:.22s;
+  animation-delay:.25s;
 }
 @keyframes titleIn{to{opacity:1;transform:translateY(0)}}
 @keyframes contentIn{to{opacity:1;transform:translateY(0)}}
@@ -200,20 +214,26 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
 .cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
 .cv-item{background:var(--card);padding:22px;border-radius:14px}
 
-footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;color:var(--muted)}
-
-@media(max-width:800px){
- header{flex-direction:column;gap:10px}
- nav{flex-wrap:wrap;justify-content:center}
- .cv-grid{grid-template-columns:1fr}
- h1{font-size:30px}
+footer{
+  position:fixed;
+  bottom:22px;
+  width:100%;
+  text-align:center;
+  font-size:10px;
+  color:var(--muted)
 }
 </style>
 </head>
 
 <body class="home-active">
 
-<div id="page-loader"><span>L · BIB</span></div>
+<!-- LOADER -->
+<div id="page-loader">
+  <div class="loader-bars">
+    <span></span><span></span><span></span><span></span>
+  </div>
+  <h2>L · BIB</h2>
+</div>
 
 <header>
   <h2 class="logo">L<span class="sep">·</span>BIB</h2>
@@ -226,7 +246,6 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
     <a id="nav-contact" onclick="show('contact')"></a>
   </nav>
   <div class="controls">
-    <button onclick="toggleTheme()">🌙</button>
     <button id="btn-es" onclick="setLang('es')">ES</button>
     <button id="btn-en" onclick="setLang('en')">EN</button>
   </div>
@@ -365,29 +384,27 @@ function setLang(l){
 
    const d=data[l];
    Object.keys(d.nav).forEach(k=>document.getElementById("nav-"+k).innerText=d.nav[k]);
-   document.getElementById("hero-title").innerText=d.heroTitle;
-   document.getElementById("hero-sub").innerText=d.heroSub;
-   document.getElementById("hero-btn").innerText=d.heroBtn;
-   document.getElementById("about-title").innerText=d.aboutTitle;
-   document.getElementById("about-text").innerText=d.aboutText;
-   document.getElementById("projects-title").innerText=d.projectsTitle;
-   document.getElementById("skills-title").innerText=d.skillsTitle;
-   document.getElementById("cv-title").innerText=d.cvTitle;
-   document.getElementById("contact-title").innerText=d.contactTitle;
-   document.getElementById("footer-text").innerText=d.footer;
+   hero-title.innerText=d.heroTitle;
+   hero-sub.innerText=d.heroSub;
+   hero-btn.innerText=d.heroBtn;
+   about-title.innerText=d.aboutTitle;
+   about-text.innerText=d.aboutText;
+   projects-title.innerText=d.projectsTitle;
+   skills-title.innerText=d.skillsTitle;
+   cv-title.innerText=d.cvTitle;
+   contact-title.innerText=d.contactTitle;
+   footer-text.innerText=d.footer;
 
-   const pgrid=document.getElementById("projects-grid");
-   pgrid.innerHTML="";
-   d.projects.forEach((p,i)=>pgrid.innerHTML+=`
-    <button class="project-btn stagger-item" style="animation-delay:${i*0.08}s">
+   projects-grid.innerHTML="";
+   d.projects.forEach((p,i)=>projects-grid.innerHTML+=`
+     <button class="project-btn stagger-item" style="animation-delay:${i*0.08}s">
       <img src="${p.img}">
       <span>${p.title}</span>
-    </button>`);
+     </button>`);
 
-   const sgrid=document.getElementById("skills-grid");
-   sgrid.innerHTML="";
-   d.skills.forEach((s,i)=>sgrid.innerHTML+=`
-    <div class="card stagger-item" style="animation-delay:${i*0.08}s">${s}</div>`);
+   skills-grid.innerHTML="";
+   d.skills.forEach((s,i)=>skills-grid.innerHTML+=`
+     <div class="card stagger-item" style="animation-delay:${i*0.08}s">${s}</div>`);
 
    restartAnimations();
  });
@@ -395,15 +412,12 @@ function setLang(l){
 
 function show(id){
  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
- const section=document.getElementById(id);
- section.classList.add("active");
+ document.getElementById(id).classList.add("active");
+ document.body.classList.toggle("home-active",id==="home");
  document.querySelectorAll("nav a").forEach(a=>a.classList.remove("active"));
  document.getElementById("nav-"+id).classList.add("active");
- document.body.classList.toggle("home-active",id==="home");
  restartAnimations();
 }
-
-function toggleTheme(){document.body.classList.toggle("light")}
 
 window.addEventListener("load",()=>{
  setLang("es");
@@ -415,9 +429,9 @@ window.addEventListener("load",()=>{
    setTimeout(()=>{
      document.getElementById("home").classList.add("active");
      restartAnimations();
-   },400);  // delay antes de la animación de inicio
+   },350);
 
- },1600); // duración del loader
+ },1800);
 });
 </script>
 

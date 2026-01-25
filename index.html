@@ -34,7 +34,7 @@ body::before{
   z-index:-2;
 }
 
-/* LOADER ESTABLE */
+/* LOADER ROBUSTO */
 #page-loader{
   position:fixed;
   inset:0;
@@ -45,24 +45,18 @@ body::before{
   align-items:center;
   gap:18px;
   z-index:9999;
-  transition:opacity .8s ease;
+  transition:opacity .6s ease;
 }
-#page-loader.hidden{opacity:0;pointer-events:none}
-
 .loader-logo{
   font-size:20px;
   letter-spacing:.28em;
   font-weight:300;
-  animation:fadeIn 1s ease forwards;
 }
 .loader-line{
-  width:140px;
+  width:120px;
   height:1px;
   background:var(--accent);
-  animation:lineIn 1s ease forwards;
 }
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes lineIn{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 
 /* HEADER */
 header{
@@ -101,7 +95,8 @@ nav a::after{
   background:var(--accent);
   transition:.3s;
 }
-nav a:hover::after,nav a.active::after{width:100%}
+nav a:hover::after,
+nav a.active::after{width:100%}
 nav a.active{color:var(--text);font-weight:600}
 
 /* CONTROLS */
@@ -133,7 +128,7 @@ nav a.active{color:var(--text);font-weight:600}
 }
 .view.active{display:block}
 
-/* ANIMACIONES */
+/* ANIMACIONES TEXTO */
 .title-framer{
   opacity:0;
   transform:translateY(20px);
@@ -147,40 +142,6 @@ nav a.active{color:var(--text);font-weight:600}
 }
 @keyframes titleIn{to{opacity:1;transform:translateY(0)}}
 @keyframes contentIn{to{opacity:1;transform:translateY(0)}}
-
-/* CASCADE */
-.stagger-item{
-  opacity:0;
-  transform:translateY(20px);
-  animation:staggerIn .6s ease forwards;
-}
-@keyframes staggerIn{to{opacity:1;transform:translateY(0)}}
-
-/* LANGUAGE */
-.lang-wrapper.hide{opacity:0;transform:scale(.96);transition:.25s}
-.lang-wrapper.show{opacity:1;transform:scale(1);transition:.35s}
-
-/* LAYOUT */
-.container{max-width:1100px;margin:auto;display:flex;flex-direction:column;gap:26px}
-h1{font-size:40px}
-h2{font-size:26px}
-p{color:var(--muted);line-height:1.6;font-size:14px}
-.hero{text-align:center;margin-top:40px}
-.hero p{max-width:620px;margin:18px auto}
-
-/* BUTTON */
-.btn{
-  margin-top:28px;
-  padding:14px 28px;
-  border:none;
-  border-radius:28px;
-  background:var(--accent);
-  color:#000;
-  font-weight:600;
-  cursor:pointer;
-  transition:.35s
-}
-.btn:hover{transform:scale(1.08);box-shadow:0 14px 30px rgba(0,242,255,.35)}
 
 /* GRID */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px}
@@ -229,7 +190,7 @@ footer{
 
 <!-- HOME -->
 <div id="home" class="view">
-  <div class="container hero lang-wrapper show">
+  <div class="container hero">
     <h1 id="hero-title" class="title-framer"></h1>
     <div class="content-framer">
       <p id="hero-sub"></p>
@@ -240,7 +201,7 @@ footer{
 
 <!-- ABOUT -->
 <div id="about" class="view">
-  <div class="container lang-wrapper show">
+  <div class="container">
     <h2 id="about-title" class="title-framer"></h2>
     <p id="about-text" class="content-framer"></p>
   </div>
@@ -248,7 +209,7 @@ footer{
 
 <!-- PROJECTS -->
 <div id="projects" class="view">
-  <div class="container lang-wrapper show">
+  <div class="container">
     <h2 id="projects-title" class="title-framer"></h2>
     <div class="grid content-framer" id="projects-grid"></div>
   </div>
@@ -256,7 +217,7 @@ footer{
 
 <!-- SKILLS -->
 <div id="skills" class="view">
-  <div class="container lang-wrapper show">
+  <div class="container">
     <h2 id="skills-title" class="title-framer"></h2>
     <div class="grid content-framer" id="skills-grid"></div>
   </div>
@@ -264,7 +225,7 @@ footer{
 
 <!-- CV -->
 <div id="cv" class="view">
-  <div class="container lang-wrapper show">
+  <div class="container">
     <h2 id="cv-title" class="title-framer"></h2>
     <div class="cv-grid content-framer">
       <div class="cv-item">🎓 Grado en Diseño Industrial – BME</div>
@@ -277,7 +238,7 @@ footer{
 
 <!-- CONTACT -->
 <div id="contact" class="view">
-  <div class="container lang-wrapper show">
+  <div class="container">
     <h2 id="contact-title" class="title-framer"></h2>
     <div class="content-framer">
       <p>📧 luisblascoibanezberbel@email.com</p>
@@ -332,58 +293,30 @@ const data={
  }
 };
 
-function animateLangTransition(callback){
- const wrappers=document.querySelectorAll(".lang-wrapper");
- wrappers.forEach(w=>w.classList.add("hide"));
- setTimeout(()=>{
-   callback();
-   wrappers.forEach(w=>{
-     w.classList.remove("hide");
-     w.classList.add("show");
-   });
- },280);
-}
-
-function restartAnimations(){
- document.querySelectorAll(".title-framer, .content-framer").forEach(el=>{
-   el.style.animation="none";
-   el.offsetHeight;
-   el.style.animation="";
- });
-}
-
 function setLang(l){
- animateLangTransition(()=>{
-   document.getElementById("btn-es").classList.remove("active");
-   document.getElementById("btn-en").classList.remove("active");
-   document.getElementById("btn-"+l).classList.add("active");
+ const d=data[l];
+ Object.keys(d.nav).forEach(k=>document.getElementById("nav-"+k).innerText=d.nav[k]);
+ hero-title.innerText=d.heroTitle;
+ hero-sub.innerText=d.heroSub;
+ hero-btn.innerText=d.heroBtn;
+ about-title.innerText=d.aboutTitle;
+ about-text.innerText=d.aboutText;
+ projects-title.innerText=d.projectsTitle;
+ skills-title.innerText=d.skillsTitle;
+ cv-title.innerText=d.cvTitle;
+ contact-title.innerText=d.contactTitle;
+ footer-text.innerText=d.footer;
 
-   const d=data[l];
-   Object.keys(d.nav).forEach(k=>document.getElementById("nav-"+k).innerText=d.nav[k]);
-   hero-title.innerText=d.heroTitle;
-   hero-sub.innerText=d.heroSub;
-   hero-btn.innerText=d.heroBtn;
-   about-title.innerText=d.aboutTitle;
-   about-text.innerText=d.aboutText;
-   projects-title.innerText=d.projectsTitle;
-   skills-title.innerText=d.skillsTitle;
-   cv-title.innerText=d.cvTitle;
-   contact-title.innerText=d.contactTitle;
-   footer-text.innerText=d.footer;
+ projects-grid.innerHTML="";
+ d.projects.forEach(p=>projects-grid.innerHTML+=`
+  <button class="project-btn">
+   <img src="${p.img}">
+   <span>${p.title}</span>
+  </button>`);
 
-   projects-grid.innerHTML="";
-   d.projects.forEach((p,i)=>projects-grid.innerHTML+=`
-     <button class="project-btn stagger-item" style="animation-delay:${i*0.08}s">
-      <img src="${p.img}">
-      <span>${p.title}</span>
-     </button>`);
-
-   skills-grid.innerHTML="";
-   d.skills.forEach((s,i)=>skills-grid.innerHTML+=`
-     <div class="card stagger-item" style="animation-delay:${i*0.08}s">${s}</div>`);
-
-   restartAnimations();
- });
+ skills-grid.innerHTML="";
+ d.skills.forEach(s=>skills-grid.innerHTML+=`
+  <div class="card">${s}</div>`);
 }
 
 function show(id){
@@ -391,19 +324,17 @@ function show(id){
  document.getElementById(id).classList.add("active");
  document.querySelectorAll("nav a").forEach(a=>a.classList.remove("active"));
  document.getElementById("nav-"+id).classList.add("active");
- restartAnimations();
 }
 
 window.addEventListener("load",()=>{
  setLang("es");
  document.getElementById("nav-home").classList.add("active");
+ document.getElementById("home").classList.add("active");
 
  setTimeout(()=>{
-   document.getElementById("page-loader").classList.add("hidden");
-   setTimeout(()=>{
-     document.getElementById("home").classList.add("active");
-     restartAnimations();
-   },200);
+   const loader=document.getElementById("page-loader");
+   loader.style.opacity="0";
+   setTimeout(()=>loader.remove(),600); // ELIMINACIÓN REAL
  },1200);
 });
 </script>

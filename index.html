@@ -34,7 +34,7 @@ body::before{
   z-index:-2;
 }
 
-/* LOADER NUEVO */
+/* LOADER NUEVO MINIMAL */
 #page-loader{
   position:fixed;
   inset:0;
@@ -45,34 +45,33 @@ body::before{
   align-items:center;
   gap:26px;
   z-index:9999;
-  transition:opacity 1s ease, visibility 1s ease;
-}
-.loader-bars{
-  display:flex;
-  gap:8px;
-}
-.loader-bars span{
-  width:4px;
-  height:40px;
-  background:var(--accent);
-  border-radius:2px;
-  animation:barPulse 1s ease-in-out infinite;
-}
-.loader-bars span:nth-child(2){animation-delay:.15s}
-.loader-bars span:nth-child(3){animation-delay:.3s}
-.loader-bars span:nth-child(4){animation-delay:.45s}
-
-@keyframes barPulse{
-  0%,100%{transform:scaleY(.4);opacity:.4}
-  50%{transform:scaleY(1);opacity:1}
+  transition:opacity .8s ease, visibility .8s ease;
 }
 
-#page-loader h2{
-  letter-spacing:.4em;
-  font-weight:300;
+#page-loader .loader-logo{
   font-size:18px;
-  opacity:.8;
+  letter-spacing:.28em;
+  font-weight:400;
+  opacity:0;
+  animation:logoFade 1.2s ease forwards;
 }
+
+#page-loader .loader-line{
+  width:0;
+  height:1px;
+  background:var(--accent);
+  animation:lineDraw 1.4s ease forwards;
+  animation-delay:.4s;
+}
+
+@keyframes logoFade{
+  to{opacity:1}
+}
+
+@keyframes lineDraw{
+  to{width:160px}
+}
+
 #page-loader.hidden{
   opacity:0;
   visibility:hidden;
@@ -227,12 +226,10 @@ footer{
 
 <body class="home-active">
 
-<!-- LOADER -->
+<!-- LOADER NUEVO -->
 <div id="page-loader">
-  <div class="loader-bars">
-    <span></span><span></span><span></span><span></span>
-  </div>
-  <h2>L · BIB</h2>
+  <div class="loader-logo">L · BIB</div>
+  <div class="loader-line"></div>
 </div>
 
 <header>
@@ -431,7 +428,7 @@ window.addEventListener("load",()=>{
      restartAnimations();
    },350);
 
- },1800);
+ },1600);
 });
 </script>
 

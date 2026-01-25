@@ -23,7 +23,7 @@ body.light{
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
 body{background:var(--bg);color:var(--text);overflow:hidden;transition:.4s}
 
-/* ===== LOADER CIRCULAR PREMIUM ===== */
+/* ===== LOADER GLITCH ===== */
 #page-loader{
   position:fixed;
   inset:0;
@@ -36,25 +36,27 @@ body{background:var(--bg);color:var(--text);overflow:hidden;transition:.4s}
 }
 
 #page-loader span{
-  font-size:28px;
+  font-size:32px;
   letter-spacing:.35em;
   font-weight:400;
   position:relative;
-  padding:40px;
+  color: var(--accent);
+  opacity:0;
+  animation:fadeInLoader 1s ease forwards, glitchEffect 1.5s infinite steps(5);
 }
 
-#page-loader span::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  border:2px solid var(--accent);
-  border-radius:50%;
-  animation:circleReveal 1.5s cubic-bezier(.22,1,.36,1) forwards;
+@keyframes fadeInLoader{
+  0%{opacity:0;transform:scale(0.8);}
+  100%{opacity:1;transform:scale(1);}
 }
 
-@keyframes circleReveal{
-  from{clip-path:circle(0% at 50% 50%)}
-  to{clip-path:circle(100% at 50% 50%)}
+@keyframes glitchEffect {
+  0%{transform:translate(0);}
+  20%{transform:translate(-2px,-2px);}
+  40%{transform:translate(2px,0);}
+  60%{transform:translate(-2px,2px);}
+  80%{transform:translate(2px,-2px);}
+  100%{transform:translate(0);}
 }
 
 #page-loader.hidden{

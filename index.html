@@ -476,12 +476,6 @@ function toggleTheme(){document.body.classList.toggle("light")}
 window.addEventListener("load",()=>{
  setLang("es");
  document.getElementById("nav-home").classList.add("active");
-
- const sound=document.getElementById("intro-sound");
- sound.volume=0.15;
-
- sound.play().catch(()=>{}); // evita errores por políticas de autoplay
-
  setTimeout(()=>{
    document.getElementById("page-loader").classList.add("hidden");
  },1600);

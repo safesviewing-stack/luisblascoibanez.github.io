@@ -34,7 +34,7 @@ body::before{
   z-index:-2;
 }
 
-/* LOADER PREMIUM */
+/* ===== LOADER SIMPLE Y ESTABLE ===== */
 #page-loader{
   position:fixed;
   inset:0;
@@ -43,54 +43,38 @@ body::before{
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  gap:26px;
+  gap:18px;
   z-index:9999;
   transition:opacity .8s ease, visibility .8s ease;
 }
-
 .loader-logo{
-  font-size:18px;
+  font-size:20px;
   letter-spacing:.28em;
-  font-weight:400;
+  font-weight:300;
   opacity:0;
-  animation:logoFade 1.2s ease forwards;
+  animation:fadeIn 1s ease forwards;
 }
-
 .loader-line{
-  width:0;
+  width:140px;
   height:1px;
   background:var(--accent);
-  animation:lineDraw 1.4s ease forwards;
-  animation-delay:.4s;
+  transform:scaleX(0);
+  transform-origin:center;
+  animation:lineIn 1s ease forwards;
+  animation-delay:.3s;
 }
+@keyframes fadeIn{to{opacity:1}}
+@keyframes lineIn{to{transform:scaleX(1)}}
 
-@keyframes logoFade{to{opacity:1}}
-@keyframes lineDraw{to{width:160px}}
+/* SALIDA */
+#page-loader.exit .loader-logo{animation:fadeOut .5s ease forwards}
+#page-loader.exit .loader-line{animation:lineOut .5s ease forwards}
+@keyframes fadeOut{to{opacity:0;transform:translateY(-10px)}}
+@keyframes lineOut{to{transform:scaleX(0)}}
 
-/* RETRACCIÓN DE LÍNEA */
-#page-loader.exit .loader-line{
-  animation:lineRetract .6s ease forwards;
-}
-@keyframes lineRetract{to{width:0}}
+#page-loader.hidden{opacity:0;visibility:hidden}
 
-/* TRANSFORMACIÓN LOGO AL HEADER */
-#page-loader.exit .loader-logo{
-  animation:logoToHeader .8s cubic-bezier(.4,0,.2,1) forwards;
-}
-
-@keyframes logoToHeader{
-  to{
-    transform:translate(-38vw,-38vh) scale(.7);
-    opacity:0;
-  }
-}
-
-#page-loader.hidden{
-  opacity:0;
-  visibility:hidden;
-}
-
-/* HEADER */
+/* ===== HEADER ===== */
 header{
   position:fixed;
   top:10px;
@@ -101,19 +85,15 @@ header{
   align-items:flex-end;
   z-index:1000;
 }
-
-/* LOGO HEADER */
 header h2.logo{
   font-size:18px;
   letter-spacing:.22em;
   font-weight:400;
   color:rgba(245,245,247,.75);
-  transition:.3s ease;
   opacity:0;
-  transform:translateY(-10px);
+  transform:translateY(-8px);
+  transition:.4s ease;
 }
-header h2.logo .sep{font-weight:700;margin:0 4px}
-
 body.home-active header h2.logo{
   opacity:1;
   transform:translateY(0);
@@ -154,11 +134,7 @@ nav a.active{color:var(--text);font-weight:600}
   opacity:.6;
   cursor:pointer;
 }
-.controls button.active{
-  background:var(--accent);
-  color:#000;
-  opacity:1;
-}
+.controls button.active{background:var(--accent);color:#000;opacity:1}
 
 /* VIEWS */
 .view{
@@ -174,19 +150,19 @@ nav a.active{color:var(--text);font-weight:600}
 /* ANIMACIONES TEXTO */
 .title-framer{
   opacity:0;
-  transform:translateY(22px);
+  transform:translateY(20px);
   animation:titleIn .7s cubic-bezier(.4,0,.2,1) forwards;
 }
 .content-framer{
   opacity:0;
-  transform:translateY(22px);
+  transform:translateY(20px);
   animation:contentIn .7s cubic-bezier(.4,0,.2,1) forwards;
-  animation-delay:.25s;
+  animation-delay:.2s;
 }
 @keyframes titleIn{to{opacity:1;transform:translateY(0)}}
 @keyframes contentIn{to{opacity:1;transform:translateY(0)}}
 
-/* STAGGER */
+/* CASCADE */
 .stagger-item{
   opacity:0;
   transform:translateY(20px);
@@ -216,7 +192,7 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
   color:#000;
   font-weight:600;
   cursor:pointer;
-  transition:.35s;
+  transition:.35s
 }
 .btn:hover{transform:scale(1.08);box-shadow:0 14px 30px rgba(0,242,255,.35)}
 
@@ -229,6 +205,7 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
 .cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
 .cv-item{background:var(--card);padding:22px;border-radius:14px}
 
+/* FOOTER */
 footer{
   position:fixed;
   bottom:22px;
@@ -242,14 +219,14 @@ footer{
 
 <body class="home-active">
 
-<!-- LOADER PREMIUM -->
+<!-- LOADER -->
 <div id="page-loader">
   <div class="loader-logo">L · BIB</div>
   <div class="loader-line"></div>
 </div>
 
 <header>
-  <h2 class="logo">L<span class="sep">·</span>BIB</h2>
+  <h2 class="logo">L<span style="font-weight:700">·</span>BIB</h2>
   <nav>
     <a id="nav-home" onclick="show('home')"></a>
     <a id="nav-about" onclick="show('about')"></a>
@@ -442,15 +419,13 @@ window.addEventListener("load",()=>{
 
    setTimeout(()=>{
      loader.classList.add("hidden");
-
      setTimeout(()=>{
        document.getElementById("home").classList.add("active");
        restartAnimations();
-     },300);
+     },200);
+   },500);
 
-   },600);
-
- },1600);
+ },1400);
 });
 </script>
 

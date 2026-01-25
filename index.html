@@ -56,15 +56,18 @@ header h2{
   color:rgba(245,245,247,0.75); /* MÁS CLARO */
 }
 
-.logo-text{
-  font-weight:300; /* más fino para L y BIB */
+header h2.logo{
+  font-size:22px;
+  letter-spacing:.4em;   /* MÁS espacio entre letras */
+  font-weight:400;
+  margin-left:12px;
+}
+header h2.logo .sep{
+  font-weight:700;
+  margin:0;             /* SIN separación extra */
+  opacity:0.9;
 }
 
-header h2 .sep{
-  font-weight:700; /* más gordo el punto */
-  opacity:0.85;
-  margin:0 6px;
-}
 
 /* NAV */
 nav{display:flex;gap:28px}
@@ -261,7 +264,7 @@ footer{
 <div id="page-loader"><span>L · BIB</span></div>
 
 <header>
-  <h2><span class="logo-text">L</span> <span class="sep">·</span> <span class="logo-text">BIB</span></h2>
+  <h2 class="logo">L<span class="sep">·</span>BIB</h2>
   <nav>
     <a id="nav-home" onclick="show('home')"></a>
     <a id="nav-about" onclick="show('about')"></a>

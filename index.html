@@ -27,13 +27,19 @@ body{background:var(--bg);color:var(--text);overflow:hidden;transition:.4s}
 #page-loader{
   position:fixed;inset:0;background:#050507;
   display:flex;align-items:center;justify-content:center;
-  z-index:9999;transition:.8s ease;
+  z-index:9999;
+  transition:opacity .8s ease, visibility .8s ease;
 }
 #page-loader span{
-  font-size:22px;letter-spacing:.3em;
-  animation:pulse 1.4s ease forwards;
+  font-size:22px;
+  letter-spacing:.3em;
+  animation:pulse 1.2s ease forwards; /* SOLO UNA VEZ */
 }
-@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
+@keyframes pulse{
+  0%{opacity:.2;transform:scale(.96)}
+  50%{opacity:1;transform:scale(1)}
+  100%{opacity:.2;transform:scale(.96)}
+}
 #page-loader.hidden{opacity:0;visibility:hidden}
 
 /* HEADER SIN FONDO */
@@ -51,7 +57,7 @@ header{
 
 /* LOGO SOLO EN HOME */
 header h2.logo{
-  font-size:18px;
+  font-size:19px;
   letter-spacing:.22em;
   font-weight:400;
   margin-left:12px;
@@ -69,7 +75,7 @@ body:not(.home-active) header h2.logo{
   pointer-events:none;
 }
 
-/* ANIMACION LOGO ENTRADA */
+/* LOGO FADE IN */
 @keyframes logoFadeIn{
   from{opacity:0;transform:translateY(-12px)}
   to{opacity:1;transform:translateY(0)}
@@ -457,6 +463,9 @@ function toggleTheme(){document.body.classList.toggle("light")}
 window.addEventListener("load",()=>{
  setLang("es");
  document.getElementById("nav-home").classList.add("active");
+ setTimeout(()=>{
+   document.getElementById("page-loader").classList.add("hidden");
+ },1200);
 });
 </script>
 

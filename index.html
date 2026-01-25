@@ -75,6 +75,27 @@ nav a.active{color:var(--text);font-weight:600}
 }
 .view.active{display:block}
 
+/* FONDO DECORATIVO HOME */
+#home{
+  position:relative;
+  overflow:hidden;
+}
+#home::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(rgba(5,5,7,.7),rgba(5,5,7,.7)),
+    url("reloj1.jpg") center/cover no-repeat;
+  opacity:0.35;
+  filter:blur(2px);
+  z-index:0;
+}
+#home .container{
+  position:relative;
+  z-index:1;
+}
+
 /* FRAMER STYLE */
 .title-framer{
   opacity:0;transform:translateY(18px);

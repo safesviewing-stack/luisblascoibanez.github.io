@@ -48,6 +48,17 @@ header{
   background:var(--bg);
   z-index:1000;
 }
+
+  header::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:32px; /* AQUI controlas lo fina que es */
+  background:rgba(5,5,7,0);
+  z-index:-1;
+}
 header h2{font-size:16px;font-weight:600;letter-spacing:.18em}
 
 /* NAV */

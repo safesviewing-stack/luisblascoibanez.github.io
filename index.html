@@ -185,12 +185,12 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 <header>
   <h2 class="logo">L·BIB</h2>
   <nav>
-    <a id="nav-home" onclick="show('home')"></a>
-    <a id="nav-about" onclick="show('about')"></a>
-    <a id="nav-projects" onclick="show('projects')"></a>
-    <a id="nav-skills" onclick="show('skills')"></a>
-    <a id="nav-cv" onclick="show('cv')"></a>
-    <a id="nav-contact" onclick="show('contact')"></a>
+    <a id="nav-home" onclick="show('home')">Inicio</a>
+    <a id="nav-about" onclick="show('about')">Perfil</a>
+    <a id="nav-projects" onclick="show('projects')">Proyectos</a>
+    <a id="nav-skills" onclick="show('skills')">Habilidades</a>
+    <a id="nav-cv" onclick="show('cv')">CV</a>
+    <a id="nav-contact" onclick="show('contact')">Contacto</a>
   </nav>
   <div class="controls">
     <button onclick="toggleTheme()">🌙</button>
@@ -199,48 +199,164 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
   </div>
 </header>
 
+<!-- HOME -->
 <div id="home" class="view active">
-  <div class="container hero">
-    <h1 id="hero-title"></h1>
-    <p id="hero-sub"></p>
-    <button class="btn" onclick="show('projects')" id="hero-btn"></button>
+  <div class="container hero lang-wrapper show">
+    <h1 id="hero-title" class="title-framer">Diseño Industrial y Desarrollo de Producto</h1>
+    <div class="content-framer">
+      <p id="hero-sub" class="content-framer">Perfil técnico-creativo orientado a empresas de diseño industrial.</p>
+      <button class="btn" onclick="show('projects')" id="hero-btn">Ver proyectos</button>
+    </div>
   </div>
 </div>
 
-<div id="about" class="view"><div class="container"><h2 id="about-title"></h2><p id="about-text"></p></div></div>
-<div id="projects" class="view"><div class="container"><h2 id="projects-title"></h2><div class="grid" id="projects-grid"></div></div></div>
-<div id="skills" class="view"><div class="container"><h2 id="skills-title"></h2><div class="grid" id="skills-grid"></div></div></div>
-<div id="cv" class="view"><div class="container"><h2 id="cv-title"></h2><div class="cv-grid"><div class="cv-item">🎓 Diseño Industrial – BME</div><div class="cv-item">⚡ FP Electricidad</div></div></div></div>
-<div id="contact" class="view"><div class="container"><h2 id="contact-title"></h2><p>📧 luisblascoibanezberbel@email.com</p></div></div>
+<!-- ABOUT -->
+<div id="about" class="view">
+  <div class="container lang-wrapper show">
+    <h2 id="about-title" class="title-framer">Sobre mí</h2>
+    <p id="about-text" class="content-framer">Diseñador industrial con perfil técnico y creativo.</p>
+  </div>
+</div>
 
-<footer id="footer-text"></footer>
+<!-- PROJECTS -->
+<div id="projects" class="view">
+  <div class="container lang-wrapper show">
+    <h2 id="projects-title" class="title-framer">Proyectos</h2>
+    <div class="grid content-framer" id="projects-grid">
+      <button class="project-btn stagger-item">
+        <img src="project1.jpg" alt="Mecanismo radial sincronizado">
+        <span>Mecanismo radial sincronizado</span>
+      </button>
+      <button class="project-btn stagger-item">
+        <img src="project2.jpg" alt="Producto eléctrico industrial">
+        <span>Producto eléctrico industrial</span>
+      </button>
+      <button class="project-btn stagger-item">
+        <img src="project3.jpg" alt="Optimización mecánica">
+        <span>Optimización mecánica</span>
+      </button>
+      <button class="project-btn stagger-item">
+        <img src="project4.jpg" alt="Prototipos impresión 3D">
+        <span>Prototipos impresión 3D</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div id="skills" class="view">
+  <div class="container lang-wrapper show">
+    <h2 id="skills-title" class="title-framer">Habilidades técnicas</h2>
+    <div class="grid content-framer" id="skills-grid">
+      <div class="card stagger-item">SolidWorks</div>
+      <div class="card stagger-item">Fusion 360</div>
+      <div class="card stagger-item">AutoCAD</div>
+      <div class="card stagger-item">Inventor</div>
+      <div class="card stagger-item">Rhinoceros</div>
+      <div class="card stagger-item">GitHub</div>
+      <div class="card stagger-item">Photoshop</div>
+    </div>
+  </div>
+</div>
+
+<!-- CV -->
+<div id="cv" class="view">
+  <div class="container lang-wrapper show">
+    <h2 id="cv-title" class="title-framer">Currículum Vitae</h2>
+    <div class="cv-grid content-framer">
+      <div class="cv-item">🎓 Grado en Diseño Industrial – BME</div>
+      <div class="cv-item">⚡ FP Electricidad</div>
+      <div class="cv-item">🛠️ Experiencia en producto</div>
+      <div class="cv-item">📄 <a href="cv.pdf" download style="color:var(--accent)">Descargar CV</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact" class="view">
+  <div class="container lang-wrapper show">
+    <h2 id="contact-title" class="title-framer">Contacto</h2>
+    <div class="content-framer">
+      <p>📧 luisblascoibanezberbel@email.com</p>
+      <p>📞 +34 630 511 806</p>
+    </div>
+  </div>
+</div>
+
+<footer id="footer-text">© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial</footer>
 
 <script>
 const data={
  es:{nav:{home:"Inicio",about:"Perfil",projects:"Proyectos",skills:"Habilidades",cv:"CV",contact:"Contacto"},
  heroTitle:"Diseño Industrial y Desarrollo de Producto",heroSub:"Perfil técnico-creativo.",heroBtn:"Ver proyectos",
- aboutTitle:"Sobre mí",aboutText:"Diseñador industrial técnico-creativo.",
- projectsTitle:"Proyectos",projects:[{title:"Proyecto 1",img:"project1.jpg"}],
- skillsTitle:"Habilidades",skills:["SolidWorks","Fusion"],cvTitle:"Currículum",contactTitle:"Contacto",footer:"© 2026 L·BIB"},
+ aboutTitle:"Sobre mí",aboutText:"Diseñador industrial con perfil técnico y creativo.",
+ projectsTitle:"Proyectos",projects:[{title:"Mecanismo radial sincronizado",img:"project1.jpg"},
+ {title:"Producto eléctrico industrial",img:"project2.jpg"},{title:"Optimización mecánica",img:"project3.jpg"},{title:"Prototipos impresión 3D",img:"project4.jpg"}],
+ skillsTitle:"Habilidades técnicas",skills:["SolidWorks","Fusion 360","AutoCAD","Inventor","Rhinoceros","GitHub","Photoshop"],
+ cvTitle:"Currículum Vitae",contactTitle:"Contacto",footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"},
  en:{nav:{home:"Home",about:"Profile",projects:"Projects",skills:"Skills",cv:"CV",contact:"Contact"},
- heroTitle:"Industrial Design",heroSub:"Technical & creative.",heroBtn:"View projects",
- aboutTitle:"About me",aboutText:"Industrial designer.",
- projectsTitle:"Projects",projects:[{title:"Project 1",img:"project1.jpg"}],
- skillsTitle:"Skills",skills:["SolidWorks","Fusion"],cvTitle:"CV",contactTitle:"Contact",footer:"© 2026 L·BIB"}
+ heroTitle:"Industrial Design & Product Development",heroSub:"Technical and creative profile for industrial design companies.",heroBtn:"View projects",
+ aboutTitle:"About me",aboutText:"Industrial designer with technical and creative focus.",
+ projectsTitle:"Projects",projects:[{title:"Radial synchronized mechanism",img:"project1.jpg"},{title:"Industrial electrical product",img:"project2.jpg"},
+ {title:"Mechanical optimization",img:"project3.jpg"},{title:"3D printed prototypes",img:"project4.jpg"}],
+ skillsTitle:"Technical skills",skills:["SolidWorks","Fusion 360","AutoCAD","Inventor","Rhinoceros","GitHub","Photoshop"],
+ cvTitle:"Curriculum Vitae",contactTitle:"Contact",footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineering"}
 };
 
 function setLang(l){
  const d=data[l];
- Object.keys(d.nav).forEach(k=>nav=document.getElementById("nav-"+k).innerText=d.nav[k]);
- heroTitle.innerText=d.heroTitle;heroSub.innerText=d.heroSub;heroBtn.innerText=d.heroBtn;
- aboutTitle.innerText=d.aboutTitle;aboutText.innerText=d.aboutText;
- projectsTitle.innerText=d.projectsTitle;skillsTitle.innerText=d.skillsTitle;
- cvTitle.innerText=d.cvTitle;contactTitle.innerText=d.contactTitle;footerText.innerText=d.footer;
+ Object.keys(d.nav).forEach(k=>document.getElementById("nav-"+k).innerText=d.nav[k]);
+ document.getElementById("hero-title").innerText=d.heroTitle;
+ document.getElementById("hero-sub").innerText=d.heroSub;
+ document.getElementById("hero-btn").innerText=d.heroBtn;
+ document.getElementById("about-title").innerText=d.aboutTitle;
+ document.getElementById("about-text").innerText=d.aboutText;
+ document.getElementById("projects-title").innerText=d.projectsTitle;
+ document.getElementById("skills-title").innerText=d.skillsTitle;
+ document.getElementById("cv-title").innerText=d.cvTitle;
+ document.getElementById("contact-title").innerText=d.contactTitle;
+ document.getElementById("footer-text").innerText=d.footer;
+
+ const pgrid=document.getElementById("projects-grid");
+ pgrid.innerHTML="";
+ d.projects.forEach((p,i)=>pgrid.innerHTML+=`
+    <button class="project-btn stagger-item" style="animation-delay:${i*0.08}s">
+      <img src="${p.img}">
+      <span>${p.title}</span>
+    </button>`);
+
+ const sgrid=document.getElementById("skills-grid");
+ sgrid.innerHTML="";
+ d.skills.forEach((s,i)=>sgrid.innerHTML+=`
+    <div class="card stagger-item" style="animation-delay:${i*0.08}s">${s}</div>`);
+
+ restartAnimations();
+}
+
+function restartAnimations(){
+ document.querySelectorAll(".title-framer, .content-framer").forEach(el=>{
+   el.style.animation="none";
+   el.offsetHeight;
+   el.style.animation="";
+ });
 }
 
 function show(id){
  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
- document.getElementById(id).classList.add("active");
+ const section=document.getElementById(id);
+ section.classList.add("active");
+ document.querySelectorAll("nav a").forEach(a=>a.classList.remove("active"));
+ document.getElementById("nav-"+id).classList.add("active");
+
+ if(id==="home"){
+   document.body.classList.add("home-active");
+   const logo=document.querySelector("header h2.logo");
+   logo.style.animation="none";
+   logo.offsetHeight;
+   logo.style.animation="";
+ }else{
+   document.body.classList.remove("home-active");
+ }
 }
 
 function toggleTheme(){document.body.classList.toggle("light")}
@@ -255,5 +371,6 @@ window.addEventListener("load",()=>{
  },1700);
 });
 </script>
+
 </body>
 </html>

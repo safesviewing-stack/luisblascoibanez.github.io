@@ -259,7 +259,6 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
 /* FOOTER */
 footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;color:var(--muted)}
 
-/* MOBILE */
 @media(max-width:800px){
   header{flex-direction:column;gap:10px}
   nav{flex-wrap:wrap;justify-content:center}
@@ -270,6 +269,9 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 </head>
 
 <body class="home-active">
+
+<!-- AUDIO DEL LOADER -->
+<audio id="intro-sound" src="intro.mp3" preload="auto"></audio>
 
 <div id="page-loader"><span>L · BIB</span></div>
 
@@ -474,6 +476,12 @@ function toggleTheme(){document.body.classList.toggle("light")}
 window.addEventListener("load",()=>{
  setLang("es");
  document.getElementById("nav-home").classList.add("active");
+
+ const sound=document.getElementById("intro-sound");
+ sound.volume=0.15;
+
+ sound.play().catch(()=>{}); // evita errores por políticas de autoplay
+
  setTimeout(()=>{
    document.getElementById("page-loader").classList.add("hidden");
  },1600);

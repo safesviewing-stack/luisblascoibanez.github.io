@@ -36,28 +36,17 @@ body{background:var(--bg);color:var(--text);overflow:hidden;transition:.4s}
 @keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
 #page-loader.hidden{opacity:0;visibility:hidden}
 
-/* HEADER */
+/* HEADER SIN FONDO */
 header{
   position:fixed;
   top:10px;
   width:100%;
-  padding:25px 32px 15px; /* BAJA LOS ELEMENTOS */
+  padding:25px 32px 15px;
   display:flex;
   justify-content:space-between;
-  align-items:flex-end; /* BAJA LOGO Y NAV */
-  background:var(--bg);
+  align-items:flex-end;
+  background:transparent; /* ELIMINA FRANJA NEGRA */
   z-index:1000;
-}
-
-  header::before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  height:32px; /* AQUI controlas lo fina que es */
-  background:rgba(5,5,7,0);
-  z-index:-1;
 }
 header h2{font-size:16px;font-weight:600;letter-spacing:.18em}
 
@@ -107,7 +96,7 @@ nav a.active{color:var(--text);font-weight:600}
 /* VIEWS */
 .view{
   position:absolute;
-  top:100px; /* ligeramente más abajo por el header */
+  top:100px;
   width:100%;
   height:calc(100vh - 100px);
   padding:60px 30px;
@@ -134,7 +123,7 @@ nav a.active{color:var(--text);font-weight:600}
   z-index:1;
 }
 
-/* FRAMER STYLE */
+/* ANIMACIONES */
 .title-framer{
   opacity:0;
   transform:translateY(18px);

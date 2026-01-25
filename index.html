@@ -29,26 +29,26 @@ body{background:var(--bg);color:var(--text);overflow:hidden;transition:.4s}
   display:flex;align-items:center;justify-content:center;
   z-index:9999;transition:.8s ease;
 }
-#page-loader span{
-  font-size:22px;letter-spacing:.3em;
-  animation:pulse 1.4s infinite;
-}
+#page-loader span{font-size:22px;letter-spacing:.3em;animation:pulse 1.4s infinite}
 @keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
 #page-loader.hidden{opacity:0;visibility:hidden}
 
 /* HEADER */
 header{
-  position:fixed;top:10px;width:100%;
+  position:fixed;
+  top:10px;
+  width:100%;
   padding:14px 32px;
-  display:flex;justify-content:space-between;align-items:center;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
   background:rgba(5,5,7,0.85);
   backdrop-filter: blur(8px);
   transition:.3s ease;
   z-index:1000;
 }
-
 body.home-active header{
-  background:rgba(5,5,7,0.3);
+  background:rgba(5,5,7,0.25);
   backdrop-filter: blur(10px);
 }
 header h2{font-size:16px;font-weight:600;letter-spacing:.18em}
@@ -93,10 +93,8 @@ nav a.active{color:var(--text);font-weight:600}
   position:absolute;
   inset:0;
   background:
-    linear-gradient(rgba(5,5,7,.7),rgba(5,5,7,.7)),
+    linear-gradient(rgba(5,5,7,.6),rgba(5,5,7,.6)),
     url("reloj1.jpg") center/cover no-repeat;
-  opacity:0.35;
-  filter:blur(2px);
   z-index:0;
 }
 #home .container{
@@ -156,17 +154,10 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
   cursor:pointer;transition:.35s cubic-bezier(.4,0,.2,1);
   position:relative;overflow:hidden;
 }
-.btn::after{
-  content:"";position:absolute;inset:0;
-  background:radial-gradient(circle at center,rgba(255,255,255,.35),transparent 60%);
-  opacity:0;transition:.35s;
-}
 .btn:hover{
   transform:scale(1.1);
   box-shadow:0 14px 30px rgba(0,242,255,.35);
 }
-.btn:hover::after{opacity:1}
-.btn:active{transform:scale(.96)}
 
 /* GRID */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px}
@@ -178,24 +169,16 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
   border-radius:16px;
   overflow:hidden;
   cursor:pointer;
-  transition:.4s cubic-bezier(.4,0,.2,1);
   display:flex;
   flex-direction:column;
 }
 .project-btn img{
   width:100%;aspect-ratio:4/3;object-fit:cover;
-  transition:.6s cubic-bezier(.4,0,.2,1)
 }
 .project-btn span{padding:16px;font-weight:600;font-size:14px}
-.project-btn:hover{
-  transform:translateY(-10px) scale(1.03);
-  box-shadow:0 18px 40px rgba(0,242,255,.12)
-}
-.project-btn:hover img{transform:scale(1.1)}
 
 /* SKILLS */
-.card{background:var(--card);padding:24px;border-radius:16px;transition:.3s}
-.card:hover{transform:translateY(-6px)}
+.card{background:var(--card);padding:24px;border-radius:16px}
 
 /* CV */
 .cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
@@ -204,7 +187,6 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
 /* FOOTER */
 footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;color:var(--muted)}
 
-/* MOBILE */
 @media(max-width:800px){
   header{flex-direction:column;gap:10px}
   nav{flex-wrap:wrap;justify-content:center}
@@ -214,7 +196,7 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 </style>
 </head>
 
-<body>
+<body class="home-active">
 
 <div id="page-loader"><span>L · BIB</span></div>
 
@@ -236,7 +218,7 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 </header>
 
 <!-- HOME -->
-<div id="home" class="view">
+<div id="home" class="view active">
   <div class="container hero lang-wrapper show">
     <h1 id="hero-title" class="title-framer"></h1>
     <div class="content-framer">
@@ -250,9 +232,7 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 <div id="about" class="view">
   <div class="container lang-wrapper show">
     <h2 id="about-title" class="title-framer"></h2>
-    <div class="content-framer">
-      <p id="about-text"></p>
-    </div>
+    <p id="about-text" class="content-framer"></p>
   </div>
 </div>
 
@@ -289,10 +269,7 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 <div id="contact" class="view">
   <div class="container lang-wrapper show">
     <h2 id="contact-title" class="title-framer"></h2>
-    <div class="content-framer">
-      <p>📧 luisblascoibanezberbel@email.com</p>
-      <p>📞 +34 630 511 806</p>
-    </div>
+    <p class="content-framer">📧 tuemail@email.com</p>
   </div>
 </div>
 
@@ -347,10 +324,7 @@ function animateLangTransition(callback){
  wrappers.forEach(w=>w.classList.add("hide"));
  setTimeout(()=>{
    callback();
-   wrappers.forEach(w=>{
-     w.classList.remove("hide");
-     w.classList.add("show");
-   });
+   wrappers.forEach(w=>{w.classList.remove("hide");w.classList.add("show");});
  },280);
 }
 
@@ -375,23 +349,21 @@ function setLang(l){
 
    const pgrid=document.getElementById("projects-grid");
    pgrid.innerHTML="";
-   d.projects.forEach((p,i)=>pgrid.innerHTML+=`
-    <button class="project-btn stagger-item" style="animation-delay:${i*0.08}s">
+   d.projects.forEach(p=>pgrid.innerHTML+=`
+    <button class="project-btn">
       <img src="${p.img}">
       <span>${p.title}</span>
     </button>`);
 
    const sgrid=document.getElementById("skills-grid");
    sgrid.innerHTML="";
-   d.skills.forEach((s,i)=>sgrid.innerHTML+=`
-    <div class="card stagger-item" style="animation-delay:${i*0.08}s">${s}</div>`);
+   d.skills.forEach(s=>sgrid.innerHTML+=`<div class="card">${s}</div>`);
  });
 }
 
 function show(id){
  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
- const section=document.getElementById(id);
- section.classList.add("active");
+ document.getElementById(id).classList.add("active");
  document.querySelectorAll("nav a").forEach(a=>a.classList.remove("active"));
  document.getElementById("nav-"+id).classList.add("active");
  document.body.classList.toggle("home-active", id==="home");
@@ -404,7 +376,6 @@ window.addEventListener("load",()=>{
  document.getElementById("nav-home").classList.add("active");
  setTimeout(()=>{
    document.getElementById("page-loader").classList.add("hidden");
-   setTimeout(()=>{document.getElementById("home").classList.add("active")},250);
  },1200);
 });
 </script>

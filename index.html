@@ -21,12 +21,7 @@ body.light{
   --card:#ffffff;
 }
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
-body{
-  background:var(--bg);
-  color:var(--text);
-  overflow:hidden;
-  transition:.4s
-}
+body{background:var(--bg);color:var(--text);overflow:hidden;transition:.4s}
 
 /* LOADER */
 #page-loader{
@@ -41,7 +36,7 @@ body{
 @keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
 #page-loader.hidden{opacity:0;visibility:hidden}
 
-/* HEADER TRANSPARENTE */
+/* HEADER SIN FONDO */
 header{
   position:fixed;
   top:10px;
@@ -50,15 +45,10 @@ header{
   display:flex;
   justify-content:space-between;
   align-items:flex-end;
-  background:transparent;
+  background:transparent; /* ELIMINA FRANJA NEGRA */
   z-index:1000;
 }
-header h2{
-  font-size:16px;
-  font-weight:600;
-  letter-spacing:.18em;
-  color:var(--muted);
-}
+header h2{font-size:16px;font-weight:600;letter-spacing:.18em}
 
 /* NAV */
 nav{display:flex;gap:28px}
@@ -70,7 +60,6 @@ nav a{
   letter-spacing:.14em;
   cursor:pointer;
   padding-bottom:6px;
-  transition:.3s;
 }
 nav a::after{
   content:"";
@@ -80,20 +69,11 @@ nav a::after{
   width:0;
   height:1px;
   background:var(--accent);
-  transition:.3s ease
+  transition:.3s ease;
 }
 nav a:hover::after,
 nav a.active::after{width:100%}
-nav a.active{
-  color:var(--text);
-  font-weight:600
-}
-
-/* MÁS BLANCOS EN HOME */
-body.home header nav a,
-body.home header h2{
-  color:rgba(255,255,255,0.9);
-}
+nav a.active{color:var(--text);font-weight:600}
 
 /* CONTROLS */
 .controls{display:flex;gap:8px}
@@ -127,18 +107,23 @@ body.home header h2{
 /* FONDO DECORATIVO HOME */
 #home{
   position:relative;
+  overflow:hidden;
 }
 #home::before{
   content:"";
-  position:fixed;
+  position:fixed; /* CLAVE */
   top:0;
   left:0;
   width:100vw;
   height:100vh;
   background:
-    linear-gradient(rgba(5,5,7,.65),rgba(5,5,7,.65)),
-    url("reloj1.jpg") center/85% no-repeat;
+    linear-gradient(rgba(5,5,7,.8),rgba(5,5,7,.8)),
+    url("reloj1.jpg") center/cover no-repeat;
   z-index:-1;
+}
+#home .container{
+  position:relative;
+  z-index:1;
 }
 
 /* ANIMACIONES */
@@ -255,7 +240,7 @@ footer{
 </style>
 </head>
 
-<body class="home">
+<body>
 
 <div id="page-loader"><span>L · BIB</span></div>
 
@@ -277,7 +262,7 @@ footer{
 </header>
 
 <!-- HOME -->
-<div id="home" class="view active">
+<div id="home" class="view">
   <div class="container hero lang-wrapper show">
     <h1 id="hero-title" class="title-framer"></h1>
     <div class="content-framer">
@@ -433,7 +418,6 @@ function show(id){
  section.classList.add("active");
  document.querySelectorAll("nav a").forEach(a=>a.classList.remove("active"));
  document.getElementById("nav-"+id).classList.add("active");
- document.body.classList.toggle("home", id==="home");
 }
 
 function toggleTheme(){document.body.classList.toggle("light")}
@@ -441,9 +425,9 @@ function toggleTheme(){document.body.classList.toggle("light")}
 window.addEventListener("load",()=>{
  setLang("es");
  document.getElementById("nav-home").classList.add("active");
- document.body.classList.add("home");
  setTimeout(()=>{
    document.getElementById("page-loader").classList.add("hidden");
+   setTimeout(()=>{document.getElementById("home").classList.add("active")},250);
  },1200);
 });
 </script>

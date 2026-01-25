@@ -41,7 +41,14 @@ header{
   position:fixed;top:10px;width:100%;
   padding:14px 32px;
   display:flex;justify-content:space-between;align-items:center;
-  background:var(--bg);z-index:1000
+  background:var(--bg);
+  backdrop-filter:blur(6px);
+  z-index:1000;
+  transition:background .4s ease;
+}
+header.transparent{
+  background:rgba(0,0,0,0);
+  backdrop-filter:none;
 }
 header h2{font-size:16px;font-weight:600;letter-spacing:.18em}
 
@@ -210,7 +217,7 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 
 <div id="page-loader"><span>L · BIB</span></div>
 
-<header>
+<header id="main-header" class="transparent">
   <h2>L · BIB</h2>
   <nav>
     <a id="nav-home" onclick="show('home')"></a>
@@ -291,6 +298,8 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 <footer id="footer-text"></footer>
 
 <script>
+const header=document.getElementById("main-header");
+
 const data={
  es:{
   nav:{home:"Inicio",about:"Perfil",projects:"Proyectos",skills:"Habilidades",cv:"CV",contact:"Contacto"},
@@ -386,6 +395,10 @@ function show(id){
  section.classList.add("active");
  document.querySelectorAll("nav a").forEach(a=>a.classList.remove("active"));
  document.getElementById("nav-"+id).classList.add("active");
+
+ // Header transparente solo en home
+ if(id==="home"){header.classList.add("transparent");}
+ else{header.classList.remove("transparent");}
 }
 
 function toggleTheme(){document.body.classList.toggle("light")}
@@ -395,7 +408,7 @@ window.addEventListener("load",()=>{
  document.getElementById("nav-home").classList.add("active");
  setTimeout(()=>{
    document.getElementById("page-loader").classList.add("hidden");
-   setTimeout(()=>{document.getElementById("home").classList.add("active")},250);
+   setTimeout(()=>{show("home")},250);
  },1200);
 });
 </script>

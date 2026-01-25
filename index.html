@@ -23,7 +23,7 @@ body.light{
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
 body{background:var(--bg);color:var(--text);overflow:hidden;transition:.4s}
 
-/* ===== LOADER GLITCH ===== */
+/* ===== LOADER ENGORDA/REDUCE ===== */
 #page-loader{
   position:fixed;
   inset:0;
@@ -32,37 +32,20 @@ body{background:var(--bg);color:var(--text);overflow:hidden;transition:.4s}
   align-items:center;
   justify-content:center;
   z-index:9999;
-  transition:opacity 1s ease, visibility 1s ease;
+  transition:.8s ease;
 }
-
 #page-loader span{
-  font-size:32px;
-  letter-spacing:.35em;
-  font-weight:400;
-  position:relative;
-  color: var(--accent);
-  opacity:0;
-  animation:fadeInLoader 1s ease forwards, glitchEffect 1.5s infinite steps(5);
+  font-size:30px;
+  letter-spacing:.3em;
+  font-weight:500;
+  color:white;
+  animation:pulseScale 1.4s ease-in-out infinite;
 }
-
-@keyframes fadeInLoader{
-  0%{opacity:0;transform:scale(0.8);}
-  100%{opacity:1;transform:scale(1);}
+@keyframes pulseScale{
+  0%,100%{transform:scale(1);font-weight:400}
+  50%{transform:scale(1.25);font-weight:700}
 }
-
-@keyframes glitchEffect {
-  0%{transform:translate(0);}
-  20%{transform:translate(-2px,-2px);}
-  40%{transform:translate(2px,0);}
-  60%{transform:translate(-2px,2px);}
-  80%{transform:translate(2px,-2px);}
-  100%{transform:translate(0);}
-}
-
-#page-loader.hidden{
-  opacity:0;
-  visibility:hidden;
-}
+#page-loader.hidden{opacity:0;visibility:hidden}
 
 /* HEADER */
 header{
@@ -76,10 +59,8 @@ header{
   background:transparent;
   z-index:1000;
 }
-
-/* LOGO */
 header h2.logo{
-  font-size:19px;
+  font-size:17px;
   letter-spacing:.22em;
   font-weight:400;
   margin-left:12px;
@@ -87,14 +68,13 @@ header h2.logo{
   transition:.3s ease;
 }
 header h2.logo .sep{font-weight:700;margin:0 4px}
-body:not(.home-active) header h2.logo{opacity:0;transform:translateY(-8px)}
-
+body:not(.home-active) header h2.logo{opacity:0;transform:translateY(-10px)}
+body.home-active header h2.logo{
+  animation:logoFadeIn .5s cubic-bezier(.4,0,.2,1);
+}
 @keyframes logoFadeIn{
   from{opacity:0;transform:translateY(-12px)}
   to{opacity:1;transform:translateY(0)}
-}
-body.home-active header h2.logo{
-  animation:logoFadeIn .5s cubic-bezier(.4,0,.2,1);
 }
 
 /* NAV */
@@ -129,7 +109,7 @@ nav a.active{color:var(--text);font-weight:600}
   padding:4px 7px;
   border-radius:6px;
   opacity:.6;
-  cursor:pointer;
+  cursor:pointer
 }
 .controls button.active{background:var(--accent);color:#000;opacity:1}
 
@@ -155,22 +135,20 @@ nav a.active{color:var(--text);font-weight:600}
   z-index:-1;
 }
 
-/* ANIMACIONES DE ENTRADA */
+/* ANIMACIONES */
 .title-framer{
   opacity:0;
-  transform:translateY(22px);
+  transform:translateY(18px);
   animation:titleIn .7s cubic-bezier(.4,0,.2,1) forwards;
 }
 .content-framer{
   opacity:0;
-  transform:translateY(22px);
+  transform:translateY(18px);
   animation:contentIn .7s cubic-bezier(.4,0,.2,1) forwards;
   animation-delay:.22s;
 }
 @keyframes titleIn{to{opacity:1;transform:translateY(0)}}
 @keyframes contentIn{to{opacity:1;transform:translateY(0)}}
-
-/* STAGGER */
 .stagger-item{
   opacity:0;
   transform:translateY(20px);
@@ -178,7 +156,7 @@ nav a.active{color:var(--text);font-weight:600}
 }
 @keyframes staggerIn{to{opacity:1;transform:translateY(0)}}
 
-/* LANGUAGE */
+/* LANGUAGE TRANSITION */
 .lang-wrapper.hide{opacity:0;transform:scale(.96);transition:.25s}
 .lang-wrapper.show{opacity:1;transform:scale(1);transition:.35s}
 
@@ -200,26 +178,42 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
   color:#000;
   font-weight:600;
   cursor:pointer;
-  transition:.35s;
+  transition:.35s
 }
-.btn:hover{transform:scale(1.08);box-shadow:0 14px 30px rgba(0,242,255,.35)}
+.btn:hover{transform:scale(1.1);box-shadow:0 14px 30px rgba(0,242,255,.35)}
 
 /* GRID */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px}
-.project-btn{background:var(--card);border:none;border-radius:16px;overflow:hidden;cursor:pointer}
+.project-btn{
+  background:var(--card);
+  border:none;
+  border-radius:16px;
+  overflow:hidden;
+  cursor:pointer;
+}
 .project-btn img{width:100%;aspect-ratio:4/3;object-fit:cover}
 .project-btn span{padding:16px;font-weight:600;font-size:14px}
 .card{background:var(--card);padding:24px;border-radius:16px}
+
+/* CV */
 .cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
 .cv-item{background:var(--card);padding:22px;border-radius:14px}
 
-footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;color:var(--muted)}
+footer{
+  position:fixed;
+  bottom:22px;
+  width:100%;
+  text-align:center;
+  font-size:10px;
+  color:var(--muted)
+}
 
+/* MOBILE */
 @media(max-width:800px){
- header{flex-direction:column;gap:10px}
- nav{flex-wrap:wrap;justify-content:center}
- .cv-grid{grid-template-columns:1fr}
- h1{font-size:30px}
+  header{flex-direction:column;gap:10px}
+  nav{flex-wrap:wrap;justify-content:center}
+  .cv-grid{grid-template-columns:1fr}
+  h1{font-size:30px}
 }
 </style>
 </head>
@@ -246,7 +240,7 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 </header>
 
 <!-- HOME -->
-<div id="home" class="view">
+<div id="home" class="view active">
   <div class="container hero lang-wrapper show">
     <h1 id="hero-title" class="title-framer"></h1>
     <div class="content-framer">
@@ -362,14 +356,6 @@ function animateLangTransition(callback){
  },280);
 }
 
-function restartAnimations(){
- document.querySelectorAll(".title-framer, .content-framer").forEach(el=>{
-   el.style.animation="none";
-   el.offsetHeight;
-   el.style.animation="";
- });
-}
-
 function setLang(l){
  animateLangTransition(()=>{
    document.getElementById("btn-es").classList.remove("active");
@@ -378,16 +364,16 @@ function setLang(l){
 
    const d=data[l];
    Object.keys(d.nav).forEach(k=>document.getElementById("nav-"+k).innerText=d.nav[k]);
-   document.getElementById("hero-title").innerText=d.heroTitle;
-   document.getElementById("hero-sub").innerText=d.heroSub;
-   document.getElementById("hero-btn").innerText=d.heroBtn;
-   document.getElementById("about-title").innerText=d.aboutTitle;
-   document.getElementById("about-text").innerText=d.aboutText;
-   document.getElementById("projects-title").innerText=d.projectsTitle;
-   document.getElementById("skills-title").innerText=d.skillsTitle;
-   document.getElementById("cv-title").innerText=d.cvTitle;
-   document.getElementById("contact-title").innerText=d.contactTitle;
-   document.getElementById("footer-text").innerText=d.footer;
+   hero-title.innerText=d.heroTitle;
+   hero-sub.innerText=d.heroSub;
+   hero-btn.innerText=d.heroBtn;
+   about-title.innerText=d.aboutTitle;
+   about-text.innerText=d.aboutText;
+   projects-title.innerText=d.projectsTitle;
+   skills-title.innerText=d.skillsTitle;
+   cv-title.innerText=d.cvTitle;
+   contact-title.innerText=d.contactTitle;
+   footer-text.innerText=d.footer;
 
    const pgrid=document.getElementById("projects-grid");
    pgrid.innerHTML="";
@@ -401,37 +387,25 @@ function setLang(l){
    sgrid.innerHTML="";
    d.skills.forEach((s,i)=>sgrid.innerHTML+=`
     <div class="card stagger-item" style="animation-delay:${i*0.08}s">${s}</div>`);
-
-   restartAnimations();
  });
 }
 
 function show(id){
  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
- const section=document.getElementById(id);
- section.classList.add("active");
+ document.getElementById(id).classList.add("active");
  document.querySelectorAll("nav a").forEach(a=>a.classList.remove("active"));
  document.getElementById("nav-"+id).classList.add("active");
  document.body.classList.toggle("home-active",id==="home");
- restartAnimations();
 }
 
 function toggleTheme(){document.body.classList.toggle("light")}
 
-window.addEventListener("load",()=>{
+window.onload=()=>{
  setLang("es");
- document.getElementById("nav-home").classList.add("active");
-
  setTimeout(()=>{
    document.getElementById("page-loader").classList.add("hidden");
-
-   setTimeout(()=>{
-     document.getElementById("home").classList.add("active");
-     restartAnimations();
-   },400);  // delay antes de la animación de inicio
-
- },1600); // duración del loader
-});
+ },1200);
+}
 </script>
 
 </body>

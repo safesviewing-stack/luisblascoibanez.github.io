@@ -23,7 +23,7 @@ body.light{
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
 body{background:var(--bg);color:var(--text);overflow:hidden;transition:.4s}
 
-/* LOADER CIRCULAR NUEVO ESTILO */
+/* ===== LOADER CIRCULAR PREMIUM ===== */
 #page-loader{
   position:fixed;
   inset:0;
@@ -34,23 +34,27 @@ body{background:var(--bg);color:var(--text);overflow:hidden;transition:.4s}
   z-index:9999;
   transition:opacity 1s ease, visibility 1s ease;
 }
+
 #page-loader span{
-  font-size:32px;
+  font-size:28px;
   letter-spacing:.35em;
   font-weight:400;
-  color:var(--accent);
-  opacity:0;
-  animation:fadeIn 1s cubic-bezier(.22,1,.36,1) forwards, rotateLoader 2s linear infinite;
+  position:relative;
+  padding:40px;
 }
 
-@keyframes fadeIn{
-  0%{opacity:0;}
-  100%{opacity:1;}
+#page-loader span::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border:2px solid var(--accent);
+  border-radius:50%;
+  animation:circleReveal 1.5s cubic-bezier(.22,1,.36,1) forwards;
 }
 
-@keyframes rotateLoader{
-  0%{transform:rotate(0deg);}
-  100%{transform:rotate(360deg);}
+@keyframes circleReveal{
+  from{clip-path:circle(0% at 50% 50%)}
+  to{clip-path:circle(100% at 50% 50%)}
 }
 
 #page-loader.hidden{

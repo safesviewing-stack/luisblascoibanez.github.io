@@ -23,7 +23,7 @@ body.light{
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
 body{background:var(--bg);color:var(--text);overflow:hidden;transition:.4s}
 
-/* LOADER */
+/* LOADER CIRCULAR NUEVO ESTILO */
 #page-loader{
   position:fixed;
   inset:0;
@@ -38,14 +38,21 @@ body{background:var(--bg);color:var(--text);overflow:hidden;transition:.4s}
   font-size:32px;
   letter-spacing:.35em;
   font-weight:400;
+  color:var(--accent);
   opacity:0;
-  animation:logoIntro 1.6s cubic-bezier(.22,1,.36,1) forwards;
+  animation:fadeIn 1s cubic-bezier(.22,1,.36,1) forwards, rotateLoader 2s linear infinite;
 }
-@keyframes logoIntro{
-  0%{opacity:0;transform:scale(1.4);filter:blur(8px)}
-  60%{opacity:1;transform:scale(1);filter:blur(0)}
-  100%{opacity:1;transform:scale(1)}
+
+@keyframes fadeIn{
+  0%{opacity:0;}
+  100%{opacity:1;}
 }
+
+@keyframes rotateLoader{
+  0%{transform:rotate(0deg);}
+  100%{transform:rotate(360deg);}
+}
+
 #page-loader.hidden{
   opacity:0;
   visibility:hidden;

@@ -51,11 +51,15 @@ header{
 header h2{
   font-size:19px;
   font-weight:600;
-  letter-spacing:.18em
+  letter-spacing:.26em
   transform:translateX(15px);
   color:rgba(245,245,247,0.75); /* MÁS CLARO */
+}
 
-
+  header h2 .sep{
+  font-weight:300;       /* más fina */
+  opacity:0.6;           /* más ligera visualmente */
+  margin:0 6px;          /* aire alrededor */
 }
 
 /* NAV */
@@ -253,7 +257,7 @@ footer{
 <div id="page-loader"><span>L · BIB</span></div>
 
 <header>
-  <h2>L · BIB</h2>
+  <h2>L <span class="sep">·</span> BIB</h2>
   <nav>
     <a id="nav-home" onclick="show('home')"></a>
     <a id="nav-about" onclick="show('about')"></a>

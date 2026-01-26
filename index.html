@@ -2,482 +2,237 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>L·BIB · Industrial Design</title>
+<title>NODE · Portfolio</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --bg:#050507;
-  --text:#f5f5f7;
-  --muted:#888;
-  --card:#111;
-  --accent:#00f2ff;
-}
-body.light{
-  --bg:#f5f5f7;
-  --text:#111;
-  --muted:#666;
-  --card:#ffffff;
-}
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
-body{background:var(--bg);color:var(--text);overflow:hidden;transition:.4s}
 
-/* LOADER PREMIUM */
-#page-loader{
-  position:fixed;
-  inset:0;
-  background:#050507;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
-  transition:opacity 1s ease, visibility 1s ease, filter 1s ease;
-}
-#page-loader span{
-  font-size:32px;
-  letter-spacing:.35em;
-  font-weight:400;
-  opacity:0;
-  animation:logoIntro 1.6s cubic-bezier(.22,1,.36,1) forwards;
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
-@keyframes logoIntro{
-  0%{opacity:0;transform:scale(1.6);filter:blur(10px)}
-  60%{opacity:1;transform:scale(1);filter:blur(0)}
-  100%{opacity:1;transform:scale(1)}
+body {
+  background: #ffffff;
+  color: #333;
 }
 
-#page-loader.hidden{
-  opacity:0;
-  visibility:hidden;
-  filter:blur(10px);
+/* ================= HEADER ================= */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 70px;
+  background: #eaeceb;
+  z-index: 1000;
 }
 
-/* HEADER SIN FONDO */
-header{
-  position:fixed;
-  top:10px;
-  width:100%;
-  padding:25px 32px 15px;
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  background:transparent;
-  z-index:1000;
+.header-inner {
+  max-width: 1200px;
+  width: 90%;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-/* LOGO SOLO EN HOME */
-header h2.logo{
-  font-size:19px;
-  letter-spacing:.22em;
-  font-weight:400;
-  margin-left:12px;
-  color:rgba(245,245,247,0.75);
-  transition:opacity .3s ease, transform .3s ease;
-}
-header h2.logo .sep{
-  font-weight:700;
-  margin:0 4px;
-  opacity:0.9;
-}
-body:not(.home-active) header h2.logo{
-  opacity:0;
-  transform:translateY(-8px);
-  pointer-events:none;
+.back-btn {
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #555;
 }
 
-@keyframes logoFadeIn{
-  from{opacity:0;transform:translateY(-12px)}
-  to{opacity:1;transform:translateY(0)}
-}
-body.home-active header h2.logo{
-  animation:logoFadeIn .5s cubic-bezier(.4,0,.2,1);
+.back-btn:hover {
+  font-weight: 500;
 }
 
-/* NAV */
-nav{display:flex;gap:28px}
-nav a{
-  position:relative;
-  color:rgba(245,245,247,0.75);
-  font-size:11px;
-  text-transform:uppercase;
-  letter-spacing:.14em;
-  cursor:pointer;
-  padding-bottom:6px;
-}
-nav a::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:0;
-  width:0;
-  height:1px;
-  background:var(--accent);
-  transition:.3s ease
-}
-nav a:hover::after,
-nav a.active::after{width:100%}
-nav a.active{color:var(--text);font-weight:600}
-
-/* CONTROLS */
-.controls{display:flex;gap:8px}
-.controls button{
-  border:1px solid var(--accent);
-  background:none;
-  color:var(--text);
-  font-size:10px;
-  padding:4px 7px;
-  border-radius:6px;
-  opacity:.6;
-  cursor:pointer
-}
-.controls button.active{
-  background:var(--accent);
-  color:#000;
-  opacity:1
+.lang {
+  display: flex;
+  gap: 6px;
 }
 
-/* VIEWS */
-.view{
-  position:absolute;
-  top:100px;
-  width:100%;
-  height:calc(100vh - 100px);
-  padding:60px 30px;
-  display:none;
-}
-.view.active{display:block}
-
-/* FONDO HOME */
-#home{
-  position:relative;
-  overflow:hidden;
-}
-#home::before{
-  content:"";
-  position:fixed;
-  top:0;
-  left:0;
-  width:100vw;
-  height:100vh;
-  background:
-    linear-gradient(rgba(5,5,7,.8),rgba(5,5,7,.8)),
-    url("reloj1.jpg") center/cover no-repeat;
-  z-index:-1;
-}
-#home .container{position:relative;z-index:1}
-
-/* ANIMACIONES */
-.title-framer{
-  opacity:0;
-  transform:translateY(18px);
-  animation:titleIn 1.5s cubic-bezier(.4,0,.2,1) forwards;
-}
-.content-framer{
-  opacity:0;
-  transform:translateY(18px);
-  animation:contentIn 1.5s cubic-bezier(.4,0,.2,1) forwards;
-  animation-delay:.22s;
-}
-@keyframes titleIn{to{opacity:1;transform:translateY(0)}}
-@keyframes contentIn{to{opacity:1;transform:translateY(0)}}
-
-/* CASCADE */
-.stagger-item{
-  opacity:0;
-  transform:translateY(20px);
-  animation:staggerIn .6s cubic-bezier(.4,0,.2,1) forwards;
-}
-@keyframes staggerIn{to{opacity:1;transform:translateY(0)}}
-
-/* LANGUAGE TRANSITION */
-.lang-wrapper.hide{
-  opacity:0;
-  transform:scale(.96);
-  transition:.25s ease;
-}
-.lang-wrapper.show{
-  opacity:1;
-  transform:scale(1);
-  transition:.35s ease;
+.lang-btn {
+  background: transparent;
+  border: 1px solid #d0d0d0;
+  color: #777;
+  font-size: 10px;
+  padding: 2px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-/* CONTAINER */
-.container{max-width:1100px;margin:auto;display:flex;flex-direction:column;gap:26px}
-
-/* TYPO */
-h1{font-size:40px}
-h2{font-size:26px}
-p{color:var(--muted);line-height:1.6;font-size:14px}
-
-/* HERO */
-.hero{text-align:center;margin-top:40px}
-.hero p{max-width:620px;margin:18px auto}
-
-/* BUTTON */
-.btn{
-  margin-top:28px;
-  padding:14px 28px;
-  border:none;
-  border-radius:28px;
-  background:var(--accent);
-  color:#000;
-  font-weight:600;
-  font-size:14px;
-  cursor:pointer;
-  transition:.35s
-}
-.btn:hover{
-  transform:scale(1.1);
-  box-shadow:0 14px 30px rgba(0,242,255,.35)
+.lang-btn.active {
+  background: #c7c9c8;
+  color: #fff;
+  border-color: #c7c9c8;
 }
 
-/* GRID */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px}
-
-/* PROJECTS */
-.project-btn{
-  background:var(--card);
-  border:none;
-  border-radius:16px;
-  overflow:hidden;
-  cursor:pointer;
-  display:flex;
-  flex-direction:column
+/* ================= LAYOUT ================= */
+main {
+  padding-top: 150px;
 }
-.project-btn img{width:100%;aspect-ratio:4/3;object-fit:cover}
-.project-btn span{padding:16px;font-weight:600;font-size:14px}
 
-/* SKILLS */
-.card{background:var(--card);padding:24px;border-radius:16px}
-
-/* CV */
-.cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
-.cv-item{background:var(--card);padding:22px;border-radius:14px}
-
-/* FOOTER */
-footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;color:var(--muted)}
-
-/* MOBILE */
-@media(max-width:800px){
-  header{flex-direction:column;gap:10px}
-  nav{flex-wrap:wrap;justify-content:center}
-  .cv-grid{grid-template-columns:1fr}
-  h1{font-size:30px}
+.container {
+  width: 90%;
+  max-width: 960px;
+  margin: auto;
 }
+
+/* ================= TITULO ================= */
+.project-title {
+  font-size: 30px;
+  font-weight: 400;
+  margin-bottom: 30px;
+  animation: fadeUp 0.6s ease forwards;
+}
+
+/* ================= IMÁGENES ================= */
+.hero-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 0 100px;
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.project-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 140px 0 60px;
+  animation: fadeUp 0.6s ease forwards;
+}
+
+/* ================= TEXTO ================= */
+.project-text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #555;
+  text-align: justify;
+  margin-bottom: 80px;
+  animation: fadeUp 0.6s ease forwards;
+}
+
+/* ================= FOOTER ================= */
+footer {
+  text-align: center;
+  padding: 6px;
+  font-size: 11px;
+  color: #555;
+  background-color: #eaeceb;
+  margin-top: 120px;
+}
+
+/* ================= ANIMACIONES ================= */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 </style>
 </head>
 
-<body class="home-active">
+<body>
 
-<div id="page-loader"><span>L · BIB</span></div>
-
+<!-- HEADER -->
 <header>
-  <h2 class="logo">L<span class="sep">·</span>BIB</h2>
-  <nav>
-    <a id="nav-home" onclick="show('home')"></a>
-    <a id="nav-about" onclick="show('about')"></a>
-    <a id="nav-projects" onclick="show('projects')"></a>
-    <a id="nav-skills" onclick="show('skills')"></a>
-    <a id="nav-cv" onclick="show('cv')"></a>
-    <a id="nav-contact" onclick="show('contact')"></a>
-  </nav>
-  <div class="controls">
-    <button onclick="toggleTheme()">🌙</button>
-    <button id="btn-es" onclick="setLang('es')">ES</button>
-    <button id="btn-en" onclick="setLang('en')">EN</button>
+  <div class="header-inner">
+    <a href="index.html#portfolio" class="back-btn" id="back">← Volver</a>
+
+    <div class="lang">
+      <button class="lang-btn active" onclick="setLang('es')">ES</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
   </div>
 </header>
 
-<!-- HOME -->
-<div id="home" class="view active">
-  <div class="container hero lang-wrapper show">
-    <h1 id="hero-title" class="title-framer"></h1>
-    <div class="content-framer">
-      <p id="hero-sub"></p>
-      <button class="btn" onclick="show('projects')" id="hero-btn"></button>
-    </div>
-  </div>
-</div>
+<main>
+  <div class="container">
 
-<!-- ABOUT -->
-<div id="about" class="view">
-  <div class="container lang-wrapper show">
-    <h2 id="about-title" class="title-framer"></h2>
-    <p id="about-text" class="content-framer"></p>
-  </div>
-</div>
+    <h1 class="project-title">NODE</h1>
 
-<!-- PROJECTS -->
-<div id="projects" class="view">
-  <div class="container lang-wrapper show">
-    <h2 id="projects-title" class="title-framer"></h2>
-    <div class="grid content-framer" id="projects-grid"></div>
-  </div>
-</div>
+    <!-- Imagen principal -->
+    <img src="profile9.jpg" alt="NODE sistema modular" class="hero-image">
 
-<!-- SKILLS -->
-<div id="skills" class="view">
-  <div class="container lang-wrapper show">
-    <h2 id="skills-title" class="title-framer"></h2>
-    <div class="grid content-framer" id="skills-grid"></div>
-  </div>
-</div>
+    <p class="project-text" id="text-1">
+      NODE es un sistema de mobiliario modular concebido para adaptarse a distintas configuraciones espaciales a partir de una misma lógica estructural y constructiva. Su diseño parte de una geometría triangular que permite agrupar módulos para generar formas complejas como cubos u otras composiciones multifuncionales.
+    </p>
 
-<!-- CV -->
-<div id="cv" class="view">
-  <div class="container lang-wrapper show">
-    <h2 id="cv-title" class="title-framer"></h2>
-    <div class="cv-grid content-framer">
-      <div class="cv-item">🎓 Grado en Diseño Industrial – BME</div>
-      <div class="cv-item">⚡ FP Electricidad</div>
-      <div class="cv-item">🛠️ Experiencia en producto</div>
-      <div class="cv-item">📄 <a href="cv.pdf" download style="color:var(--accent)">Descargar CV</a></div>
-    </div>
-  </div>
-</div>
+    <!-- Imagen taburete -->
+    <img src="taburete.jpg" alt="Taburete NODE" class="project-image">
 
-<!-- CONTACT -->
-<div id="contact" class="view">
-  <div class="container lang-wrapper show">
-    <h2 id="contact-title" class="title-framer"></h2>
-    <div class="content-framer">
-      <p>📧 luisblascoibanezberbel@email.com</p>
-      <p>📞 +34 630 511 806</p>
-    </div>
-  </div>
-</div>
+    <p class="project-text" id="text-2">
+      La configuración más básica y funcional del sistema es el taburete NODE, compuesto por dos módulos triangulares ensamblados. Esta solución conserva la identidad del sistema, garantizando ergonomía, ligereza visual y estabilidad estructural.
+    </p>
 
-<footer id="footer-text"></footer>
+    <!-- Imagen plano 2 -->
+    <img src="plano2.jpg" alt="Plano constructivo NODE" class="project-image">
+
+    <p class="project-text" id="text-3">
+      La unión entre módulos se resuelve mediante grapas metálicas situadas en ambos extremos y caras de cada pieza, permitiendo un ensamblaje preciso, reversible y adaptable a distintas configuraciones sin perder solidez.
+    </p>
+
+    <!-- Imagen plano 1 -->
+    <img src="plano1.jpg" alt="Detalle técnico NODE" class="project-image">
+
+    <p class="project-text" id="text-4">
+      El desarrollo técnico del proyecto se apoya en planos constructivos que definen uniones, materiales y tolerancias, reflejando la relación directa entre diseño formal y viabilidad productiva dentro de un contexto industrial real.
+    </p>
+
+  </div>
+</main>
+
+<footer id="footer">
+© 2026 · Borbala Major · Ingeniera en diseño industrial
+</footer>
 
 <script>
-const data={
- es:{
-  nav:{home:"Inicio",about:"Perfil",projects:"Proyectos",skills:"Habilidades",cv:"CV",contact:"Contacto"},
-  heroTitle:"Diseño Industrial y Desarrollo de Producto",
-  heroSub:"Perfil técnico-creativo orientado a empresas de diseño industrial.",
-  heroBtn:"Ver proyectos",
-  aboutTitle:"Sobre mí",
-  aboutText:"Diseñador industrial con perfil técnico y creativo.",
-  projectsTitle:"Proyectos",
-  projects:[
-   {title:"Mecanismo radial sincronizado",img:"project1.jpg"},
-   {title:"Producto eléctrico industrial",img:"project2.jpg"},
-   {title:"Optimización mecánica",img:"project3.jpg"},
-   {title:"Prototipos impresión 3D",img:"project4.jpg"}
-  ],
-  skillsTitle:"Habilidades técnicas",
-  skills:["SolidWorks","Fusion 360","AutoCAD","Inventor","Rhinoceros","GitHub","Photoshop"],
-  cvTitle:"Currículum Vitae",
-  contactTitle:"Contacto",
-  footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"
- },
- en:{
-  nav:{home:"Home",about:"Profile",projects:"Projects",skills:"Skills",cv:"CV",contact:"Contact"},
-  heroTitle:"Industrial Design & Product Development",
-  heroSub:"Technical and creative profile for industrial design companies.",
-  heroBtn:"View projects",
-  aboutTitle:"About me",
-  aboutText:"Industrial designer with technical and creative focus.",
-  projectsTitle:"Projects",
-  projects:[
-   {title:"Radial synchronized mechanism",img:"project1.jpg"},
-   {title:"Industrial electrical product",img:"project2.jpg"},
-   {title:"Mechanical optimization",img:"project3.jpg"},
-   {title:"3D printed prototypes",img:"project4.jpg"}
-  ],
-  skillsTitle:"Technical skills",
-  skills:["SolidWorks","Fusion 360","AutoCAD","Inventor","Rhinoceros","GitHub","Photoshop"],
-  cvTitle:"Curriculum Vitae",
-  contactTitle:"Contact",
-  footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineering"
- }
-};
+function setLang(lang) {
+  const es = {
+    back: "← Volver",
+    t1: "NODE es un sistema de mobiliario modular concebido para adaptarse a distintas configuraciones espaciales a partir de una misma lógica estructural y constructiva. Su diseño parte de una geometría triangular que permite agrupar módulos para generar formas complejas como cubos u otras composiciones multifuncionales.",
+    t2: "La configuración más básica y funcional del sistema es el taburete NODE, compuesto por dos módulos triangulares ensamblados. Esta solución conserva la identidad del sistema, garantizando ergonomía, ligereza visual y estabilidad estructural.",
+    t3: "La unión entre módulos se resuelve mediante grapas metálicas situadas en ambos extremos y caras de cada pieza, permitiendo un ensamblaje preciso, reversible y adaptable a distintas configuraciones sin perder solidez.",
+    t4: "El desarrollo técnico del proyecto se apoya en planos constructivos que definen uniones, materiales y tolerancias, reflejando la relación directa entre diseño formal y viabilidad productiva dentro de un contexto industrial real.",
+    footer: "© 2026 · Borbala Major · Ingeniera en diseño industrial"
+  };
 
-function animateLangTransition(callback){
- const wrappers=document.querySelectorAll(".lang-wrapper");
- wrappers.forEach(w=>w.classList.add("hide"));
- setTimeout(()=>{
-   callback();
-   wrappers.forEach(w=>{
-     w.classList.remove("hide");
-     w.classList.add("show");
-   });
- },280);
+  const en = {
+    back: "← Back",
+    t1: "NODE is a modular furniture system designed to adapt to different spatial configurations based on a single structural and constructive logic. Its design starts from a triangular geometry that allows modules to be grouped into complex forms such as cubes and other multifunctional compositions.",
+    t2: "The most basic and functional configuration of the system is the NODE stool, composed of two triangular modules assembled together. This solution preserves the system’s identity while ensuring ergonomics, visual lightness and structural stability.",
+    t3: "The connection between modules is achieved through metal clips placed on both ends and faces of each piece, allowing precise, reversible and adaptable assembly without compromising solidity.",
+    t4: "The technical development of the project is supported by construction drawings that define joints, materials and tolerances, reflecting the direct relationship between formal design and productive feasibility in a real industrial context.",
+    footer: "© 2026 · Borbala Major · Industrial Design Engineer"
+  };
+
+  const c = lang === "es" ? es : en;
+
+  document.getElementById("back").innerText = c.back;
+  document.getElementById("text-1").innerText = c.t1;
+  document.getElementById("text-2").innerText = c.t2;
+  document.getElementById("text-3").innerText = c.t3;
+  document.getElementById("text-4").innerText = c.t4;
+  document.getElementById("footer").innerText = c.footer;
+
+  document.querySelectorAll(".lang-btn").forEach(b => b.classList.remove("active"));
+  document.querySelector(`.lang-btn[onclick*="${lang}"]`).classList.add("active");
 }
-
-function restartAnimations(){
- document.querySelectorAll(".title-framer, .content-framer").forEach(el=>{
-   el.style.animation="none";
-   el.offsetHeight;
-   el.style.animation="";
- });
-}
-
-function setLang(l){
- animateLangTransition(()=>{
-   document.getElementById("btn-es").classList.remove("active");
-   document.getElementById("btn-en").classList.remove("active");
-   document.getElementById("btn-"+l).classList.add("active");
-
-   const d=data[l];
-   Object.keys(d.nav).forEach(k=>document.getElementById("nav-"+k).innerText=d.nav[k]);
-   document.getElementById("hero-title").innerText=d.heroTitle;
-   document.getElementById("hero-sub").innerText=d.heroSub;
-   document.getElementById("hero-btn").innerText=d.heroBtn;
-   document.getElementById("about-title").innerText=d.aboutTitle;
-   document.getElementById("about-text").innerText=d.aboutText;
-   document.getElementById("projects-title").innerText=d.projectsTitle;
-   document.getElementById("skills-title").innerText=d.skillsTitle;
-   document.getElementById("cv-title").innerText=d.cvTitle;
-   document.getElementById("contact-title").innerText=d.contactTitle;
-   document.getElementById("footer-text").innerText=d.footer;
-
-   const pgrid=document.getElementById("projects-grid");
-   pgrid.innerHTML="";
-   d.projects.forEach((p,i)=>pgrid.innerHTML+=`
-    <button class="project-btn stagger-item" style="animation-delay:${i*0.08}s">
-      <img src="${p.img}">
-      <span>${p.title}</span>
-    </button>`);
-
-   const sgrid=document.getElementById("skills-grid");
-   sgrid.innerHTML="";
-   d.skills.forEach((s,i)=>sgrid.innerHTML+=`
-    <div class="card stagger-item" style="animation-delay:${i*0.08}s">${s}</div>`);
-
-   restartAnimations();
- });
-}
-
-function show(id){
- document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
- const section=document.getElementById(id);
- section.classList.add("active");
- document.querySelectorAll("nav a").forEach(a=>a.classList.remove("active"));
- document.getElementById("nav-"+id).classList.add("active");
-
- if(id==="home"){
-   document.body.classList.add("home-active");
-   const logo=document.querySelector("header h2.logo");
-   logo.style.animation="none";
-   logo.offsetHeight;
-   logo.style.animation="";
- }else{
-   document.body.classList.remove("home-active");
- }
-}
-
-function toggleTheme(){document.body.classList.toggle("light")}
-
-window.addEventListener("load",()=>{
- setLang("es");
- document.getElementById("nav-home").classList.add("active");
- setTimeout(()=>{
-   document.getElementById("page-loader").classList.add("hidden");
- },1600);
-});
 </script>
 
 </body>

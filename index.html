@@ -29,7 +29,6 @@
       overflow-x:hidden;
     }
 
-    /* ================= HEADER ================= */
     header{
       position:fixed;
       top:0;
@@ -77,12 +76,10 @@
       transition:.3s;
     }
 
-    nav a:hover,
     nav a.active{
       opacity:1;
     }
 
-    nav a:hover::after,
     nav a.active::after{
       width:100%;
     }
@@ -126,9 +123,8 @@
       font-size:14px;
     }
 
-    /* ===== BOTÓN (SUBIDO) ===== */
     .btn{
-      margin-top:16px; /* ⬆️ más cerca del texto */
+      margin-top:16px;
       align-self:flex-start;
       padding:14px 30px;
       border-radius:40px;
@@ -145,7 +141,6 @@
       box-shadow:0 10px 30px rgba(0,229,255,.35);
     }
 
-    /* ================= SECTIONS ================= */
     section{
       max-width:1200px;
       margin:auto;
@@ -155,24 +150,6 @@
     h2{
       font-size:28px;
       margin-bottom:20px;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:28px;
-      margin-top:40px;
-    }
-
-    .card{
-      background:var(--card);
-      border-radius:18px;
-      padding:24px;
-      transition:.35s;
-    }
-
-    .card:hover{
-      transform:translateY(-6px);
     }
 
     /* ================= ANIMATIONS ================= */
@@ -187,25 +164,6 @@
       opacity:1;
       transform:translateY(0);
     }
-
-    .delay-1{ transition-delay:.18s }
-    .delay-2{ transition-delay:.36s }
-
-    /* ================= MOBILE ================= */
-    @media(max-width:768px){
-      nav{
-        gap:20px;
-      }
-
-      h1{
-        font-size:32px;
-      }
-
-      .home-content{
-        margin-left:0;
-        padding:0 24px;
-      }
-    }
   </style>
 </head>
 
@@ -215,7 +173,7 @@
   <div class="logo">PORTFOLIO</div>
 
   <nav>
-    <a href="#home" class="active">Inicio</a>
+    <a href="#home">Inicio</a>
     <a href="#cv">CV</a>
     <a href="#skills">Habilidades</a>
     <a href="#contact">Contacto</a>
@@ -223,58 +181,32 @@
   </nav>
 </header>
 
-<section id="home">
-  <div class="home-content">
-    <h1 class="fade-up">
-      Diseño Industrial<br>
-      y Desarrollo de Producto
-    </h1>
-    <p class="fade-up delay-1">
-      Perfil técnico y creativo enfocado en producto, detalle y funcionalidad.
-    </p>
-    <button class="btn fade-up delay-2"
-      onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
-      Ver proyectos
-    </button>
-  </div>
-</section>
-
-<section id="projects">
-  <h2 class="fade-up">Portfolio</h2>
-  <div class="grid">
-    <div class="card fade-up">Proyecto 1</div>
-    <div class="card fade-up">Proyecto 2</div>
-    <div class="card fade-up">Proyecto 3</div>
-  </div>
-</section>
-
-<section id="skills">
-  <h2 class="fade-up">Habilidades</h2>
-  <div class="grid">
-    <div class="card fade-up">SolidWorks</div>
-    <div class="card fade-up">Fusion 360</div>
-    <div class="card fade-up">Rhinoceros</div>
-  </div>
-</section>
-
-<section id="contact">
-  <h2 class="fade-up">Contacto</h2>
-  <p class="fade-up">
-    📧 hello@email.com<br>
-    📍 Valencia, España
-  </p>
-</section>
+<section id="home"></section>
+<section id="projects"><h2>Portfolio</h2></section>
+<section id="skills"><h2>Habilidades</h2></section>
+<section id="contact"><h2>Contacto</h2></section>
 
 <script>
-  const observer=new IntersectionObserver(entries=>{
+  /* ACTIVO SEGÚN SECCIÓN VISIBLE */
+  const sections = document.querySelectorAll("section");
+  const navLinks = document.querySelectorAll("nav a");
+
+  const observer = new IntersectionObserver(entries=>{
     entries.forEach(entry=>{
       if(entry.isIntersecting){
-        entry.target.classList.add("visible");
+        navLinks.forEach(link=>{
+          link.classList.toggle(
+            "active",
+            link.getAttribute("href") === "#" + entry.target.id
+          );
+        });
       }
     });
-  },{threshold:0.15});
+  },{
+    threshold:0.6
+  });
 
-  document.querySelectorAll(".fade-up").forEach(el=>observer.observe(el));
+  sections.forEach(section=>observer.observe(section));
 </script>
 
 </body>

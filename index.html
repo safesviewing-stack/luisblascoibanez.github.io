@@ -38,14 +38,12 @@
       display:flex;
       align-items:center;
       z-index:1000;
-      background:transparent;
     }
 
     .logo{
       font-size:14px;
       letter-spacing:.3em;
       font-weight:600;
-      color:#fff;
     }
 
     nav{
@@ -56,9 +54,7 @@
       gap:36px;
     }
 
-    /* ===== MENÚ ===== */
     nav a{
-      color:#fff;
       font-size:11px;
       letter-spacing:.18em;
       text-transform:uppercase;
@@ -98,20 +94,13 @@
       transition:opacity .45s ease;
     }
 
-    .section.active{
-      display:block;
-    }
-
-    .section.visible{
-      opacity:1;
-    }
+    .section.active{ display:block; }
+    .section.visible{ opacity:1; }
 
     /* ================= HOME ================= */
     #home{
-      height:100vh;
       display:flex;
       align-items:center;
-      position:relative;
     }
 
     #home::before{
@@ -132,21 +121,13 @@
       gap:26px;
     }
 
-    h1{
-      font-size:44px;
-      font-weight:600;
-    }
-
-    h2{
-      font-size:28px;
-      margin-bottom:24px;
-    }
+    h1{ font-size:44px; }
+    h2{ font-size:28px; margin-bottom:24px; }
 
     p{
       color:var(--muted);
       font-size:14px;
       line-height:1.7;
-      max-width:640px;
     }
 
     .btn{
@@ -155,13 +136,12 @@
       border-radius:40px;
       border:none;
       background:var(--accent);
-      color:#000;
       font-weight:600;
       cursor:pointer;
       align-self:flex-start;
     }
 
-    /* ================= PAGE CONTENT ================= */
+    /* ================= PAGE ================= */
     .page{
       max-width:1200px;
       margin:auto;
@@ -196,10 +176,7 @@
     .delay-1{ transition-delay:.25s }
     .delay-2{ transition-delay:.45s }
 
-    /* ================= MOBILE ================= */
     @media(max-width:768px){
-      nav{ gap:18px }
-      h1{ font-size:32px }
       .home-content{
         margin-left:0;
         padding:0 24px;
@@ -222,112 +199,92 @@
   </nav>
 </header>
 
-<!-- HOME -->
 <section id="home" class="section active visible">
   <div class="home-content">
-    <h1 class="fade-up">
-      Diseño Industrial<br>
-      y Desarrollo de Producto
-    </h1>
-    <!-- TEXTO DEL MEDIO CON ANIMACIÓN -->
-    <p class="fade-up delay-1">
-      Perfil técnico y creativo enfocado en producto, detalle y funcionalidad.
-    </p>
+    <h1 class="fade-up">Diseño Industrial<br>y Desarrollo de Producto</h1>
+    <p class="fade-up delay-1">Perfil técnico y creativo enfocado en producto.</p>
     <button class="btn fade-up delay-2"
-      onclick="changeSection('projects')">
-      Ver proyectos
-    </button>
+      onclick="changeSection('projects')">Ver proyectos</button>
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about" class="section">
-  <div class="page fade-up">
-    <h2>Sobre mí</h2>
-    <p>
-      Diseñadora industrial con enfoque técnico y creativo, interesada en
-      desarrollo de producto, detalle constructivo y prototipado.
-    </p>
+  <div class="page">
+    <h2 class="fade-up">Sobre mí</h2>
+    <p class="fade-up delay-1">Diseñadora industrial con enfoque técnico y creativo.</p>
   </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects" class="section">
-  <div class="page fade-up">
-    <h2>Portfolio</h2>
+  <div class="page">
+    <h2 class="fade-up">Portfolio</h2>
     <div class="grid">
-      <div class="card">Proyecto 1</div>
-      <div class="card">Proyecto 2</div>
-      <div class="card">Proyecto 3</div>
+      <div class="card fade-up">Proyecto 1</div>
+      <div class="card fade-up delay-1">Proyecto 2</div>
+      <div class="card fade-up delay-2">Proyecto 3</div>
     </div>
   </div>
 </section>
 
-<!-- CV -->
 <section id="cv" class="section">
-  <div class="page fade-up">
-    <h2>Currículum Vitae</h2>
-    <p>
-      Grado en Diseño Industrial · Experiencia en diseño de producto,
-      prototipado e impresión 3D.
-    </p>
+  <div class="page">
+    <h2 class="fade-up">Currículum Vitae</h2>
+    <p class="fade-up delay-1">Grado en Diseño Industrial · Experiencia en producto.</p>
   </div>
 </section>
 
-<!-- SKILLS -->
 <section id="skills" class="section">
-  <div class="page fade-up">
-    <h2>Habilidades</h2>
+  <div class="page">
+    <h2 class="fade-up">Habilidades</h2>
     <div class="grid">
-      <div class="card">SolidWorks</div>
-      <div class="card">Fusion 360</div>
-      <div class="card">Rhinoceros</div>
+      <div class="card fade-up">SolidWorks</div>
+      <div class="card fade-up delay-1">Fusion 360</div>
+      <div class="card fade-up delay-2">Rhinoceros</div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact" class="section">
-  <div class="page fade-up">
-    <h2>Contacto</h2>
-    <p>📧 hello@email.com<br>📍 Valencia, España</p>
+  <div class="page">
+    <h2 class="fade-up">Contacto</h2>
+    <p class="fade-up delay-1">📧 hello@email.com<br>📍 Valencia</p>
   </div>
 </section>
 
 <script>
+  function animateSection(section){
+    const elements = section.querySelectorAll('.fade-up');
+    elements.forEach(el => el.classList.remove('visible'));
+    requestAnimationFrame(()=>{
+      elements.forEach(el => el.classList.add('visible'));
+    });
+  }
+
   function changeSection(id){
     const current = document.querySelector('.section.active');
     const next = document.getElementById(id);
     if(current === next) return;
 
-    /* menú activo */
     document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
     [...document.querySelectorAll('nav a')]
       .find(a => a.textContent.toLowerCase().includes(
         id === 'home' ? 'inicio' : id
       ))?.classList.add('active');
 
-    /* salida */
     current.classList.remove('visible');
 
     setTimeout(()=>{
       current.classList.remove('active');
       next.classList.add('active');
-
       requestAnimationFrame(()=>{
         next.classList.add('visible');
-        next.querySelectorAll('.fade-up').forEach(el=>{
-          el.classList.remove('visible');
-          setTimeout(()=>el.classList.add('visible'),80);
-        });
+        animateSection(next); // 🔥 SIEMPRE vuelve a animar
       });
     },450);
   }
 
   /* animación inicial */
-  document.querySelectorAll('#home .fade-up').forEach(el=>{
-    setTimeout(()=>el.classList.add('visible'),80);
-  });
+  animateSection(document.getElementById('home'));
 </script>
 
 </body>

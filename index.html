@@ -56,6 +56,7 @@
       gap:36px;
     }
 
+    /* ===== MENÚ ===== */
     nav a{
       color:#fff;
       font-size:11px;
@@ -113,30 +114,14 @@
       position:relative;
     }
 
-    /* ===== FONDO FIJO ===== */
     #home::before{
       content:"";
       position:fixed;
       inset:0;
       background:
         linear-gradient(rgba(11,11,13,.75), rgba(11,11,13,.75)),
-        url("reloj1.jpg") center / cover no-repeat fixed;
+        url("reloj1.jpg") center / cover no-repeat;
       z-index:-1;
-    }
-
-    #home.entering{
-      animation:homeEnter .8s cubic-bezier(.4,0,.2,1) both;
-    }
-
-    @keyframes homeEnter{
-      from{
-        opacity:0;
-        transform:translateY(30px);
-      }
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
     }
 
     .home-content{
@@ -238,16 +223,17 @@
 </header>
 
 <!-- HOME -->
-<section id="home" class="section active visible entering">
+<section id="home" class="section active visible">
   <div class="home-content">
-    <h1 class="fade-up visible">
+    <h1 class="fade-up">
       Diseño Industrial<br>
       y Desarrollo de Producto
     </h1>
-    <p class="fade-up delay-1 visible">
+    <!-- TEXTO DEL MEDIO CON ANIMACIÓN -->
+    <p class="fade-up delay-1">
       Perfil técnico y creativo enfocado en producto, detalle y funcionalidad.
     </p>
-    <button class="btn fade-up delay-2 visible"
+    <button class="btn fade-up delay-2"
       onclick="changeSection('projects')">
       Ver proyectos
     </button>
@@ -314,30 +300,34 @@
     const next = document.getElementById(id);
     if(current === next) return;
 
+    /* menú activo */
     document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
     [...document.querySelectorAll('nav a')]
       .find(a => a.textContent.toLowerCase().includes(
         id === 'home' ? 'inicio' : id
       ))?.classList.add('active');
 
+    /* salida */
     current.classList.remove('visible');
 
     setTimeout(()=>{
       current.classList.remove('active');
+      next.classList.add('active');
 
-      next.classList.add('active','entering');
       requestAnimationFrame(()=>{
         next.classList.add('visible');
-
         next.querySelectorAll('.fade-up').forEach(el=>{
           el.classList.remove('visible');
           setTimeout(()=>el.classList.add('visible'),80);
         });
-
-        setTimeout(()=>next.classList.remove('entering'),800);
       });
     },450);
   }
+
+  /* animación inicial */
+  document.querySelectorAll('#home .fade-up').forEach(el=>{
+    setTimeout(()=>el.classList.add('visible'),80);
+  });
 </script>
 
 </body>

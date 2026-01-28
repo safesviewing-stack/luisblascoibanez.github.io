@@ -56,7 +56,7 @@
       gap:36px;
     }
 
-    /* ===== MENÚ (LÍNEA AJUSTADA PERFECTA) ===== */
+    /* ===== MENÚ ===== */
     nav a{
       color:#fff;
       font-size:11px;
@@ -86,7 +86,7 @@
 
     nav a:hover::after,
     nav a.active::after{
-      width:calc(100% - .18em); /* 👈 corrección exacta */
+      width:calc(100% - .18em);
     }
 
     /* ================= SECTIONS ================= */
@@ -126,7 +126,7 @@
 
     .home-content{
       max-width:600px;
-      margin-left:clamp(90px, 12vw, 160px);
+      margin-left:clamp(140px, 18vw, 240px); /* 👉 MÁS A LA DERECHA */
       display:flex;
       flex-direction:column;
       gap:26px;
@@ -193,8 +193,8 @@
       transform:translateY(0);
     }
 
-    .delay-1{ transition-delay:.2s }
-    .delay-2{ transition-delay:.4s }
+    .delay-1{ transition-delay:.25s }
+    .delay-2{ transition-delay:.45s }
 
     /* ================= MOBILE ================= */
     @media(max-width:768px){
@@ -314,7 +314,7 @@
         next.classList.add('visible');
         next.querySelectorAll('.fade-up').forEach(el=>{
           el.classList.remove('visible');
-          setTimeout(()=>el.classList.add('visible'),60);
+          setTimeout(()=>el.classList.add('visible'),80);
         });
       });
     },450);

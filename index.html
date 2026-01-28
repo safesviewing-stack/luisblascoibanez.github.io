@@ -14,8 +14,20 @@
   --card:#111;
   --accent:#00f2ff;
 }
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
-body{background:var(--bg);color:var(--text);overflow:hidden;transition:.4s}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Inter,sans-serif
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  overflow:hidden;
+  transition:.4s
+}
 
 /* HEADER */
 header{
@@ -36,10 +48,12 @@ header h2.logo{
   letter-spacing:.22em;
   font-weight:400;
   margin-left:12px;
-  color:rgba(245,245,247,0.75);
-  transition:.3s ease;
+  color:rgba(245,245,247,.75);
 }
-header h2.logo .sep{font-weight:700;margin:0 4px}
+header h2.logo .sep{
+  font-weight:700;
+  margin:0 4px;
+}
 body:not(.home-active) header h2.logo{
   opacity:0;
   transform:translateY(-8px);
@@ -57,7 +71,7 @@ body.home-active header h2.logo{
 nav{display:flex;gap:28px}
 nav a{
   position:relative;
-  color:rgba(245,245,247,0.75);
+  color:rgba(245,245,247,.75);
   font-size:11px;
   text-transform:uppercase;
   letter-spacing:.14em;
@@ -76,9 +90,12 @@ nav a::after{
 }
 nav a.active::after,
 nav a:hover::after{width:100%}
-nav a.active{color:var(--text);font-weight:600}
+nav a.active{
+  color:var(--text);
+  font-weight:600;
+}
 
-/* CONTROLS */
+/* LANGUAGE CONTROLS */
 .controls{display:flex;gap:8px}
 .controls button{
   border:1px solid var(--accent);
@@ -107,7 +124,7 @@ nav a.active{color:var(--text);font-weight:600}
 }
 .view.active{display:block}
 
-/* HOME BG */
+/* HOME BACKGROUND */
 #home::before{
   content:"";
   position:fixed;
@@ -141,11 +158,25 @@ nav a.active{color:var(--text);font-weight:600}
 @keyframes staggerIn{to{opacity:1;transform:translateY(0)}}
 
 /* LANGUAGE TRANSITION */
-.lang-wrapper.hide{opacity:0;transform:scale(.96);transition:.25s}
-.lang-wrapper.show{opacity:1;transform:scale(1);transition:.35s}
+.lang-wrapper.hide{
+  opacity:0;
+  transform:scale(.96);
+  transition:.25s ease;
+}
+.lang-wrapper.show{
+  opacity:1;
+  transform:scale(1);
+  transition:.35s ease;
+}
 
 /* LAYOUT */
-.container{max-width:1100px;margin:auto;display:flex;flex-direction:column;gap:26px}
+.container{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:26px
+}
 h1{font-size:40px}
 h2{font-size:26px}
 p{color:var(--muted);line-height:1.6;font-size:14px}
@@ -154,8 +185,9 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
 .hero{text-align:center;margin-top:40px}
 .hero p{max-width:620px;margin:18px auto}
 
-/* BUTTON */
+/* BUTTON — oculto hasta que tenga texto */
 .btn{
+  display:none;
   margin-top:28px;
   padding:14px 28px;
   border:none;
@@ -172,7 +204,11 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
 }
 
 /* GRID */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:26px
+}
 .project-btn{
   background:var(--card);
   border:none;
@@ -180,12 +216,28 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
   overflow:hidden;
   cursor:pointer;
 }
-.project-btn img{width:100%;aspect-ratio:4/3;object-fit:cover}
-.project-btn span{padding:16px;font-weight:600;display:block}
+.project-btn img{
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:cover
+}
+.project-btn span{
+  padding:16px;
+  font-weight:600;
+  display:block
+}
 
 /* CV */
-.cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
-.cv-item{background:var(--card);padding:22px;border-radius:14px}
+.cv-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:26px
+}
+.cv-item{
+  background:var(--card);
+  padding:22px;
+  border-radius:14px
+}
 
 /* FOOTER */
 footer{
@@ -194,7 +246,7 @@ footer{
   width:100%;
   text-align:center;
   font-size:10px;
-  color:var(--muted);
+  color:var(--muted)
 }
 
 @media(max-width:800px){
@@ -358,16 +410,18 @@ function applyLang(l){
 
  const d=data[l];
  Object.keys(d.nav).forEach(k=>document.getElementById("nav-"+k).innerText=d.nav[k]);
- document.getElementById("hero-title").innerText=d.heroTitle;
- document.getElementById("hero-sub").innerText=d.heroSub;
- document.getElementById("hero-btn").innerText=d.heroBtn;
- document.getElementById("about-title").innerText=d.aboutTitle;
- document.getElementById("about-text").innerText=d.aboutText;
- document.getElementById("projects-title").innerText=d.projectsTitle;
- document.getElementById("skills-title").innerText=d.skillsTitle;
- document.getElementById("cv-title").innerText=d.cvTitle;
- document.getElementById("contact-title").innerText=d.contactTitle;
- document.getElementById("footer-text").innerText=d.footer;
+ hero-title.innerText=d.heroTitle;
+ hero-sub.innerText=d.heroSub;
+ hero-btn.innerText=d.heroBtn;
+ about-title.innerText=d.aboutTitle;
+ about-text.innerText=d.aboutText;
+ projects-title.innerText=d.projectsTitle;
+ skills-title.innerText=d.skillsTitle;
+ cv-title.innerText=d.cvTitle;
+ contact-title.innerText=d.contactTitle;
+ footer-text.innerText=d.footer;
+
+ hero-btn.style.display="inline-block";
 
  const pgrid=document.getElementById("projects-grid");
  pgrid.innerHTML="";

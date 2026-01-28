@@ -39,15 +39,22 @@
       z-index:1000;
     }
 
-    /* 🔥 LOGO */
+    /* 🔥 LOGO – animación PROPIA */
     .logo{
       font-size:14px;
       letter-spacing:.3em;
       font-weight:600;
       color:#fff;
       opacity:0;
-      transform:translateY(-20px);
-      animation:slideDown .6s ease forwards;
+      transform:translateX(-40px);
+      animation:logoIn .8s cubic-bezier(.4,0,.2,1) forwards;
+    }
+
+    @keyframes logoIn{
+      to{
+        opacity:1;
+        transform:translateX(0);
+      }
     }
 
     nav{
@@ -58,7 +65,7 @@
       gap:36px;
     }
 
-    /* 🔥 NAV ITEMS */
+    /* 🔥 NAV – cascada + fundido */
     nav a{
       font-size:11px;
       letter-spacing:.18em;
@@ -68,17 +75,23 @@
       padding-bottom:6px;
       color:#fff;
       opacity:0;
-      transform:translateY(-20px);
-      animation:slideDown .6s ease forwards;
+      transform:translateY(-18px);
+      animation:navCascade .6s ease forwards;
     }
 
-    /* cascada izquierda → derecha */
-    nav a:nth-child(1){ animation-delay:.15s }
-    nav a:nth-child(2){ animation-delay:.25s }
-    nav a:nth-child(3){ animation-delay:.35s }
-    nav a:nth-child(4){ animation-delay:.45s }
-    nav a:nth-child(5){ animation-delay:.55s }
-    nav a:nth-child(6){ animation-delay:.65s }
+    nav a:nth-child(1){ animation-delay:.25s }
+    nav a:nth-child(2){ animation-delay:.35s }
+    nav a:nth-child(3){ animation-delay:.45s }
+    nav a:nth-child(4){ animation-delay:.55s }
+    nav a:nth-child(5){ animation-delay:.65s }
+    nav a:nth-child(6){ animation-delay:.75s }
+
+    @keyframes navCascade{
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
 
     nav a::after{
       content:"";
@@ -91,13 +104,8 @@
       transition:width .3s ease;
     }
 
-    nav a.active,
-    nav a:hover{
-      opacity:1;
-    }
-
-    nav a.active::after,
-    nav a:hover::after{
+    nav a:hover::after,
+    nav a.active::after{
       width:100%;
     }
 
@@ -137,9 +145,7 @@
       gap:26px;
     }
 
-    h1, h2{
-      color:#fff;
-    }
+    h1, h2{ color:#fff; }
 
     h1{ font-size:44px; }
     h2{ font-size:28px; margin-bottom:24px; }
@@ -198,14 +204,6 @@
       }
     }
 
-    /* 🔥 SLIDE DOWN */
-    @keyframes slideDown{
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
-    }
-
     @media(max-width:768px){
       .home-content{
         margin-left:0;
@@ -237,8 +235,6 @@
       onclick="changeSection('projects')">Ver proyectos</button>
   </div>
 </section>
-
-<!-- resto de secciones igual que antes -->
 
 <script>
   function regenerate(section){

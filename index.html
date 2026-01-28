@@ -61,7 +61,7 @@
       cursor:pointer;
       position:relative;
       padding-bottom:6px;
-      opacity:.75;
+      opacity:.7;
     }
 
     nav a::after{
@@ -115,7 +115,7 @@
 
     .home-content{
       max-width:600px;
-      margin-left:clamp(120px, 16vw, 220px);
+      margin-left:clamp(140px, 18vw, 240px);
       display:flex;
       flex-direction:column;
       gap:26px;
@@ -199,6 +199,7 @@
   </nav>
 </header>
 
+<!-- HOME -->
 <section id="home" class="section active visible">
   <div class="home-content">
     <h1 class="fade-up">Diseño Industrial<br>y Desarrollo de Producto</h1>
@@ -255,6 +256,7 @@
   function animateSection(section){
     const elements = section.querySelectorAll('.fade-up');
     elements.forEach(el => el.classList.remove('visible'));
+
     requestAnimationFrame(()=>{
       elements.forEach(el => el.classList.add('visible'));
     });
@@ -265,25 +267,28 @@
     const next = document.getElementById(id);
     if(current === next) return;
 
+    // menú activo
     document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
     [...document.querySelectorAll('nav a')]
       .find(a => a.textContent.toLowerCase().includes(
         id === 'home' ? 'inicio' : id
       ))?.classList.add('active');
 
+    // salida
     current.classList.remove('visible');
 
     setTimeout(()=>{
       current.classList.remove('active');
       next.classList.add('active');
+
       requestAnimationFrame(()=>{
         next.classList.add('visible');
-        animateSection(next); // 🔥 SIEMPRE vuelve a animar
+        animateSection(next); // 🔥 SIEMPRE anima
       });
     },450);
   }
 
-  /* animación inicial */
+  // animación inicial
   animateSection(document.getElementById('home'));
 </script>
 

@@ -18,36 +18,10 @@ body.light{
   --bg:#f5f5f7;
   --text:#111;
   --muted:#666;
-  --card:#ffffff;
+  --card:#fff;
 }
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
 body{background:var(--bg);color:var(--text);overflow:hidden}
-
-/* LOADER */
-#page-loader{
-  position:fixed;
-  inset:0;
-  background:#050507;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
-  transition:opacity 1s ease, visibility 1s ease;
-}
-#page-loader span{
-  font-size:32px;
-  letter-spacing:.35em;
-  font-weight:400;
-  animation:logoIntro 1.6s cubic-bezier(.22,1,.36,1) forwards;
-}
-@keyframes logoIntro{
-  from{opacity:0;transform:scale(1.6)}
-  to{opacity:1;transform:scale(1)}
-}
-#page-loader.hidden{
-  opacity:0;
-  visibility:hidden;
-}
 
 /* HEADER */
 header{
@@ -62,48 +36,40 @@ header{
 }
 
 /* LOGO */
-header h2.logo{
+.logo{
   font-size:19px;
   letter-spacing:.22em;
   font-weight:400;
   margin-left:12px;
-  color:rgba(245,245,247,0.75);
+  color:rgba(245,245,247,.75);
 }
-header h2.logo .sep{font-weight:700;margin:0 4px}
-body:not(.home-active) header h2.logo{
+body:not(.home-active) .logo{
   opacity:0;
   transform:translateY(-8px);
   pointer-events:none;
-}
-body.home-active header h2.logo{
-  animation:logoFadeIn .5s cubic-bezier(.4,0,.2,1);
-}
-@keyframes logoFadeIn{
-  from{opacity:0;transform:translateY(-12px)}
-  to{opacity:1;transform:translateY(0)}
 }
 
 /* NAV */
 nav{display:flex;gap:28px}
 nav a{
-  position:relative;
-  color:rgba(245,245,247,.75);
   font-size:11px;
   text-transform:uppercase;
   letter-spacing:.14em;
+  color:rgba(245,245,247,.75);
   cursor:pointer;
+  position:relative;
   padding-bottom:6px;
 }
 nav a::after{
   content:"";
   position:absolute;
-  left:0;bottom:0;
+  bottom:0;left:0;
   width:0;height:1px;
   background:var(--accent);
   transition:.3s;
 }
-nav a:hover::after,
-nav a.active::after{width:100%}
+nav a.active::after,
+nav a:hover::after{width:100%}
 nav a.active{color:var(--text);font-weight:600}
 
 /* CONTROLS */
@@ -197,10 +163,8 @@ footer{
 
 <body class="home-active">
 
-<div id="page-loader"><span>L · BIB</span></div>
-
 <header>
-  <h2 class="logo">L<span class="sep">·</span>BIB</h2>
+  <h2 class="logo">L<span style="font-weight:700">·</span>BIB</h2>
   <nav>
     <a id="nav-home" onclick="show('home')"></a>
     <a id="nav-about" onclick="show('about')"></a>
@@ -210,7 +174,6 @@ footer{
     <a id="nav-contact" onclick="show('contact')"></a>
   </nav>
   <div class="controls">
-    <button onclick="toggleTheme()">🌙</button>
     <button id="btn-es" onclick="setLang('es')">ES</button>
     <button id="btn-en" onclick="setLang('en')">EN</button>
   </div>
@@ -274,7 +237,48 @@ footer{
 <footer id="footer-text"></footer>
 
 <script>
-const data={ /* igual que antes, no lo repito para no alargar */ };
+const data={
+ es:{
+  nav:{home:"Inicio",about:"Perfil",projects:"Proyectos",skills:"Habilidades",cv:"CV",contact:"Contacto"},
+  heroTitle:"Diseño Industrial y Desarrollo de Producto",
+  heroSub:"Perfil técnico-creativo orientado a empresas de diseño industrial.",
+  heroBtn:"Ver proyectos",
+  aboutTitle:"Sobre mí",
+  aboutText:"Diseñador industrial con perfil técnico y creativo.",
+  projectsTitle:"Proyectos",
+  projects:[
+   {title:"Mecanismo radial sincronizado",img:"project1.jpg"},
+   {title:"Producto eléctrico industrial",img:"project2.jpg"},
+   {title:"Optimización mecánica",img:"project3.jpg"},
+   {title:"Prototipos impresión 3D",img:"project4.jpg"}
+  ],
+  skillsTitle:"Habilidades técnicas",
+  skills:["SolidWorks","Fusion 360","AutoCAD","Inventor","Rhinoceros","GitHub","Photoshop"],
+  cvTitle:"Currículum Vitae",
+  contactTitle:"Contacto",
+  footer:"© 2026 · Luis Blasco-Ibáñez Berbel"
+ },
+ en:{
+  nav:{home:"Home",about:"Profile",projects:"Projects",skills:"Skills",cv:"CV",contact:"Contact"},
+  heroTitle:"Industrial Design & Product Development",
+  heroSub:"Technical and creative profile for industrial design companies.",
+  heroBtn:"View projects",
+  aboutTitle:"About me",
+  aboutText:"Industrial designer with technical and creative focus.",
+  projectsTitle:"Projects",
+  projects:[
+   {title:"Radial synchronized mechanism",img:"project1.jpg"},
+   {title:"Industrial electrical product",img:"project2.jpg"},
+   {title:"Mechanical optimization",img:"project3.jpg"},
+   {title:"3D printed prototypes",img:"project4.jpg"}
+  ],
+  skillsTitle:"Technical skills",
+  skills:["SolidWorks","Fusion 360","AutoCAD","Inventor","Rhinoceros","GitHub","Photoshop"],
+  cvTitle:"Curriculum Vitae",
+  contactTitle:"Contact",
+  footer:"© 2026 · Luis Blasco-Ibáñez Berbel"
+ }
+};
 
 function setLang(l){
   const d=data[l];
@@ -322,14 +326,9 @@ function show(id){
   document.body.classList.toggle("home-active",id==="home");
 }
 
-function toggleTheme(){
-  document.body.classList.toggle("light");
-}
-
 window.addEventListener("load",()=>{
   setLang("es");
   nav-home.classList.add("active");
-  setTimeout(()=>page-loader.classList.add("hidden"),1600);
 });
 </script>
 

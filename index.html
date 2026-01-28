@@ -23,36 +23,7 @@ body.light{
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
 body{background:var(--bg);color:var(--text);overflow:hidden;transition:.4s}
 
-/* LOADER PREMIUM */
-#page-loader{
-  position:fixed;
-  inset:0;
-  background:#050507;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
-  transition:opacity 1s ease, visibility 1s ease, filter 1s ease;
-}
-#page-loader span{
-  font-size:32px;
-  letter-spacing:.35em;
-  font-weight:400;
-  opacity:0;
-  animation:logoIntro 1.6s cubic-bezier(.22,1,.36,1) forwards;
-}
 
-@keyframes logoIntro{
-  0%{opacity:0;transform:scale(1.6);filter:blur(10px)}
-  60%{opacity:1;transform:scale(1);filter:blur(0)}
-  100%{opacity:1;transform:scale(1)}
-}
-
-#page-loader.hidden{
-  opacity:0;
-  visibility:hidden;
-  filter:blur(10px);
-}
 
 /* HEADER SIN FONDO */
 header{
@@ -92,7 +63,7 @@ body:not(.home-active) header h2.logo{
   to{opacity:1;transform:translateY(0)}
 }
 body.home-active header h2.logo{
-  animation:logoFadeIn .5s cubic-bezier(.4,0,.2,1);
+  animation:none;
 }
 
 /* NAV */
@@ -168,28 +139,13 @@ nav a.active{color:var(--text);font-weight:600}
 }
 #home .container{position:relative;z-index:1}
 
-/* ANIMACIONES */
-.title-framer{
-  opacity:0;
-  transform:translateY(18px);
-  animation:titleIn .7s cubic-bezier(.4,0,.2,1) forwards;
-}
-.content-framer{
-  opacity:0;
-  transform:translateY(18px);
-  animation:contentIn .7s cubic-bezier(.4,0,.2,1) forwards;
-  animation-delay:.22s;
-}
-@keyframes titleIn{to{opacity:1;transform:translateY(0)}}
-@keyframes contentIn{to{opacity:1;transform:translateY(0)}}
-
-/* CASCADE */
+.title-framer,
+.content-framer,
 .stagger-item{
-  opacity:0;
-  transform:translateY(20px);
-  animation:staggerIn .6s cubic-bezier(.4,0,.2,1) forwards;
+  opacity:1;
+  transform:none;
+  animation:none;
 }
-@keyframes staggerIn{to{opacity:1;transform:translateY(0)}}
 
 /* LANGUAGE TRANSITION */
 .lang-wrapper.hide{
@@ -271,7 +227,6 @@ footer{position:fixed;bottom:22px;width:100%;text-align:center;font-size:10px;co
 
 <body class="home-active">
 
-<div id="page-loader"><span>L · BIB</span></div>
 
 <header>
   <h2 class="logo">L<span class="sep">·</span>BIB</h2>
@@ -472,11 +427,8 @@ function show(id){
 function toggleTheme(){document.body.classList.toggle("light")}
 
 window.addEventListener("load",()=>{
- setLang("es");
+ applyLang("es"); // sin animación
  document.getElementById("nav-home").classList.add("active");
- setTimeout(()=>{
-   document.getElementById("page-loader").classList.add("hidden");
- },1600);
 });
 </script>
 

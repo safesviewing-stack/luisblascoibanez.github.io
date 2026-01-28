@@ -29,7 +29,7 @@
       overflow-x:hidden;
     }
 
-    /* ================= HEADER ================= */
+    /* ================= HEADER (TRANSPARENTE) ================= */
     header{
       position:fixed;
       top:0;
@@ -39,8 +39,7 @@
       justify-content:space-between;
       align-items:center;
       z-index:1000;
-      background:rgba(11,11,13,0.55);
-      backdrop-filter:blur(10px);
+      background:transparent;
     }
 
     .logo{
@@ -94,7 +93,7 @@
       overflow:hidden;
     }
 
-    /* Fondo imagen */
+    /* Fondo pantalla completa */
     #home::before{
       content:"";
       position:fixed;
@@ -111,7 +110,7 @@
     /* CONTENIDO IZQUIERDA */
     .home-content{
       max-width:600px;
-      margin-left:70px;
+      margin-left:clamp(20px, 6vw, 60px);
       padding-right:40px;
       display:flex;
       flex-direction:column;
@@ -207,7 +206,6 @@
       transform:translateY(0);
     }
 
-    /* DELAYS */
     .delay-1{ transition-delay:.18s; }
     .delay-2{ transition-delay:.36s; }
 

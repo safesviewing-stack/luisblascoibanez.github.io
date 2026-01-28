@@ -52,24 +52,26 @@ body:not(.home-active) .logo{
 /* NAV */
 nav{display:flex;gap:28px}
 nav a{
+  position:relative;
+  color:rgba(245,245,247,.75);
   font-size:11px;
   text-transform:uppercase;
   letter-spacing:.14em;
-  color:rgba(245,245,247,.75);
   cursor:pointer;
-  position:relative;
   padding-bottom:6px;
 }
 nav a::after{
   content:"";
   position:absolute;
-  bottom:0;left:0;
-  width:0;height:1px;
+  left:0;
+  bottom:0;
+  width:0;
+  height:1px;
   background:var(--accent);
   transition:.3s;
 }
-nav a.active::after,
-nav a:hover::after{width:100%}
+nav a:hover::after,
+nav a.active::after{width:100%}
 nav a.active{color:var(--text);font-weight:600}
 
 /* CONTROLS */
@@ -238,83 +240,86 @@ footer{
 
 <script>
 const data={
- es:{
-  nav:{home:"Inicio",about:"Perfil",projects:"Proyectos",skills:"Habilidades",cv:"CV",contact:"Contacto"},
-  heroTitle:"Diseño Industrial y Desarrollo de Producto",
-  heroSub:"Perfil técnico-creativo orientado a empresas de diseño industrial.",
-  heroBtn:"Ver proyectos",
-  aboutTitle:"Sobre mí",
-  aboutText:"Diseñador industrial con perfil técnico y creativo.",
-  projectsTitle:"Proyectos",
-  projects:[
-   {title:"Mecanismo radial sincronizado",img:"project1.jpg"},
-   {title:"Producto eléctrico industrial",img:"project2.jpg"},
-   {title:"Optimización mecánica",img:"project3.jpg"},
-   {title:"Prototipos impresión 3D",img:"project4.jpg"}
-  ],
-  skillsTitle:"Habilidades técnicas",
-  skills:["SolidWorks","Fusion 360","AutoCAD","Inventor","Rhinoceros","GitHub","Photoshop"],
-  cvTitle:"Currículum Vitae",
-  contactTitle:"Contacto",
-  footer:"© 2026 · Luis Blasco-Ibáñez Berbel"
- },
- en:{
-  nav:{home:"Home",about:"Profile",projects:"Projects",skills:"Skills",cv:"CV",contact:"Contact"},
-  heroTitle:"Industrial Design & Product Development",
-  heroSub:"Technical and creative profile for industrial design companies.",
-  heroBtn:"View projects",
-  aboutTitle:"About me",
-  aboutText:"Industrial designer with technical and creative focus.",
-  projectsTitle:"Projects",
-  projects:[
-   {title:"Radial synchronized mechanism",img:"project1.jpg"},
-   {title:"Industrial electrical product",img:"project2.jpg"},
-   {title:"Mechanical optimization",img:"project3.jpg"},
-   {title:"3D printed prototypes",img:"project4.jpg"}
-  ],
-  skillsTitle:"Technical skills",
-  skills:["SolidWorks","Fusion 360","AutoCAD","Inventor","Rhinoceros","GitHub","Photoshop"],
-  cvTitle:"Curriculum Vitae",
-  contactTitle:"Contact",
-  footer:"© 2026 · Luis Blasco-Ibáñez Berbel"
- }
+  es:{
+    nav:{home:"Inicio",about:"Sobre mí",projects:"Portfolio",skills:"Habilidades",cv:"CV",contact:"Contacto"},
+    heroTitle:"Diseño Industrial y Desarrollo de Producto",
+    heroSub:"Perfil técnico-creativo orientado a empresas de diseño industrial.",
+    heroBtn:"Ver proyectos",
+    aboutTitle:"Sobre mí",
+    aboutText:"Diseñador industrial con perfil técnico y creativo.",
+    projectsTitle:"Proyectos",
+    projects:[
+      {title:"Mecanismo radial sincronizado",img:"project1.jpg"},
+      {title:"Producto eléctrico industrial",img:"project2.jpg"},
+      {title:"Optimización mecánica",img:"project3.jpg"},
+      {title:"Prototipos impresión 3D",img:"project4.jpg"}
+    ],
+    skillsTitle:"Habilidades",
+    skills:["SolidWorks","Fusion 360","AutoCAD","Inventor","Rhinoceros","GitHub","Photoshop"],
+    cvTitle:"Currículum Vitae",
+    contactTitle:"Contacto",
+    footer:"© 2026 · Luis Blasco-Ibáñez Berbel"
+  },
+  en:{
+    nav:{home:"Home",about:"About",projects:"Portfolio",skills:"Skills",cv:"CV",contact:"Contact"},
+    heroTitle:"Industrial Design & Product Development",
+    heroSub:"Technical and creative profile for industrial design companies.",
+    heroBtn:"View projects",
+    aboutTitle:"About me",
+    aboutText:"Industrial designer with technical and creative focus.",
+    projectsTitle:"Projects",
+    projects:[
+      {title:"Radial synchronized mechanism",img:"project1.jpg"},
+      {title:"Industrial electrical product",img:"project2.jpg"},
+      {title:"Mechanical optimization",img:"project3.jpg"},
+      {title:"3D printed prototypes",img:"project4.jpg"}
+    ],
+    skillsTitle:"Skills",
+    skills:["SolidWorks","Fusion 360","AutoCAD","Inventor","Rhinoceros","GitHub","Photoshop"],
+    cvTitle:"Curriculum Vitae",
+    contactTitle:"Contact",
+    footer:"© 2026 · Luis Blasco-Ibáñez Berbel"
+  }
 };
 
 function setLang(l){
   const d=data[l];
-  btn-es.classList.toggle("active",l==="es");
-  btn-en.classList.toggle("active",l==="en");
 
-  nav-home.innerText=d.nav.home;
-  nav-about.innerText=d.nav.about;
-  nav-projects.innerText=d.nav.projects;
-  nav-skills.innerText=d.nav.skills;
-  nav-cv.innerText=d.nav.cv;
-  nav-contact.innerText=d.nav.contact;
+  document.getElementById("btn-es").classList.toggle("active",l==="es");
+  document.getElementById("btn-en").classList.toggle("active",l==="en");
 
-  hero-title.innerText=d.heroTitle;
-  hero-sub.innerText=d.heroSub;
-  hero-btn.innerText=d.heroBtn;
-  about-title.innerText=d.aboutTitle;
-  about-text.innerText=d.aboutText;
-  projects-title.innerText=d.projectsTitle;
-  skills-title.innerText=d.skillsTitle;
-  cv-title.innerText=d.cvTitle;
-  contact-title.innerText=d.contactTitle;
-  footer-text.innerText=d.footer;
+  document.getElementById("nav-home").innerText=d.nav.home;
+  document.getElementById("nav-about").innerText=d.nav.about;
+  document.getElementById("nav-projects").innerText=d.nav.projects;
+  document.getElementById("nav-skills").innerText=d.nav.skills;
+  document.getElementById("nav-cv").innerText=d.nav.cv;
+  document.getElementById("nav-contact").innerText=d.nav.contact;
 
-  projects-grid.innerHTML="";
+  document.getElementById("hero-title").innerText=d.heroTitle;
+  document.getElementById("hero-sub").innerText=d.heroSub;
+  document.getElementById("hero-btn").innerText=d.heroBtn;
+  document.getElementById("about-title").innerText=d.aboutTitle;
+  document.getElementById("about-text").innerText=d.aboutText;
+  document.getElementById("projects-title").innerText=d.projectsTitle;
+  document.getElementById("skills-title").innerText=d.skillsTitle;
+  document.getElementById("cv-title").innerText=d.cvTitle;
+  document.getElementById("contact-title").innerText=d.contactTitle;
+  document.getElementById("footer-text").innerText=d.footer;
+
+  const pgrid=document.getElementById("projects-grid");
+  pgrid.innerHTML="";
   d.projects.forEach(p=>{
-    projects-grid.innerHTML+=`
+    pgrid.innerHTML+=`
       <button class="project-btn">
         <img src="${p.img}">
         <span>${p.title}</span>
       </button>`;
   });
 
-  skills-grid.innerHTML="";
+  const sgrid=document.getElementById("skills-grid");
+  sgrid.innerHTML="";
   d.skills.forEach(s=>{
-    skills-grid.innerHTML+=`<div class="card">${s}</div>`;
+    sgrid.innerHTML+=`<div class="card">${s}</div>`;
   });
 }
 
@@ -328,7 +333,7 @@ function show(id){
 
 window.addEventListener("load",()=>{
   setLang("es");
-  nav-home.classList.add("active");
+  document.getElementById("nav-home").classList.add("active");
 });
 </script>
 

@@ -94,7 +94,7 @@
       overflow:hidden;
     }
 
-    /* Fondo pantalla completa */
+    /* Fondo imagen pantalla completa */
     #home::before{
       content:"";
       position:fixed;
@@ -108,13 +108,15 @@
       z-index:-1;
     }
 
+    /* CONTENIDO DESPLAZADO A LA IZQUIERDA */
     .home-content{
-      max-width:1200px;
-      margin:auto;
-      padding:0 40px;
+      max-width:600px;
+      margin-left:120px;
+      padding-right:40px;
       display:flex;
       flex-direction:column;
       gap:26px;
+      align-items:flex-start;
     }
 
     h1{
@@ -126,12 +128,10 @@
       color:var(--muted);
       line-height:1.7;
       font-size:14px;
-      max-width:720px;
     }
 
     .btn{
       margin-top:32px;
-      align-self:flex-start;
       padding:14px 30px;
       border-radius:40px;
       border:none;
@@ -211,8 +211,15 @@
       header{
         padding:18px 22px;
       }
+
       h1{
         font-size:32px;
+      }
+
+      .home-content{
+        margin-left:0;
+        padding:0 24px;
+        max-width:100%;
       }
     }
   </style>
@@ -231,7 +238,7 @@
   </nav>
 </header>
 
-<!-- HOME FULLSCREEN -->
+<!-- HOME -->
 <section id="home">
   <div class="home-content">
     <h1 class="fade-up">
@@ -251,8 +258,8 @@
 <section id="about">
   <h2 class="fade-up">Sobre mí</h2>
   <p class="fade-up">
-    Diseñadora industrial con enfoque técnico y artístico, experiencia en producto,
-    prototipado e impresión 3D.
+    Diseñadora industrial con enfoque técnico y artístico,
+    experiencia en producto, prototipado e impresión 3D.
   </p>
 </section>
 
@@ -298,7 +305,6 @@
 </footer>
 
 <script>
-  /* NAV ACTIVE */
   const links=document.querySelectorAll("nav a");
   links.forEach(link=>{
     link.addEventListener("click",()=>{
@@ -307,7 +313,6 @@
     });
   });
 
-  /* FADE UP */
   const observer=new IntersectionObserver(entries=>{
     entries.forEach(entry=>{
       if(entry.isIntersecting){

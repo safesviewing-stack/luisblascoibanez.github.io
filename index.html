@@ -39,6 +39,7 @@
       z-index:1000;
     }
 
+    /* LOGO */
     .logo{
       font-size:14px;
       letter-spacing:.3em;
@@ -64,6 +65,7 @@
       gap:36px;
     }
 
+    /* NAV CASCADA */
     nav a{
       font-size:11px;
       letter-spacing:.18em;
@@ -95,8 +97,8 @@
       content:"";
       position:absolute;
       left:0;
+      right:0;
       bottom:0;
-      width:100%;
       height:1px;
       background:#fff;
       transform:scaleX(0);
@@ -151,7 +153,9 @@
       position:relative;
     }
 
-    h1{ font-size:44px; }
+    h1{
+      font-size:44px;
+    }
 
     h2{
       font-size:28px;
@@ -159,13 +163,13 @@
       padding-bottom:10px;
     }
 
-    /* 🔥 LÍNEA CORREGIDA (scale, no width) */
+    /* 🔥 LÍNEA CORREGIDA AL FINAL REAL DE LA PALABRA */
     h2::after{
       content:"";
       position:absolute;
       left:0;
+      right:0.18em; /* 👈 ajuste óptico exacto */
       bottom:0;
-      width:100%;
       height:1px;
       background:#fff;
       transform:scaleX(0);
@@ -260,6 +264,49 @@
     <p class="fade-up delay-1">Perfil técnico y creativo enfocado en producto.</p>
     <button class="btn fade-up delay-2"
       onclick="changeSection('projects')">Ver proyectos</button>
+  </div>
+</section>
+
+<section id="about" class="section">
+  <div class="page">
+    <h2 class="fade-up">Sobre mí</h2>
+    <p class="fade-up delay-1">Diseñadora industrial con enfoque técnico y creativo.</p>
+  </div>
+</section>
+
+<section id="projects" class="section">
+  <div class="page">
+    <h2 class="fade-up">Portfolio</h2>
+    <div class="grid">
+      <div class="card fade-up">Proyecto 1</div>
+      <div class="card fade-up delay-1">Proyecto 2</div>
+      <div class="card fade-up delay-2">Proyecto 3</div>
+    </div>
+  </div>
+</section>
+
+<section id="cv" class="section">
+  <div class="page">
+    <h2 class="fade-up">Currículum Vitae</h2>
+    <p class="fade-up delay-1">Grado en Diseño Industrial · Experiencia en producto.</p>
+  </div>
+</section>
+
+<section id="skills" class="section">
+  <div class="page">
+    <h2 class="fade-up">Habilidades</h2>
+    <div class="grid">
+      <div class="card fade-up">SolidWorks</div>
+      <div class="card fade-up delay-1">Fusion 360</div>
+      <div class="card fade-up delay-2">Rhinoceros</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section">
+  <div class="page">
+    <h2 class="fade-up">Contacto</h2>
+    <p class="fade-up delay-1">📧 hello@email.com<br>📍 Valencia</p>
   </div>
 </section>
 

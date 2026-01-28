@@ -199,7 +199,6 @@
   </nav>
 </header>
 
-<!-- HOME -->
 <section id="home" class="section active visible">
   <div class="home-content">
     <h1 class="fade-up">Diseño Industrial<br>y Desarrollo de Producto</h1>
@@ -254,18 +253,16 @@
 
 <script>
   function animateSection(section){
-    const elements = section.querySelectorAll('.fade-up');
-    elements.forEach(el => el.classList.remove('visible'));
-
+    const els = section.querySelectorAll('.fade-up');
+    els.forEach(el => el.classList.remove('visible'));
     requestAnimationFrame(()=>{
-      elements.forEach(el => el.classList.add('visible'));
+      els.forEach(el => el.classList.add('visible'));
     });
   }
 
   function changeSection(id){
     const current = document.querySelector('.section.active');
     const next = document.getElementById(id);
-    if(current === next) return;
 
     // menú activo
     document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
@@ -274,7 +271,13 @@
         id === 'home' ? 'inicio' : id
       ))?.classList.add('active');
 
-    // salida
+    // MISMA SECCIÓN → solo reanimar
+    if(current === next){
+      animateSection(next);
+      return;
+    }
+
+    // SECCIÓN DISTINTA → transición completa
     current.classList.remove('visible');
 
     setTimeout(()=>{
@@ -283,7 +286,7 @@
 
       requestAnimationFrame(()=>{
         next.classList.add('visible');
-        animateSection(next); // 🔥 SIEMPRE anima
+        animateSection(next);
       });
     },450);
   }

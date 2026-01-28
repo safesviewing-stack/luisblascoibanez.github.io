@@ -34,31 +34,24 @@
       position:fixed;
       top:0;
       width:100%;
-      padding:34px 40px; /* MÁS ABAJO */
+      padding:36px 40px;
       display:flex;
-      justify-content:space-between;
+      justify-content:center; /* CENTRADO */
       align-items:center;
       z-index:1000;
       background:transparent;
     }
 
-    .logo{
-      font-size:14px;
-      letter-spacing:.3em;
-      font-weight:600;
-      color:#fff;
-    }
-
     nav{
       display:flex;
-      gap:32px;
+      gap:42px;
     }
 
     nav a{
       color:#fff;
       text-decoration:none;
       font-size:11px;
-      letter-spacing:.14em;
+      letter-spacing:.18em;
       text-transform:uppercase;
       position:relative;
       opacity:.85;
@@ -68,11 +61,11 @@
       content:"";
       position:absolute;
       left:0;
-      bottom:-6px;
+      bottom:-8px;
       width:0;
       height:1px;
       background:var(--accent);
-      transition:.3s;
+      transition:.3s ease;
     }
 
     nav a:hover,
@@ -218,6 +211,10 @@
         padding:28px 22px;
       }
 
+      nav{
+        gap:22px;
+      }
+
       h1{
         font-size:32px;
       }
@@ -234,16 +231,16 @@
 <body>
 
 <header>
-  <div class="logo">PORTFOLIO</div>
   <nav>
     <a href="#home" class="active">Inicio</a>
-    <a href="#about">Sobre mí</a>
-    <a href="#projects">Proyectos</a>
-    <a href="#skills">Skills</a>
+    <a href="#cv">CV</a>
+    <a href="#skills">Habilidades</a>
+    <a href="#projects">Portfolio</a>
     <a href="#contact">Contacto</a>
   </nav>
 </header>
 
+<!-- HOME -->
 <section id="home">
   <div class="home-content">
     <h1 class="fade-up">
@@ -255,21 +252,32 @@
     </p>
     <button class="btn fade-up delay-2"
       onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
-      Ver proyectos
+      Ver portfolio
     </button>
   </div>
 </section>
 
-<section id="about">
-  <h2 class="fade-up">Sobre mí</h2>
+<section id="cv">
+  <h2 class="fade-up">Currículum</h2>
   <p class="fade-up">
-    Diseñadora industrial con enfoque técnico y artístico,
-    experiencia en producto, prototipado e impresión 3D.
+    Formación en diseño industrial, experiencia en producto, mobiliario a medida
+    y prototipado.
   </p>
 </section>
 
+<section id="skills">
+  <h2 class="fade-up">Habilidades</h2>
+  <div class="grid">
+    <div class="card fade-up">SolidWorks</div>
+    <div class="card fade-up">Fusion 360</div>
+    <div class="card fade-up">Rhinoceros</div>
+    <div class="card fade-up">Impresión 3D</div>
+    <div class="card fade-up">Prototipado</div>
+  </div>
+</section>
+
 <section id="projects">
-  <h2 class="fade-up">Proyectos</h2>
+  <h2 class="fade-up">Portfolio</h2>
   <div class="grid">
     <div class="card project fade-up">
       <img src="project1.jpg">
@@ -283,17 +291,6 @@
       <img src="project3.jpg">
       <strong>Prototipos funcionales</strong>
     </div>
-  </div>
-</section>
-
-<section id="skills">
-  <h2 class="fade-up">Habilidades</h2>
-  <div class="grid">
-    <div class="card fade-up">SolidWorks</div>
-    <div class="card fade-up">Fusion 360</div>
-    <div class="card fade-up">Rhinoceros</div>
-    <div class="card fade-up">Impresión 3D</div>
-    <div class="card fade-up">Prototipado</div>
   </div>
 </section>
 
@@ -311,6 +308,7 @@
 
 <script>
   const links=document.querySelectorAll("nav a");
+
   links.forEach(link=>{
     link.addEventListener("click",()=>{
       links.forEach(l=>l.classList.remove("active"));

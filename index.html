@@ -164,17 +164,18 @@
     .fade-up{
       opacity:0;
       transform:translateY(20px);
-      transition:opacity .7s cubic-bezier(.4,0,.2,1),
-                 transform .7s cubic-bezier(.4,0,.2,1);
+      animation:fadeUp .7s cubic-bezier(.4,0,.2,1) forwards;
     }
 
-    .fade-up.visible{
-      opacity:1;
-      transform:translateY(0);
-    }
+    .delay-1{ animation-delay:.25s }
+    .delay-2{ animation-delay:.45s }
 
-    .delay-1{ transition-delay:.25s }
-    .delay-2{ transition-delay:.45s }
+    @keyframes fadeUp{
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
 
     @media(max-width:768px){
       .home-content{
@@ -199,6 +200,7 @@
   </nav>
 </header>
 
+<!-- HOME -->
 <section id="home" class="section active visible">
   <div class="home-content">
     <h1 class="fade-up">Diseño Industrial<br>y Desarrollo de Producto</h1>
@@ -252,13 +254,10 @@
 </section>
 
 <script>
-  function replayAnimations(section){
-    const elements = section.querySelectorAll('.fade-up');
-
-    elements.forEach(el=>{
-      el.classList.remove('visible');
-      void el.offsetHeight; // 🔥 FORZAR REFLOW
-      el.classList.add('visible');
+  function regenerate(section){
+    section.querySelectorAll('.fade-up').forEach(el=>{
+      const clone = el.cloneNode(true);
+      el.parentNode.replaceChild(clone, el);
     });
   }
 
@@ -273,13 +272,12 @@
         id === 'home' ? 'inicio' : id
       ))?.classList.add('active');
 
-    // MISMA SECCIÓN → solo reanimar
+    // MISMA SECCIÓN → regenerar
     if(current === next){
-      replayAnimations(next);
+      regenerate(next);
       return;
     }
 
-    // salida
     current.classList.remove('visible');
 
     setTimeout(()=>{
@@ -288,15 +286,12 @@
       next.classList.add('active');
       next.classList.add('visible');
 
-      // 🔥 SIEMPRE reanima al entrar
-      replayAnimations(next);
+      regenerate(next);
     },450);
   }
 
   // animación inicial
-  document.addEventListener("DOMContentLoaded", ()=>{
-    replayAnimations(document.getElementById('home'));
-  });
+  regenerate(document.getElementById('home'));
 </script>
 
 </body>

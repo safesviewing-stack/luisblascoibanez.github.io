@@ -39,7 +39,6 @@
       z-index:1000;
     }
 
-    /* LOGO */
     .logo{
       font-size:14px;
       letter-spacing:.3em;
@@ -65,7 +64,6 @@
       gap:36px;
     }
 
-    /* 🔥 NAV CASCADA (más rápida + menos altura) */
     nav a{
       font-size:11px;
       letter-spacing:.18em;
@@ -98,15 +96,17 @@
       position:absolute;
       left:0;
       bottom:0;
-      width:0;
+      width:100%;
       height:1px;
       background:#fff;
-      transition:width .25s ease;
+      transform:scaleX(0);
+      transform-origin:left;
+      transition:transform .25s ease;
     }
 
     nav a:hover::after,
     nav a.active::after{
-      width:100%;
+      transform:scaleX(1);
     }
 
     /* ================= SECTIONS ================= */
@@ -145,10 +145,37 @@
       gap:26px;
     }
 
-    h1, h2{ color:#fff; }
+    h1, h2{
+      color:#fff;
+      display:inline-block;
+      position:relative;
+    }
 
     h1{ font-size:44px; }
-    h2{ font-size:28px; margin-bottom:24px; }
+
+    h2{
+      font-size:28px;
+      margin-bottom:24px;
+      padding-bottom:10px;
+    }
+
+    /* 🔥 LÍNEA CORREGIDA (scale, no width) */
+    h2::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:0;
+      width:100%;
+      height:1px;
+      background:#fff;
+      transform:scaleX(0);
+      transform-origin:left;
+      animation:underline .6s ease forwards;
+    }
+
+    @keyframes underline{
+      to{ transform:scaleX(1); }
+    }
 
     p{
       color:var(--muted);

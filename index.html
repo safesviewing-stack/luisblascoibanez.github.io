@@ -56,30 +56,37 @@
       gap:36px;
     }
 
+    /* ===== MENÚ UNIFICADO ===== */
     nav a{
       color:#fff;
       font-size:11px;
       letter-spacing:.18em;
       text-transform:uppercase;
-      opacity:.7;
       cursor:pointer;
       position:relative;
       padding-bottom:6px;
+      opacity:.75;
     }
 
-    /* línea azul SIEMPRE en activo */
-    nav a.active{
-      opacity:1;
-    }
-
-    nav a.active::after{
+    nav a::after{
       content:"";
       position:absolute;
       left:0;
       bottom:0;
-      width:100%;
+      width:0;
       height:1px;
       background:var(--accent);
+      transition:width .3s ease;
+    }
+
+    nav a:hover,
+    nav a.active{
+      opacity:1;
+    }
+
+    nav a:hover::after,
+    nav a.active::after{
+      width:100%;
     }
 
     /* ================= SECTIONS ================= */
@@ -237,8 +244,8 @@
   <div class="page fade-up">
     <h2>Sobre mí</h2>
     <p>
-      Diseñadora industrial con enfoque técnico y creativo, interesada en el
-      desarrollo de producto, el detalle constructivo y el prototipado.
+      Diseñadora industrial con enfoque técnico y creativo, interesada en
+      desarrollo de producto, detalle constructivo y prototipado.
     </p>
   </div>
 </section>
@@ -290,17 +297,16 @@
   function changeSection(id){
     const current = document.querySelector('.section.active');
     const next = document.getElementById(id);
-
     if(current === next) return;
 
-    // nav active
+    /* nav active */
     document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
     [...document.querySelectorAll('nav a')]
       .find(a => a.textContent.toLowerCase().includes(
         id === 'home' ? 'inicio' : id
       ))?.classList.add('active');
 
-    // fade out current
+    /* fade out */
     current.classList.remove('visible');
 
     setTimeout(()=>{
@@ -309,7 +315,6 @@
       next.classList.add('active');
       requestAnimationFrame(()=>{
         next.classList.add('visible');
-
         next.querySelectorAll('.fade-up').forEach(el=>{
           el.classList.remove('visible');
           setTimeout(()=>el.classList.add('visible'),60);

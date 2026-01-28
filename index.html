@@ -5,7 +5,7 @@
   <title>Portfolio · Industrial Design</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google Font -->
+  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -30,7 +30,7 @@
       overflow-x:hidden;
     }
 
-    /* ---------- HEADER ---------- */
+    /* ================= HEADER ================= */
     header{
       position:fixed;
       top:0;
@@ -85,12 +85,13 @@
       width:100%;
     }
 
-    /* ---------- SECTIONS ---------- */
+    /* ================= SECTIONS ================= */
     section{
       min-height:100vh;
       padding:140px 40px 80px;
       max-width:1200px;
       margin:auto;
+      position:relative;
     }
 
     h1{
@@ -110,12 +111,27 @@
       max-width:720px;
     }
 
-    /* ---------- HERO ---------- */
+    /* ================= HOME ================= */
     #home{
       display:flex;
       flex-direction:column;
       justify-content:center;
       gap:26px;
+      overflow:hidden;
+    }
+
+    /* Fondo imagen reloj */
+    #home::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(
+          rgba(11,11,13,0.75),
+          rgba(11,11,13,0.75)
+        ),
+        url("reloj1.jpg") center / cover no-repeat;
+      z-index:-1;
     }
 
     .btn{
@@ -136,7 +152,7 @@
       box-shadow:0 10px 30px rgba(0,229,255,.35);
     }
 
-    /* ---------- GRID ---------- */
+    /* ================= GRID ================= */
     .grid{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
@@ -163,7 +179,7 @@
       margin-bottom:14px;
     }
 
-    /* ---------- FOOTER ---------- */
+    /* ================= FOOTER ================= */
     footer{
       text-align:center;
       padding:30px;
@@ -171,7 +187,7 @@
       color:var(--muted);
     }
 
-    /* ---------- ANIMATIONS ---------- */
+    /* ================= ANIMATIONS ================= */
     .fade-up{
       opacity:0;
       transform:translateY(20px);
@@ -183,7 +199,7 @@
       transform:translateY(0);
     }
 
-    /* ---------- MOBILE ---------- */
+    /* ================= MOBILE ================= */
     @media(max-width:768px){
       header{
         padding:18px 22px;
@@ -209,11 +225,15 @@
 </header>
 
 <section id="home">
-  <h1 class="fade-up">Diseño Industrial<br>y Desarrollo de Producto</h1>
+  <h1 class="fade-up">
+    Diseño Industrial<br>
+    y Desarrollo de Producto
+  </h1>
   <p class="fade-up">
-    Perfil creativo y técnico enfocado en producto, detalle y funcionalidad.
+    Perfil técnico y creativo enfocado en producto, detalle y funcionalidad.
   </p>
-  <button class="btn fade-up" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
+  <button class="btn fade-up"
+    onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
     Ver proyectos
   </button>
 </section>
@@ -221,8 +241,8 @@
 <section id="about">
   <h2 class="fade-up">Sobre mí</h2>
   <p class="fade-up">
-    Diseñadora industrial con interés por el equilibrio entre lo técnico y lo artístico.
-    Experiencia en diseño de producto, prototipado y fabricación.
+    Diseñadora industrial con interés por el equilibrio entre lo artístico y lo técnico.
+    Experiencia en diseño de producto, prototipado e impresión 3D.
   </p>
 </section>
 
@@ -231,7 +251,7 @@
   <div class="grid">
     <div class="card project fade-up">
       <img src="project1.jpg" alt="">
-      <strong>Proyecto NODE</strong>
+      <strong>NODE · Proyecto Final</strong>
     </div>
     <div class="card project fade-up">
       <img src="project2.jpg" alt="">
@@ -239,7 +259,7 @@
     </div>
     <div class="card project fade-up">
       <img src="project3.jpg" alt="">
-      <strong>Prototipos 3D</strong>
+      <strong>Prototipos funcionales</strong>
     </div>
   </div>
 </section>
@@ -264,7 +284,7 @@
 </section>
 
 <footer>
-  © 2026 · Portfolio Diseño Industrial
+  © 2026 · Portfolio · Diseño Industrial
 </footer>
 
 <script>
@@ -277,7 +297,7 @@
     });
   });
 
-  /* FADE UP OBSERVER */
+  /* FADE UP */
   const observer = new IntersectionObserver(entries=>{
     entries.forEach(entry=>{
       if(entry.isIntersecting){

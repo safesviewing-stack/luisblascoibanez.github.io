@@ -127,18 +127,6 @@ h1{font-size:40px}
 h2{font-size:26px}
 p{color:var(--muted);line-height:1.6;font-size:14px}
 
-/* BUTTON */
-.btn{
-  margin-top:28px;
-  padding:14px 28px;
-  border:none;
-  border-radius:28px;
-  background:var(--accent);
-  color:#000;
-  font-weight:600;
-  cursor:pointer;
-}
-
 /* GRID */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px}
 .project-btn{
@@ -189,7 +177,6 @@ footer{
     <button id="nav-contact" onclick="show('contact')"></button>
   </nav>
   <div class="controls">
-    <button onclick="toggleTheme()">🌙</button>
     <button id="btn-es" onclick="setLang('es')">ES</button>
     <button id="btn-en" onclick="setLang('en')">EN</button>
   </div>
@@ -200,7 +187,6 @@ footer{
   <div class="container hero">
     <h1 id="hero-title"></h1>
     <p id="hero-sub"></p>
-    <button class="btn" id="hero-btn" onclick="show('projects')"></button>
   </div>
 </section>
 
@@ -258,7 +244,6 @@ const data={
     nav:{home:"Inicio",about:"Sobre mí",projects:"Portfolio",skills:"Habilidades",cv:"CV",contact:"Contacto"},
     heroTitle:"Diseño Industrial y Desarrollo de Producto",
     heroSub:"Perfil técnico-creativo orientado a empresas de diseño industrial.",
-    heroBtn:"Ver proyectos",
     aboutTitle:"Sobre mí",
     aboutText:"Diseñador industrial con perfil técnico y creativo.",
     projectsTitle:"Proyectos",
@@ -278,7 +263,6 @@ const data={
     nav:{home:"Home",about:"About",projects:"Portfolio",skills:"Skills",cv:"CV",contact:"Contact"},
     heroTitle:"Industrial Design & Product Development",
     heroSub:"Technical and creative profile for industrial design companies.",
-    heroBtn:"View projects",
     aboutTitle:"About me",
     aboutText:"Industrial designer with technical and creative focus.",
     projectsTitle:"Projects",
@@ -307,29 +291,30 @@ function setLang(l){
     document.getElementById("nav-"+k).innerText=d.nav[k];
   });
 
-  hero-title.innerText=d.heroTitle;
-  hero-sub.innerText=d.heroSub;
-  hero-btn.innerText=d.heroBtn;
-  about-title.innerText=d.aboutTitle;
-  about-text.innerText=d.aboutText;
-  projects-title.innerText=d.projectsTitle;
-  skills-title.innerText=d.skillsTitle;
-  cv-title.innerText=d.cvTitle;
-  contact-title.innerText=d.contactTitle;
-  footer-text.innerText=d.footer;
+  document.getElementById("hero-title").innerText=d.heroTitle;
+  document.getElementById("hero-sub").innerText=d.heroSub;
+  document.getElementById("about-title").innerText=d.aboutTitle;
+  document.getElementById("about-text").innerText=d.aboutText;
+  document.getElementById("projects-title").innerText=d.projectsTitle;
+  document.getElementById("skills-title").innerText=d.skillsTitle;
+  document.getElementById("cv-title").innerText=d.cvTitle;
+  document.getElementById("contact-title").innerText=d.contactTitle;
+  document.getElementById("footer-text").innerText=d.footer;
 
-  projects-grid.innerHTML="";
+  const pgrid=document.getElementById("projects-grid");
+  pgrid.innerHTML="";
   d.projects.forEach(p=>{
-    projects-grid.innerHTML+=`
+    pgrid.innerHTML+=`
       <button class="project-btn">
         <img src="${p.img}" alt="${p.title}">
         <span>${p.title}</span>
       </button>`;
   });
 
-  skills-grid.innerHTML="";
+  const sgrid=document.getElementById("skills-grid");
+  sgrid.innerHTML="";
   d.skills.forEach(s=>{
-    skills-grid.innerHTML+=`<div class="card">${s}</div>`;
+    sgrid.innerHTML+=`<div class="card">${s}</div>`;
   });
 }
 
@@ -341,16 +326,7 @@ function show(id){
   document.body.classList.toggle("home-active",id==="home");
 }
 
-function toggleTheme(){
-  document.body.classList.toggle("light");
-  localStorage.setItem("theme",
-    document.body.classList.contains("light")?"light":"dark");
-}
-
 window.addEventListener("load",()=>{
-  if(localStorage.getItem("theme")==="light"){
-    document.body.classList.add("light");
-  }
   const lang=localStorage.getItem("lang")||"es";
   setLang(lang);
   document.getElementById("nav-home").classList.add("active");

@@ -94,13 +94,8 @@
       transition:opacity .45s ease;
     }
 
-    .section.active{
-      display:block;
-    }
-
-    .section.visible{
-      opacity:1;
-    }
+    .section.active{ display:block; }
+    .section.visible{ opacity:1; }
 
     /* ================= HOME ================= */
     #home{
@@ -169,9 +164,8 @@
     .fade-up{
       opacity:0;
       transform:translateY(20px);
-      transition:
-        opacity .7s cubic-bezier(.4,0,.2,1),
-        transform .7s cubic-bezier(.4,0,.2,1);
+      transition:opacity .7s cubic-bezier(.4,0,.2,1),
+                 transform .7s cubic-bezier(.4,0,.2,1);
     }
 
     .fade-up.visible{
@@ -205,7 +199,6 @@
   </nav>
 </header>
 
-<!-- HOME -->
 <section id="home" class="section active visible">
   <div class="home-content">
     <h1 class="fade-up">Diseño Industrial<br>y Desarrollo de Producto</h1>
@@ -218,9 +211,7 @@
 <section id="about" class="section">
   <div class="page">
     <h2 class="fade-up">Sobre mí</h2>
-    <p class="fade-up delay-1">
-      Diseñadora industrial con enfoque técnico y creativo.
-    </p>
+    <p class="fade-up delay-1">Diseñadora industrial con enfoque técnico y creativo.</p>
   </div>
 </section>
 
@@ -238,9 +229,7 @@
 <section id="cv" class="section">
   <div class="page">
     <h2 class="fade-up">Currículum Vitae</h2>
-    <p class="fade-up delay-1">
-      Grado en Diseño Industrial · Experiencia en producto.
-    </p>
+    <p class="fade-up delay-1">Grado en Diseño Industrial · Experiencia en producto.</p>
   </div>
 </section>
 
@@ -258,19 +247,17 @@
 <section id="contact" class="section">
   <div class="page">
     <h2 class="fade-up">Contacto</h2>
-    <p class="fade-up delay-1">
-      📧 hello@email.com<br>📍 Valencia
-    </p>
+    <p class="fade-up delay-1">📧 hello@email.com<br>📍 Valencia</p>
   </div>
 </section>
 
 <script>
-  function resetAndAnimate(section){
+  function replayAnimations(section){
     const elements = section.querySelectorAll('.fade-up');
 
     elements.forEach(el=>{
       el.classList.remove('visible');
-      void el.offsetHeight; // 🔥 fuerza reflow real
+      void el.offsetHeight; // 🔥 FORZAR REFLOW
       el.classList.add('visible');
     });
   }
@@ -286,11 +273,9 @@
         id === 'home' ? 'inicio' : id
       ))?.classList.add('active');
 
-    // SIEMPRE resetea la sección actual
-    resetAndAnimate(current);
-
-    // misma sección → solo reanimar
+    // MISMA SECCIÓN → solo reanimar
     if(current === next){
+      replayAnimations(next);
       return;
     }
 
@@ -299,17 +284,18 @@
 
     setTimeout(()=>{
       current.classList.remove('active');
+
       next.classList.add('active');
       next.classList.add('visible');
 
-      // entrada animada siempre
-      resetAndAnimate(next);
+      // 🔥 SIEMPRE reanima al entrar
+      replayAnimations(next);
     },450);
   }
 
   // animación inicial
   document.addEventListener("DOMContentLoaded", ()=>{
-    resetAndAnimate(document.getElementById('home'));
+    replayAnimations(document.getElementById('home'));
   });
 </script>
 

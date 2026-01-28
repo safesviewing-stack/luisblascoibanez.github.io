@@ -94,8 +94,13 @@
       transition:opacity .45s ease;
     }
 
-    .section.active{ display:block; }
-    .section.visible{ opacity:1; }
+    .section.active{
+      display:block;
+    }
+
+    .section.visible{
+      opacity:1;
+    }
 
     /* ================= HOME ================= */
     #home{
@@ -199,6 +204,7 @@
   </nav>
 </header>
 
+<!-- HOME -->
 <section id="home" class="section active visible">
   <div class="home-content">
     <h1 class="fade-up">Diseño Industrial<br>y Desarrollo de Producto</h1>
@@ -252,11 +258,17 @@
 </section>
 
 <script>
-  function animateSection(section){
-    const els = section.querySelectorAll('.fade-up');
-    els.forEach(el => el.classList.remove('visible'));
+  function resetAnimations(section){
+    section.querySelectorAll('.fade-up').forEach(el=>{
+      el.classList.remove('visible');
+    });
+  }
+
+  function playAnimations(section){
     requestAnimationFrame(()=>{
-      els.forEach(el => el.classList.add('visible'));
+      section.querySelectorAll('.fade-up').forEach(el=>{
+        el.classList.add('visible');
+      });
     });
   }
 
@@ -271,28 +283,30 @@
         id === 'home' ? 'inicio' : id
       ))?.classList.add('active');
 
-    // MISMA SECCIÓN → solo reanimar
+    // reset animaciones de la sección actual
+    resetAnimations(current);
+
+    // misma sección → solo reanimar
     if(current === next){
-      animateSection(next);
+      playAnimations(next);
       return;
     }
 
-    // SECCIÓN DISTINTA → transición completa
+    // transición normal
     current.classList.remove('visible');
 
     setTimeout(()=>{
       current.classList.remove('active');
       next.classList.add('active');
-
-      requestAnimationFrame(()=>{
-        next.classList.add('visible');
-        animateSection(next);
-      });
+      next.classList.add('visible');
+      playAnimations(next);
     },450);
   }
 
   // animación inicial
-  animateSection(document.getElementById('home'));
+  document.addEventListener("DOMContentLoaded", ()=>{
+    playAnimations(document.getElementById('home'));
+  });
 </script>
 
 </body>

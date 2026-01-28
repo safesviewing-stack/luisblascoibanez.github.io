@@ -53,7 +53,7 @@
       left:50%;
       transform:translateX(-50%);
       display:flex;
-      gap:40px;
+      gap:36px;
     }
 
     nav a{
@@ -64,22 +64,23 @@
       opacity:.7;
       cursor:pointer;
       position:relative;
+      padding-bottom:6px;
     }
 
-    nav a.active{ opacity:1 }
+    /* línea azul SIEMPRE en activo */
+    nav a.active{
+      opacity:1;
+    }
 
-    nav a::after{
+    nav a.active::after{
       content:"";
       position:absolute;
       left:0;
-      bottom:-6px;
-      width:0;
+      bottom:0;
+      width:100%;
       height:1px;
       background:var(--accent);
-      transition:.3s;
     }
-
-    nav a.active::after{ width:100% }
 
     /* ================= SECTIONS ================= */
     .section{
@@ -118,7 +119,7 @@
 
     .home-content{
       max-width:600px;
-      margin-left:clamp(80px, 10vw, 140px); /* 👉 MÁS A LA DERECHA */
+      margin-left:clamp(90px, 12vw, 160px);
       display:flex;
       flex-direction:column;
       gap:26px;
@@ -129,10 +130,16 @@
       font-weight:600;
     }
 
+    h2{
+      font-size:28px;
+      margin-bottom:24px;
+    }
+
     p{
       color:var(--muted);
       font-size:14px;
       line-height:1.7;
+      max-width:640px;
     }
 
     .btn{
@@ -147,16 +154,11 @@
       align-self:flex-start;
     }
 
-    /* ================= OTHER PAGES ================= */
+    /* ================= PAGE CONTENT ================= */
     .page{
       max-width:1200px;
       margin:auto;
       padding:140px 40px 80px;
-    }
-
-    h2{
-      font-size:28px;
-      margin-bottom:24px;
     }
 
     .grid{
@@ -189,7 +191,7 @@
 
     /* ================= MOBILE ================= */
     @media(max-width:768px){
-      nav{ gap:20px }
+      nav{ gap:18px }
       h1{ font-size:32px }
       .home-content{
         margin-left:0;
@@ -204,8 +206,10 @@
 <header>
   <div class="logo">PORTFOLIO</div>
   <nav>
-    <a onclick="changeSection('home')" class="active">Inicio</a>
+    <a class="active" onclick="changeSection('home')">Inicio</a>
+    <a onclick="changeSection('about')">Sobre mí</a>
     <a onclick="changeSection('projects')">Portfolio</a>
+    <a onclick="changeSection('cv')">CV</a>
     <a onclick="changeSection('skills')">Habilidades</a>
     <a onclick="changeSection('contact')">Contacto</a>
   </nav>
@@ -228,6 +232,17 @@
   </div>
 </section>
 
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="page fade-up">
+    <h2>Sobre mí</h2>
+    <p>
+      Diseñadora industrial con enfoque técnico y creativo, interesada en el
+      desarrollo de producto, el detalle constructivo y el prototipado.
+    </p>
+  </div>
+</section>
+
 <!-- PROJECTS -->
 <section id="projects" class="section">
   <div class="page fade-up">
@@ -237,6 +252,17 @@
       <div class="card">Proyecto 2</div>
       <div class="card">Proyecto 3</div>
     </div>
+  </div>
+</section>
+
+<!-- CV -->
+<section id="cv" class="section">
+  <div class="page fade-up">
+    <h2>Currículum Vitae</h2>
+    <p>
+      Grado en Diseño Industrial · Experiencia en diseño de producto,
+      prototipado e impresión 3D.
+    </p>
   </div>
 </section>
 
@@ -286,7 +312,7 @@
 
         next.querySelectorAll('.fade-up').forEach(el=>{
           el.classList.remove('visible');
-          setTimeout(()=>el.classList.add('visible'),50);
+          setTimeout(()=>el.classList.add('visible'),60);
         });
       });
     },450);

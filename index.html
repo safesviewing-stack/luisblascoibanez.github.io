@@ -169,8 +169,9 @@
     .fade-up{
       opacity:0;
       transform:translateY(20px);
-      transition:opacity .7s cubic-bezier(.4,0,.2,1),
-                 transform .7s cubic-bezier(.4,0,.2,1);
+      transition:
+        opacity .7s cubic-bezier(.4,0,.2,1),
+        transform .7s cubic-bezier(.4,0,.2,1);
     }
 
     .fade-up.visible{
@@ -217,7 +218,9 @@
 <section id="about" class="section">
   <div class="page">
     <h2 class="fade-up">Sobre mí</h2>
-    <p class="fade-up delay-1">Diseñadora industrial con enfoque técnico y creativo.</p>
+    <p class="fade-up delay-1">
+      Diseñadora industrial con enfoque técnico y creativo.
+    </p>
   </div>
 </section>
 
@@ -235,7 +238,9 @@
 <section id="cv" class="section">
   <div class="page">
     <h2 class="fade-up">Currículum Vitae</h2>
-    <p class="fade-up delay-1">Grado en Diseño Industrial · Experiencia en producto.</p>
+    <p class="fade-up delay-1">
+      Grado en Diseño Industrial · Experiencia en producto.
+    </p>
   </div>
 </section>
 
@@ -253,22 +258,20 @@
 <section id="contact" class="section">
   <div class="page">
     <h2 class="fade-up">Contacto</h2>
-    <p class="fade-up delay-1">📧 hello@email.com<br>📍 Valencia</p>
+    <p class="fade-up delay-1">
+      📧 hello@email.com<br>📍 Valencia
+    </p>
   </div>
 </section>
 
 <script>
-  function resetAnimations(section){
-    section.querySelectorAll('.fade-up').forEach(el=>{
-      el.classList.remove('visible');
-    });
-  }
+  function resetAndAnimate(section){
+    const elements = section.querySelectorAll('.fade-up');
 
-  function playAnimations(section){
-    requestAnimationFrame(()=>{
-      section.querySelectorAll('.fade-up').forEach(el=>{
-        el.classList.add('visible');
-      });
+    elements.forEach(el=>{
+      el.classList.remove('visible');
+      void el.offsetHeight; // 🔥 fuerza reflow real
+      el.classList.add('visible');
     });
   }
 
@@ -283,29 +286,30 @@
         id === 'home' ? 'inicio' : id
       ))?.classList.add('active');
 
-    // reset animaciones de la sección actual
-    resetAnimations(current);
+    // SIEMPRE resetea la sección actual
+    resetAndAnimate(current);
 
     // misma sección → solo reanimar
     if(current === next){
-      playAnimations(next);
       return;
     }
 
-    // transición normal
+    // salida
     current.classList.remove('visible');
 
     setTimeout(()=>{
       current.classList.remove('active');
       next.classList.add('active');
       next.classList.add('visible');
-      playAnimations(next);
+
+      // entrada animada siempre
+      resetAndAnimate(next);
     },450);
   }
 
   // animación inicial
   document.addEventListener("DOMContentLoaded", ()=>{
-    playAnimations(document.getElementById('home'));
+    resetAndAnimate(document.getElementById('home'));
   });
 </script>
 

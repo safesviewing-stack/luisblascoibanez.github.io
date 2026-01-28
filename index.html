@@ -25,8 +25,19 @@ body.light{
   --muted:#666;
   --card:#fff;
 }
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
-body{background:var(--bg);color:var(--text);overflow:hidden}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Inter,sans-serif;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  overflow:hidden;
+}
 
 /* HEADER */
 header{
@@ -55,7 +66,10 @@ body:not(.home-active) .logo{
 }
 
 /* NAV */
-nav{display:flex;gap:28px}
+nav{
+  display:flex;
+  gap:28px;
+}
 nav button{
   background:none;
   border:none;
@@ -70,17 +84,27 @@ nav button{
 nav button::after{
   content:"";
   position:absolute;
-  left:0;bottom:0;
-  width:0;height:1px;
+  left:0;
+  bottom:0;
+  width:0;
+  height:1px;
   background:var(--accent);
   transition:.3s;
 }
 nav button:hover::after,
-nav button.active::after{width:100%}
-nav button.active{color:var(--text);font-weight:600}
+nav button.active::after{
+  width:100%;
+}
+nav button.active{
+  color:var(--text);
+  font-weight:600;
+}
 
 /* CONTROLS */
-.controls{display:flex;gap:8px}
+.controls{
+  display:flex;
+  gap:8px;
+}
 .controls button{
   border:1px solid var(--accent);
   background:none;
@@ -106,9 +130,11 @@ nav button.active{color:var(--text);font-weight:600}
   padding:60px 30px;
   display:none;
 }
-.view.active{display:block}
+.view.active{
+  display:block;
+}
 
-/* HOME BG */
+/* HOME BACKGROUND */
 #home::before{
   content:"";
   position:fixed;
@@ -120,15 +146,40 @@ nav button.active{color:var(--text);font-weight:600}
 }
 
 /* LAYOUT */
-.container{max-width:1100px;margin:auto;display:flex;flex-direction:column;gap:26px}
-.hero{text-align:center;margin-top:40px}
-.hero p{max-width:620px;margin:18px auto}
+.container{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:26px;
+}
+
+/* HERO (ajuste fino SIN huecos fantasma) */
+.hero{
+  text-align:center;
+  margin-top:40px;
+  gap:16px;
+}
+.hero p{
+  margin:0 auto;
+  max-width:620px;
+}
+
+/* TYPO */
 h1{font-size:40px}
 h2{font-size:26px}
-p{color:var(--muted);line-height:1.6;font-size:14px}
+p{
+  color:var(--muted);
+  line-height:1.6;
+  font-size:14px;
+}
 
 /* GRID */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:26px;
+}
 .project-btn{
   background:var(--card);
   border:none;
@@ -136,13 +187,33 @@ p{color:var(--muted);line-height:1.6;font-size:14px}
   overflow:hidden;
   cursor:pointer;
 }
-.project-btn img{width:100%;aspect-ratio:4/3;object-fit:cover}
-.project-btn span{padding:16px;font-weight:600;display:block}
-.card{background:var(--card);padding:24px;border-radius:16px}
+.project-btn img{
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:cover;
+}
+.project-btn span{
+  padding:16px;
+  font-weight:600;
+  display:block;
+}
+.card{
+  background:var(--card);
+  padding:24px;
+  border-radius:16px;
+}
 
 /* CV */
-.cv-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
-.cv-item{background:var(--card);padding:22px;border-radius:14px}
+.cv-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:26px;
+}
+.cv-item{
+  background:var(--card);
+  padding:22px;
+  border-radius:14px;
+}
 
 /* FOOTER */
 footer{
@@ -156,10 +227,20 @@ footer{
 
 /* MOBILE */
 @media(max-width:800px){
-  header{flex-direction:column;gap:10px}
-  nav{flex-wrap:wrap;justify-content:center}
-  .cv-grid{grid-template-columns:1fr}
-  h1{font-size:30px}
+  header{
+    flex-direction:column;
+    gap:10px;
+  }
+  nav{
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .cv-grid{
+    grid-template-columns:1fr;
+  }
+  h1{
+    font-size:30px;
+  }
 }
 </style>
 </head>
@@ -291,15 +372,15 @@ function setLang(l){
     document.getElementById("nav-"+k).innerText=d.nav[k];
   });
 
-  document.getElementById("hero-title").innerText=d.heroTitle;
-  document.getElementById("hero-sub").innerText=d.heroSub;
-  document.getElementById("about-title").innerText=d.aboutTitle;
-  document.getElementById("about-text").innerText=d.aboutText;
-  document.getElementById("projects-title").innerText=d.projectsTitle;
-  document.getElementById("skills-title").innerText=d.skillsTitle;
-  document.getElementById("cv-title").innerText=d.cvTitle;
-  document.getElementById("contact-title").innerText=d.contactTitle;
-  document.getElementById("footer-text").innerText=d.footer;
+  hero-title.innerText=d.heroTitle;
+  hero-sub.innerText=d.heroSub;
+  about-title.innerText=d.aboutTitle;
+  about-text.innerText=d.aboutText;
+  projects-title.innerText=d.projectsTitle;
+  skills-title.innerText=d.skillsTitle;
+  cv-title.innerText=d.cvTitle;
+  contact-title.innerText=d.contactTitle;
+  footer-text.innerText=d.footer;
 
   const pgrid=document.getElementById("projects-grid");
   pgrid.innerHTML="";

@@ -14,12 +14,6 @@
   --card:#111;
   --accent:#00f2ff;
 }
-body.light{
-  --bg:#f5f5f7;
-  --text:#111;
-  --muted:#666;
-  --card:#ffffff;
-}
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
 body{background:var(--bg);color:var(--text);overflow:hidden;transition:.4s}
 
@@ -146,7 +140,7 @@ nav a.active{color:var(--text);font-weight:600}
 }
 @keyframes staggerIn{to{opacity:1;transform:translateY(0)}}
 
-/* LANGUAGE */
+/* LANGUAGE TRANSITION */
 .lang-wrapper.hide{opacity:0;transform:scale(.96);transition:.25s}
 .lang-wrapper.show{opacity:1;transform:scale(1);transition:.35s}
 
@@ -225,12 +219,12 @@ footer{
     <a id="nav-contact" onclick="show('contact')"></a>
   </nav>
   <div class="controls">
-    <button onclick="toggleTheme()">🌙</button>
     <button id="btn-es" onclick="setLang('es')">ES</button>
     <button id="btn-en" onclick="setLang('en')">EN</button>
   </div>
 </header>
 
+<!-- HOME -->
 <div id="home" class="view active">
   <div class="container hero lang-wrapper show">
     <h1 id="hero-title" class="title-framer"></h1>
@@ -241,6 +235,7 @@ footer{
   </div>
 </div>
 
+<!-- ABOUT -->
 <div id="about" class="view">
   <div class="container lang-wrapper show">
     <h2 id="about-title" class="title-framer"></h2>
@@ -248,6 +243,7 @@ footer{
   </div>
 </div>
 
+<!-- PROJECTS -->
 <div id="projects" class="view">
   <div class="container lang-wrapper show">
     <h2 id="projects-title" class="title-framer"></h2>
@@ -255,6 +251,7 @@ footer{
   </div>
 </div>
 
+<!-- SKILLS -->
 <div id="skills" class="view">
   <div class="container lang-wrapper show">
     <h2 id="skills-title" class="title-framer"></h2>
@@ -262,6 +259,7 @@ footer{
   </div>
 </div>
 
+<!-- CV -->
 <div id="cv" class="view">
   <div class="container lang-wrapper show">
     <h2 id="cv-title" class="title-framer"></h2>
@@ -274,6 +272,7 @@ footer{
   </div>
 </div>
 
+<!-- CONTACT -->
 <div id="contact" class="view">
   <div class="container lang-wrapper show">
     <h2 id="contact-title" class="title-framer"></h2>
@@ -287,53 +286,116 @@ footer{
 <footer id="footer-text"></footer>
 
 <script>
-const data = { /* EXACTAMENTE el mismo objeto de idiomas que ya tenías */ };
+const data={
+ es:{
+  nav:{home:"Inicio",about:"Perfil",projects:"Proyectos",skills:"Habilidades",cv:"CV",contact:"Contacto"},
+  heroTitle:"Diseño Industrial y Desarrollo de Producto",
+  heroSub:"Perfil técnico-creativo orientado a empresas de diseño industrial.",
+  heroBtn:"Ver proyectos",
+  aboutTitle:"Sobre mí",
+  aboutText:"Diseñador industrial con perfil técnico y creativo.",
+  projectsTitle:"Proyectos",
+  projects:[
+   {title:"Mecanismo radial sincronizado",img:"project1.jpg"},
+   {title:"Producto eléctrico industrial",img:"project2.jpg"},
+   {title:"Optimización mecánica",img:"project3.jpg"},
+   {title:"Prototipos impresión 3D",img:"project4.jpg"}
+  ],
+  skillsTitle:"Habilidades técnicas",
+  skills:["SolidWorks","Fusion 360","AutoCAD","Inventor","Rhinoceros","GitHub","Photoshop"],
+  cvTitle:"Currículum Vitae",
+  contactTitle:"Contacto",
+  footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"
+ },
+ en:{
+  nav:{home:"Home",about:"Profile",projects:"Projects",skills:"Skills",cv:"CV",contact:"Contact"},
+  heroTitle:"Industrial Design & Product Development",
+  heroSub:"Technical and creative profile for industrial design companies.",
+  heroBtn:"View projects",
+  aboutTitle:"About me",
+  aboutText:"Industrial designer with technical and creative focus.",
+  projectsTitle:"Projects",
+  projects:[
+   {title:"Radial synchronized mechanism",img:"project1.jpg"},
+   {title:"Industrial electrical product",img:"project2.jpg"},
+   {title:"Mechanical optimization",img:"project3.jpg"},
+   {title:"3D printed prototypes",img:"project4.jpg"}
+  ],
+  skillsTitle:"Technical skills",
+  skills:["SolidWorks","Fusion 360","AutoCAD","Inventor","Rhinoceros","GitHub","Photoshop"],
+  cvTitle:"Curriculum Vitae",
+  contactTitle:"Contact",
+  footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineering"
+ }
+};
 
 function animateLangTransition(cb){
-  document.querySelectorAll(".lang-wrapper").forEach(w=>w.classList.add("hide"));
-  setTimeout(()=>{
-    cb();
-    document.querySelectorAll(".lang-wrapper").forEach(w=>{
-      w.classList.remove("hide");
-      w.classList.add("show");
-    });
-  },280);
+ document.querySelectorAll(".lang-wrapper").forEach(w=>w.classList.add("hide"));
+ setTimeout(()=>{
+   cb();
+   document.querySelectorAll(".lang-wrapper").forEach(w=>{
+     w.classList.remove("hide");
+     w.classList.add("show");
+   });
+ },280);
+}
+
+function restartAnimations(){
+ document.querySelectorAll(".title-framer,.content-framer").forEach(el=>{
+   el.style.animation="none";
+   el.offsetHeight;
+   el.style.animation="";
+ });
 }
 
 function setLang(l){
-  animateLangTransition(()=>applyLang(l));
+ animateLangTransition(()=>applyLang(l));
 }
 
 function applyLang(l){
-  document.getElementById("btn-es").classList.toggle("active",l==="es");
-  document.getElementById("btn-en").classList.toggle("active",l==="en");
-  const d=data[l];
-  Object.keys(d.nav).forEach(k=>document.getElementById("nav-"+k).innerText=d.nav[k]);
-  hero-title.innerText=d.heroTitle;
-  hero-sub.innerText=d.heroSub;
-  hero-btn.innerText=d.heroBtn;
-  about-title.innerText=d.aboutTitle;
-  about-text.innerText=d.aboutText;
-  projects-title.innerText=d.projectsTitle;
-  skills-title.innerText=d.skillsTitle;
-  cv-title.innerText=d.cvTitle;
-  contact-title.innerText=d.contactTitle;
-  footer-text.innerText=d.footer;
+ document.getElementById("btn-es").classList.toggle("active",l==="es");
+ document.getElementById("btn-en").classList.toggle("active",l==="en");
+
+ const d=data[l];
+ Object.keys(d.nav).forEach(k=>document.getElementById("nav-"+k).innerText=d.nav[k]);
+ document.getElementById("hero-title").innerText=d.heroTitle;
+ document.getElementById("hero-sub").innerText=d.heroSub;
+ document.getElementById("hero-btn").innerText=d.heroBtn;
+ document.getElementById("about-title").innerText=d.aboutTitle;
+ document.getElementById("about-text").innerText=d.aboutText;
+ document.getElementById("projects-title").innerText=d.projectsTitle;
+ document.getElementById("skills-title").innerText=d.skillsTitle;
+ document.getElementById("cv-title").innerText=d.cvTitle;
+ document.getElementById("contact-title").innerText=d.contactTitle;
+ document.getElementById("footer-text").innerText=d.footer;
+
+ const pgrid=document.getElementById("projects-grid");
+ pgrid.innerHTML="";
+ d.projects.forEach((p,i)=>pgrid.innerHTML+=`
+  <button class="project-btn stagger-item" style="animation-delay:${i*0.08}s">
+    <img src="${p.img}">
+    <span>${p.title}</span>
+  </button>`);
+
+ const sgrid=document.getElementById("skills-grid");
+ sgrid.innerHTML="";
+ d.skills.forEach((s,i)=>sgrid.innerHTML+=`
+  <div class="cv-item stagger-item" style="animation-delay:${i*0.08}s">${s}</div>`);
+
+ restartAnimations();
 }
 
 function show(id){
-  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-  document.querySelectorAll("nav a").forEach(a=>a.classList.remove("active"));
-  document.getElementById("nav-"+id).classList.add("active");
-  document.body.classList.toggle("home-active",id==="home");
+ document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+ document.querySelectorAll("nav a").forEach(a=>a.classList.remove("active"));
+ document.getElementById("nav-"+id).classList.add("active");
+ document.body.classList.toggle("home-active",id==="home");
 }
 
-function toggleTheme(){document.body.classList.toggle("light")}
-
 window.addEventListener("load",()=>{
-  applyLang("es");
-  document.getElementById("nav-home").classList.add("active");
+ applyLang("es");
+ document.getElementById("nav-home").classList.add("active");
 });
 </script>
 

@@ -26,7 +26,7 @@
     body{
       background:var(--bg);
       color:var(--text);
-      overflow:hidden; /* ❌ sin scroll */
+      overflow:hidden;
     }
 
     /* ================= HEADER ================= */
@@ -86,19 +86,24 @@
       position:absolute;
       inset:0;
       display:none;
+      opacity:0;
+      transition:opacity .45s ease;
     }
 
     .section.active{
       display:block;
     }
 
+    .section.visible{
+      opacity:1;
+    }
+
     /* ================= HOME ================= */
     #home{
       height:100vh;
       display:flex;
-      align-items:center; /* solo vertical */
+      align-items:center;
       position:relative;
-      overflow:hidden;
     }
 
     #home::before{
@@ -113,8 +118,7 @@
 
     .home-content{
       max-width:600px;
-      margin-left:clamp(20px, 6vw, 60px);
-      padding-right:40px;
+      margin-left:clamp(80px, 10vw, 140px); /* 👉 MÁS A LA DERECHA */
       display:flex;
       flex-direction:column;
       gap:26px;
@@ -143,7 +147,7 @@
       align-self:flex-start;
     }
 
-    /* ================= OTHER SECTIONS ================= */
+    /* ================= OTHER PAGES ================= */
     .page{
       max-width:1200px;
       margin:auto;
@@ -171,13 +175,17 @@
     .fade-up{
       opacity:0;
       transform:translateY(20px);
-      transition:.6s cubic-bezier(.4,0,.2,1);
+      transition:opacity .7s cubic-bezier(.4,0,.2,1),
+                 transform .7s cubic-bezier(.4,0,.2,1);
     }
 
     .fade-up.visible{
       opacity:1;
       transform:translateY(0);
     }
+
+    .delay-1{ transition-delay:.2s }
+    .delay-2{ transition-delay:.4s }
 
     /* ================= MOBILE ================= */
     @media(max-width:768px){
@@ -196,24 +204,25 @@
 <header>
   <div class="logo">PORTFOLIO</div>
   <nav>
-    <a onclick="showSection('home')" class="active">Inicio</a>
-    <a onclick="showSection('projects')">Portfolio</a>
-    <a onclick="showSection('skills')">Habilidades</a>
-    <a onclick="showSection('contact')">Contacto</a>
+    <a onclick="changeSection('home')" class="active">Inicio</a>
+    <a onclick="changeSection('projects')">Portfolio</a>
+    <a onclick="changeSection('skills')">Habilidades</a>
+    <a onclick="changeSection('contact')">Contacto</a>
   </nav>
 </header>
 
 <!-- HOME -->
-<section id="home" class="section active">
-  <div class="home-content fade-up visible">
-    <h1>
+<section id="home" class="section active visible">
+  <div class="home-content">
+    <h1 class="fade-up visible">
       Diseño Industrial<br>
       y Desarrollo de Producto
     </h1>
-    <p>
+    <p class="fade-up delay-1 visible">
       Perfil técnico y creativo enfocado en producto, detalle y funcionalidad.
     </p>
-    <button class="btn" onclick="showSection('projects')">
+    <button class="btn fade-up delay-2 visible"
+      onclick="changeSection('projects')">
       Ver proyectos
     </button>
   </div>
@@ -252,26 +261,35 @@
 </section>
 
 <script>
-  function showSection(id){
-    document.querySelectorAll('.section').forEach(s=>{
-      s.classList.remove('active');
-    });
+  function changeSection(id){
+    const current = document.querySelector('.section.active');
+    const next = document.getElementById(id);
 
-    document.querySelectorAll('nav a').forEach(a=>{
-      a.classList.remove('active');
-    });
+    if(current === next) return;
 
-    document.getElementById(id).classList.add('active');
-
+    // nav active
+    document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
     [...document.querySelectorAll('nav a')]
       .find(a => a.textContent.toLowerCase().includes(
         id === 'home' ? 'inicio' : id
       ))?.classList.add('active');
 
-    document.querySelectorAll('.fade-up').forEach(el=>{
-      el.classList.remove('visible');
-      setTimeout(()=>el.classList.add('visible'),60);
-    });
+    // fade out current
+    current.classList.remove('visible');
+
+    setTimeout(()=>{
+      current.classList.remove('active');
+
+      next.classList.add('active');
+      requestAnimationFrame(()=>{
+        next.classList.add('visible');
+
+        next.querySelectorAll('.fade-up').forEach(el=>{
+          el.classList.remove('visible');
+          setTimeout(()=>el.classList.add('visible'),50);
+        });
+      });
+    },450);
   }
 </script>
 

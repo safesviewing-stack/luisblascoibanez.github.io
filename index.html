@@ -35,11 +35,28 @@
       top:0;
       width:100%;
       padding:36px 40px;
-      display:flex;
-      justify-content:center; /* CENTRADO */
-      align-items:center;
       z-index:1000;
       background:transparent;
+    }
+
+    /* CONTENEDOR HEADER */
+    .header-inner{
+      position:relative;
+      max-width:1400px;
+      margin:auto;
+      display:flex;
+      justify-content:center; /* menú al centro */
+      align-items:center;
+    }
+
+    /* LOGO A LA DERECHA */
+    .logo{
+      position:absolute;
+      right:40px; /* misma distancia que antes a la izquierda */
+      font-size:14px;
+      letter-spacing:.3em;
+      font-weight:600;
+      color:#fff;
     }
 
     nav{
@@ -53,8 +70,8 @@
       font-size:11px;
       letter-spacing:.18em;
       text-transform:uppercase;
-      position:relative;
       opacity:.85;
+      position:relative;
     }
 
     nav a::after{
@@ -81,7 +98,6 @@
     /* ================= HOME FULL SCREEN ================= */
     #home{
       height:100vh;
-      width:100%;
       display:flex;
       align-items:center;
       position:relative;
@@ -108,19 +124,17 @@
       display:flex;
       flex-direction:column;
       gap:26px;
-      align-items:flex-start;
     }
 
     h1{
       font-size:44px;
       font-weight:600;
-      color:#fff;
     }
 
     p{
       color:var(--muted);
-      line-height:1.7;
       font-size:14px;
+      line-height:1.7;
     }
 
     .btn{
@@ -150,7 +164,6 @@
     h2{
       font-size:28px;
       margin-bottom:20px;
-      color:#fff;
     }
 
     /* ================= GRID ================= */
@@ -166,7 +179,6 @@
       border-radius:18px;
       padding:24px;
       transition:.35s;
-      color:#fff;
     }
 
     .card:hover{
@@ -211,6 +223,10 @@
         padding:28px 22px;
       }
 
+      .logo{
+        right:22px;
+      }
+
       nav{
         gap:22px;
       }
@@ -222,7 +238,6 @@
       .home-content{
         margin-left:0;
         padding:0 24px;
-        max-width:100%;
       }
     }
   </style>
@@ -231,13 +246,17 @@
 <body>
 
 <header>
-  <nav>
-    <a href="#home" class="active">Inicio</a>
-    <a href="#cv">CV</a>
-    <a href="#skills">Habilidades</a>
-    <a href="#projects">Portfolio</a>
-    <a href="#contact">Contacto</a>
-  </nav>
+  <div class="header-inner">
+    <nav>
+      <a href="#home" class="active">Inicio</a>
+      <a href="#cv">CV</a>
+      <a href="#skills">Habilidades</a>
+      <a href="#projects">Portfolio</a>
+      <a href="#contact">Contacto</a>
+    </nav>
+
+    <div class="logo">PORTFOLIO</div>
+  </div>
 </header>
 
 <!-- HOME -->
@@ -260,8 +279,7 @@
 <section id="cv">
   <h2 class="fade-up">Currículum</h2>
   <p class="fade-up">
-    Formación en diseño industrial, experiencia en producto, mobiliario a medida
-    y prototipado.
+    Formación en diseño industrial, experiencia en producto y prototipado.
   </p>
 </section>
 

@@ -208,26 +208,9 @@ p{
   align-items:flex-start;
 }
 
-/* ===== PHOTO (ELEGANT REVEAL) ===== */
-.about-image{
-  width:335px;
-  overflow:hidden; /* máscara */
-}
-
 .about-image img{
-  width:100%;
+  width:335px;
   display:block;
-  opacity:0;
-  transform:translateY(28px);
-  animation:photoReveal 1.05s cubic-bezier(.22,.61,.36,1) forwards;
-  animation-delay:.45s;
-}
-
-@keyframes photoReveal{
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
 }
 
 /* ===== ANIMATIONS ===== */
@@ -241,6 +224,21 @@ p{
 
 @keyframes fadeUp{
   to{opacity:1;transform:translateY(0);}
+}
+
+/* ===== PHOTO ANIMATION ===== */
+.photo-in{
+  opacity:0;
+  transform:translateX(40px) scale(0.96);
+  animation:photoIn .9s cubic-bezier(.22,.61,.36,1) forwards;
+  animation-delay:.5s;
+}
+
+@keyframes photoIn{
+  to{
+    opacity:1;
+    transform:translateX(0) scale(1);
+  }
 }
 
 .btn{
@@ -318,7 +316,7 @@ footer{
         Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV, actualmente en mi último año. Vivo en Valencia y me considero una persona con una mente ecléctica y perfeccionista, siempre interesada en encontrar el equilibrio entre lo técnico y lo estético. Desde pequeño he tenido curiosidad por entender cómo funcionan las cosas, y mi formación profesional en el sector de la electricidad me permitió adquirir una base técnica sólida que hoy aplico al diseño y desarrollo de producto. Disfruto especialmente del proceso completo de diseño, desde la idea inicial hasta la definición técnica y el detalle final, y tengo una necesidad constante de estar creando y resolviendo. Si algo no me sale, no paro hasta encontrar la solución, porque para mí el proceso es tan importante como el resultado final. Como dato curioso, me interesa especialmente el campo de la impresión 3D, ya que me permite experimentar directamente con el diseño y admitir ideas de la manera más ágil y precisa posible.
       </p>
 
-      <div class="about-image">
+      <div class="about-image photo-in">
         <img src="foto.jpg" alt="Foto de Luis">
       </div>
     </div>
@@ -331,11 +329,11 @@ footer{
 
 <script>
 function resetAnimations(scope=document){
-  scope.querySelectorAll('.fade-up, .about-image img').forEach(el=>{
+  scope.querySelectorAll('.fade-up, .photo-in').forEach(el=>{
     const c = el.className;
-    el.style.animation = 'none';
+    el.className = c.replace(/fade-up|delay-1|delay-2|photo-in/g,'').trim();
     void el.offsetHeight;
-    el.style.animation = '';
+    el.className = c;
   });
 }
 

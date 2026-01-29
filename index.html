@@ -67,6 +67,13 @@ header{
   display:flex;
   align-items:center;
   z-index:1000;
+  opacity:0;
+  transform:translateY(-20px);
+  animation:headerIn 1s cubic-bezier(.4,0,.2,1) forwards;
+}
+
+@keyframes headerIn{
+  to{opacity:1;transform:translateY(0);}
 }
 
 .logo{
@@ -255,8 +262,8 @@ footer{
 
   opacity:0;
   transform:translateY(20px);
-  animation:footerIn .75s cubic-bezier(.4,0,.2,1) forwards;
-  animation-delay:.75s;
+  animation:footerIn 1s cubic-bezier(.4,0,.2,1) forwards;
+  animation-delay:1.2s;
 }
 @keyframes footerIn{
   to{opacity:1;transform:translateY(0);}
@@ -366,6 +373,11 @@ function resetAnimations(scope=document){
     el.className = c.replace(/fade-up|delay-1|delay-2|photo-in/g,'').trim();
     void el.offsetHeight; // force reflow
     el.className = c;
+  });
+  scope.querySelectorAll('header, footer').forEach(el => {
+    el.style.animation = 'none'; // remove current animation
+    void el.offsetHeight; // force reflow
+    el.style.animation = ''; // reapply animation
   });
 }
 

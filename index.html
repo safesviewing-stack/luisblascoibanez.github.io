@@ -181,7 +181,7 @@
       align-self:flex-start;
     }
 
-    /* ================= ENTRANCE ANIMATION ================= */
+    /* ================= ANIMACIÓN DE ENTRADA ================= */
     .fade-up{
       opacity:0;
       transform:translateY(20px);
@@ -220,12 +220,12 @@
   <div class="logo">L · BIB</div>
 
   <nav>
-    <a class="active">Inicio</a>
-    <a>Sobre mí</a>
-    <a>Portfolio</a>
-    <a>CV</a>
-    <a>Habilidades</a>
-    <a>Contacto</a>
+    <a class="active" data-es="Inicio" data-en="Home">Inicio</a>
+    <a data-es="Sobre mí" data-en="About me">Sobre mí</a>
+    <a data-es="Portfolio" data-en="Portfolio">Portfolio</a>
+    <a data-es="CV" data-en="CV">CV</a>
+    <a data-es="Habilidades" data-en="Skills">Habilidades</a>
+    <a data-es="Contacto" data-en="Contact">Contacto</a>
   </nav>
 
   <div class="lang-switch">
@@ -256,7 +256,9 @@
   </div>
 </section>
 
-<footer>
+<footer class="fade-up delay-2"
+  data-es="© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"
+  data-en="© 2026 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineering">
   © 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial
 </footer>
 

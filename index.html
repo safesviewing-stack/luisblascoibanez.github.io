@@ -67,6 +67,7 @@
       position:relative;
       padding-bottom:6px;
       color:#fff;
+      cursor:pointer;
     }
 
     nav a::after{
@@ -180,7 +181,7 @@
       align-self:flex-start;
     }
 
-    /* ================= ANIMACIÓN DE ENTRADA ================= */
+    /* ================= ENTRANCE ANIMATION ================= */
     .fade-up{
       opacity:0;
       transform:translateY(20px);
@@ -195,6 +196,20 @@
         opacity:1;
         transform:translateY(0);
       }
+    }
+
+    /* ================= FOOTER ================= */
+    footer{
+      position:fixed;
+      bottom:0;
+      width:100%;
+      padding:18px 40px;
+      text-align:center;
+      font-size:11px;
+      letter-spacing:.08em;
+      color:#9a9a9a;
+      background:transparent;
+      pointer-events:none;
     }
   </style>
 </head>
@@ -241,19 +256,17 @@
   </div>
 </section>
 
+<footer>
+  © 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial
+</footer>
+
 <script>
   function restartAnimations(){
     document.querySelectorAll('.fade-up').forEach(el=>{
-      el.classList.remove('fade-up','delay-1','delay-2');
+      const classes = el.className;
+      el.className = el.className.replace(/fade-up|delay-1|delay-2/g,'').trim();
       void el.offsetHeight;
-      el.classList.add('fade-up');
-    });
-
-    document.querySelectorAll('.delay-1').forEach(el=>{
-      el.classList.add('delay-1');
-    });
-    document.querySelectorAll('.delay-2').forEach(el=>{
-      el.classList.add('delay-2');
+      el.className = classes;
     });
   }
 

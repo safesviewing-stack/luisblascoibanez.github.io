@@ -39,7 +39,10 @@ body{
   animation:bgFadeIn 1.2s ease forwards;
   pointer-events:none;
 }
-@keyframes bgFadeIn{ to{opacity:1;} }
+
+@keyframes bgFadeIn{
+  to{ opacity:1; }
+}
 
 /* ============ HEADER ============ */
 header{
@@ -60,8 +63,9 @@ header{
   transform:translateX(-32px);
   animation:logoIn .75s cubic-bezier(.4,0,.2,1) forwards;
 }
+
 @keyframes logoIn{
-  to{opacity:1;transform:translateX(0);}
+  to{ opacity:1; transform:translateX(0); }
 }
 
 nav{
@@ -84,15 +88,15 @@ nav a{
   animation:navIn .45s ease forwards;
 }
 
-nav a:nth-child(1){animation-delay:.2s}
-nav a:nth-child(2){animation-delay:.28s}
-nav a:nth-child(3){animation-delay:.36s}
-nav a:nth-child(4){animation-delay:.44s}
-nav a:nth-child(5){animation-delay:.52s}
-nav a:nth-child(6){animation-delay:.6s}
+nav a:nth-child(1){ animation-delay:.20s }
+nav a:nth-child(2){ animation-delay:.28s }
+nav a:nth-child(3){ animation-delay:.36s }
+nav a:nth-child(4){ animation-delay:.44s }
+nav a:nth-child(5){ animation-delay:.52s }
+nav a:nth-child(6){ animation-delay:.60s }
 
 @keyframes navIn{
-  to{opacity:1;transform:translateY(0);}
+  to{ opacity:1; transform:translateY(0); }
 }
 
 nav a::after{
@@ -108,9 +112,11 @@ nav a::after{
   transition:.25s;
 }
 
-nav a.active::after{ transform:scaleX(1); }
+nav a.active::after{
+  transform:scaleX(1);
+}
 
-/* ============ LANG ============ */
+/* ============ LANGUAGE ============ */
 .lang-switch{
   position:absolute;
   right:40px;
@@ -121,7 +127,10 @@ nav a.active::after{ transform:scaleX(1); }
   opacity:0;
   animation:langFade .6s ease .6s forwards;
 }
-@keyframes langFade{ to{opacity:1;} }
+
+@keyframes langFade{
+  to{ opacity:1; }
+}
 
 .lang-switch button{
   background:none;
@@ -152,6 +161,7 @@ nav a.active::after{ transform:scaleX(1); }
 .lang-switch button.active{
   opacity:1;
 }
+
 .lang-switch button.active::after{
   transform:scaleX(1);
 }
@@ -163,24 +173,37 @@ nav a.active::after{ transform:scaleX(1); }
   display:none;
   align-items:center;
 }
-.section.active{ display:flex; }
+
+.section.active{
+  display:flex;
+}
 
 .content{
-  max-width:700px;
+  max-width:720px;
   margin-left:clamp(120px,16vw,240px);
   display:flex;
   flex-direction:column;
-  gap:24px;
+  gap:26px;
 }
 
 /* ============ TEXT ============ */
-h1{ font-size:44px; font-weight:600; }
-h2{ font-size:28px; font-weight:600; }
+h1{
+  font-size:44px;
+  font-weight:600;
+
+  /* 🔒 ancho fijo para ES / EN */
+  max-width:32ch;
+}
+
+h2{
+  font-size:28px;
+  font-weight:600;
+}
 
 p{
   color:var(--muted);
-  line-height:1.7;
   font-size:14px;
+  line-height:1.7;
 }
 
 .fade-up{
@@ -188,11 +211,12 @@ p{
   transform:translateY(20px);
   animation:fadeUp .7s cubic-bezier(.4,0,.2,1) forwards;
 }
-.delay-1{animation-delay:.25s}
-.delay-2{animation-delay:.45s}
+
+.delay-1{ animation-delay:.25s }
+.delay-2{ animation-delay:.45s }
 
 @keyframes fadeUp{
-  to{opacity:1;transform:translateY(0);}
+  to{ opacity:1; transform:translateY(0); }
 }
 
 .btn{
@@ -244,6 +268,7 @@ footer{
   </div>
 </header>
 
+<!-- HOME -->
 <section id="home" class="section active">
   <div class="content">
     <h1 class="fade-up"
@@ -251,11 +276,13 @@ footer{
       data-en="Industrial Design and Product Development">
       Diseño Industrial<br>y Desarrollo de Producto
     </h1>
+
     <p class="fade-up delay-1"
       data-es="Perfil técnico y creativo enfocado en producto."
       data-en="Technical and creative profile focused on product design.">
       Perfil técnico y creativo enfocado en producto.
     </p>
+
     <button class="btn fade-up delay-2"
       data-es="Ver proyectos"
       data-en="View projects"
@@ -265,13 +292,17 @@ footer{
   </div>
 </section>
 
+<!-- ABOUT -->
 <section id="about" class="section">
   <div class="content">
     <h2 class="fade-up" data-es="Sobre mí" data-en="About me">Sobre mí</h2>
-    <p class="fade-up delay-1">Diseñadora industrial con perfil técnico y creativo.</p>
+    <p class="fade-up delay-1">
+      Diseñadora industrial con perfil técnico y creativo.
+    </p>
   </div>
 </section>
 
+<!-- PORTFOLIO -->
 <section id="portfolio" class="section">
   <div class="content">
     <h2 class="fade-up">Portfolio</h2>
@@ -279,6 +310,7 @@ footer{
   </div>
 </section>
 
+<!-- CV -->
 <section id="cv" class="section">
   <div class="content">
     <h2 class="fade-up">CV</h2>
@@ -286,6 +318,7 @@ footer{
   </div>
 </section>
 
+<!-- SKILLS -->
 <section id="skills" class="section">
   <div class="content">
     <h2 class="fade-up">Habilidades</h2>
@@ -293,6 +326,7 @@ footer{
   </div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact" class="section">
   <div class="content">
     <h2 class="fade-up">Contacto</h2>
@@ -352,8 +386,8 @@ function setLanguage(lang){
     el.innerHTML=el.dataset[lang];
   });
 
-  resetAnimations(document);          // 🔥 RESET GLOBAL
-  restartHeaderAnimations();          // 🔥 HEADER + LOGO
+  resetAnimations(document);
+  restartHeaderAnimations();
 }
 </script>
 

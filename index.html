@@ -52,6 +52,7 @@
       to{ opacity:1; transform:translateX(0); }
     }
 
+    /* ================= NAV ================= */
     nav{
       position:absolute;
       left:50%;
@@ -68,6 +69,25 @@
       padding-bottom:6px;
       color:#fff;
       cursor:pointer;
+
+      /* animación inicial */
+      opacity:0;
+      transform:translateY(-10px);
+      animation:navIn .45s ease forwards;
+    }
+
+    nav a:nth-child(1){ animation-delay:.20s }
+    nav a:nth-child(2){ animation-delay:.28s }
+    nav a:nth-child(3){ animation-delay:.36s }
+    nav a:nth-child(4){ animation-delay:.44s }
+    nav a:nth-child(5){ animation-delay:.52s }
+    nav a:nth-child(6){ animation-delay:.60s }
+
+    @keyframes navIn{
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
     }
 
     nav a::after{
@@ -181,7 +201,7 @@
       align-self:flex-start;
     }
 
-    /* ================= ANIMACIÓN DE ENTRADA ================= */
+    /* ================= ENTRANCE ANIMATION ================= */
     .fade-up{
       opacity:0;
       transform:translateY(20px);
@@ -265,10 +285,10 @@
 <script>
   function restartAnimations(){
     document.querySelectorAll('.fade-up').forEach(el=>{
-      const classes = el.className;
-      el.className = el.className.replace(/fade-up|delay-1|delay-2/g,'').trim();
+      const original = el.className;
+      el.className = original.replace(/fade-up|delay-1|delay-2/g,'').trim();
       void el.offsetHeight;
-      el.className = classes;
+      el.className = original;
     });
   }
 

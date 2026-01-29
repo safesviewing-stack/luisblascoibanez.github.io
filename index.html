@@ -82,6 +82,15 @@ nav a{
   animation:navIn .45s ease forwards;
 }
 
+nav a:nth-child(1){animation-delay:.20s}
+nav a:nth-child(2){animation-delay:.28s}
+nav a:nth-child(3){animation-delay:.36s}
+nav a:nth-child(4){animation-delay:.44s}
+nav a:nth-child(5){animation-delay:.52s}
+nav a:nth-child(6){animation-delay:.60s}
+
+@keyframes navIn{ to{opacity:1;transform:translateY(0);} }
+
 nav a::after{
   content:"";
   position:absolute;
@@ -100,7 +109,51 @@ nav a:hover::after{
   transform:scaleX(1);
 }
 
-@keyframes navIn{ to{opacity:1;transform:translateY(0);} }
+/* ===== LANGUAGE ===== */
+.lang-switch{
+  position:absolute;
+  right:40px;
+  top:50%;
+  transform:translateY(-50%);
+  display:flex;
+  gap:20px;
+  opacity:0;
+  animation:langFade .6s ease .6s forwards;
+}
+@keyframes langFade{ to{opacity:1;} }
+
+.lang-switch button{
+  background:none;
+  border:none;
+  color:#fff;
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  cursor:pointer;
+  position:relative;
+  padding-bottom:6px;
+  opacity:.6;
+}
+
+.lang-switch button::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:.18em;
+  bottom:0;
+  height:1px;
+  background:#fff;
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:.25s;
+}
+
+.lang-switch button.active{
+  opacity:1;
+}
+.lang-switch button.active::after{
+  transform:scaleX(1);
+}
 
 /* ===== SECTIONS ===== */
 .section{
@@ -141,28 +194,21 @@ p{
   line-height:1.8;
 }
 
-/* ===== ABOUT ===== */
 .about-text{
-  width:58ch;
-  max-width:58ch;
+  max-width:66ch;
   text-align:justify;
 }
 
+/* ===== ABOUT LAYOUT ===== */
 .about-layout{
   display:flex;
   gap:60px;
-  align-items:stretch;
-}
-
-.about-image{
-  display:flex;
+  align-items:flex-start;
 }
 
 .about-image img{
-  height:100%;
-  width:340px;
-  object-fit:cover;
-  border-radius:0;
+  width:280px;
+  border-radius:18px;
   display:block;
 }
 
@@ -177,6 +223,18 @@ p{
 
 @keyframes fadeUp{
   to{opacity:1;transform:translateY(0);}
+}
+
+.btn{
+  margin-top:12px;
+  padding:14px 34px;
+  border-radius:40px;
+  border:none;
+  background:#fff;
+  color:#000;
+  font-weight:600;
+  cursor:pointer;
+  align-self:flex-start;
 }
 
 /* ===== FOOTER ===== */
@@ -202,47 +260,122 @@ footer{
   <div class="logo">L · BIB</div>
 
   <nav>
-    <a class="active">Inicio</a>
-    <a>Sobre mí</a>
-    <a>Portfolio</a>
-    <a>CV</a>
-    <a>Habilidades</a>
-    <a>Contacto</a>
+    <a class="active" onclick="changeSection('home')" data-es="Inicio" data-en="Home">Inicio</a>
+    <a onclick="changeSection('about')" data-es="Sobre mí" data-en="About me">Sobre mí</a>
+    <a onclick="changeSection('portfolio')" data-es="Portfolio" data-en="Portfolio">Portfolio</a>
+    <a onclick="changeSection('cv')" data-es="CV" data-en="CV">CV</a>
+    <a onclick="changeSection('skills')" data-es="Habilidades" data-en="Skills">Habilidades</a>
+    <a onclick="changeSection('contact')" data-es="Contacto" data-en="Contact">Contacto</a>
   </nav>
+
+  <div class="lang-switch">
+    <button class="active" onclick="setLanguage('es')">ES</button>
+    <button onclick="setLanguage('en')">EN</button>
+  </div>
 </header>
 
-<section class="section active">
+<!-- HOME -->
+<section id="home" class="section active">
   <div class="content">
     <h1 class="fade-up">
-      <span class="title-line">Diseño Industrial</span>
-      <span class="title-line">y Desarrollo de Producto</span>
+      <span class="title-line" data-es="Diseño Industrial" data-en="Industrial Design">Diseño Industrial</span>
+      <span class="title-line" data-es="y Desarrollo de Producto" data-en="and Product Development">
+        y Desarrollo de Producto
+      </span>
     </h1>
 
-    <p class="fade-up delay-1">
+    <p class="fade-up delay-1"
+       data-es="Perfil técnico y creativo enfocado en producto."
+       data-en="Technical and creative profile focused on product design.">
       Perfil técnico y creativo enfocado en producto.
     </p>
+
+    <button class="btn fade-up delay-2"
+      data-es="Ver proyectos"
+      data-en="View projects"
+      onclick="changeSection('portfolio')">
+      Ver proyectos
+    </button>
   </div>
 </section>
 
-<section class="section">
+<!-- ABOUT -->
+<section id="about" class="section">
   <div class="content">
-    <h2 class="fade-up">Sobre mí</h2>
+    <h2 class="fade-up" data-es="Sobre mí" data-en="About me">Sobre mí</h2>
 
     <div class="about-layout">
-      <p class="fade-up delay-1 about-text">
-        Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV, actualmente en mi último año. Vivo en Valencia y me considero una persona con una mente ecléctica y perfeccionista, siempre interesada en encontrar el equilibrio entre lo técnico y lo estético. Desde pequeño he tenido curiosidad por entender cómo funcionan las cosas, y mi formación profesional en el sector de la electricidad me permitió adquirir una base técnica sólida que hoy aplico al diseño y desarrollo de producto.
+
+      <p class="fade-up delay-1 about-text"
+         data-es="Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV, actualmente en mi último año. Vivo en Valencia y me considero una persona con una mente ecléctica y perfeccionista, siempre interesada en encontrar el equilibrio entre lo técnico y lo estético. Desde pequeño he tenido curiosidad por entender cómo funcionan las cosas, y mi formación profesional en el sector de la electricidad me permitió adquirir una base técnica sólida que hoy aplico al diseño y desarrollo de producto. Disfruto especialmente del proceso completo de diseño, desde la idea inicial hasta la definición técnica y el detalle final, y tengo una necesidad constante de estar creando y resolviendo. Si algo no me sale, no paro hasta encontrar la solución, porque para mí el proceso es tan importante como el resultado final. Como dato curioso, me interesa especialmente el campo de la impresión 3D, tanto como herramienta de prototipado como por su potencial en la experimentación y el desarrollo de producto."
+         data-en="Hi, I’m Luis, I’m 24 years old and a final-year Industrial Design student at UPV. I’m based in Valencia and I consider myself an eclectic and perfectionist person, always interested in finding a balance between technical precision and aesthetics. From an early age, I’ve been curious about how things work, and my vocational training in the electrical sector gave me a solid technical foundation that I now apply to product design and development. I particularly enjoy the complete design process, from the initial idea to the technical definition and final detailing, and I have a constant need to stay active and problem-solving. If something doesn’t work, I don’t stop until I find the right solution, because for me the process is just as important as the final result. As a fun fact, I’m especially interested in the field of 3D printing, both as a prototyping tool and for its potential in product experimentation and development.">
+        Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV, actualmente en mi último año. Vivo en Valencia y me considero una persona con una mente ecléctica y perfeccionista, siempre interesada en encontrar el equilibrio entre lo técnico y lo estético. Desde pequeño he tenido curiosidad por entender cómo funcionan las cosas, y mi formación profesional en el sector de la electricidad me permitió adquirir una base técnica sólida que hoy aplico al diseño y desarrollo de producto. Disfruto especialmente del proceso completo de diseño, desde la idea inicial hasta la definición técnica y el detalle final, y tengo una necesidad constante de estar creando y resolviendo. Si algo no me sale, no paro hasta encontrar la solución, porque para mí el proceso es tan importante como el resultado final. Como dato curioso, me interesa especialmente el campo de la impresión 3D, tanto como herramienta de prototipado como por su potencial en la experimentación y el desarrollo de producto.
       </p>
 
       <div class="about-image fade-up delay-2">
         <img src="foto.jpg" alt="Foto de Luis">
       </div>
+
     </div>
   </div>
 </section>
 
-<footer>
+<footer
+  data-es="© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"
+  data-en="© 2026 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineering">
   © 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial
 </footer>
+
+<script>
+let currentLang='es';
+
+function resetAnimations(scope=document){
+  scope.querySelectorAll('.fade-up').forEach(el=>{
+    const c = el.className;
+    el.className = c.replace(/fade-up|delay-1|delay-2/g,'').trim();
+    void el.offsetHeight;
+    el.className = c;
+  });
+}
+
+function resetHeaderAnimations(){
+  const logo = document.querySelector('.logo');
+  const navItems = document.querySelectorAll('nav a');
+  const lang = document.querySelector('.lang-switch');
+
+  [logo, lang, ...navItems].forEach(el=>{
+    el.style.animation='none';
+    void el.offsetHeight;
+    el.style.animation='';
+  });
+}
+
+function changeSection(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+
+  resetAnimations(document.getElementById(id));
+  resetHeaderAnimations();
+}
+
+function setLanguage(lang){
+  if(lang===currentLang) return;
+  currentLang=lang;
+
+  document.querySelectorAll('.lang-switch button').forEach(b=>b.classList.remove('active'));
+  document.querySelector(`.lang-switch button[onclick*="${lang}"]`).classList.add('active');
+
+  document.querySelectorAll('[data-es]').forEach(el=>{
+    el.innerHTML = el.dataset[lang];
+  });
+
+  resetAnimations(document);
+  resetHeaderAnimations();
+}
+</script>
 
 </body>
 </html>

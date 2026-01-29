@@ -50,10 +50,7 @@
     }
 
     @keyframes logoIn{
-      to{
-        opacity:1;
-        transform:translateX(0);
-      }
+      to{ opacity:1; transform:translateX(0); }
     }
 
     /* ================= NAV ================= */
@@ -119,6 +116,12 @@
       transform:translateY(-50%);
       display:flex;
       gap:20px;
+      opacity:0;
+      animation:langFade .6s ease .6s forwards;
+    }
+
+    @keyframes langFade{
+      to{ opacity:1; }
     }
 
     .lang-switch button{
@@ -129,19 +132,7 @@
       letter-spacing:.18em;
       text-transform:uppercase;
       cursor:pointer;
-      opacity:0;
-      transform:translateY(-8px);
-      animation:langIn .4s ease forwards;
-    }
-
-    .lang-switch button:nth-child(1){ animation-delay:.55s }
-    .lang-switch button:nth-child(2){ animation-delay:.63s }
-
-    @keyframes langIn{
-      to{
-        opacity:.6;
-        transform:translateY(0);
-      }
+      opacity:.6;
     }
 
     .lang-switch button.active{

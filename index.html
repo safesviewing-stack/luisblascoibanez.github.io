@@ -142,7 +142,7 @@ nav a:hover::after{
   display:flex;
   gap:20px;
   opacity:0;
-  animation:langFade .8s ease .8s forwards;
+  animation:langFade 0.8s ease .8s forwards;
 }
 @keyframes langFade{
   from{
@@ -283,7 +283,7 @@ footer{
   opacity:0;
   transform:translateY(24px);
   animation:btnIn 0.6s cubic-bezier(.4,0,.2,1) forwards;
-  animation-delay:0.9s; /* Reduced delay for faster appearance */
+  animation-delay:0.9s; /* Reduced delay */
 }
 
 @keyframes btnIn{
@@ -407,7 +407,15 @@ function resetAnimations(scope=document){
   const button = scope.querySelector('.btn');
   button.style.animation = 'none';
   void button.offsetHeight;
-  button.style.animation = `btnIn 0.6s cubic-bezier(.4,0,.2,1) forwards 0.8s`; // Reduced delay and duration
+  button.style.animation = `btnIn 0.6s cubic-bezier(.4,0,.2,1) forwards 0.8s`; // Reduced delay
+
+  // Reset language button animation (from left)
+  const langButtons = scope.querySelectorAll('.lang-switch button');
+  langButtons.forEach((btn, index) => {
+    btn.style.animation = 'none';
+    void btn.offsetHeight;
+    btn.style.animation = `langFade 0.8s ease forwards ${index * 0.1}s`; // Animation from left
+  });
 
   // Reset header animation
   scope.querySelectorAll('header').forEach(el => {

@@ -67,24 +67,17 @@ header{
   display:flex;
   align-items:center;
   z-index:1000;
-  opacity:0;
-  transform:translateY(-20px);
-  animation:headerIn 1s cubic-bezier(.4,0,.2,1) forwards;
-}
-
-@keyframes headerIn{
-  to{opacity:1;transform:translateY(0);}
+  opacity:1; /* Fix opacity */
+  transform:translateY(0); /* Fix transform */
 }
 
 .logo{
   font-size:16px;
   letter-spacing:.3em;
   font-weight:500;
-  opacity:0;
-  transform:translateX(-32px);
-  animation:logoIn .9s cubic-bezier(.4,0,.2,1) forwards;
+  opacity:1;
+  transform:translateX(0); /* Ensure the logo is always in place */
 }
-@keyframes logoIn{ to{opacity:1;transform:translateX(0);} }
 
 nav{
   position:absolute;

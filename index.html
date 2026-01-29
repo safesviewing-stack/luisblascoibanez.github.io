@@ -38,6 +38,7 @@
       z-index:1000;
     }
 
+    /* LOGO */
     .logo{
       font-size:16px;
       letter-spacing:.3em;
@@ -49,7 +50,10 @@
     }
 
     @keyframes logoIn{
-      to{ opacity:1; transform:translateX(0); }
+      to{
+        opacity:1;
+        transform:translateX(0);
+      }
     }
 
     /* ================= NAV ================= */
@@ -125,8 +129,6 @@
       letter-spacing:.18em;
       text-transform:uppercase;
       cursor:pointer;
-      position:relative;
-      padding-bottom:6px;
       opacity:.6;
     }
 
@@ -183,7 +185,7 @@
       align-self:flex-start;
     }
 
-    /* ================= ENTRANCE ANIMATION ================= */
+    /* ================= TEXT ANIMATION ================= */
     .fade-up{
       opacity:0;
       transform:translateY(20px);
@@ -284,6 +286,13 @@
     });
   }
 
+  function restartLogoAnimation(){
+    const logo = document.querySelector('.logo');
+    logo.style.animation = 'none';
+    void logo.offsetHeight;
+    logo.style.animation = '';
+  }
+
   function setLanguage(lang){
     if(lang === currentLang) return;
 
@@ -299,8 +308,9 @@
       el.innerHTML = el.dataset[lang];
     });
 
-    restartFadeAnimations();
+    restartLogoAnimation();
     restartNavAnimation();
+    restartFadeAnimations();
   }
 </script>
 

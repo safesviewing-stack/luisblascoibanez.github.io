@@ -289,15 +289,6 @@ footer{
 @keyframes btnIn{
   to{opacity:1;transform:translateY(0);}
 }
-
-/* ===== HIDE LOGO ON NON-HOME PAGES ===== */
-header .logo {
-  display: none; /* Hide logo by default */
-}
-#home header .logo {
-  display: block; /* Show logo only on the home page */
-}
-
 </style>
 </head>
 
@@ -307,7 +298,7 @@ header .logo {
 <div class="section-fade"></div>
 
 <header>
-  <div class="logo">L · BIB</div>
+  <div class="logo" id="logo-home">L · BIB</div>
 
   <nav>
     <a class="active" onclick="changeSection('home',this)" data-i18n="nav_home">Inicio</a>
@@ -457,7 +448,16 @@ function changeLang(lang){
 
 function changeSection(id, link){
   const current = document.querySelector('.section.active');
+  const logo = document.getElementById('logo-home');
+  
   if(current && current.id === id) return;
+
+  // Hide logo on all sections except home
+  if(id !== "home") {
+    logo.style.display = 'none';
+  } else {
+    logo.style.display = 'block';
+  }
 
   const fade=document.querySelector('.section-fade');
   fade.classList.remove('active');

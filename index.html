@@ -106,8 +106,8 @@
     /* ================= LANGUAGE SWITCH ================= */
     .lang-switch{
       position:fixed;
-      top:140px;              /* misma altura que h2 */
-      right:40px;             /* simétrico al header */
+      top:174px;              /* 🔥 EXACTAMENTE alineado con h2 */
+      right:40px;
       display:flex;
       gap:20px;
       z-index:900;
@@ -164,33 +164,11 @@
     .section.active{ display:block; }
     .section.visible{ opacity:1; }
 
-    /* ================= HOME ================= */
-    #home{
-      display:flex;
-      align-items:center;
-    }
-
-    #home::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      background:
-        linear-gradient(rgba(11,11,13,.75), rgba(11,11,13,.75)),
-        url("reloj1.jpg") center / cover no-repeat;
-      z-index:-1;
-    }
-
-    .home-content{
-      max-width:600px;
-      margin-left:clamp(120px, 16vw, 220px);
-      margin-top:40px;
-      display:flex;
-      flex-direction:column;
-      gap:26px;
-    }
-
-    h1{
-      font-size:44px;
+    /* ================= PAGE ================= */
+    .page{
+      max-width:1200px;
+      margin:auto;
+      padding:140px 40px 80px;
     }
 
     h2{
@@ -216,37 +194,6 @@
 
     @keyframes underline{
       to{ transform:scaleX(1); }
-    }
-
-    p{
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.7;
-    }
-
-    .btn{
-      margin-top:16px;
-      padding:14px 34px;
-      border-radius:40px;
-      border:none;
-      background:#fff;
-      color:#000;
-      font-weight:600;
-      cursor:pointer;
-      align-self:flex-start;
-    }
-
-    .fade-up{
-      opacity:0;
-      transform:translateY(20px);
-      animation:fadeUp .7s cubic-bezier(.4,0,.2,1) forwards;
-    }
-
-    .delay-1{ animation-delay:.25s }
-    .delay-2{ animation-delay:.45s }
-
-    @keyframes fadeUp{
-      to{ opacity:1; transform:translateY(0); }
     }
 
     /* ================= FOOTER ================= */
@@ -287,51 +234,14 @@
   </nav>
 </header>
 
-<!-- LANGUAGE SWITCH -->
 <div class="lang-switch">
-  <button class="active" onclick="setLanguage('es')">ES</button>
-  <button onclick="setLanguage('en')">EN</button>
+  <button class="active">ES</button>
+  <button>EN</button>
 </div>
-
-<section id="home" class="section active visible">
-  <div class="home-content">
-    <h1 class="fade-up"
-        data-es="Diseño Industrial y Desarrollo de Producto"
-        data-en="Industrial Design and Product Development">
-      Diseño Industrial<br>y Desarrollo de Producto
-    </h1>
-
-    <p class="fade-up delay-1"
-       data-es="Perfil técnico y creativo enfocado en producto."
-       data-en="Technical and creative profile focused on product design.">
-      Perfil técnico y creativo enfocado en producto.
-    </p>
-
-    <button class="btn fade-up delay-2"
-      data-es="Ver proyectos"
-      data-en="View projects">
-      Ver proyectos
-    </button>
-  </div>
-</section>
 
 <footer>
   © 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial
 </footer>
-
-<script>
-  function setLanguage(lang){
-    document.querySelectorAll('.lang-switch button')
-      .forEach(b => b.classList.remove('active'));
-
-    document.querySelector(`.lang-switch button[onclick*="${lang}"]`)
-      .classList.add('active');
-
-    document.querySelectorAll('[data-es]').forEach(el=>{
-      el.innerHTML = el.dataset[lang];
-    });
-  }
-</script>
 
 </body>
 </html>

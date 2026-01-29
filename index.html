@@ -40,9 +40,7 @@ body{
   pointer-events:none;
 }
 
-@keyframes bgFadeIn{
-  to{ opacity:1; }
-}
+@keyframes bgFadeIn{ to{opacity:1;} }
 
 /* ============ HEADER ============ */
 header{
@@ -65,7 +63,7 @@ header{
 }
 
 @keyframes logoIn{
-  to{ opacity:1; transform:translateX(0); }
+  to{opacity:1;transform:translateX(0);}
 }
 
 nav{
@@ -88,15 +86,15 @@ nav a{
   animation:navIn .45s ease forwards;
 }
 
-nav a:nth-child(1){ animation-delay:.20s }
-nav a:nth-child(2){ animation-delay:.28s }
-nav a:nth-child(3){ animation-delay:.36s }
-nav a:nth-child(4){ animation-delay:.44s }
-nav a:nth-child(5){ animation-delay:.52s }
-nav a:nth-child(6){ animation-delay:.60s }
+nav a:nth-child(1){animation-delay:.20s}
+nav a:nth-child(2){animation-delay:.28s}
+nav a:nth-child(3){animation-delay:.36s}
+nav a:nth-child(4){animation-delay:.44s}
+nav a:nth-child(5){animation-delay:.52s}
+nav a:nth-child(6){animation-delay:.60s}
 
 @keyframes navIn{
-  to{ opacity:1; transform:translateY(0); }
+  to{opacity:1;transform:translateY(0);}
 }
 
 nav a::after{
@@ -112,9 +110,7 @@ nav a::after{
   transition:.25s;
 }
 
-nav a.active::after{
-  transform:scaleX(1);
-}
+nav a.active::after{ transform:scaleX(1); }
 
 /* ============ LANGUAGE ============ */
 .lang-switch{
@@ -128,9 +124,7 @@ nav a.active::after{
   animation:langFade .6s ease .6s forwards;
 }
 
-@keyframes langFade{
-  to{ opacity:1; }
-}
+@keyframes langFade{ to{opacity:1;} }
 
 .lang-switch button{
   background:none;
@@ -190,9 +184,11 @@ nav a.active::after{
 h1{
   font-size:44px;
   font-weight:600;
-
-  /* 🔒 ancho fijo para ES / EN */
   max-width:32ch;
+}
+
+.title-line{
+  display:block;
 }
 
 h2{
@@ -212,11 +208,11 @@ p{
   animation:fadeUp .7s cubic-bezier(.4,0,.2,1) forwards;
 }
 
-.delay-1{ animation-delay:.25s }
-.delay-2{ animation-delay:.45s }
+.delay-1{animation-delay:.25s}
+.delay-2{animation-delay:.45s}
 
 @keyframes fadeUp{
-  to{ opacity:1; transform:translateY(0); }
+  to{opacity:1;transform:translateY(0);}
 }
 
 .btn{
@@ -271,10 +267,17 @@ footer{
 <!-- HOME -->
 <section id="home" class="section active">
   <div class="content">
-    <h1 class="fade-up"
-      data-es="Diseño Industrial y Desarrollo de Producto"
-      data-en="Industrial Design and Product Development">
-      Diseño Industrial<br>y Desarrollo de Producto
+    <h1 class="fade-up">
+      <span class="title-line"
+        data-es="Diseño Industrial"
+        data-en="Industrial Design">
+        Diseño Industrial
+      </span>
+      <span class="title-line"
+        data-es="y Desarrollo de Producto"
+        data-en="and Product Development">
+        y Desarrollo de Producto
+      </span>
     </h1>
 
     <p class="fade-up delay-1"
@@ -341,14 +344,14 @@ footer{
 </footer>
 
 <script>
-let currentLang = 'es';
+let currentLang='es';
 
 function resetAnimations(scope=document){
   scope.querySelectorAll('.fade-up').forEach(el=>{
-    const c = el.className;
-    el.className = c.replace(/fade-up|delay-1|delay-2/g,'').trim();
+    const c=el.className;
+    el.className=c.replace(/fade-up|delay-1|delay-2/g,'').trim();
     void el.offsetHeight;
-    el.className = c;
+    el.className=c;
   });
 }
 
@@ -358,7 +361,6 @@ function restartHeaderAnimations(){
     void a.offsetHeight;
     a.style.animation='';
   });
-
   const logo=document.querySelector('.logo');
   logo.style.animation='none';
   void logo.offsetHeight;
@@ -368,10 +370,8 @@ function restartHeaderAnimations(){
 function changeSection(id){
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
-
   document.getElementById(id).classList.add('active');
   event.target.classList.add('active');
-
   resetAnimations(document.getElementById(id));
 }
 

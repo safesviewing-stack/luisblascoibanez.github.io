@@ -289,16 +289,6 @@ footer{
 @keyframes btnIn{
   to{opacity:1;transform:translateY(0);}
 }
-
-/* ===== HIDE LOGO IN CERTAIN SECTIONS ===== */
-#about .logo,
-#cv .logo,
-#portfolio .logo,
-#contact .logo,
-#skills .logo {
-  display: none; /* Completely hide logo in these sections */
-}
-
 </style>
 </head>
 
@@ -308,7 +298,7 @@ footer{
 <div class="section-fade"></div>
 
 <header>
-  <div class="logo">L · BIB</div>
+  <div class="logo" id="logo-home">L · BIB</div>
 
   <nav>
     <a class="active" onclick="changeSection('home',this)" data-i18n="nav_home">Inicio</a>
@@ -407,7 +397,7 @@ function resetAnimations(scope=document){
   });
 
   // Reset header and nav link animations (cascading effect)
-  scope.querySelectorAll('nav a').forEach((el, index) => {
+  scope.querySelectorAll('.logo, nav a').forEach((el, index) => {
     el.style.animation = 'none'; // remove current animation
     void el.offsetHeight; // force reflow
     el.style.animation = `navIn 0.55s ease forwards ${index * 0.08}s`; // apply cascading effect

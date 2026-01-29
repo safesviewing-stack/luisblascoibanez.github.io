@@ -80,20 +80,11 @@ header{
   font-size:16px;
   letter-spacing:.3em;
   font-weight:500;
-  opacity:1;
+  opacity:0;
   transform:translateX(-32px);
+  animation:logoIn .9s cubic-bezier(.4,0,.2,1) forwards;
 }
-
-@keyframes logoIn{
-  from {
-    opacity: 0;
-    transform: translateX(-32px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
+@keyframes logoIn{ to{opacity:1;transform:translateX(0);} }
 
 nav{
   position:absolute;
@@ -151,7 +142,7 @@ nav a:hover::after{
   display:flex;
   gap:20px;
   opacity:0;
-  animation:langFade 0.8s ease forwards;
+  animation:langFade 0.8s ease forwards; /* Independent animation for language buttons */
 }
 @keyframes langFade{
   from{
@@ -298,28 +289,6 @@ footer{
 @keyframes btnIn{
   to{opacity:1;transform:translateY(0);}
 }
-
-/* ===== LOGO HIDE IN SECTIONS OTHER THAN HOME ===== */
-header.hide-logo .logo {
-  visibility: hidden;
-}
-
-/* ===== LOGO SHOW IN HOME SECTION (WITH ANIMATION FROM LEFT) ===== */
-.logo.show-home {
-  animation: logoShowHome 0.9s cubic-bezier(.4, 0, .2, 1) forwards;
-}
-
-@keyframes logoShowHome {
-  from {
-    opacity: 0;
-    transform: translateX(-32px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
 </style>
 </head>
 
@@ -328,7 +297,7 @@ header.hide-logo .logo {
 <div class="bg-layer"></div>
 <div class="section-fade"></div>
 
-<header id="header">
+<header>
   <div class="logo">L · BIB</div>
 
   <nav>
@@ -491,20 +460,6 @@ function changeSection(id, link){
 
   document.getElementById(id).classList.add('active');
   link.classList.add('active');
-
-  // Hide logo in sections other than home
-  const header = document.querySelector('header');
-  if(id !== 'home'){
-    header.classList.add('hide-logo');
-  } else {
-    header.classList.remove('hide-logo');
-    // Trigger animation for logo when returning to home
-    const logo = header.querySelector('.logo');
-    logo.classList.add('show-home');
-    setTimeout(() => {
-      logo.classList.remove('show-home'); // Remove animation class after it completes
-    }, 900); // Match the animation duration
-  }
 }
 </script>
 

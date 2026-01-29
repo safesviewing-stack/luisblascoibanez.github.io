@@ -135,24 +135,8 @@ nav a:hover::after{
   opacity:.6;
 }
 
-.lang-switch button::after{
-  content:"";
-  position:absolute;
-  left:0;
-  right:.18em;
-  bottom:0;
-  height:1px;
-  background:#fff;
-  transform:scaleX(0);
-  transform-origin:left;
-  transition:.25s;
-}
-
 .lang-switch button.active{
   opacity:1;
-}
-.lang-switch button.active::after{
-  transform:scaleX(1);
 }
 
 /* ===== SECTIONS ===== */
@@ -205,18 +189,16 @@ p{
 .about-layout{
   display:flex;
   gap:60px;
-  align-items:stretch; /* CLAVE */
+  align-items:stretch;
 }
 
-/* contenedor de la imagen */
 .about-image{
   display:flex;
 }
 
-/* imagen más pequeña */
 .about-image img{
   height:100%;
-  width:300px;  /* Ajustado a 300px */
+  width:300px;
   object-fit:cover;
   border-radius:0;
   display:block;
@@ -270,22 +252,40 @@ footer{
   <div class="logo">L · BIB</div>
 
   <nav>
-    <a class="active" onclick="changeSection('home')" data-es="Inicio" data-en="Home">Inicio</a>
-    <a onclick="changeSection('about')" data-es="Sobre mí" data-en="About me">Sobre mí</a>
-    <a onclick="changeSection('portfolio')" data-es="Portfolio" data-en="Portfolio">Portfolio</a>
-    <a onclick="changeSection('cv')" data-es="CV" data-en="CV">CV</a>
-    <a onclick="changeSection('skills')" data-es="Habilidades" data-en="Skills">Habilidades</a>
-    <a onclick="changeSection('contact')" data-es="Contacto" data-en="Contact">Contacto</a>
+    <a class="active" onclick="changeSection('home')">Inicio</a>
+    <a onclick="changeSection('about')">Sobre mí</a>
+    <a onclick="changeSection('portfolio')">Portfolio</a>
+    <a onclick="changeSection('cv')">CV</a>
+    <a onclick="changeSection('skills')">Habilidades</a>
+    <a onclick="changeSection('contact')">Contacto</a>
   </nav>
 
   <div class="lang-switch">
-    <button class="active" onclick="setLanguage('es')">ES</button>
-    <button onclick="setLanguage('en')">EN</button>
+    <button class="active">ES</button>
+    <button>EN</button>
   </div>
 </header>
 
+<!-- HOME -->
+<section id="home" class="section active">
+  <div class="content">
+    <h1 class="fade-up">
+      <span class="title-line">Diseño Industrial</span>
+      <span class="title-line">y Desarrollo de Producto</span>
+    </h1>
+
+    <p class="fade-up delay-1">
+      Perfil técnico y creativo enfocado en producto.
+    </p>
+
+    <button class="btn fade-up delay-2">
+      Ver proyectos
+    </button>
+  </div>
+</section>
+
 <!-- ABOUT -->
-<section id="about" class="section active">
+<section id="about" class="section">
   <div class="content">
     <h2 class="fade-up">Sobre mí</h2>
 
@@ -304,6 +304,16 @@ footer{
 <footer>
   © 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial
 </footer>
+
+<script>
+function changeSection(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
 
 </body>
 </html>

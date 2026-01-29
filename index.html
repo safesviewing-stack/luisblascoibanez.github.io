@@ -84,10 +84,7 @@
     nav a:nth-child(6){ animation-delay:.60s }
 
     @keyframes navIn{
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
+      to{ opacity:1; transform:translateY(0); }
     }
 
     nav a::after{
@@ -132,11 +129,30 @@
       letter-spacing:.18em;
       text-transform:uppercase;
       cursor:pointer;
+      position:relative;
+      padding-bottom:6px;
       opacity:.6;
+    }
+
+    .lang-switch button::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0.18em;
+      bottom:0;
+      height:1px;
+      background:#fff;
+      transform:scaleX(0);
+      transform-origin:left;
+      transition:transform .25s ease;
     }
 
     .lang-switch button.active{
       opacity:1;
+    }
+
+    .lang-switch button.active::after{
+      transform:scaleX(1);
     }
 
     /* ================= HOME ================= */
@@ -199,10 +215,7 @@
     .delay-2{ animation-delay:.45s }
 
     @keyframes fadeUp{
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
+      to{ opacity:1; transform:translateY(0); }
     }
 
     /* ================= FOOTER ================= */

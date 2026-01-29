@@ -194,7 +194,6 @@ p{
   line-height:1.8;
 }
 
-/* 👉 TEXTO SOBRE MI MÁS ESTRECHO */
 .about-text{
   max-width:66ch;
   text-align:justify;
@@ -262,7 +261,6 @@ footer{
   </div>
 </header>
 
-<!-- HOME -->
 <section id="home" class="section active">
   <div class="content">
     <h1 class="fade-up">
@@ -287,7 +285,6 @@ footer{
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about" class="section">
   <div class="content">
     <h2 class="fade-up" data-es="Sobre mí" data-en="About me">Sobre mí</h2>
@@ -311,19 +308,34 @@ let currentLang='es';
 
 function resetAnimations(scope=document){
   scope.querySelectorAll('.fade-up').forEach(el=>{
-    const c=el.className;
-    el.className=c.replace(/fade-up|delay-1|delay-2/g,'').trim();
+    const c = el.className;
+    el.className = c.replace(/fade-up|delay-1|delay-2/g,'').trim();
     void el.offsetHeight;
-    el.className=c;
+    el.className = c;
+  });
+}
+
+function resetHeaderAnimations(){
+  const logo = document.querySelector('.logo');
+  const navItems = document.querySelectorAll('nav a');
+  const lang = document.querySelector('.lang-switch');
+
+  [logo, lang, ...navItems].forEach(el=>{
+    el.style.animation='none';
+    void el.offsetHeight;
+    el.style.animation='';
   });
 }
 
 function changeSection(id){
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+
   document.getElementById(id).classList.add('active');
   event.target.classList.add('active');
+
   resetAnimations(document.getElementById(id));
+  resetHeaderAnimations();
 }
 
 function setLanguage(lang){
@@ -334,10 +346,11 @@ function setLanguage(lang){
   document.querySelector(`.lang-switch button[onclick*="${lang}"]`).classList.add('active');
 
   document.querySelectorAll('[data-es]').forEach(el=>{
-    el.innerHTML=el.dataset[lang];
+    el.innerHTML = el.dataset[lang];
   });
 
   resetAnimations(document);
+  resetHeaderAnimations();
 }
 </script>
 

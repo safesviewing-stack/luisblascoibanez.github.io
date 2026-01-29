@@ -65,8 +65,8 @@ header{
   width:100%;
   padding:34px 40px;
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
   z-index:1000;
   opacity:0;
   transform:translateY(-20px);
@@ -90,6 +90,8 @@ header{
 nav{
   display:flex;
   gap:36px;
+  justify-content:center; /* Esto asegura que los títulos del menú estén centrados */
+  flex-grow: 1; /* Hace que el contenedor de navegación ocupe todo el espacio disponible */
 }
 
 nav a{

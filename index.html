@@ -374,10 +374,18 @@ function resetAnimations(scope=document){
     void el.offsetHeight; // force reflow
     el.className = c;
   });
+  // Reset animations for header and footer
   scope.querySelectorAll('header, footer').forEach(el => {
     el.style.animation = 'none'; // remove current animation
     void el.offsetHeight; // force reflow
     el.style.animation = ''; // reapply animation
+  });
+  // Reset header links and logo animation
+  scope.querySelectorAll('.logo, nav a').forEach(el => {
+    const c = el.className;
+    el.className = c.replace(/fade-up|delay-\d+/g,'').trim();
+    void el.offsetHeight; // force reflow
+    el.className = c;
   });
 }
 

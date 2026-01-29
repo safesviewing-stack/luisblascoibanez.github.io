@@ -39,7 +39,6 @@
       z-index:1000;
     }
 
-    /* LOGO */
     .logo{
       font-size:14px;
       letter-spacing:.3em;
@@ -117,7 +116,7 @@
       display:none;
       opacity:0;
       transition:opacity .45s ease;
-      padding-bottom:70px; /* espacio visual para footer */
+      padding-bottom:70px;
     }
 
     .section.active{ display:block; }
@@ -139,9 +138,11 @@
       z-index:-1;
     }
 
+    /* 🔥 CONTENIDO HOME BAJADO UN POCO */
     .home-content{
       max-width:600px;
       margin-left:clamp(140px, 18vw, 240px);
+      margin-top:40px; /* 👈 ajuste fino */
       display:flex;
       flex-direction:column;
       gap:26px;
@@ -242,7 +243,7 @@
       font-size:11px;
       letter-spacing:.08em;
       color:#bdbdbd;
-      background:transparent; /* 🔥 totalmente transparente */
+      background:transparent;
       opacity:0;
       transform:translateY(16px);
       animation:footerIn .6s ease .6s forwards;
@@ -260,6 +261,7 @@
     @media(max-width:768px){
       .home-content{
         margin-left:0;
+        margin-top:20px;
         padding:0 24px;
       }
     }
@@ -286,49 +288,6 @@
     <p class="fade-up delay-1">Perfil técnico y creativo enfocado en producto.</p>
     <button class="btn fade-up delay-2"
       onclick="changeSection('projects')">Ver proyectos</button>
-  </div>
-</section>
-
-<section id="about" class="section">
-  <div class="page">
-    <h2 class="fade-up">Sobre mí</h2>
-    <p class="fade-up delay-1">Diseñadora industrial con enfoque técnico y creativo.</p>
-  </div>
-</section>
-
-<section id="projects" class="section">
-  <div class="page">
-    <h2 class="fade-up">Portfolio</h2>
-    <div class="grid">
-      <div class="card fade-up">Proyecto 1</div>
-      <div class="card fade-up delay-1">Proyecto 2</div>
-      <div class="card fade-up delay-2">Proyecto 3</div>
-    </div>
-  </div>
-</section>
-
-<section id="cv" class="section">
-  <div class="page">
-    <h2 class="fade-up">Currículum Vitae</h2>
-    <p class="fade-up delay-1">Grado en Diseño Industrial · Experiencia en producto.</p>
-  </div>
-</section>
-
-<section id="skills" class="section">
-  <div class="page">
-    <h2 class="fade-up">Habilidades</h2>
-    <div class="grid">
-      <div class="card fade-up">SolidWorks</div>
-      <div class="card fade-up delay-1">Fusion 360</div>
-      <div class="card fade-up delay-2">Rhinoceros</div>
-    </div>
-  </div>
-</section>
-
-<section id="contact" class="section">
-  <div class="page">
-    <h2 class="fade-up">Contacto</h2>
-    <p class="fade-up delay-1">📧 hello@email.com<br>📍 Valencia</p>
   </div>
 </section>
 

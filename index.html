@@ -154,6 +154,10 @@ nav a:hover::after{
   opacity:.6;
 }
 
+.lang-switch button.active{
+  opacity:1;
+}
+
 .lang-switch button::after{
   content:"";
   position:absolute;
@@ -167,9 +171,6 @@ nav a:hover::after{
   transition:.3s;
 }
 
-.lang-switch button.active{
-  opacity:1;
-}
 .lang-switch button.active::after{
   transform:scaleX(1);
 }
@@ -245,7 +246,7 @@ p{
   to{opacity:1;transform:translateY(0);}
 }
 
-/* PHOTO ANIMATION */
+/* PHOTO */
 .photo-in{
   opacity:0;
   transform:translateX(48px) scale(.95);
@@ -260,6 +261,7 @@ p{
   }
 }
 
+/* BUTTON */
 .btn{
   margin-top:14px;
   padding:14px 34px;
@@ -272,7 +274,7 @@ p{
   align-self:flex-start;
 }
 
-/* ===== FOOTER (SLOWER) ===== */
+/* ===== FOOTER ===== */
 footer{
   position:fixed;
   bottom:0;
@@ -308,12 +310,12 @@ footer{
   <div class="logo">L · BIB</div>
 
   <nav>
-    <a class="active" onclick="changeSection('home')">Inicio</a>
-    <a onclick="changeSection('about')">Sobre mí</a>
-    <a onclick="changeSection('portfolio')">Portfolio</a>
-    <a onclick="changeSection('cv')">CV</a>
-    <a onclick="changeSection('skills')">Habilidades</a>
-    <a onclick="changeSection('contact')">Contacto</a>
+    <a class="active" onclick="changeSection('home', this)">Inicio</a>
+    <a onclick="changeSection('about', this)">Sobre mí</a>
+    <a onclick="changeSection('portfolio', this)">Portfolio</a>
+    <a onclick="changeSection('cv', this)">CV</a>
+    <a onclick="changeSection('skills', this)">Habilidades</a>
+    <a onclick="changeSection('contact', this)">Contacto</a>
   </nav>
 
   <div class="lang-switch">
@@ -384,8 +386,13 @@ function resetFooterAnimation(){
   footer.style.animation='';
 }
 
-function changeSection(id){
-  const fade=document.querySelector('.section-fade');
+function changeSection(id, link){
+  const current = document.querySelector('.section.active');
+
+  /* SI YA ESTÁ ACTIVA → NO HACER NADA */
+  if (current && current.id === id) return;
+
+  const fade = document.querySelector('.section-fade');
   fade.classList.remove('active');
   void fade.offsetHeight;
   fade.classList.add('active');
@@ -394,7 +401,7 @@ function changeSection(id){
   document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
 
   document.getElementById(id).classList.add('active');
-  event.target.classList.add('active');
+  link.classList.add('active');
 
   resetAnimations(document.getElementById(id));
   resetHeaderAnimations();

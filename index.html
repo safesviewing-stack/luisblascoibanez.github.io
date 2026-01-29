@@ -82,8 +82,6 @@ nav a{
   animation:navIn .45s ease forwards;
 }
 
-@keyframes navIn{ to{opacity:1;transform:translateY(0);} }
-
 nav a::after{
   content:"";
   position:absolute;
@@ -101,6 +99,8 @@ nav a.active::after,
 nav a:hover::after{
   transform:scaleX(1);
 }
+
+@keyframes navIn{ to{opacity:1;transform:translateY(0);} }
 
 /* ===== SECTIONS ===== */
 .section{
@@ -141,28 +141,26 @@ p{
   line-height:1.8;
 }
 
-/* ===== ABOUT TEXT ===== */
+/* ===== ABOUT ===== */
 .about-text{
   width:58ch;
   max-width:58ch;
   text-align:justify;
 }
 
-/* ===== ABOUT LAYOUT ===== */
 .about-layout{
   display:flex;
   gap:60px;
   align-items:stretch;
 }
 
-/* ===== ABOUT IMAGE ===== */
 .about-image{
   display:flex;
 }
 
 .about-image img{
   height:100%;
-  width:360px; /* ← MISMO PESO VISUAL QUE EL TEXTO */
+  width:340px;
   object-fit:cover;
   border-radius:0;
   display:block;
@@ -202,9 +200,18 @@ footer{
 
 <header>
   <div class="logo">L · BIB</div>
+
+  <nav>
+    <a class="active">Inicio</a>
+    <a>Sobre mí</a>
+    <a>Portfolio</a>
+    <a>CV</a>
+    <a>Habilidades</a>
+    <a>Contacto</a>
+  </nav>
 </header>
 
-<section id="home" class="section active">
+<section class="section active">
   <div class="content">
     <h1 class="fade-up">
       <span class="title-line">Diseño Industrial</span>
@@ -217,13 +224,13 @@ footer{
   </div>
 </section>
 
-<section id="about" class="section">
+<section class="section">
   <div class="content">
     <h2 class="fade-up">Sobre mí</h2>
 
     <div class="about-layout">
       <p class="fade-up delay-1 about-text">
-        Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV, actualmente en mi último año. Vivo en Valencia y me considero una persona con una mente ecléctica y perfeccionista, siempre interesada en encontrar el equilibrio entre lo técnico y lo estético. Desde pequeño he tenido curiosidad por entender cómo funcionan las cosas, y mi formación profesional en el sector de la electricidad me permitió adquirir una base técnica sólida que hoy aplico al diseño y desarrollo de producto. Disfruto especialmente del proceso completo de diseño, desde la idea inicial hasta la definición técnica y el detalle final, y tengo una necesidad constante de estar creando y resolviendo. Si algo no me sale, no paro hasta encontrar la solución, porque para mí el proceso es tan importante como el resultado final. Como dato curioso, me interesa especialmente el campo de la impresión 3D.
+        Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV, actualmente en mi último año. Vivo en Valencia y me considero una persona con una mente ecléctica y perfeccionista, siempre interesada en encontrar el equilibrio entre lo técnico y lo estético. Desde pequeño he tenido curiosidad por entender cómo funcionan las cosas, y mi formación profesional en el sector de la electricidad me permitió adquirir una base técnica sólida que hoy aplico al diseño y desarrollo de producto.
       </p>
 
       <div class="about-image fade-up delay-2">

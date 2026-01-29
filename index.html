@@ -50,10 +50,7 @@
     }
 
     @keyframes logoIn{
-      to{
-        opacity:1;
-        transform:translateX(0);
-      }
+      to{ opacity:1; transform:translateX(0); }
     }
 
     nav{
@@ -85,10 +82,7 @@
     nav a:nth-child(6){ animation-delay:.58s }
 
     @keyframes navCascade{
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
+      to{ opacity:1; transform:translateY(0); }
     }
 
     nav a::after{
@@ -107,6 +101,55 @@
     nav a:hover::after,
     nav a.active::after{
       transform:scaleX(1);
+    }
+
+    /* ================= LANGUAGE SWITCH ================= */
+    .lang-switch{
+      position:fixed;
+      top:140px; /* misma altura visual que h2 */
+      left:50%;
+      transform:translateX(-50%);
+      display:flex;
+      gap:28px;
+      z-index:900;
+    }
+
+    .lang-switch button{
+      background:none;
+      border:none;
+      color:#fff;
+      font-size:11px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      cursor:pointer;
+      position:relative;
+      padding-bottom:6px;
+      opacity:.6;
+    }
+
+    .lang-switch button::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0.18em;
+      bottom:0;
+      height:1px;
+      background:#fff;
+      transform:scaleX(0);
+      transform-origin:left;
+      transition:transform .25s ease;
+    }
+
+    .lang-switch button.active{
+      opacity:1;
+    }
+
+    .lang-switch button.active::after{
+      transform:scaleX(1);
+    }
+
+    .lang-switch button:hover{
+      opacity:1;
     }
 
     /* ================= SECTIONS ================= */
@@ -147,18 +190,16 @@
       gap:26px;
     }
 
-    h1, h2{
-      color:#fff;
-      display:inline-block;
-      position:relative;
+    h1{
+      font-size:44px;
     }
-
-    h1{ font-size:44px; }
 
     h2{
       font-size:28px;
       margin-bottom:24px;
       padding-bottom:10px;
+      position:relative;
+      display:inline-block;
     }
 
     h2::after{
@@ -196,7 +237,6 @@
       align-self:flex-start;
     }
 
-    /* ================= CONTENT ANIM ================= */
     .fade-up{
       opacity:0;
       transform:translateY(20px);
@@ -207,10 +247,7 @@
     .delay-2{ animation-delay:.45s }
 
     @keyframes fadeUp{
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
+      to{ opacity:1; transform:translateY(0); }
     }
 
     /* ================= FOOTER ================= */
@@ -222,7 +259,7 @@
       text-align:center;
       font-size:11px;
       letter-spacing:.08em;
-      color:#9a9a9a; /* 👈 un pelín más oscuro */
+      color:#9a9a9a;
       background:transparent;
       opacity:0;
       transform:translateY(16px);
@@ -232,18 +269,7 @@
     }
 
     @keyframes footerIn{
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
-    }
-
-    @media(max-width:768px){
-      .home-content{
-        margin-left:0;
-        margin-top:20px;
-        padding:0 24px;
-      }
+      to{ opacity:1; transform:translateY(0); }
     }
   </style>
 </head>
@@ -253,21 +279,39 @@
 <header>
   <div class="logo">L · BIB</div>
   <nav>
-    <a class="active" onclick="changeSection('home')">Inicio</a>
-    <a onclick="changeSection('about')">Sobre mí</a>
-    <a onclick="changeSection('projects')">Portfolio</a>
-    <a onclick="changeSection('cv')">CV</a>
-    <a onclick="changeSection('skills')">Habilidades</a>
-    <a onclick="changeSection('contact')">Contacto</a>
+    <a class="active">Inicio</a>
+    <a>Sobre mí</a>
+    <a>Portfolio</a>
+    <a>CV</a>
+    <a>Habilidades</a>
+    <a>Contacto</a>
   </nav>
 </header>
 
+<!-- LANGUAGE SWITCH -->
+<div class="lang-switch">
+  <button class="active" onclick="setLanguage('es')">ES</button>
+  <button onclick="setLanguage('en')">EN</button>
+</div>
+
 <section id="home" class="section active visible">
   <div class="home-content">
-    <h1 class="fade-up">Diseño Industrial<br>y Desarrollo de Producto</h1>
-    <p class="fade-up delay-1">Perfil técnico y creativo enfocado en producto.</p>
+    <h1 class="fade-up" data-es="Diseño Industrial y Desarrollo de Producto"
+        data-en="Industrial Design and Product Development">
+      Diseño Industrial<br>y Desarrollo de Producto
+    </h1>
+
+    <p class="fade-up delay-1"
+       data-es="Perfil técnico y creativo enfocado en producto."
+       data-en="Technical and creative profile focused on product design.">
+       Perfil técnico y creativo enfocado en producto.
+    </p>
+
     <button class="btn fade-up delay-2"
-      onclick="changeSection('projects')">Ver proyectos</button>
+      data-es="Ver proyectos"
+      data-en="View projects">
+      Ver proyectos
+    </button>
   </div>
 </section>
 
@@ -276,33 +320,17 @@
 </footer>
 
 <script>
-  function regenerate(section){
-    section.querySelectorAll('.fade-up').forEach(el=>{
-      const clone = el.cloneNode(true);
-      el.parentNode.replaceChild(clone, el);
+  function setLanguage(lang){
+    document.querySelectorAll('.lang-switch button')
+      .forEach(b => b.classList.remove('active'));
+
+    document.querySelector(`.lang-switch button[onclick*="${lang}"]`)
+      .classList.add('active');
+
+    document.querySelectorAll('[data-es]').forEach(el=>{
+      el.innerHTML = el.dataset[lang];
     });
   }
-
-  function changeSection(id){
-    const current = document.querySelector('.section.active');
-    const next = document.getElementById(id);
-
-    if(current === next){
-      regenerate(next);
-      return;
-    }
-
-    current.classList.remove('visible');
-
-    setTimeout(()=>{
-      current.classList.remove('active');
-      next.classList.add('active');
-      next.classList.add('visible');
-      regenerate(next);
-    },450);
-  }
-
-  regenerate(document.getElementById('home'));
 </script>
 
 </body>

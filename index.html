@@ -34,9 +34,9 @@ body{
   background:
     linear-gradient(rgba(11,11,13,.75), rgba(11,11,13,.75)),
     url("reloj1.jpg") center / cover no-repeat;
-  z-index:-2;
+  z-index:-3;
   opacity:0;
-  animation:bgFadeIn 1.2s ease forwards;
+  animation:bgFadeIn 1.4s ease forwards;
   pointer-events:none;
 }
 @keyframes bgFadeIn{ to{opacity:1;} }
@@ -45,13 +45,13 @@ body{
 .section-fade{
   position:fixed;
   inset:0;
-  background:rgba(11,11,13,.85);
-  z-index:-1;
+  background:rgba(11,11,13,.92);
+  z-index:-2;
   opacity:0;
   pointer-events:none;
 }
 .section-fade.active{
-  animation:sectionFade .8s cubic-bezier(.4,0,.2,1) forwards;
+  animation:sectionFade 1.6s cubic-bezier(.4,0,.2,1) forwards;
 }
 @keyframes sectionFade{
   from{opacity:1;}
@@ -74,10 +74,10 @@ header{
   letter-spacing:.3em;
   font-weight:500;
   opacity:0;
-  transform:translateX(-32px);
-  animation:logoIn .75s cubic-bezier(.4,0,.2,1) forwards;
+  transform:translateX(-20px);
+  animation:logoIn .9s cubic-bezier(.4,0,.2,1) forwards;
 }
-@keyframes logoIn{ to{opacity:1;transform:translateX(0);} }
+@keyframes logoIn{ to{opacity:1;transform:none;} }
 
 nav{
   position:absolute;
@@ -95,16 +95,17 @@ nav a{
   padding-bottom:6px;
   cursor:pointer;
   opacity:0;
-  transform:translateY(-10px);
-  animation:navIn .45s ease forwards;
+  transform:translateY(-6px);
+  animation:navIn .6s ease forwards;
 }
-nav a:nth-child(1){animation-delay:.20s}
+nav a:nth-child(1){animation-delay:.2s}
 nav a:nth-child(2){animation-delay:.28s}
 nav a:nth-child(3){animation-delay:.36s}
 nav a:nth-child(4){animation-delay:.44s}
 nav a:nth-child(5){animation-delay:.52s}
-nav a:nth-child(6){animation-delay:.60s}
-@keyframes navIn{ to{opacity:1;transform:translateY(0);} }
+nav a:nth-child(6){animation-delay:.6s}
+
+@keyframes navIn{ to{opacity:1;transform:none;} }
 
 nav a::after{
   content:"";
@@ -130,7 +131,7 @@ nav a:hover::after{ transform:scaleX(1); }
   display:flex;
   gap:20px;
   opacity:0;
-  animation:langFade .6s ease .6s forwards;
+  animation:langFade .8s ease .7s forwards;
 }
 @keyframes langFade{ to{opacity:1;} }
 
@@ -146,6 +147,7 @@ nav a:hover::after{ transform:scaleX(1); }
   padding-bottom:6px;
   opacity:.6;
 }
+.lang-switch button.active{ opacity:1; }
 .lang-switch button::after{
   content:"";
   position:absolute;
@@ -158,12 +160,7 @@ nav a:hover::after{ transform:scaleX(1); }
   transform-origin:left;
   transition:.25s;
 }
-.lang-switch button.active{
-  opacity:1;
-}
-.lang-switch button.active::after{
-  transform:scaleX(1);
-}
+.lang-switch button.active::after{ transform:scaleX(1); }
 
 /* ===== SECTIONS ===== */
 .section{
@@ -182,7 +179,7 @@ nav a:hover::after{ transform:scaleX(1); }
   gap:26px;
 }
 
-/* ABOUT TWEAK */
+/* ABOUT ADJUST */
 #about .content{
   max-width:1035px;
   transform:translateY(15px);
@@ -194,8 +191,10 @@ h1{
   font-weight:600;
   max-width:32ch;
 }
-.title-line{display:block;}
-h2{font-size:28px;font-weight:600;}
+h2{
+  font-size:28px;
+  font-weight:600;
+}
 p{
   color:var(--muted);
   font-size:14px;
@@ -207,32 +206,36 @@ p{
 .about-layout{
   display:flex;
   gap:60px;
-  align-items:flex-start;
 }
 .about-image img{
   width:335px;
   display:block;
 }
 
-/* ===== ANIMATIONS ===== */
+/* ===== CONTENT ANIMATIONS (MUY SUTILES) ===== */
 .fade-up{
   opacity:0;
-  transform:translateY(20px);
-  animation:fadeUp .7s cubic-bezier(.4,0,.2,1) forwards;
+  transform:translateY(8px);
+  animation:fadeUp .5s ease forwards;
 }
-.delay-1{animation-delay:.25s}
-.delay-2{animation-delay:.45s}
-@keyframes fadeUp{ to{opacity:1;transform:translateY(0);} }
+@keyframes fadeUp{
+  to{opacity:1;transform:none;}
+}
 
-/* PHOTO ANIMATION */
+/* FOTO */
 .photo-in{
   opacity:0;
-  transform:translateX(40px) scale(.96);
-  animation:photoIn .9s cubic-bezier(.22,.61,.36,1) forwards;
-  animation-delay:.5s;
+  transform:translateX(18px) scale(.97);
+  animation:photoIn .7s ease forwards;
 }
 @keyframes photoIn{
-  to{opacity:1;transform:translateX(0) scale(1);}
+  to{opacity:1;transform:none;}
+}
+
+/* ⏱️ ESPERAR A QUE TERMINE EL FUNDIDO */
+.section.active .fade-up,
+.section.active .photo-in{
+  animation-delay:1.65s;
 }
 
 /* ===== BUTTON ===== */
@@ -245,7 +248,6 @@ p{
   color:#000;
   font-weight:600;
   cursor:pointer;
-  align-self:flex-start;
 }
 
 /* ===== FOOTER ===== */
@@ -258,7 +260,6 @@ footer{
   font-size:11px;
   letter-spacing:.08em;
   color:#9a9a9a;
-  pointer-events:none;
 }
 </style>
 </head>
@@ -270,7 +271,6 @@ footer{
 
 <header>
   <div class="logo">L · BIB</div>
-
   <nav>
     <a class="active" onclick="changeSection('home')">Inicio</a>
     <a onclick="changeSection('about')">Sobre mí</a>
@@ -279,7 +279,6 @@ footer{
     <a onclick="changeSection('skills')">Habilidades</a>
     <a onclick="changeSection('contact')">Contacto</a>
   </nav>
-
   <div class="lang-switch">
     <button class="active">ES</button>
     <button>EN</button>
@@ -288,12 +287,9 @@ footer{
 
 <section id="home" class="section active">
   <div class="content">
-    <h1 class="fade-up">
-      <span class="title-line">Diseño Industrial</span>
-      <span class="title-line">y Desarrollo de Producto</span>
-    </h1>
-    <p class="fade-up delay-1">Perfil técnico y creativo enfocado en producto.</p>
-    <button class="btn fade-up delay-2">Ver proyectos</button>
+    <h1 class="fade-up">Diseño Industrial<br>y Desarrollo de Producto</h1>
+    <p class="fade-up">Perfil técnico y creativo enfocado en producto.</p>
+    <button class="btn fade-up">Ver proyectos</button>
   </div>
 </section>
 
@@ -301,8 +297,8 @@ footer{
   <div class="content">
     <h2 class="fade-up">Sobre mí</h2>
     <div class="about-layout">
-      <p class="fade-up delay-1">
-        Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV, actualmente en mi último año. Vivo en Valencia y me considero una persona con una mente ecléctica y perfeccionista, siempre interesada en encontrar el equilibrio entre lo técnico y lo estético. Desde pequeño he tenido curiosidad por entender cómo funcionan las cosas, y mi formación profesional en el sector de la electricidad me permitió adquirir una base técnica sólida que hoy aplico al diseño y desarrollo de producto. Disfruto especialmente del proceso completo de diseño, desde la idea inicial hasta la definición técnica y el detalle final, y tengo una necesidad constante de estar creando y resolviendo. Si algo no me sale, no paro hasta encontrar la solución, porque para mí el proceso es tan importante como el resultado final. Como dato curioso, me interesa especialmente el campo de la impresión 3D, ya que me permite experimentar directamente con el diseño y admitir ideas de la manera más ágil y precisa posible.
+      <p class="fade-up">
+        Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV, actualmente en mi último año. Vivo en Valencia y me considero una persona con una mente ecléctica y perfeccionista...
       </p>
       <div class="about-image photo-in">
         <img src="foto.jpg" alt="Foto de Luis">
@@ -318,15 +314,6 @@ footer{
 <script>
 function resetAnimations(scope=document){
   scope.querySelectorAll('.fade-up, .photo-in').forEach(el=>{
-    const c = el.className;
-    el.className = c.replace(/fade-up|delay-1|delay-2|photo-in/g,'').trim();
-    void el.offsetHeight;
-    el.className = c;
-  });
-}
-
-function resetHeaderAnimations(){
-  document.querySelectorAll('.logo, nav a, .lang-switch').forEach(el=>{
     el.style.animation='none';
     void el.offsetHeight;
     el.style.animation='';
@@ -346,7 +333,6 @@ function changeSection(id){
   event.target.classList.add('active');
 
   resetAnimations(document.getElementById(id));
-  resetHeaderAnimations();
 }
 </script>
 

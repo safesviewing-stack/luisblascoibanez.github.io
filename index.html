@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Portfolio · Industrial Design</title>
+<title>Portfolio · Luis Blasco-Ibáñez</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -27,7 +27,7 @@ body{
   overflow:hidden;
 }
 
-/* ===== BACKGROUND ===== */
+/* ================= BACKGROUND ================= */
 .bg-layer{
   position:fixed;
   inset:0;
@@ -41,7 +41,7 @@ body{
 }
 @keyframes bgFadeIn{ to{opacity:1;} }
 
-/* ===== HEADER ===== */
+/* ================= HEADER ================= */
 header{
   position:fixed;
   top:0;
@@ -60,11 +60,8 @@ header{
   transform:translateX(-32px);
   animation:logoIn .75s cubic-bezier(.4,0,.2,1) forwards;
 }
-@keyframes logoIn{
-  to{opacity:1;transform:translateX(0);}
-}
+@keyframes logoIn{ to{opacity:1;transform:translateX(0);} }
 
-/* ===== NAV ===== */
 nav{
   position:absolute;
   left:50%;
@@ -114,7 +111,7 @@ nav a:hover::after{
   transform:scaleX(1);
 }
 
-/* ===== LANGUAGE ===== */
+/* ================= LANGUAGE ================= */
 .lang-switch{
   position:absolute;
   right:40px;
@@ -160,7 +157,7 @@ nav a:hover::after{
   transform:scaleX(1);
 }
 
-/* ===== SECTIONS ===== */
+/* ================= SECTIONS ================= */
 .section{
   position:absolute;
   inset:0;
@@ -173,14 +170,14 @@ nav a:hover::after{
 }
 
 .content{
-  max-width:720px;
+  max-width:960px;
   margin-left:clamp(120px,16vw,240px);
   display:flex;
   flex-direction:column;
   gap:26px;
 }
 
-/* ===== TEXT ===== */
+/* ================= TEXT ================= */
 h1{
   font-size:44px;
   font-weight:600;
@@ -199,7 +196,7 @@ p{
   line-height:1.7;
 }
 
-/* ===== ANIMATIONS ===== */
+/* ================= ANIMATIONS ================= */
 .fade-up{
   opacity:0;
   transform:translateY(20px);
@@ -224,7 +221,54 @@ p{
   align-self:flex-start;
 }
 
-/* ===== FOOTER ===== */
+/* ================= PORTFOLIO GRID ================= */
+.portfolio-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:32px;
+  margin-top:24px;
+}
+
+.project-card{
+  position:relative;
+  border-radius:18px;
+  overflow:hidden;
+  background:#111;
+  cursor:pointer;
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+}
+.project-card:hover{ transform:translateY(-6px); }
+
+.project-image{
+  aspect-ratio:4/3;
+  background-size:cover;
+  background-position:center;
+}
+
+.project-info{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:20px;
+  background:linear-gradient(to top,rgba(0,0,0,.75),rgba(0,0,0,.2) 60%,transparent);
+}
+
+.project-title{
+  font-size:16px;
+  font-weight:600;
+}
+
+.project-meta{
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  opacity:.7;
+  margin-top:4px;
+}
+
+/* ================= FOOTER ================= */
 footer{
   position:fixed;
   bottom:0;
@@ -265,9 +309,7 @@ footer{
 <section id="home" class="section active">
   <div class="content">
     <h1 class="fade-up">
-      <span class="title-line" data-es="Diseño Industrial" data-en="Industrial Design">
-        Diseño Industrial
-      </span>
+      <span class="title-line" data-es="Diseño Industrial" data-en="Industrial Design">Diseño Industrial</span>
       <span class="title-line" data-es="y Desarrollo de Producto" data-en="and Product Development">
         y Desarrollo de Producto
       </span>
@@ -292,8 +334,29 @@ footer{
 <section id="about" class="section">
   <div class="content">
     <h2 class="fade-up" data-es="Sobre mí" data-en="About me">Sobre mí</h2>
-    <p class="fade-up delay-1">
-      Diseñadora industrial con perfil técnico, atención al detalle y sensibilidad creativa.
+
+    <p class="fade-up delay-1"
+       data-es="Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV, actualmente en mi último año. Nací y vivo en Valencia, y me considero una persona con una mente ecléctica, siempre buscando nuevas formas de conectar lo técnico con lo estético."
+       data-en="Hi, I’m Luis, I’m 24 years old, and I’m an Industrial Design student at UPV, currently in my final year. I’m based in Valencia, and I would describe myself as an eclectic thinker, always trying to bridge the technical and the aesthetic.">
+      Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV, actualmente en mi último año. Nací y vivo en Valencia, y me considero una persona con una mente ecléctica, siempre buscando nuevas formas de conectar lo técnico con lo estético.
+    </p>
+
+    <p class="fade-up delay-2"
+       data-es="Desde pequeño he tenido curiosidad por entender cómo funcionan las cosas. Mi formación en el sector de la electricidad me dio una base técnica sólida, pero el diseño siempre ha sido mi verdadera pasión. Disfruto del proceso de crear y soy perfeccionista hasta el último detalle."
+       data-en="From an early age, I’ve been curious about how things work. My vocational training in the electrical sector gave me a solid technical foundation, but design has always been my true passion. I enjoy the creation process and I’m a perfectionist down to the last detail.">
+      Desde pequeño he tenido curiosidad por entender cómo funcionan las cosas. Mi formación en el sector de la electricidad me dio una base técnica sólida, pero el diseño siempre ha sido mi verdadera pasión. Disfruto del proceso de crear y soy perfeccionista hasta el último detalle.
+    </p>
+
+    <p class="fade-up delay-2"
+       data-es="Siempre tengo la necesidad de estar haciendo algo; si algo no me sale, no paro hasta encontrar la solución. Para mí, el proceso es tan importante como el resultado final."
+       data-en="I always feel the need to stay active; if something doesn’t work, I don’t stop until I find the solution. For me, the process is just as important as the final result.">
+      Siempre tengo la necesidad de estar haciendo algo; si algo no me sale, no paro hasta encontrar la solución. Para mí, el proceso es tan importante como el resultado final.
+    </p>
+
+    <p class="fade-up delay-2"
+       data-es="Como dato curioso, me interesa especialmente el campo de la impresión 3D, tanto como herramienta de prototipado como por su potencial en el desarrollo y la experimentación de producto."
+       data-en="As a fun fact, I’m especially interested in the field of 3D printing, both as a prototyping tool and for its potential in product development and experimentation.">
+      Como dato curioso, me interesa especialmente el campo de la impresión 3D, tanto como herramienta de prototipado como por su potencial en el desarrollo y la experimentación de producto.
     </p>
   </div>
 </section>
@@ -302,7 +365,33 @@ footer{
 <section id="portfolio" class="section">
   <div class="content">
     <h2 class="fade-up">Portfolio</h2>
-    <p class="fade-up delay-1">Proyectos seleccionados.</p>
+    <p class="fade-up delay-1">Selección de proyectos de diseño industrial.</p>
+
+    <div class="portfolio-grid">
+      <div class="project-card fade-up delay-2">
+        <div class="project-image" style="background-image:url('project1.jpg')"></div>
+        <div class="project-info">
+          <div class="project-title">NODE</div>
+          <div class="project-meta">Proyecto final · 2024</div>
+        </div>
+      </div>
+
+      <div class="project-card fade-up delay-2">
+        <div class="project-image" style="background-image:url('project2.jpg')"></div>
+        <div class="project-info">
+          <div class="project-title">Sixay Chest</div>
+          <div class="project-meta">Mobiliario · 2025</div>
+        </div>
+      </div>
+
+      <div class="project-card fade-up delay-2">
+        <div class="project-image" style="background-image:url('project3.jpg')"></div>
+        <div class="project-info">
+          <div class="project-title">CCTV Housing</div>
+          <div class="project-meta">Producto técnico · 2023</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -330,7 +419,7 @@ footer{
   </div>
 </section>
 
-<footer class="fade-up delay-2"
+<footer
   data-es="© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"
   data-en="© 2026 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineering">
   © 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial
@@ -346,18 +435,6 @@ function resetAnimations(scope=document){
     void el.offsetHeight;
     el.className=c;
   });
-}
-
-function restartHeaderAnimations(){
-  document.querySelectorAll('nav a').forEach(a=>{
-    a.style.animation='none';
-    void a.offsetHeight;
-    a.style.animation='';
-  });
-  const logo=document.querySelector('.logo');
-  logo.style.animation='none';
-  void logo.offsetHeight;
-  logo.style.animation='';
 }
 
 function changeSection(id){
@@ -380,7 +457,6 @@ function setLanguage(lang){
   });
 
   resetAnimations(document);
-  restartHeaderAnimations();
 }
 </script>
 

@@ -40,7 +40,9 @@ body{
   pointer-events:none;
 }
 
-@keyframes bgFadeIn{ to{opacity:1;} }
+@keyframes bgFadeIn{
+  to{ opacity:1; }
+}
 
 /* ============ HEADER ============ */
 header{
@@ -63,7 +65,7 @@ header{
 }
 
 @keyframes logoIn{
-  to{opacity:1;transform:translateX(0);}
+  to{ opacity:1; transform:translateX(0); }
 }
 
 nav{
@@ -86,15 +88,15 @@ nav a{
   animation:navIn .45s ease forwards;
 }
 
-nav a:nth-child(1){animation-delay:.20s}
-nav a:nth-child(2){animation-delay:.28s}
-nav a:nth-child(3){animation-delay:.36s}
-nav a:nth-child(4){animation-delay:.44s}
-nav a:nth-child(5){animation-delay:.52s}
-nav a:nth-child(6){animation-delay:.60s}
+nav a:nth-child(1){ animation-delay:.20s }
+nav a:nth-child(2){ animation-delay:.28s }
+nav a:nth-child(3){ animation-delay:.36s }
+nav a:nth-child(4){ animation-delay:.44s }
+nav a:nth-child(5){ animation-delay:.52s }
+nav a:nth-child(6){ animation-delay:.60s }
 
 @keyframes navIn{
-  to{opacity:1;transform:translateY(0);}
+  to{ opacity:1; transform:translateY(0); }
 }
 
 nav a::after{
@@ -107,10 +109,14 @@ nav a::after{
   background:#fff;
   transform:scaleX(0);
   transform-origin:left;
-  transition:.25s;
+  transition:transform .25s ease;
 }
 
-nav a.active::after{ transform:scaleX(1); }
+/* 👉 ACTIVO + HOVER */
+nav a.active::after,
+nav a:hover::after{
+  transform:scaleX(1);
+}
 
 /* ============ LANGUAGE ============ */
 .lang-switch{
@@ -124,7 +130,9 @@ nav a.active::after{ transform:scaleX(1); }
   animation:langFade .6s ease .6s forwards;
 }
 
-@keyframes langFade{ to{opacity:1;} }
+@keyframes langFade{
+  to{ opacity:1; }
+}
 
 .lang-switch button{
   background:none;
@@ -149,7 +157,7 @@ nav a.active::after{ transform:scaleX(1); }
   background:#fff;
   transform:scaleX(0);
   transform-origin:left;
-  transition:.25s;
+  transition:transform .25s ease;
 }
 
 .lang-switch button.active{
@@ -208,11 +216,11 @@ p{
   animation:fadeUp .7s cubic-bezier(.4,0,.2,1) forwards;
 }
 
-.delay-1{animation-delay:.25s}
-.delay-2{animation-delay:.45s}
+.delay-1{ animation-delay:.25s }
+.delay-2{ animation-delay:.45s }
 
 @keyframes fadeUp{
-  to{opacity:1;transform:translateY(0);}
+  to{ opacity:1; transform:translateY(0); }
 }
 
 .btn{
@@ -264,18 +272,13 @@ footer{
   </div>
 </header>
 
-<!-- HOME -->
 <section id="home" class="section active">
   <div class="content">
     <h1 class="fade-up">
-      <span class="title-line"
-        data-es="Diseño Industrial"
-        data-en="Industrial Design">
+      <span class="title-line" data-es="Diseño Industrial" data-en="Industrial Design">
         Diseño Industrial
       </span>
-      <span class="title-line"
-        data-es="y Desarrollo de Producto"
-        data-en="and Product Development">
+      <span class="title-line" data-es="y Desarrollo de Producto" data-en="and Product Development">
         y Desarrollo de Producto
       </span>
     </h1>
@@ -292,48 +295,6 @@ footer{
       onclick="changeSection('portfolio')">
       Ver proyectos
     </button>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="section">
-  <div class="content">
-    <h2 class="fade-up" data-es="Sobre mí" data-en="About me">Sobre mí</h2>
-    <p class="fade-up delay-1">
-      Diseñadora industrial con perfil técnico y creativo.
-    </p>
-  </div>
-</section>
-
-<!-- PORTFOLIO -->
-<section id="portfolio" class="section">
-  <div class="content">
-    <h2 class="fade-up">Portfolio</h2>
-    <p class="fade-up delay-1">Proyectos seleccionados.</p>
-  </div>
-</section>
-
-<!-- CV -->
-<section id="cv" class="section">
-  <div class="content">
-    <h2 class="fade-up">CV</h2>
-    <p class="fade-up delay-1">Formación y experiencia profesional.</p>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills" class="section">
-  <div class="content">
-    <h2 class="fade-up">Habilidades</h2>
-    <p class="fade-up delay-1">CAD · Prototipado · Diseño de producto</p>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="section">
-  <div class="content">
-    <h2 class="fade-up">Contacto</h2>
-    <p class="fade-up delay-1">hello@email.com · Valencia</p>
   </div>
 </section>
 

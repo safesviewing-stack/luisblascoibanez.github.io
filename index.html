@@ -65,7 +65,7 @@ header{
   width:100%;
   padding:34px 40px;
   display:flex;
-  justify-content:space-between;
+  justify-content:center; /* Centra el contenido del header */
   align-items:center;
   z-index:1000;
   opacity:0;
@@ -75,6 +75,13 @@ header{
 
 @keyframes headerIn{
   to{opacity:1;transform:translateY(0);}
+}
+
+.header-content{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px; /* Limita el ancho para que no se expanda demasiado */
 }
 
 .logo{
@@ -90,8 +97,6 @@ header{
 nav{
   display:flex;
   gap:36px;
-  justify-content:center; /* Esto asegura que los títulos del menú estén centrados */
-  flex-grow: 1; /* Hace que el contenedor de navegación ocupe todo el espacio disponible */
 }
 
 nav a{
@@ -298,20 +303,22 @@ footer{
 <div class="section-fade"></div>
 
 <header>
-  <div class="logo" id="logo-home">L · BIB</div>
+  <div class="header-content">
+    <div class="logo" id="logo-home">L · BIB</div>
 
-  <nav>
-    <a class="active" onclick="changeSection('home',this)" data-i18n="nav_home">Inicio</a>
-    <a onclick="changeSection('about',this)" data-i18n="nav_about">Sobre mí</a>
-    <a onclick="changeSection('portfolio',this)" data-i18n="nav_portfolio">Portfolio</a>
-    <a onclick="changeSection('cv',this)" data-i18n="nav_cv">CV</a>
-    <a onclick="changeSection('skills',this)" data-i18n="nav_skills">Habilidades</a>
-    <a onclick="changeSection('contact',this)" data-i18n="nav_contact">Contacto</a>
-  </nav>
+    <nav>
+      <a class="active" onclick="changeSection('home',this)" data-i18n="nav_home">Inicio</a>
+      <a onclick="changeSection('about',this)" data-i18n="nav_about">Sobre mí</a>
+      <a onclick="changeSection('portfolio',this)" data-i18n="nav_portfolio">Portfolio</a>
+      <a onclick="changeSection('cv',this)" data-i18n="nav_cv">CV</a>
+      <a onclick="changeSection('skills',this)" data-i18n="nav_skills">Habilidades</a>
+      <a onclick="changeSection('contact',this)" data-i18n="nav_contact">Contacto</a>
+    </nav>
 
-  <div class="lang-switch">
-    <button class="active" onclick="changeLang('es')">ES</button>
-    <button onclick="changeLang('en')">EN</button>
+    <div class="lang-switch">
+      <button class="active" onclick="changeLang('es')">ES</button>
+      <button onclick="changeLang('en')">EN</button>
+    </div>
   </div>
 </header>
 

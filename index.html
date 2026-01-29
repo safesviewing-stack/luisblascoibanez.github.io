@@ -134,6 +134,10 @@
       opacity:.6;
     }
 
+    .lang-switch button.active{
+      opacity:1;
+    }
+
     .lang-switch button::after{
       content:"";
       position:absolute;
@@ -145,10 +149,6 @@
       transform:scaleX(0);
       transform-origin:left;
       transition:transform .25s ease;
-    }
-
-    .lang-switch button.active{
-      opacity:1;
     }
 
     .lang-switch button.active::after{
@@ -170,6 +170,12 @@
         linear-gradient(rgba(11,11,13,.75), rgba(11,11,13,.75)),
         url("reloj1.jpg") center / cover no-repeat;
       z-index:-1;
+      opacity:0;
+      animation:bgFadeIn 1.2s ease forwards;
+    }
+
+    @keyframes bgFadeIn{
+      to{ opacity:1; }
     }
 
     .home-content{
@@ -249,86 +255,22 @@
   </nav>
 
   <div class="lang-switch">
-    <button class="active" onclick="setLanguage('es')">ES</button>
-    <button onclick="setLanguage('en')">EN</button>
+    <button class="active">ES</button>
+    <button>EN</button>
   </div>
 </header>
 
 <section id="home">
   <div class="home-content">
-    <h1 class="fade-up"
-        data-es="Diseño Industrial y Desarrollo de Producto"
-        data-en="Industrial Design and Product Development">
-      Diseño Industrial<br>y Desarrollo de Producto
-    </h1>
-
-    <p class="fade-up delay-1"
-       data-es="Perfil técnico y creativo enfocado en producto."
-       data-en="Technical and creative profile focused on product design.">
-      Perfil técnico y creativo enfocado en producto.
-    </p>
-
-    <button class="btn fade-up delay-2"
-      data-es="Ver proyectos"
-      data-en="View projects">
-      Ver proyectos
-    </button>
+    <h1 class="fade-up">Diseño Industrial<br>y Desarrollo de Producto</h1>
+    <p class="fade-up delay-1">Perfil técnico y creativo enfocado en producto.</p>
+    <button class="btn fade-up delay-2">Ver proyectos</button>
   </div>
 </section>
 
-<footer class="fade-up delay-2"
-  data-es="© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"
-  data-en="© 2026 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineering">
+<footer>
   © 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial
 </footer>
-
-<script>
-  let currentLang = 'es';
-
-  function restartFadeAnimations(){
-    document.querySelectorAll('.fade-up').forEach(el=>{
-      const original = el.className;
-      el.className = original.replace(/fade-up|delay-1|delay-2/g,'').trim();
-      void el.offsetHeight;
-      el.className = original;
-    });
-  }
-
-  function restartNavAnimation(){
-    document.querySelectorAll('nav a').forEach(el=>{
-      el.style.animation = 'none';
-      void el.offsetHeight;
-      el.style.animation = '';
-    });
-  }
-
-  function restartLogoAnimation(){
-    const logo = document.querySelector('.logo');
-    logo.style.animation = 'none';
-    void logo.offsetHeight;
-    logo.style.animation = '';
-  }
-
-  function setLanguage(lang){
-    if(lang === currentLang) return;
-
-    currentLang = lang;
-
-    document.querySelectorAll('.lang-switch button')
-      .forEach(b => b.classList.remove('active'));
-
-    document.querySelector(`.lang-switch button[onclick*="${lang}"]`)
-      .classList.add('active');
-
-    document.querySelectorAll('[data-es]').forEach(el=>{
-      el.innerHTML = el.dataset[lang];
-    });
-
-    restartLogoAnimation();
-    restartNavAnimation();
-    restartFadeAnimations();
-  }
-</script>
 
 </body>
 </html>

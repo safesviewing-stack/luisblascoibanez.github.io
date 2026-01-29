@@ -60,11 +60,8 @@ header{
   transform:translateX(-32px);
   animation:logoIn .75s cubic-bezier(.4,0,.2,1) forwards;
 }
-@keyframes logoIn{
-  to{opacity:1;transform:translateX(0);}
-}
+@keyframes logoIn{ to{opacity:1;transform:translateX(0);} }
 
-/* ===== NAV ===== */
 nav{
   position:absolute;
   left:50%;
@@ -92,9 +89,7 @@ nav a:nth-child(4){animation-delay:.44s}
 nav a:nth-child(5){animation-delay:.52s}
 nav a:nth-child(6){animation-delay:.60s}
 
-@keyframes navIn{
-  to{opacity:1;transform:translateY(0);}
-}
+@keyframes navIn{ to{opacity:1;transform:translateY(0);} }
 
 nav a::after{
   content:"";
@@ -173,7 +168,7 @@ nav a:hover::after{
 }
 
 .content{
-  max-width:720px;
+  max-width:960px;
   margin-left:clamp(120px,16vw,240px);
   display:flex;
   flex-direction:column;
@@ -224,6 +219,74 @@ p{
   align-self:flex-start;
 }
 
+/* ===== PORTFOLIO GRID ===== */
+.portfolio-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:32px;
+  margin-top:24px;
+}
+
+.project-card{
+  position:relative;
+  border-radius:18px;
+  overflow:hidden;
+  background:#111;
+  cursor:pointer;
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+}
+
+.project-card:hover{
+  transform:translateY(-6px);
+}
+
+.project-image{
+  aspect-ratio:4 / 3;
+  background-size:cover;
+  background-position:center;
+}
+
+.project-info{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:20px;
+  background:linear-gradient(
+    to top,
+    rgba(0,0,0,.75),
+    rgba(0,0,0,.2) 60%,
+    transparent
+  );
+}
+
+.project-title{
+  font-size:16px;
+  font-weight:600;
+}
+
+.project-meta{
+  font-size:11px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  opacity:.7;
+  margin-top:4px;
+}
+
+/* ===== RESPONSIVE GRID ===== */
+@media(max-width:1024px){
+  .portfolio-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:640px){
+  .portfolio-grid{
+    grid-template-columns:1fr;
+  }
+}
+
 /* ===== FOOTER ===== */
 footer{
   position:fixed;
@@ -265,9 +328,7 @@ footer{
 <section id="home" class="section active">
   <div class="content">
     <h1 class="fade-up">
-      <span class="title-line" data-es="Diseño Industrial" data-en="Industrial Design">
-        Diseño Industrial
-      </span>
+      <span class="title-line" data-es="Diseño Industrial" data-en="Industrial Design">Diseño Industrial</span>
       <span class="title-line" data-es="y Desarrollo de Producto" data-en="and Product Development">
         y Desarrollo de Producto
       </span>
@@ -302,7 +363,46 @@ footer{
 <section id="portfolio" class="section">
   <div class="content">
     <h2 class="fade-up">Portfolio</h2>
-    <p class="fade-up delay-1">Proyectos seleccionados.</p>
+
+    <p class="fade-up delay-1"
+       data-es="Selección de proyectos de diseño industrial y desarrollo de producto."
+       data-en="Selection of industrial design and product development projects.">
+      Selección de proyectos de diseño industrial y desarrollo de producto.
+    </p>
+
+    <div class="portfolio-grid">
+
+      <div class="project-card fade-up delay-2">
+        <div class="project-image" style="background-image:url('project1.jpg')"></div>
+        <div class="project-info">
+          <div class="project-title">NODE</div>
+          <div class="project-meta" data-es="Proyecto final · 2024" data-en="Final degree project · 2024">
+            Proyecto final · 2024
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card fade-up delay-2">
+        <div class="project-image" style="background-image:url('project2.jpg')"></div>
+        <div class="project-info">
+          <div class="project-title">Sixay Chest</div>
+          <div class="project-meta" data-es="Diseño de mobiliario · 2025" data-en="Furniture design · 2025">
+            Diseño de mobiliario · 2025
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card fade-up delay-2">
+        <div class="project-image" style="background-image:url('project3.jpg')"></div>
+        <div class="project-info">
+          <div class="project-title">CCTV Housing</div>
+          <div class="project-meta" data-es="Producto técnico · 2023" data-en="Technical product · 2023">
+            Producto técnico · 2023
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 

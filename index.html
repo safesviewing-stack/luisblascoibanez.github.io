@@ -337,18 +337,6 @@ const translations = {
   }
 };
 
-function resetPageAnimations(){
-  const activeSection = document.querySelector('.section.active');
-  if(!activeSection) return;
-
-  activeSection.querySelectorAll('.fade-up, .photo-in').forEach(el=>{
-    const c = el.className;
-    el.className = c.replace(/fade-up|delay-1|delay-2|photo-in/g,'').trim();
-    void el.offsetHeight;
-    el.className = c;
-  });
-}
-
 function changeLang(lang){
   if(lang === currentLang) return;
   currentLang = lang;
@@ -359,9 +347,6 @@ function changeLang(lang){
 
   document.querySelectorAll('.lang-switch button').forEach(b=>b.classList.remove('active'));
   document.querySelector(`.lang-switch button[onclick*="${lang}"]`).classList.add('active');
-
-  /* 🔄 reset animaciones */
-  resetPageAnimations();
 }
 
 function changeSection(id, link){

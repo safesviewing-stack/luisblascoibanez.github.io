@@ -39,7 +39,6 @@
       z-index:1000;
     }
 
-    /* LOGO */
     .logo{
       font-size:14px;
       letter-spacing:.3em;
@@ -65,7 +64,6 @@
       gap:36px;
     }
 
-    /* NAV CASCADA */
     nav a{
       font-size:11px;
       letter-spacing:.18em;
@@ -93,12 +91,11 @@
       }
     }
 
-    /* 🔥 LÍNEA DEL MENÚ CORREGIDA */
     nav a::after{
       content:"";
       position:absolute;
       left:0;
-      right:0.18em; /* ajuste óptico por letter-spacing */
+      right:0.18em;
       bottom:0;
       height:1px;
       background:#fff;
@@ -119,6 +116,7 @@
       display:none;
       opacity:0;
       transition:opacity .45s ease;
+      padding-bottom:80px; /* espacio para footer */
     }
 
     .section.active{ display:block; }
@@ -154,9 +152,7 @@
       position:relative;
     }
 
-    h1{
-      font-size:44px;
-    }
+    h1{ font-size:44px; }
 
     h2{
       font-size:28px;
@@ -164,12 +160,11 @@
       padding-bottom:10px;
     }
 
-    /* 🔥 LÍNEA DE TÍTULOS CORREGIDA */
     h2::after{
       content:"";
       position:absolute;
       left:0;
-      right:0.18em; /* mismo ajuste óptico */
+      right:0.18em;
       bottom:0;
       height:1px;
       background:#fff;
@@ -234,6 +229,24 @@
         opacity:1;
         transform:translateY(0);
       }
+    }
+
+    /* ================= FOOTER ================= */
+    footer{
+      position:fixed;
+      bottom:0;
+      width:100%;
+      padding:18px 40px;
+      text-align:center;
+      font-size:11px;
+      color:var(--muted);
+      letter-spacing:.08em;
+      background:linear-gradient(
+        to top,
+        rgba(11,11,13,.9),
+        rgba(11,11,13,0)
+      );
+      z-index:900;
     }
 
     @media(max-width:768px){
@@ -310,6 +323,10 @@
     <p class="fade-up delay-1">📧 hello@email.com<br>📍 Valencia</p>
   </div>
 </section>
+
+<footer>
+  © 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial
+</footer>
 
 <script>
   function regenerate(section){

@@ -62,6 +62,7 @@ header{
 }
 @keyframes logoIn{ to{opacity:1;transform:translateX(0);} }
 
+/* ===== NAV ===== */
 nav{
   position:absolute;
   left:50%;
@@ -222,7 +223,7 @@ p{
 /* ===== PORTFOLIO GRID ===== */
 .portfolio-grid{
   display:grid;
-  grid-template-columns:repeat(3, 1fr);
+  grid-template-columns:repeat(3,1fr);
   gap:32px;
   margin-top:24px;
 }
@@ -241,7 +242,7 @@ p{
 }
 
 .project-image{
-  aspect-ratio:4 / 3;
+  aspect-ratio:4/3;
   background-size:cover;
   background-position:center;
 }
@@ -274,17 +275,27 @@ p{
   margin-top:4px;
 }
 
-/* ===== RESPONSIVE GRID ===== */
-@media(max-width:1024px){
-  .portfolio-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
+.project-cta{
+  margin-top:12px;
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  opacity:0;
+  transform:translateY(6px);
+  transition:.3s ease;
 }
 
+.project-card:hover .project-cta{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  .portfolio-grid{ grid-template-columns:repeat(2,1fr); }
+}
 @media(max-width:640px){
-  .portfolio-grid{
-    grid-template-columns:1fr;
-  }
+  .portfolio-grid{ grid-template-columns:1fr; }
 }
 
 /* ===== FOOTER ===== */
@@ -349,19 +360,10 @@ footer{
   </div>
 </section>
 
-<!-- SOBRE MI -->
-<section id="about" class="section">
-  <div class="content">
-    <h2 class="fade-up" data-es="Sobre mí" data-en="About me">Sobre mí</h2>
-    <p class="fade-up delay-1">
-      Diseñadora industrial con perfil técnico, atención al detalle y sensibilidad creativa.
-    </p>
-  </div>
-</section>
-
 <!-- PORTFOLIO -->
 <section id="portfolio" class="section">
   <div class="content">
+
     <h2 class="fade-up">Portfolio</h2>
 
     <p class="fade-up delay-1"
@@ -372,32 +374,15 @@ footer{
 
     <div class="portfolio-grid">
 
-      <div class="project-card fade-up delay-2">
+      <div class="project-card fade-up delay-2" onclick="openProject('node')">
         <div class="project-image" style="background-image:url('project1.jpg')"></div>
         <div class="project-info">
           <div class="project-title">NODE</div>
           <div class="project-meta" data-es="Proyecto final · 2024" data-en="Final degree project · 2024">
             Proyecto final · 2024
           </div>
-        </div>
-      </div>
-
-      <div class="project-card fade-up delay-2">
-        <div class="project-image" style="background-image:url('project2.jpg')"></div>
-        <div class="project-info">
-          <div class="project-title">Sixay Chest</div>
-          <div class="project-meta" data-es="Diseño de mobiliario · 2025" data-en="Furniture design · 2025">
-            Diseño de mobiliario · 2025
-          </div>
-        </div>
-      </div>
-
-      <div class="project-card fade-up delay-2">
-        <div class="project-image" style="background-image:url('project3.jpg')"></div>
-        <div class="project-info">
-          <div class="project-title">CCTV Housing</div>
-          <div class="project-meta" data-es="Producto técnico · 2023" data-en="Technical product · 2023">
-            Producto técnico · 2023
+          <div class="project-cta" data-es="Ver proyecto" data-en="View project">
+            Ver proyecto
           </div>
         </div>
       </div>
@@ -406,27 +391,37 @@ footer{
   </div>
 </section>
 
-<!-- CV -->
-<section id="cv" class="section">
+<!-- PROJECT DETAIL -->
+<section id="project-node" class="section">
   <div class="content">
-    <h2 class="fade-up">CV</h2>
-    <p class="fade-up delay-1">Formación académica y experiencia profesional.</p>
-  </div>
-</section>
 
-<!-- SKILLS -->
-<section id="skills" class="section">
-  <div class="content">
-    <h2 class="fade-up">Habilidades</h2>
-    <p class="fade-up delay-1">CAD · Prototipado · Diseño de producto</p>
-  </div>
-</section>
+    <h2 class="fade-up">NODE</h2>
 
-<!-- CONTACT -->
-<section id="contact" class="section">
-  <div class="content">
-    <h2 class="fade-up">Contacto</h2>
-    <p class="fade-up delay-1">hello@email.com · Valencia</p>
+    <p class="fade-up delay-1"
+       data-es="Proyecto final de grado centrado en el diseño de un sistema modular."
+       data-en="Final degree project focused on modular system design.">
+      Proyecto final de grado centrado en el diseño de un sistema modular.
+    </p>
+
+    <div class="portfolio-grid">
+
+      <div class="project-card fade-up delay-2">
+        <img src="node1.jpg" loading="lazy" style="width:100%;border-radius:18px;">
+      </div>
+
+      <div class="project-card fade-up delay-2">
+        <img src="node2.jpg" loading="lazy" style="width:100%;border-radius:18px;">
+      </div>
+
+    </div>
+
+    <button class="btn fade-up delay-2"
+      data-es="Volver al portfolio"
+      data-en="Back to portfolio"
+      onclick="changeSection('portfolio')">
+      Volver al portfolio
+    </button>
+
   </div>
 </section>
 
@@ -481,6 +476,10 @@ function setLanguage(lang){
 
   resetAnimations(document);
   restartHeaderAnimations();
+}
+
+function openProject(id){
+  changeSection('project-' + id);
 }
 </script>
 

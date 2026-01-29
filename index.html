@@ -142,16 +142,16 @@ nav a:hover::after{
   display:flex;
   gap:20px;
   opacity:0;
-  animation:langFade 0.8s ease .8s forwards;
+  animation:langFade 0.8s ease forwards; /* Independent animation for language buttons */
 }
 @keyframes langFade{
   from{
     opacity:0;
-    transform:translateX(20px); /* Desplazamiento inicial desde la derecha */
+    transform:translateX(20px); /* Buttons come from the left */
   }
   to{
     opacity:1;
-    transform:translateX(0); /* Vuelve a su posición original */
+    transform:translateX(0); /* Buttons settle in position */
   }
 }
 

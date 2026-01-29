@@ -26,6 +26,15 @@
       background:var(--bg);
       color:var(--white);
       overflow:hidden;
+      transition:opacity .35s ease;
+    }
+
+    body.fade-out{
+      opacity:0;
+    }
+
+    body.fade-in{
+      opacity:1;
     }
 
     /* ================= HEADER ================= */
@@ -39,11 +48,10 @@
       z-index:1000;
     }
 
-    /* LOGO MÁS FINO */
     .logo{
       font-size:16px;
       letter-spacing:.3em;
-      font-weight:500; /* 👈 reducido */
+      font-weight:500;
       color:#fff;
       opacity:0;
       transform:translateX(-32px);
@@ -257,7 +265,7 @@
   </style>
 </head>
 
-<body>
+<body class="fade-in">
 
 <header>
   <div class="logo">L · BIB</div>
@@ -305,15 +313,26 @@
 
 <script>
   function setLanguage(lang){
-    document.querySelectorAll('.lang-switch button')
-      .forEach(b => b.classList.remove('active'));
+    const body = document.body;
 
-    document.querySelector(`.lang-switch button[onclick*="${lang}"]`)
-      .classList.add('active');
+    body.classList.add('fade-out');
 
-    document.querySelectorAll('[data-es]').forEach(el=>{
-      el.innerHTML = el.dataset[lang];
-    });
+    setTimeout(()=>{
+      document.querySelectorAll('.lang-switch button')
+        .forEach(b => b.classList.remove('active'));
+
+      document.querySelector(`.lang-switch button[onclick*="${lang}"]`)
+        .classList.add('active');
+
+      document.querySelectorAll('[data-es]').forEach(el=>{
+        el.innerHTML = el.dataset[lang];
+      });
+
+      void body.offsetHeight;
+
+      body.classList.remove('fade-out');
+      body.classList.add('fade-in');
+    },350);
   }
 </script>
 

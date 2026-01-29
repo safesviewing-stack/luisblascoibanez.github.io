@@ -192,8 +192,10 @@ p{
   align-items:stretch;
 }
 
+/* desplazamiento extra de la imagen */
 .about-image{
   display:flex;
+  margin-left:40px; /* 👈 AQUÍ */
 }
 
 .about-image img{
@@ -309,7 +311,6 @@ footer{
 function changeSection(id){
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
-
   document.getElementById(id).classList.add('active');
   event.target.classList.add('active');
 }

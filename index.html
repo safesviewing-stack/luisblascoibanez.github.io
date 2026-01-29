@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Portfolio · Luis Blasco-Ibáñez</title>
+<title>Portfolio · Luis Blasco-Ibáñez Berbel</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -27,7 +27,7 @@ body{
   overflow:hidden;
 }
 
-/* ================= BACKGROUND ================= */
+/* ===== BACKGROUND ===== */
 .bg-layer{
   position:fixed;
   inset:0;
@@ -41,7 +41,7 @@ body{
 }
 @keyframes bgFadeIn{ to{opacity:1;} }
 
-/* ================= HEADER ================= */
+/* ===== HEADER ===== */
 header{
   position:fixed;
   top:0;
@@ -89,9 +89,7 @@ nav a:nth-child(4){animation-delay:.44s}
 nav a:nth-child(5){animation-delay:.52s}
 nav a:nth-child(6){animation-delay:.60s}
 
-@keyframes navIn{
-  to{opacity:1;transform:translateY(0);}
-}
+@keyframes navIn{ to{opacity:1;transform:translateY(0);} }
 
 nav a::after{
   content:"";
@@ -111,7 +109,7 @@ nav a:hover::after{
   transform:scaleX(1);
 }
 
-/* ================= LANGUAGE ================= */
+/* ===== LANGUAGE ===== */
 .lang-switch{
   position:absolute;
   right:40px;
@@ -157,7 +155,7 @@ nav a:hover::after{
   transform:scaleX(1);
 }
 
-/* ================= SECTIONS ================= */
+/* ===== SECTIONS ===== */
 .section{
   position:absolute;
   inset:0;
@@ -174,10 +172,10 @@ nav a:hover::after{
   margin-left:clamp(120px,16vw,240px);
   display:flex;
   flex-direction:column;
-  gap:26px;
+  gap:22px;
 }
 
-/* ================= TEXT ================= */
+/* ===== TEXT ===== */
 h1{
   font-size:44px;
   font-weight:600;
@@ -196,7 +194,7 @@ p{
   line-height:1.7;
 }
 
-/* ================= ANIMATIONS ================= */
+/* ===== ANIMATIONS ===== */
 .fade-up{
   opacity:0;
   transform:translateY(20px);
@@ -204,13 +202,14 @@ p{
 }
 .delay-1{animation-delay:.25s}
 .delay-2{animation-delay:.45s}
+.delay-3{animation-delay:.65s}
 
 @keyframes fadeUp{
   to{opacity:1;transform:translateY(0);}
 }
 
 .btn{
-  margin-top:12px;
+  margin-top:16px;
   padding:14px 34px;
   border-radius:40px;
   border:none;
@@ -221,7 +220,7 @@ p{
   align-self:flex-start;
 }
 
-/* ================= PORTFOLIO GRID ================= */
+/* ===== PORTFOLIO GRID ===== */
 .portfolio-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -268,7 +267,7 @@ p{
   margin-top:4px;
 }
 
-/* ================= FOOTER ================= */
+/* ===== FOOTER ===== */
 footer{
   position:fixed;
   bottom:0;
@@ -309,19 +308,25 @@ footer{
 <section id="home" class="section active">
   <div class="content">
     <h1 class="fade-up">
-      <span class="title-line" data-es="Diseño Industrial" data-en="Industrial Design">Diseño Industrial</span>
+      <span class="title-line" data-es="Diseño Industrial" data-en="Industrial Design">
+        Diseño Industrial
+      </span>
       <span class="title-line" data-es="y Desarrollo de Producto" data-en="and Product Development">
         y Desarrollo de Producto
       </span>
     </h1>
 
     <p class="fade-up delay-1"
-       data-es="Perfil técnico y creativo enfocado en producto."
-       data-en="Technical and creative profile focused on product design.">
-      Perfil técnico y creativo enfocado en producto.
+       data-es="Diseño industrial · Portfolio"
+       data-en="Industrial Design · Portfolio">
+      Diseño industrial · Portfolio
     </p>
 
-    <button class="btn fade-up delay-2"
+    <p class="fade-up delay-2">
+      Luis Blasco-Ibáñez Berbel
+    </p>
+
+    <button class="btn fade-up delay-3"
       data-es="Ver proyectos"
       data-en="View projects"
       onclick="changeSection('portfolio')">
@@ -336,27 +341,21 @@ footer{
     <h2 class="fade-up" data-es="Sobre mí" data-en="About me">Sobre mí</h2>
 
     <p class="fade-up delay-1"
-       data-es="Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV, actualmente en mi último año. Nací y vivo en Valencia, y me considero una persona con una mente ecléctica, siempre buscando nuevas formas de conectar lo técnico con lo estético."
-       data-en="Hi, I’m Luis, I’m 24 years old, and I’m an Industrial Design student at UPV, currently in my final year. I’m based in Valencia, and I would describe myself as an eclectic thinker, always trying to bridge the technical and the aesthetic.">
-      Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV, actualmente en mi último año. Nací y vivo en Valencia, y me considero una persona con una mente ecléctica, siempre buscando nuevas formas de conectar lo técnico con lo estético.
+      data-es="Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV, actualmente en mi último año. Vivo en Valencia y me considero una mente ecléctica, siempre buscando el equilibrio entre lo técnico y lo estético."
+      data-en="Hi, I’m Luis, I’m 24 years old, and I’m an Industrial Design student at UPV, currently in my final year. I’m based in Valencia and consider myself an eclectic thinker, always seeking balance between the technical and the aesthetic.">
+      Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV, actualmente en mi último año. Vivo en Valencia y me considero una mente ecléctica, siempre buscando el equilibrio entre lo técnico y lo estético.
     </p>
 
     <p class="fade-up delay-2"
-       data-es="Desde pequeño he tenido curiosidad por entender cómo funcionan las cosas. Mi formación en el sector de la electricidad me dio una base técnica sólida, pero el diseño siempre ha sido mi verdadera pasión. Disfruto del proceso de crear y soy perfeccionista hasta el último detalle."
-       data-en="From an early age, I’ve been curious about how things work. My vocational training in the electrical sector gave me a solid technical foundation, but design has always been my true passion. I enjoy the creation process and I’m a perfectionist down to the last detail.">
-      Desde pequeño he tenido curiosidad por entender cómo funcionan las cosas. Mi formación en el sector de la electricidad me dio una base técnica sólida, pero el diseño siempre ha sido mi verdadera pasión. Disfruto del proceso de crear y soy perfeccionista hasta el último detalle.
+      data-es="Mi formación en el sector de la electricidad me dio una base técnica sólida. Soy perfeccionista, disfruto del proceso de desarrollo y no suelo dar un trabajo por terminado hasta que el resultado está bien resuelto."
+      data-en="My background in the electrical sector provided me with a strong technical foundation. I’m a perfectionist, I enjoy the development process, and I rarely consider a project finished until it’s properly resolved.">
+      Mi formación en el sector de la electricidad me dio una base técnica sólida. Soy perfeccionista, disfruto del proceso de desarrollo y no suelo dar un trabajo por terminado hasta que el resultado está bien resuelto.
     </p>
 
     <p class="fade-up delay-2"
-       data-es="Siempre tengo la necesidad de estar haciendo algo; si algo no me sale, no paro hasta encontrar la solución. Para mí, el proceso es tan importante como el resultado final."
-       data-en="I always feel the need to stay active; if something doesn’t work, I don’t stop until I find the solution. For me, the process is just as important as the final result.">
-      Siempre tengo la necesidad de estar haciendo algo; si algo no me sale, no paro hasta encontrar la solución. Para mí, el proceso es tan importante como el resultado final.
-    </p>
-
-    <p class="fade-up delay-2"
-       data-es="Como dato curioso, me interesa especialmente el campo de la impresión 3D, tanto como herramienta de prototipado como por su potencial en el desarrollo y la experimentación de producto."
-       data-en="As a fun fact, I’m especially interested in the field of 3D printing, both as a prototyping tool and for its potential in product development and experimentation.">
-      Como dato curioso, me interesa especialmente el campo de la impresión 3D, tanto como herramienta de prototipado como por su potencial en el desarrollo y la experimentación de producto.
+      data-es="Como dato curioso, me interesa especialmente el campo de la impresión 3D como herramienta de prototipado y experimentación en diseño de producto."
+      data-en="As a fun fact, I’m especially interested in 3D printing as a tool for prototyping and experimentation in product design.">
+      Como dato curioso, me interesa especialmente el campo de la impresión 3D como herramienta de prototipado y experimentación en diseño de producto.
     </p>
   </div>
 </section>
@@ -431,7 +430,7 @@ let currentLang='es';
 function resetAnimations(scope=document){
   scope.querySelectorAll('.fade-up').forEach(el=>{
     const c=el.className;
-    el.className=c.replace(/fade-up|delay-1|delay-2/g,'').trim();
+    el.className=c.replace(/fade-up|delay-1|delay-2|delay-3/g,'').trim();
     void el.offsetHeight;
     el.className=c;
   });

@@ -27,15 +27,7 @@ body{
   overflow:hidden;
 }
 
-/* ===== BLACK INTRO ===== */
-.bg-black{
-  position:fixed;
-  inset:0;
-  background:#0b0b0d;
-  z-index:-3;
-}
-
-/* ===== BACKGROUND IMAGE ===== */
+/* ===== BACKGROUND ===== */
 .bg-layer{
   position:fixed;
   inset:0;
@@ -44,12 +36,9 @@ body{
     url("reloj1.jpg") center / cover no-repeat;
   z-index:-2;
   opacity:0;
-  animation:bgFadeIn 1.6s cubic-bezier(.4,0,.2,1) forwards;
-  animation-delay:.15s;
+  animation:bgFadeIn 1.4s ease forwards;
 }
-@keyframes bgFadeIn{
-  to{opacity:1;}
-}
+@keyframes bgFadeIn{ to{opacity:1;} }
 
 /* ===== GLOBAL SECTION FADE ===== */
 .section-fade{
@@ -58,7 +47,6 @@ body{
   background:rgba(11,11,13,.9);
   z-index:-1;
   opacity:0;
-  pointer-events:none;
 }
 .section-fade.active{
   animation:sectionFade 1.4s cubic-bezier(.4,0,.2,1) forwards;
@@ -87,9 +75,7 @@ header{
   transform:translateX(-32px);
   animation:logoIn .9s cubic-bezier(.4,0,.2,1) forwards;
 }
-@keyframes logoIn{
-  to{opacity:1;transform:translateX(0);}
-}
+@keyframes logoIn{ to{opacity:1;transform:translateX(0);} }
 
 nav{
   position:absolute;
@@ -118,9 +104,7 @@ nav a:nth-child(4){animation-delay:.49s}
 nav a:nth-child(5){animation-delay:.57s}
 nav a:nth-child(6){animation-delay:.65s}
 
-@keyframes navIn{
-  to{opacity:1;transform:translateY(0);}
-}
+@keyframes navIn{ to{opacity:1;transform:translateY(0);} }
 
 nav a::after{
   content:"";
@@ -265,7 +249,6 @@ footer{
 
 <body>
 
-<div class="bg-black"></div>
 <div class="bg-layer"></div>
 <div class="section-fade"></div>
 
@@ -297,10 +280,6 @@ footer{
     <p class="fade-up delay-1" data-i18n="home_sub">
       Perfil técnico y creativo enfocado en producto.
     </p>
-
-    <button class="btn fade-up delay-2" data-i18n="home_btn">
-      Ver proyectos
-    </button>
   </div>
 </section>
 
@@ -338,7 +317,6 @@ const translations = {
     home_title_1:"Diseño Industrial",
     home_title_2:"y Desarrollo de Producto",
     home_sub:"Perfil técnico y creativo enfocado en producto.",
-    home_btn:"Ver proyectos",
     about_title:"Sobre mí",
     about_text:`Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV, actualmente en mi último año. Vivo en Valencia y me considero una persona con una mente ecléctica y perfeccionista, siempre interesada en encontrar el equilibrio entre lo técnico y lo estético. Desde pequeño he tenido curiosidad por entender cómo funcionan las cosas, y mi formación profesional en el sector de la electricidad me permitió adquirir una base técnica sólida que hoy aplico al diseño y desarrollo de producto. Disfruto especialmente del proceso completo de diseño, desde la idea inicial hasta la definición técnica y el detalle final, y tengo una necesidad constante de estar creando y resolviendo. Si algo no me sale, no paro hasta encontrar la solución, porque para mí el proceso es tan importante como el resultado final. Como dato curioso, me interesa especialmente el campo de la impresión 3D, ya que me permite experimentar directamente con el diseño y validar conceptos de la manera más rápida y precisa.`,
     footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"
@@ -353,16 +331,17 @@ const translations = {
     home_title_1:"Industrial Design",
     home_title_2:"and Product Development",
     home_sub:"Technical and creative profile focused on product.",
-    home_btn:"View projects",
     about_title:"About me",
-    about_text:`Hi, I’m Luis, a 24-year-old Industrial Design student at UPV, currently in my final year. I live in Valencia and consider myself an eclectic and perfectionist person, always interested in finding the balance between technical precision and aesthetics. From an early age, I’ve been curious about how things work, and my vocational training in the electrical sector gave me a solid technical foundation that I now apply to product design and development. I especially enjoy the complete design process, from the initial idea to technical definition and final detailing, and I have a constant need to keep creating and solving problems. If something doesn’t work, I don’t stop until I find the solution, because for me the process is just as important as the final result. As a curious fact, I’m particularly interested in the field of 3D printing, as it allows me to directly experiment with design and validate concepts in the fastest and most precise way.`,
+    about_text:`Hi, I’m Luis, I’m 24 years old and an Industrial Design student at UPV, currently in my final year. I live in Valencia and consider myself an eclectic and perfectionist person, always interested in finding the balance between technical precision and aesthetics. From an early age, I’ve been curious about how things work, and my vocational training in the electrical sector gave me a solid technical foundation that I now apply to product design and development. I especially enjoy the complete design process, from the initial idea to technical definition and final detailing, and I have a constant need to keep creating and solving problems. If something doesn’t work, I don’t stop until I find the solution, because for me the process is just as important as the final result. As a curious fact, I’m particularly interested in the field of 3D printing, as it allows me to directly experiment with design and validate concepts in the fastest and most precise way.`,
     footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineering"
   }
 };
 
-/* ===== RESET ANIMATIONS ===== */
-function resetAnimations(scope=document){
-  scope.querySelectorAll('.fade-up, .photo-in').forEach(el=>{
+function resetPageAnimations(){
+  const activeSection = document.querySelector('.section.active');
+  if(!activeSection) return;
+
+  activeSection.querySelectorAll('.fade-up, .photo-in').forEach(el=>{
     const c = el.className;
     el.className = c.replace(/fade-up|delay-1|delay-2|photo-in/g,'').trim();
     void el.offsetHeight;
@@ -370,35 +349,24 @@ function resetAnimations(scope=document){
   });
 }
 
-function resetFooterAnimation(){
-  const footer=document.querySelector('footer');
-  footer.style.animation='none';
-  void footer.offsetHeight;
-  footer.style.animation='';
-}
-
-/* ===== LANGUAGE CHANGE ===== */
 function changeLang(lang){
-  if(lang===currentLang) return;
-  currentLang=lang;
-
-  const activeSection=document.querySelector('.section.active');
+  if(lang === currentLang) return;
+  currentLang = lang;
 
   document.querySelectorAll('[data-i18n]').forEach(el=>{
-    el.textContent=translations[lang][el.dataset.i18n];
+    el.textContent = translations[lang][el.dataset.i18n];
   });
 
   document.querySelectorAll('.lang-switch button').forEach(b=>b.classList.remove('active'));
   document.querySelector(`.lang-switch button[onclick*="${lang}"]`).classList.add('active');
 
-  resetAnimations(activeSection);
-  resetFooterAnimation();
+  /* 🔄 reset animaciones */
+  resetPageAnimations();
 }
 
-/* ===== SECTION CHANGE ===== */
-function changeSection(id,link){
-  const current=document.querySelector('.section.active');
-  if(current && current.id===id) return;
+function changeSection(id, link){
+  const current = document.querySelector('.section.active');
+  if(current && current.id === id) return;
 
   const fade=document.querySelector('.section-fade');
   fade.classList.remove('active');
@@ -410,9 +378,6 @@ function changeSection(id,link){
 
   document.getElementById(id).classList.add('active');
   link.classList.add('active');
-
-  resetAnimations(document.getElementById(id));
-  resetFooterAnimation();
 }
 </script>
 

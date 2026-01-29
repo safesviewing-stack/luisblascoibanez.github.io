@@ -207,8 +207,8 @@ p{
 }
 
 .about-image img{
-  width:320px;          /* 🔍 foto un poco más grande */
-  border-radius:0;      /* ⬛ esquinas rectas */
+  width:380px;          /* 🔼 Foto escalada más grande */
+  border-radius:0;      /* ⬛ Esquinas rectas */
   display:block;
 }
 
@@ -327,10 +327,10 @@ let currentLang='es';
 
 function resetAnimations(scope=document){
   scope.querySelectorAll('.fade-up').forEach(el=>{
-    const c=el.className;
-    el.className=c.replace(/fade-up|delay-1|delay-2/g,'').trim();
+    const c = el.className;
+    el.className = c.replace(/fade-up|delay-1|delay-2/g,'').trim();
     void el.offsetHeight;
-    el.className=c;
+    el.className = c;
   });
 }
 
@@ -365,7 +365,7 @@ function setLanguage(lang){
   document.querySelector(`.lang-switch button[onclick*="${lang}"]`).classList.add('active');
 
   document.querySelectorAll('[data-es]').forEach(el=>{
-    el.innerHTML=el.dataset[lang];
+    el.innerHTML = el.dataset[lang];
   });
 
   resetAnimations(document);

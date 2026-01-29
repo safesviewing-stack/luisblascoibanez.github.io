@@ -13,6 +13,7 @@
       --white:#ffffff;
       --muted:#cfcfcf;
       --card:#141418;
+      --footer:#060607;
     }
 
     *{
@@ -39,6 +40,7 @@
       z-index:1000;
     }
 
+    /* LOGO */
     .logo{
       font-size:14px;
       letter-spacing:.3em;
@@ -116,7 +118,7 @@
       display:none;
       opacity:0;
       transition:opacity .45s ease;
-      padding-bottom:80px; /* espacio para footer */
+      padding-bottom:90px;
     }
 
     .section.active{ display:block; }
@@ -236,17 +238,28 @@
       position:fixed;
       bottom:0;
       width:100%;
-      padding:18px 40px;
+      padding:20px 40px;
       text-align:center;
       font-size:11px;
-      color:var(--muted);
       letter-spacing:.08em;
+      color:#bdbdbd;
       background:linear-gradient(
         to top,
-        rgba(11,11,13,.9),
-        rgba(11,11,13,0)
+        rgba(6,6,7,.98),
+        rgba(6,6,7,.85),
+        rgba(6,6,7,0)
       );
+      opacity:0;
+      transform:translateY(20px);
+      animation:footerIn .6s ease .6s forwards;
       z-index:900;
+    }
+
+    @keyframes footerIn{
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
     }
 
     @media(max-width:768px){
@@ -261,7 +274,7 @@
 <body>
 
 <header>
-  <div class="logo">PORTFOLIO</div>
+  <div class="logo">L · BIB</div>
   <nav>
     <a class="active" onclick="changeSection('home')">Inicio</a>
     <a onclick="changeSection('about')">Sobre mí</a>

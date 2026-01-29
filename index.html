@@ -103,7 +103,7 @@ nav a{
   cursor:pointer;
   opacity:0;
   transform:translateY(-12px);
-  animation:navIn .55s ease forwards;
+  animation:navIn 0.55s ease forwards;
 }
 
 nav a:nth-child(1){animation-delay:.25s}
@@ -374,18 +374,27 @@ function resetAnimations(scope=document){
     void el.offsetHeight; // force reflow
     el.className = c;
   });
-  // Reset animations for header and footer
-  scope.querySelectorAll('header, footer').forEach(el => {
-    el.style.animation = 'none'; // remove current animation
-    void el.offsetHeight; // force reflow
-    el.style.animation = ''; // reapply animation
-  });
-  // Reset header links and logo animation
+
+  // Reset header and nav link animations
   scope.querySelectorAll('.logo, nav a').forEach(el => {
     const c = el.className;
     el.className = c.replace(/fade-up|delay-\d+/g,'').trim();
     void el.offsetHeight; // force reflow
     el.className = c;
+  });
+
+  // Reset header animation
+  scope.querySelectorAll('header').forEach(el => {
+    el.style.animation = 'none';
+    void el.offsetHeight;
+    el.style.animation = '';
+  });
+
+  // Reset footer animation
+  scope.querySelectorAll('footer').forEach(el => {
+    el.style.animation = 'none';
+    void el.offsetHeight;
+    el.style.animation = '';
   });
 }
 

@@ -295,6 +295,22 @@ footer{
 header.hide-logo .logo {
   visibility: hidden;
 }
+
+.logo.show-home {
+  animation: logoShowHome 0.9s cubic-bezier(.4, 0, .2, 1) forwards;
+}
+
+@keyframes logoShowHome {
+  from {
+    opacity: 0;
+    transform: translateX(-32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 </style>
 </head>
 
@@ -473,6 +489,12 @@ function changeSection(id, link){
     header.classList.add('hide-logo');
   } else {
     header.classList.remove('hide-logo');
+    // Trigger animation for logo when returning to home
+    const logo = header.querySelector('.logo');
+    logo.classList.add('show-home');
+    setTimeout(() => {
+      logo.classList.remove('show-home'); // Remove animation class after it completes
+    }, 900); // Match the animation duration
   }
 }
 </script>

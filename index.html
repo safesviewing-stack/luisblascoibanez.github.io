@@ -12,7 +12,6 @@
       --bg:#0b0b0d;
       --white:#ffffff;
       --muted:#cfcfcf;
-      --card:#141418;
     }
 
     *{
@@ -26,21 +25,6 @@
       background:var(--bg);
       color:var(--white);
       overflow:hidden;
-    }
-
-    /* ================= PAGE FADE ================= */
-    .page-fade{
-      position:fixed;
-      inset:0;
-      background:#0b0b0d;
-      opacity:0;
-      pointer-events:none;
-      z-index:3000;
-      transition:opacity .45s ease;
-    }
-
-    .page-fade.active{
-      opacity:1;
     }
 
     /* ================= HEADER ================= */
@@ -80,24 +64,9 @@
       font-size:11px;
       letter-spacing:.18em;
       text-transform:uppercase;
-      cursor:pointer;
       position:relative;
       padding-bottom:6px;
       color:#fff;
-      opacity:0;
-      transform:translateY(-8px);
-      animation:navCascade .4s ease forwards;
-    }
-
-    nav a:nth-child(1){ animation-delay:.18s }
-    nav a:nth-child(2){ animation-delay:.26s }
-    nav a:nth-child(3){ animation-delay:.34s }
-    nav a:nth-child(4){ animation-delay:.42s }
-    nav a:nth-child(5){ animation-delay:.50s }
-    nav a:nth-child(6){ animation-delay:.58s }
-
-    @keyframes navCascade{
-      to{ opacity:1; transform:translateY(0); }
     }
 
     nav a::after{
@@ -126,8 +95,6 @@
       transform:translateY(-50%);
       display:flex;
       gap:20px;
-      opacity:0;
-      animation:fadeStatic .6s ease .6s forwards;
     }
 
     .lang-switch button{
@@ -141,7 +108,6 @@
       position:relative;
       padding-bottom:6px;
       opacity:.6;
-      font-weight:400;
     }
 
     .lang-switch button::after{
@@ -165,25 +131,9 @@
       transform:scaleX(1);
     }
 
-    @keyframes fadeStatic{
-      to{ opacity:1; }
-    }
-
-    /* ================= SECTIONS ================= */
-    .section{
-      position:absolute;
-      inset:0;
-      display:none;
-      opacity:0;
-      transition:opacity .45s ease;
-      padding-bottom:70px;
-    }
-
-    .section.active{ display:block; }
-    .section.visible{ opacity:1; }
-
     /* ================= HOME ================= */
     #home{
+      height:100vh;
       display:flex;
       align-items:center;
     }
@@ -230,6 +180,7 @@
       align-self:flex-start;
     }
 
+    /* ================= ANIMACIÓN DE ENTRADA ================= */
     .fade-up{
       opacity:0;
       transform:translateY(20px);
@@ -240,37 +191,15 @@
     .delay-2{ animation-delay:.45s }
 
     @keyframes fadeUp{
-      to{ opacity:1; transform:translateY(0); }
-    }
-
-    /* ================= FOOTER ================= */
-    footer{
-      position:fixed;
-      bottom:0;
-      width:100%;
-      padding:18px 40px;
-      text-align:center;
-      font-size:11px;
-      letter-spacing:.08em;
-      color:#9a9a9a;
-      background:transparent;
-      opacity:0;
-      transform:translateY(16px);
-      animation:footerIn .6s ease .6s forwards;
-      z-index:900;
-      pointer-events:none;
-    }
-
-    @keyframes footerIn{
-      to{ opacity:1; transform:translateY(0); }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
     }
   </style>
 </head>
 
 <body>
-
-<!-- OVERLAY DE FUNDIDO -->
-<div class="page-fade"></div>
 
 <header>
   <div class="logo">L · BIB</div>
@@ -290,7 +219,7 @@
   </div>
 </header>
 
-<section id="home" class="section active visible">
+<section id="home">
   <div class="home-content">
     <h1 class="fade-up"
         data-es="Diseño Industrial y Desarrollo de Producto"
@@ -312,31 +241,34 @@
   </div>
 </section>
 
-<footer>
-  © 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial
-</footer>
-
 <script>
+  function restartAnimations(){
+    document.querySelectorAll('.fade-up').forEach(el=>{
+      el.classList.remove('fade-up','delay-1','delay-2');
+      void el.offsetHeight;
+      el.classList.add('fade-up');
+    });
+
+    document.querySelectorAll('.delay-1').forEach(el=>{
+      el.classList.add('delay-1');
+    });
+    document.querySelectorAll('.delay-2').forEach(el=>{
+      el.classList.add('delay-2');
+    });
+  }
+
   function setLanguage(lang){
-    const overlay = document.querySelector('.page-fade');
+    document.querySelectorAll('.lang-switch button')
+      .forEach(b => b.classList.remove('active'));
 
-    overlay.classList.add('active');
+    document.querySelector(`.lang-switch button[onclick*="${lang}"]`)
+      .classList.add('active');
 
-    setTimeout(() => {
-      document.querySelectorAll('.lang-switch button')
-        .forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('[data-es]').forEach(el=>{
+      el.innerHTML = el.dataset[lang];
+    });
 
-      document.querySelector(`.lang-switch button[onclick*="${lang}"]`)
-        .classList.add('active');
-
-      document.querySelectorAll('[data-es]').forEach(el=>{
-        el.innerHTML = el.dataset[lang];
-      });
-
-      setTimeout(() => {
-        overlay.classList.remove('active');
-      }, 200);
-    }, 300);
+    restartAnimations();
   }
 </script>
 

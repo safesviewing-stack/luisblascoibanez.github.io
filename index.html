@@ -103,7 +103,7 @@
       transform:scaleX(1);
     }
 
-    /* ================= LANGUAGE SWITCH (HEADER RIGHT) ================= */
+    /* ================= LANGUAGE SWITCH ================= */
     .lang-switch{
       position:absolute;
       right:40px;
@@ -111,6 +111,8 @@
       transform:translateY(-50%);
       display:flex;
       gap:20px;
+      opacity:0;
+      animation:fadeStatic .6s ease .6s forwards;
     }
 
     .lang-switch button{
@@ -149,6 +151,10 @@
 
     .lang-switch button:hover{
       opacity:1;
+    }
+
+    @keyframes fadeStatic{
+      to{ opacity:1; }
     }
 
     /* ================= SECTIONS ================= */

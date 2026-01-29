@@ -175,7 +175,7 @@ nav a:hover::after{
   gap:26px;
 }
 
-/* ===== ABOUT ADJUST ===== */
+/* ABOUT TWEAK */
 #about .content{
   max-width:1035px;
   transform:translateY(15px);
@@ -226,10 +226,10 @@ p{
   to{opacity:1;transform:translateY(0);}
 }
 
-/* ===== PHOTO ANIMATION ===== */
+/* PHOTO ANIMATION */
 .photo-in{
   opacity:0;
-  transform:translateX(40px) scale(0.96);
+  transform:translateX(40px) scale(.96);
   animation:photoIn .9s cubic-bezier(.22,.61,.36,1) forwards;
   animation-delay:.5s;
 }
@@ -338,8 +338,7 @@ function resetAnimations(scope=document){
 }
 
 function resetHeaderAnimations(){
-  const els=document.querySelectorAll('.logo, nav a, .lang-switch');
-  els.forEach(el=>{
+  document.querySelectorAll('.logo, nav a, .lang-switch').forEach(el=>{
     el.style.animation='none';
     void el.offsetHeight;
     el.style.animation='';

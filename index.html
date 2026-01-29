@@ -22,7 +22,7 @@
 }
 
 body{
-  background:var(--bg);
+  background:#000;
   color:var(--white);
   overflow:hidden;
 }
@@ -33,8 +33,8 @@ body{
   inset:0;
   background:
     linear-gradient(
-      rgba(0,0,0,1),  /* Negro total */
-      rgba(0,0,0,1)   /* Negro total */
+      rgba(0,0,0,1),
+      rgba(0,0,0,1)
     ),
     url("reloj1.jpg") center / cover no-repeat;
   z-index:-2;
@@ -48,16 +48,14 @@ body{
 .section-fade{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.9);  /* Fondo negro al cambiar de sección */
+  background:rgba(0,0,0,.9);
   z-index:-1;
   opacity:0;
   pointer-events:none;
 }
-
 .section-fade.active{
   animation:sectionFade 1.4s cubic-bezier(.4,0,.2,1) forwards;
 }
-
 @keyframes sectionFade{
   from{opacity:1}
   to{opacity:0}
@@ -125,7 +123,6 @@ nav a::after{
   transform-origin:left;
   transition:.3s;
 }
-
 nav a.active::after,
 nav a:hover::after{
   transform:scaleX(1);
@@ -152,8 +149,6 @@ nav a:hover::after{
   letter-spacing:.18em;
   text-transform:uppercase;
   cursor:pointer;
-  position:relative;
-  padding-bottom:6px;
   opacity:.6;
 }
 .lang-switch button.active{opacity:1}
@@ -201,18 +196,6 @@ p{
   text-align:justify;
 }
 
-/* ===== ABOUT LAYOUT ===== */
-.about-layout{
-  display:flex;
-  gap:60px;
-  align-items:flex-start;
-}
-
-.about-image img{
-  width:335px;
-  display:block;
-}
-
 /* ===== ANIMATIONS ===== */
 .fade-up{
   opacity:0;
@@ -236,6 +219,19 @@ p{
   to{opacity:1;transform:translateX(0) scale(1);}
 }
 
+/* ===== BUTTON ===== */
+.btn{
+  margin-top:14px;
+  padding:14px 34px;
+  border-radius:40px;
+  border:none;
+  background:#fff;
+  color:#000;
+  font-weight:600;
+  cursor:pointer;
+  align-self:flex-start;
+}
+
 /* ===== FOOTER ===== */
 footer{
   position:fixed;
@@ -246,8 +242,6 @@ footer{
   font-size:11px;
   letter-spacing:.08em;
   color:#9a9a9a;
-  pointer-events:none;
-
   opacity:0;
   transform:translateY(20px);
   animation:footerIn .75s cubic-bezier(.4,0,.2,1) forwards;
@@ -292,6 +286,11 @@ footer{
     <p class="fade-up delay-1" data-i18n="home_sub">
       Perfil técnico y creativo enfocado en producto.
     </p>
+
+    <!-- 🔴 BOTÓN RECUPERADO -->
+    <button class="btn fade-up delay-2" data-i18n="home_btn">
+      Ver proyectos
+    </button>
   </div>
 </section>
 
@@ -329,6 +328,7 @@ const translations = {
     home_title_1:"Diseño Industrial",
     home_title_2:"y Desarrollo de Producto",
     home_sub:"Perfil técnico y creativo enfocado en producto.",
+    home_btn:"Ver proyectos",
     about_title:"Sobre mí",
     about_text:`Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV, actualmente en mi último año. Vivo en Valencia y me considero una persona con una mente ecléctica y perfeccionista, siempre interesada en encontrar el equilibrio entre lo técnico y lo estético. Desde pequeño he tenido curiosidad por entender cómo funcionan las cosas, y mi formación profesional en el sector de la electricidad me permitió adquirir una base técnica sólida que hoy aplico al diseño y desarrollo de producto. Disfruto especialmente del proceso completo de diseño, desde la idea inicial hasta la definición técnica y el detalle final, y tengo una necesidad constante de estar creando y resolviendo. Si algo no me sale, no paro hasta encontrar la solución, porque para mí el proceso es tan importante como el resultado final. Como dato curioso, me interesa especialmente el campo de la impresión 3D, ya que me permite experimentar directamente con el diseño y validar conceptos de la manera más rápida y precisa.`,
     footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"
@@ -343,6 +343,7 @@ const translations = {
     home_title_1:"Industrial Design",
     home_title_2:"and Product Development",
     home_sub:"Technical and creative profile focused on product.",
+    home_btn:"View projects",
     about_title:"About me",
     about_text:`Hi, I’m Luis, I’m 24 years old and an Industrial Design student at UPV, currently in my final year. I live in Valencia and consider myself an eclectic and perfectionist person, always interested in finding the balance between technical precision and aesthetics. From an early age, I’ve been curious about how things work, and my vocational training in the electrical sector gave me a solid technical foundation that I now apply to product design and development. I especially enjoy the complete design process, from the initial idea to technical definition and final detailing, and I have a constant need to keep creating and solving problems. If something doesn’t work, I don’t stop until I find the solution, because for me the process is just as important as the final result. As a curious fact, I’m particularly interested in the field of 3D printing, as it allows me to directly experiment with design and validate concepts in the fastest and most precise way.`,
     footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineering"

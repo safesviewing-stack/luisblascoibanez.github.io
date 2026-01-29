@@ -282,8 +282,8 @@ footer{
   align-self:flex-start;
   opacity:0;
   transform:translateY(24px);
-  animation:btnIn 0.9s cubic-bezier(.4,0,.2,1) forwards;
-  animation-delay:1s; /* Delay to sync with header */
+  animation:btnIn 0.6s cubic-bezier(.4,0,.2,1) forwards;
+  animation-delay:0.9s; /* Reduced delay for faster appearance */
 }
 
 @keyframes btnIn{
@@ -403,11 +403,11 @@ function resetAnimations(scope=document){
     el.style.animation = `navIn 0.55s ease forwards ${index * 0.08}s`; // apply cascading effect
   });
 
-  // Reset button animation
+  // Reset button animation (faster entry)
   const button = scope.querySelector('.btn');
   button.style.animation = 'none';
   void button.offsetHeight;
-  button.style.animation = `btnIn 0.9s cubic-bezier(.4,0,.2,1) forwards 1s`; // delay to sync with header
+  button.style.animation = `btnIn 0.6s cubic-bezier(.4,0,.2,1) forwards 0.8s`; // Reduced delay and duration
 
   // Reset header animation
   scope.querySelectorAll('header').forEach(el => {

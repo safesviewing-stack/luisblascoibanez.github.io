@@ -69,6 +69,7 @@
       padding-bottom:6px;
       color:#fff;
       cursor:pointer;
+
       opacity:0;
       transform:translateY(-10px);
       animation:navIn .45s ease forwards;
@@ -129,25 +130,8 @@
       opacity:.6;
     }
 
-    .lang-switch button::after{
-      content:"";
-      position:absolute;
-      left:0;
-      right:0.18em;
-      bottom:0;
-      height:1px;
-      background:#fff;
-      transform:scaleX(0);
-      transform-origin:left;
-      transition:transform .25s ease;
-    }
-
     .lang-switch button.active{
       opacity:1;
-    }
-
-    .lang-switch button.active::after{
-      transform:scaleX(1);
     }
 
     /* ================= HOME ================= */
@@ -283,12 +267,20 @@
 <script>
   let currentLang = 'es';
 
-  function restartAnimations(){
+  function restartFadeAnimations(){
     document.querySelectorAll('.fade-up').forEach(el=>{
       const original = el.className;
       el.className = original.replace(/fade-up|delay-1|delay-2/g,'').trim();
       void el.offsetHeight;
       el.className = original;
+    });
+  }
+
+  function restartNavAnimation(){
+    document.querySelectorAll('nav a').forEach(el=>{
+      el.style.animation = 'none';
+      void el.offsetHeight;
+      el.style.animation = '';
     });
   }
 
@@ -307,7 +299,8 @@
       el.innerHTML = el.dataset[lang];
     });
 
-    restartAnimations();
+    restartFadeAnimations();
+    restartNavAnimation();
   }
 </script>
 

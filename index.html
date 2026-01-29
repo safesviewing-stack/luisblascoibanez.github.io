@@ -460,6 +460,14 @@ function changeSection(id, link){
 
   document.getElementById(id).classList.add('active');
   link.classList.add('active');
+  
+  // Hide logo on all sections except home
+  const logo = document.getElementById("logo-home");
+  if (id !== 'home') {
+    logo.style.display = 'none';
+  } else {
+    logo.style.display = 'block';
+  }
 }
 </script>
 

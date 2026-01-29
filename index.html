@@ -26,14 +26,20 @@
       background:var(--bg);
       color:var(--white);
       overflow:hidden;
-      transition:opacity .35s ease;
     }
 
-    body.fade-out{
+    /* ================= PAGE FADE ================= */
+    .page-fade{
+      position:fixed;
+      inset:0;
+      background:#0b0b0d;
       opacity:0;
+      pointer-events:none;
+      z-index:3000;
+      transition:opacity .45s ease;
     }
 
-    body.fade-in{
+    .page-fade.active{
       opacity:1;
     }
 
@@ -107,8 +113,8 @@
       transition:transform .25s ease;
     }
 
-    nav a:hover::after,
-    nav a.active::after{
+    nav a.active::after,
+    nav a:hover::after{
       transform:scaleX(1);
     }
 
@@ -157,10 +163,6 @@
 
     .lang-switch button.active::after{
       transform:scaleX(1);
-    }
-
-    .lang-switch button:hover{
-      opacity:1;
     }
 
     @keyframes fadeStatic{
@@ -265,7 +267,10 @@
   </style>
 </head>
 
-<body class="fade-in">
+<body>
+
+<!-- OVERLAY DE FUNDIDO -->
+<div class="page-fade"></div>
 
 <header>
   <div class="logo">L · BIB</div>
@@ -313,11 +318,11 @@
 
 <script>
   function setLanguage(lang){
-    const body = document.body;
+    const overlay = document.querySelector('.page-fade');
 
-    body.classList.add('fade-out');
+    overlay.classList.add('active');
 
-    setTimeout(()=>{
+    setTimeout(() => {
       document.querySelectorAll('.lang-switch button')
         .forEach(b => b.classList.remove('active'));
 
@@ -328,11 +333,10 @@
         el.innerHTML = el.dataset[lang];
       });
 
-      void body.offsetHeight;
-
-      body.classList.remove('fade-out');
-      body.classList.add('fade-in');
-    },350);
+      setTimeout(() => {
+        overlay.classList.remove('active');
+      }, 200);
+    }, 300);
   }
 </script>
 

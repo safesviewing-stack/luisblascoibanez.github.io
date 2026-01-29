@@ -80,14 +80,12 @@ header{
   font-size:16px;
   letter-spacing:.3em;
   font-weight:500;
-  opacity:0;
+  opacity:1;
   transform:translateX(-32px);
   animation:logoIn .9s cubic-bezier(.4,0,.2,1) forwards;
 }
 
 @keyframes logoIn{ to{opacity:1;transform:translateX(0);} }
-
-.logo.hidden{ display: none; } /* Ocultar el logo cuando no está en home */
 
 nav{
   position:absolute;
@@ -145,7 +143,7 @@ nav a:hover::after{
   display:flex;
   gap:20px;
   opacity:0;
-  animation:langFade 0.8s ease forwards; /* Independent animation for language buttons */
+  animation:langFade 0.8s ease forwards;
 }
 @keyframes langFade{
   from{
@@ -292,6 +290,11 @@ footer{
 @keyframes btnIn{
   to{opacity:1;transform:translateY(0);}
 }
+
+/* ===== LOGO HIDE IN SECTIONS OTHER THAN HOME ===== */
+header.hide-logo .logo {
+  visibility: hidden;
+}
 </style>
 </head>
 
@@ -300,8 +303,8 @@ footer{
 <div class="bg-layer"></div>
 <div class="section-fade"></div>
 
-<header>
-  <div class="logo" id="logo">L · BIB</div>
+<header id="header">
+  <div class="logo">L · BIB</div>
 
   <nav>
     <a class="active" onclick="changeSection('home',this)" data-i18n="nav_home">Inicio</a>
@@ -464,12 +467,12 @@ function changeSection(id, link){
   document.getElementById(id).classList.add('active');
   link.classList.add('active');
 
-  // Hide logo when navigating to a section other than "home"
-  const logo = document.getElementById("logo");
-  if (id !== "home") {
-    logo.classList.add("hidden");
+  // Hide logo in sections other than home
+  const header = document.querySelector('header');
+  if(id !== 'home'){
+    header.classList.add('hide-logo');
   } else {
-    logo.classList.remove("hidden");
+    header.classList.remove('hide-logo');
   }
 }
 </script>

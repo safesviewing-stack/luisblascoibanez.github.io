@@ -32,11 +32,15 @@ body{
   position:fixed;
   inset:0;
   background:
-    linear-gradient(rgba(11,11,13,.75), rgba(11,11,13,.75)),
+    linear-gradient(
+      rgba(0,0,0,1),  /* Negro total */
+      rgba(0,0,0,1)   /* Negro total */
+    ),
     url("reloj1.jpg") center / cover no-repeat;
   z-index:-2;
   opacity:0;
   animation:bgFadeIn 1.4s ease forwards;
+  pointer-events:none;
 }
 @keyframes bgFadeIn{ to{opacity:1;} }
 
@@ -44,13 +48,16 @@ body{
 .section-fade{
   position:fixed;
   inset:0;
-  background:rgba(11,11,13,.9);
+  background:rgba(0,0,0,.9);  /* Fondo negro al cambiar de sección */
   z-index:-1;
   opacity:0;
+  pointer-events:none;
 }
+
 .section-fade.active{
   animation:sectionFade 1.4s cubic-bezier(.4,0,.2,1) forwards;
 }
+
 @keyframes sectionFade{
   from{opacity:1}
   to{opacity:0}
@@ -118,6 +125,7 @@ nav a::after{
   transform-origin:left;
   transition:.3s;
 }
+
 nav a.active::after,
 nav a:hover::after{
   transform:scaleX(1);
@@ -144,6 +152,8 @@ nav a:hover::after{
   letter-spacing:.18em;
   text-transform:uppercase;
   cursor:pointer;
+  position:relative;
+  padding-bottom:6px;
   opacity:.6;
 }
 .lang-switch button.active{opacity:1}
@@ -236,6 +246,8 @@ footer{
   font-size:11px;
   letter-spacing:.08em;
   color:#9a9a9a;
+  pointer-events:none;
+
   opacity:0;
   transform:translateY(20px);
   animation:footerIn .75s cubic-bezier(.4,0,.2,1) forwards;

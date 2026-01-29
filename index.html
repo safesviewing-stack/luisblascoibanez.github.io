@@ -375,12 +375,11 @@ function resetAnimations(scope=document){
     el.className = c;
   });
 
-  // Reset header and nav link animations
-  scope.querySelectorAll('.logo, nav a').forEach(el => {
-    const c = el.className;
-    el.className = c.replace(/fade-up|delay-\d+/g,'').trim();
+  // Reset header and nav link animations (cascading effect)
+  scope.querySelectorAll('.logo, nav a').forEach((el, index) => {
+    el.style.animation = 'none'; // remove current animation
     void el.offsetHeight; // force reflow
-    el.className = c;
+    el.style.animation = `navIn 0.55s ease forwards ${index * 0.08}s`; // apply cascading effect
   });
 
   // Reset header animation

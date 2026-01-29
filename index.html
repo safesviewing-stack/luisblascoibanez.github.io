@@ -69,8 +69,6 @@
       padding-bottom:6px;
       color:#fff;
       cursor:pointer;
-
-      /* animación inicial */
       opacity:0;
       transform:translateY(-10px);
       animation:navIn .45s ease forwards;
@@ -283,6 +281,8 @@
 </footer>
 
 <script>
+  let currentLang = 'es';
+
   function restartAnimations(){
     document.querySelectorAll('.fade-up').forEach(el=>{
       const original = el.className;
@@ -293,6 +293,10 @@
   }
 
   function setLanguage(lang){
+    if(lang === currentLang) return;
+
+    currentLang = lang;
+
     document.querySelectorAll('.lang-switch button')
       .forEach(b => b.classList.remove('active'));
 

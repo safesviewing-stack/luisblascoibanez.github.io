@@ -272,7 +272,7 @@ p{
   align-self:flex-start;
 }
 
-/* ===== FOOTER (MEDIUM SPEED) ===== */
+/* ===== FOOTER (SLOWER) ===== */
 footer{
   position:fixed;
   bottom:0;
@@ -285,9 +285,9 @@ footer{
   pointer-events:none;
 
   opacity:0;
-  transform:translateY(18px);
-  animation:footerIn .6s cubic-bezier(.4,0,.2,1) forwards;
-  animation-delay:.6s;
+  transform:translateY(20px);
+  animation:footerIn .75s cubic-bezier(.4,0,.2,1) forwards;
+  animation-delay:.75s;
 }
 
 @keyframes footerIn{

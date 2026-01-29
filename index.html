@@ -39,7 +39,6 @@ body{
   animation:bgFadeIn 1.2s ease forwards;
   pointer-events:none;
 }
-
 @keyframes bgFadeIn{ to{opacity:1;} }
 
 /* ============ HEADER ============ */
@@ -61,7 +60,6 @@ header{
   transform:translateX(-32px);
   animation:logoIn .75s cubic-bezier(.4,0,.2,1) forwards;
 }
-
 @keyframes logoIn{
   to{opacity:1;transform:translateX(0);}
 }
@@ -123,7 +121,6 @@ nav a.active::after{ transform:scaleX(1); }
   opacity:0;
   animation:langFade .6s ease .6s forwards;
 }
-
 @keyframes langFade{ to{opacity:1;} }
 
 .lang-switch button{
@@ -166,10 +163,7 @@ nav a.active::after{ transform:scaleX(1); }
   display:none;
   align-items:center;
 }
-
-.section.active{
-  display:flex;
-}
+.section.active{ display:flex; }
 
 .content{
   max-width:700px;
@@ -180,12 +174,8 @@ nav a.active::after{ transform:scaleX(1); }
 }
 
 /* ============ TEXT ============ */
-h1,h2{
-  font-weight:600;
-}
-
-h1{ font-size:44px; }
-h2{ font-size:28px; }
+h1{ font-size:44px; font-weight:600; }
+h2{ font-size:28px; font-weight:600; }
 
 p{
   color:var(--muted);
@@ -198,7 +188,6 @@ p{
   transform:translateY(20px);
   animation:fadeUp .7s cubic-bezier(.4,0,.2,1) forwards;
 }
-
 .delay-1{animation-delay:.25s}
 .delay-2{animation-delay:.45s}
 
@@ -255,7 +244,6 @@ footer{
   </div>
 </header>
 
-<!-- HOME -->
 <section id="home" class="section active">
   <div class="content">
     <h1 class="fade-up"
@@ -277,19 +265,13 @@ footer{
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about" class="section">
   <div class="content">
     <h2 class="fade-up" data-es="Sobre mí" data-en="About me">Sobre mí</h2>
-    <p class="fade-up delay-1"
-      data-es="Diseñadora industrial con perfil técnico y sensibilidad creativa."
-      data-en="Industrial designer with a technical background and creative sensitivity.">
-      Diseñadora industrial con perfil técnico y sensibilidad creativa.
-    </p>
+    <p class="fade-up delay-1">Diseñadora industrial con perfil técnico y creativo.</p>
   </div>
 </section>
 
-<!-- PORTFOLIO -->
 <section id="portfolio" class="section">
   <div class="content">
     <h2 class="fade-up">Portfolio</h2>
@@ -297,7 +279,6 @@ footer{
   </div>
 </section>
 
-<!-- CV -->
 <section id="cv" class="section">
   <div class="content">
     <h2 class="fade-up">CV</h2>
@@ -305,18 +286,16 @@ footer{
   </div>
 </section>
 
-<!-- SKILLS -->
 <section id="skills" class="section">
   <div class="content">
-    <h2 class="fade-up" data-es="Habilidades" data-en="Skills">Habilidades</h2>
+    <h2 class="fade-up">Habilidades</h2>
     <p class="fade-up delay-1">CAD · Prototipado · Diseño de producto</p>
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact" class="section">
   <div class="content">
-    <h2 class="fade-up" data-es="Contacto" data-en="Contact">Contacto</h2>
+    <h2 class="fade-up">Contacto</h2>
     <p class="fade-up delay-1">hello@email.com · Valencia</p>
   </div>
 </section>
@@ -339,6 +318,19 @@ function resetAnimations(scope=document){
   });
 }
 
+function restartHeaderAnimations(){
+  document.querySelectorAll('nav a').forEach(a=>{
+    a.style.animation='none';
+    void a.offsetHeight;
+    a.style.animation='';
+  });
+
+  const logo=document.querySelector('.logo');
+  logo.style.animation='none';
+  void logo.offsetHeight;
+  logo.style.animation='';
+}
+
 function changeSection(id){
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
@@ -351,16 +343,17 @@ function changeSection(id){
 
 function setLanguage(lang){
   if(lang===currentLang) return;
-  currentLang = lang;
+  currentLang=lang;
 
   document.querySelectorAll('.lang-switch button').forEach(b=>b.classList.remove('active'));
   document.querySelector(`.lang-switch button[onclick*="${lang}"]`).classList.add('active');
 
   document.querySelectorAll('[data-es]').forEach(el=>{
-    el.innerHTML = el.dataset[lang];
+    el.innerHTML=el.dataset[lang];
   });
 
-  resetAnimations(document.querySelector('.section.active'));
+  resetAnimations(document);          // 🔥 RESET GLOBAL
+  restartHeaderAnimations();          // 🔥 HEADER + LOGO
 }
 </script>
 

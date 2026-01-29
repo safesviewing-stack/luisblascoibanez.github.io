@@ -27,7 +27,7 @@ body{
   overflow:hidden;
 }
 
-/* ============ BACKGROUND ============ */
+/* ===== BACKGROUND ===== */
 .bg-layer{
   position:fixed;
   inset:0;
@@ -39,12 +39,9 @@ body{
   animation:bgFadeIn 1.2s ease forwards;
   pointer-events:none;
 }
+@keyframes bgFadeIn{ to{opacity:1;} }
 
-@keyframes bgFadeIn{
-  to{ opacity:1; }
-}
-
-/* ============ HEADER ============ */
+/* ===== HEADER ===== */
 header{
   position:fixed;
   top:0;
@@ -63,11 +60,11 @@ header{
   transform:translateX(-32px);
   animation:logoIn .75s cubic-bezier(.4,0,.2,1) forwards;
 }
-
 @keyframes logoIn{
-  to{ opacity:1; transform:translateX(0); }
+  to{opacity:1;transform:translateX(0);}
 }
 
+/* ===== NAV ===== */
 nav{
   position:absolute;
   left:50%;
@@ -88,15 +85,15 @@ nav a{
   animation:navIn .45s ease forwards;
 }
 
-nav a:nth-child(1){ animation-delay:.20s }
-nav a:nth-child(2){ animation-delay:.28s }
-nav a:nth-child(3){ animation-delay:.36s }
-nav a:nth-child(4){ animation-delay:.44s }
-nav a:nth-child(5){ animation-delay:.52s }
-nav a:nth-child(6){ animation-delay:.60s }
+nav a:nth-child(1){animation-delay:.20s}
+nav a:nth-child(2){animation-delay:.28s}
+nav a:nth-child(3){animation-delay:.36s}
+nav a:nth-child(4){animation-delay:.44s}
+nav a:nth-child(5){animation-delay:.52s}
+nav a:nth-child(6){animation-delay:.60s}
 
 @keyframes navIn{
-  to{ opacity:1; transform:translateY(0); }
+  to{opacity:1;transform:translateY(0);}
 }
 
 nav a::after{
@@ -109,16 +106,15 @@ nav a::after{
   background:#fff;
   transform:scaleX(0);
   transform-origin:left;
-  transition:transform .25s ease;
+  transition:.25s;
 }
 
-/* 👉 ACTIVO + HOVER */
 nav a.active::after,
 nav a:hover::after{
   transform:scaleX(1);
 }
 
-/* ============ LANGUAGE ============ */
+/* ===== LANGUAGE ===== */
 .lang-switch{
   position:absolute;
   right:40px;
@@ -129,10 +125,7 @@ nav a:hover::after{
   opacity:0;
   animation:langFade .6s ease .6s forwards;
 }
-
-@keyframes langFade{
-  to{ opacity:1; }
-}
+@keyframes langFade{ to{opacity:1;} }
 
 .lang-switch button{
   background:none;
@@ -157,18 +150,17 @@ nav a:hover::after{
   background:#fff;
   transform:scaleX(0);
   transform-origin:left;
-  transition:transform .25s ease;
+  transition:.25s;
 }
 
 .lang-switch button.active{
   opacity:1;
 }
-
 .lang-switch button.active::after{
   transform:scaleX(1);
 }
 
-/* ============ SECTIONS ============ */
+/* ===== SECTIONS ===== */
 .section{
   position:absolute;
   inset:0;
@@ -188,16 +180,13 @@ nav a:hover::after{
   gap:26px;
 }
 
-/* ============ TEXT ============ */
+/* ===== TEXT ===== */
 h1{
   font-size:44px;
   font-weight:600;
   max-width:32ch;
 }
-
-.title-line{
-  display:block;
-}
+.title-line{ display:block; }
 
 h2{
   font-size:28px;
@@ -210,17 +199,17 @@ p{
   line-height:1.7;
 }
 
+/* ===== ANIMATIONS ===== */
 .fade-up{
   opacity:0;
   transform:translateY(20px);
   animation:fadeUp .7s cubic-bezier(.4,0,.2,1) forwards;
 }
-
-.delay-1{ animation-delay:.25s }
-.delay-2{ animation-delay:.45s }
+.delay-1{animation-delay:.25s}
+.delay-2{animation-delay:.45s}
 
 @keyframes fadeUp{
-  to{ opacity:1; transform:translateY(0); }
+  to{opacity:1;transform:translateY(0);}
 }
 
 .btn{
@@ -235,7 +224,7 @@ p{
   align-self:flex-start;
 }
 
-/* ============ FOOTER ============ */
+/* ===== FOOTER ===== */
 footer{
   position:fixed;
   bottom:0;
@@ -272,6 +261,7 @@ footer{
   </div>
 </header>
 
+<!-- HOME -->
 <section id="home" class="section active">
   <div class="content">
     <h1 class="fade-up">
@@ -284,8 +274,8 @@ footer{
     </h1>
 
     <p class="fade-up delay-1"
-      data-es="Perfil técnico y creativo enfocado en producto."
-      data-en="Technical and creative profile focused on product design.">
+       data-es="Perfil técnico y creativo enfocado en producto."
+       data-en="Technical and creative profile focused on product design.">
       Perfil técnico y creativo enfocado en producto.
     </p>
 
@@ -295,6 +285,48 @@ footer{
       onclick="changeSection('portfolio')">
       Ver proyectos
     </button>
+  </div>
+</section>
+
+<!-- SOBRE MI -->
+<section id="about" class="section">
+  <div class="content">
+    <h2 class="fade-up" data-es="Sobre mí" data-en="About me">Sobre mí</h2>
+    <p class="fade-up delay-1">
+      Diseñadora industrial con perfil técnico, atención al detalle y sensibilidad creativa.
+    </p>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="section">
+  <div class="content">
+    <h2 class="fade-up">Portfolio</h2>
+    <p class="fade-up delay-1">Proyectos seleccionados.</p>
+  </div>
+</section>
+
+<!-- CV -->
+<section id="cv" class="section">
+  <div class="content">
+    <h2 class="fade-up">CV</h2>
+    <p class="fade-up delay-1">Formación académica y experiencia profesional.</p>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section">
+  <div class="content">
+    <h2 class="fade-up">Habilidades</h2>
+    <p class="fade-up delay-1">CAD · Prototipado · Diseño de producto</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="content">
+    <h2 class="fade-up">Contacto</h2>
+    <p class="fade-up delay-1">hello@email.com · Valencia</p>
   </div>
 </section>
 

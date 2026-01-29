@@ -5,7 +5,7 @@
   <title>Portfolio · Industrial Design</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -39,10 +39,11 @@
       z-index:1000;
     }
 
+    /* LOGO MÁS FINO */
     .logo{
       font-size:16px;
       letter-spacing:.3em;
-      font-weight:600;
+      font-weight:500; /* 👈 reducido */
       color:#fff;
       opacity:0;
       transform:translateX(-32px);
@@ -115,10 +116,6 @@
       animation:fadeStatic .6s ease .6s forwards;
     }
 
-    @keyframes fadeStatic{
-      to{ opacity:1; }
-    }
-
     .lang-switch button{
       background:none;
       border:none;
@@ -130,6 +127,7 @@
       position:relative;
       padding-bottom:6px;
       opacity:.6;
+      font-weight:400;
     }
 
     .lang-switch button::after{
@@ -156,6 +154,23 @@
     .lang-switch button:hover{
       opacity:1;
     }
+
+    @keyframes fadeStatic{
+      to{ opacity:1; }
+    }
+
+    /* ================= SECTIONS ================= */
+    .section{
+      position:absolute;
+      inset:0;
+      display:none;
+      opacity:0;
+      transition:opacity .45s ease;
+      padding-bottom:70px;
+    }
+
+    .section.active{ display:block; }
+    .section.visible{ opacity:1; }
 
     /* ================= HOME ================= */
     #home{
@@ -184,6 +199,7 @@
 
     h1{
       font-size:44px;
+      font-weight:600;
     }
 
     p{
@@ -204,25 +220,17 @@
       align-self:flex-start;
     }
 
-    /* ================= ANIMACIONES ================= */
     .fade-up{
       opacity:0;
       transform:translateY(20px);
       animation:fadeUp .7s cubic-bezier(.4,0,.2,1) forwards;
     }
 
+    .delay-1{ animation-delay:.25s }
+    .delay-2{ animation-delay:.45s }
+
     @keyframes fadeUp{
       to{ opacity:1; transform:translateY(0); }
-    }
-
-    /* 🔥 ANIMACIÓN DE CAMBIO DE IDIOMA */
-    .lang-fade{
-      animation:langFade .25s ease;
-    }
-
-    @keyframes langFade{
-      0%{ opacity:0; }
-      100%{ opacity:1; }
     }
 
     /* ================= FOOTER ================= */
@@ -271,19 +279,19 @@
 
 <section id="home" class="section active visible">
   <div class="home-content">
-    <h1 class="fade-up lang-target"
+    <h1 class="fade-up"
         data-es="Diseño Industrial y Desarrollo de Producto"
         data-en="Industrial Design and Product Development">
       Diseño Industrial<br>y Desarrollo de Producto
     </h1>
 
-    <p class="fade-up lang-target"
+    <p class="fade-up delay-1"
        data-es="Perfil técnico y creativo enfocado en producto."
        data-en="Technical and creative profile focused on product design.">
       Perfil técnico y creativo enfocado en producto.
     </p>
 
-    <button class="btn fade-up lang-target"
+    <button class="btn fade-up delay-2"
       data-es="Ver proyectos"
       data-en="View projects">
       Ver proyectos
@@ -303,11 +311,8 @@
     document.querySelector(`.lang-switch button[onclick*="${lang}"]`)
       .classList.add('active');
 
-    document.querySelectorAll('.lang-target').forEach(el=>{
-      el.classList.remove('lang-fade');
-      void el.offsetHeight; // 🔥 fuerza reflow
+    document.querySelectorAll('[data-es]').forEach(el=>{
       el.innerHTML = el.dataset[lang];
-      el.classList.add('lang-fade');
     });
   }
 </script>

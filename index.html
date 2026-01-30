@@ -143,16 +143,17 @@ nav a:hover::after{
   gap:20px;
   align-items:center;
   opacity:0;
-  animation:langFade 0.8s ease forwards; /* Independent animation for language buttons */
+  animation:langFadeRight 1s ease forwards; /* Animación de los botones de idioma entrando desde la derecha */
 }
-@keyframes langFade{
+
+@keyframes langFadeRight{
   from{
     opacity:0;
-    transform:translateX(20px); /* Buttons come from the left */
+    transform:translateX(100%); /* Los botones entran desde la derecha */
   }
   to{
     opacity:1;
-    transform:translateX(0); /* Buttons settle in position */
+    transform:translateX(0); /* Se posicionan en su lugar final */
   }
 }
 
@@ -167,7 +168,7 @@ nav a:hover::after{
   position:relative;
   padding-bottom:6px;
   opacity:.6;
-  animation:buttonFadeIn 0.8s ease forwards; /* Animación de botones de idioma */
+  animation:buttonFadeIn 0.8s ease forwards; /* Animación de los botones de idioma */
 }
 
 .lang-switch button.active{opacity:1}
@@ -422,12 +423,12 @@ function resetAnimations(scope=document){
   void button.offsetHeight;
   button.style.animation = `btnIn 0.6s cubic-bezier(.4,0,.2,1) forwards 0.8s`; // Reduced delay
 
-  // Reset language button animation (from left)
+  // Reset language button animation (from right)
   const langButtons = scope.querySelectorAll('.lang-switch button');
   langButtons.forEach((btn, index) => {
     btn.style.animation = 'none';
     void btn.offsetHeight;
-    btn.style.animation = `buttonFadeIn 0.8s ease forwards ${index * 0.1}s`; // Reset animation on language change
+    btn.style.animation = `langFadeRight 1s ease forwards ${index * 0.1}s`; // Reset animation on language change
   });
 
   // Reset logo animation (same as initial entry)

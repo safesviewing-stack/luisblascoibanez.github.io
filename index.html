@@ -2,491 +2,608 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Portfolio · Industrial Design</title>
+<title>Borbala Major · Industrial Design Engineer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 
 <style>
-:root{
-  --bg:#0b0b0d;
-  --white:#ffffff;
-  --muted:#cfcfcf;
-}
-
+/* ================= RESET ================= */
 *{
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:Inter, system-ui, sans-serif;
+  font-family:"Poppins",sans-serif;
 }
 
 body{
-  background:var(--bg);
-  color:var(--white);
-  overflow:hidden;
+  background:#ffffff;
+  color:#555;
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Asegura que el footer se quede al final */
+  min-height: 100vh;
 }
 
-/* ===== BACKGROUND ===== */
-.bg-layer{
-  position:fixed;
-  inset:0;
-  background:
-    linear-gradient(rgba(11,11,13,.75), rgba(11,11,13,.7)),
-    url("reloj1.jpg") center / cover no-repeat;
-  z-index:-2;
-  opacity:0;
-  animation:bgFadeIn 1.4s ease forwards;
-  pointer-events:none;
-}
-@keyframes bgFadeIn{ to{opacity:1;} }
-
-/* ===== GLOBAL SECTION FADE ===== */
-.section-fade{
-  position:fixed;
-  inset:0;
-  background:rgba(11,11,13,.9);
-  z-index:-1;
-  opacity:0;
-  pointer-events:none;
-}
-.section-fade.active{
-  animation:sectionFade 1.4s cubic-bezier(.4,0,.2,1) forwards;
-}
-@keyframes sectionFade{
-  from{opacity:1}
-  to{opacity:0}
-}
-
-/* ===== HEADER ===== */
+/* ================= HEADER ================= */
 header{
-  position:fixed;
+  position: fixed;
   top:0;
   width:100%;
-  padding:34px 40px;
+  height:70px;
+  background:#eaeceb; /* Rosa suave */
+  z-index:100;
+}
+
+.nav{
+  max-width:1200px;
+  width:90%;
+  height:100%;
+  margin:auto;
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  z-index:1000;
-  opacity:1;
-  transform:translateY(0);
+  align-items:center;
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-40px); /* Empuja el logo desde arriba */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* Logo en su posición final */
+  }
 }
 
 .logo{
-  font-size:16px;
-  letter-spacing:.3em;
-  font-weight:500;
-  opacity:1;
-  transform:translateX(0);
-  animation:logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards;
+  color:#555;
+  font-weight:60;
+  font-size: 15px;
+  animation: slideDown 0.55s ease-out forwards; /* Animación con duración de 0.8 segundos */
 }
 
-@keyframes logoInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-nav{
+nav ul{
   display:flex;
+  justify-content:center;
   gap:36px;
-  align-items:center;
+  list-style:none;
+  flex:1;
 }
 
-nav a{
-  font-size:11px;
-  letter-spacing:.18em;
-  text-transform:uppercase;
-  position:relative;
-  padding-bottom:6px;
-  cursor:pointer;
-  opacity:0;
-  transform:translateY(-12px);
-  animation:navIn 0.55s ease forwards;
-}
-
-nav a:nth-child(1){animation-delay:.25s}
-nav a:nth-child(2){animation-delay:.33s}
-nav a:nth-child(3){animation-delay:.41s}
-nav a:nth-child(4){animation-delay:.49s}
-nav a:nth-child(5){animation-delay:.57s}
-nav a:nth-child(6){animation-delay:.65s}
-
-@keyframes navIn{ to{opacity:1;transform:translateY(0);} }
-
-nav a::after{
-  content:"";
-  position:absolute;
-  left:0;
-  right:.18em;
-  bottom:0;
-  height:1px;  /* Grosor de la línea */
-  background:#fff;
-  transform:scaleX(0);
-  transform-origin:left;
-  transition:.3s;
-}
-
-nav a.active::after,
-nav a:hover::after{
-  transform:scaleX(1);
-}
-
-/* ===== LANGUAGE ===== */
-.lang-switch{
-  display:flex;
-  gap:20px;
-  align-items:center;
-  opacity:0;
-  animation:langFadeRight 1s cubic-bezier(.4,0,.2,1) forwards; /* Animación de los botones de idioma entrando desde la derecha */
-}
-
-@keyframes langFadeRight{
-  from{
-    opacity:0;
-    transform:translateX(100%); /* Los botones entran desde la derecha */
-  }
-  to{
-    opacity:1;
-    transform:translateX(0); /* Se posicionan en su lugar final */
-  }
-}
-
-.lang-switch button{
-  background:none;
-  border:none;
-  color:#fff;
-  font-size:11px;
-  letter-spacing:.18em;
+nav li{
+  color:#555;
+  font-size:12px;
+  letter-spacing:.12em;
   text-transform:uppercase;
   cursor:pointer;
   position:relative;
-  padding-bottom:6px;
-  opacity:1; /* Aseguramos que no haya fundido */
 }
 
-/* Línea decorativa debajo de los botones de idioma con grosor de 1px */
-.lang-switch button::after{
+nav li.active{
+  font-weight:700;
+}
+
+nav li::after{
   content:"";
   position:absolute;
+  bottom:-6px;
   left:0;
-  right:0;
-  bottom:0;
-  height:1px; /* Grosor de la línea igual al de los títulos del header */
-  background:#fff;
-  transform:scaleX(0);
-  transform-origin:left;
-  transition:.3s;
+  width:0;
+  height:1px;
+  background:#000;
+  transition:.25s;
 }
 
-.lang-switch button.active::after,
-lang-switch button:hover::after{
-  transform:scaleX(1); /* La línea se expande cuando el botón es activo o se pasa el ratón */
+nav li:hover::after {
+  width: 100%; /* Efecto de subrayado al pasar el cursor */
 }
 
-.lang-switch button.active{opacity:1}
-
-/* ===== SECTIONS ===== */
-.section{
-  position:absolute;
-  inset:0;
-  display:none;
-  align-items:center;
+.lang {
+  display: flex;
+  gap: 6px;
 }
-.section.active{display:flex}
 
-.content{
+.lang button{
+  background: transparent;
+  border: 1px solid #d0d0d0;
+  color: #777;
+  font-size: 9px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  line-height:1;
+}
+
+.lang button.active{
+  background: #c7c9c8;
+  color: #fff;
+  border-color: #c7c9c8;
+}
+
+/* ================= LAYOUT ================= */
+main{
+  padding-top:70px;
+  flex-grow: 1;
+}
+
+section{display:none}
+section.active{display:block}
+
+.container{
+  width:90%;
   max-width:960px;
-  margin-left:clamp(120px,16vw,240px);
-  display:flex;
-  flex-direction:column;
-  gap:26px;
+  margin:auto;
 }
 
-/* ===== TEXT ===== */
-h1{
-  font-size:44px;
-  font-weight:600;
-  max-width:32ch;
+.spaced{
+  padding:90px 0;
 }
-.title-line{display:block}
+
+/* ================= TYPO ================= */
+h1{
+  font-size:29px;
+  font-weight:500;
+  margin-bottom:28px;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInSlideUp 1s ease-out forwards;
+}
 
 h2{
-  font-size:28px;
-  font-weight:600;
+  font-size:16px;
+  margin-bottom:10px;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInSlideUp 1s ease-out forwards;
 }
 
-p{
-  color:var(--muted);
-  font-size:14px;
-  line-height:1.8;
-  text-align:justify;
+p, li{
+  font-size:15px;
+  line-height:1.6;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInSlideUp 1s ease-out forwards;
 }
 
-/* ===== BUTTON ===== */
-.btn{
-  margin-top:14px;
-  padding:14px 34px;
-  border-radius:40px;
-  border:none;
-  background:#fff;
-  color:#000;
-  font-weight:600;
-  cursor:pointer;
-  align-self:flex-start;
-  opacity:0;
-  transform:translateY(24px);
-  animation:btnIn 0.6s cubic-bezier(.4,0,.2,1) forwards;
-  animation-delay:0.9s; /* Reduced delay */
+/* ================= HERO ================= */
+.home{
+  background:url('portada.jpg') center/cover no-repeat;
 }
 
-@keyframes btnIn{
-  to{opacity:1;transform:translateY(0);}
+.home-bg {
+  background: #ffffff;
 }
 
-/* ===== ABOUT LAYOUT ===== */
-.about-layout{
+#home {
+  background-color: #ffffff;
+}
+
+.hero{
+  min-height:75vh;
   display:flex;
-  gap:20px; /* Reducción de espacio entre el texto y la imagen */
-  align-items:flex-start;
-  flex-wrap: wrap;
+  align-items:center;
 }
 
-.about-image img{
-  width:200px;  /* Hacemos la imagen más pequeña */
-  height:auto;
-  float:right;  /* Alineamos la imagen a la derecha */
-  margin-left:20px;  /* Añadimos margen a la izquierda de la imagen */
-}
-
-/* ===== FOOTER ===== */
-footer{
-  margin-top: auto; /* Esto asegura que el footer siempre esté al final */
-  width: 100%;
-  padding:18px 40px;
-  text-align:center;
-  font-size:11px;
-  letter-spacing:.08em;
-  color:#9a9a9a;
-  background-color:transparent; /* Fondo transparente */
+.hero-box{
+  background:rgba(0,0,0,.88);
+  color:#fff;
+  padding:40px;
+  max-width:900px;
+  margin-left: 240px;
   opacity:0;
-  transform:translateY(20px);
-  animation:footerIn 1.2s cubic-bezier(.4,0,.2,1) forwards;
-  animation-delay:1s; /* Retardo de 1 segundo antes de que aparezca el footer */
+  transform:translateY(40px);
+  animation: fadeInSlideUp 1s ease-out forwards;
+  border-radius: 6px;
 }
 
-@keyframes footerIn{
-  to{opacity:1;transform:translateY(0);}
+.hero-cta{
+  margin-top:24px;
+  display:flex;
+  gap:16px;
 }
 
+.btn{
+  padding:12px 26px;
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  text-decoration:none;
+  cursor:pointer;
+  border-radius:4px;
+}
+
+.primary{
+  background:#fff;
+  color:#555;
+}
+
+.secondary{
+  border:1px solid #fff;
+  color:#fff;
+}
+
+/* ================= Animación de Fade In + Slide Up ================= */
+@keyframes fadeInSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= CV ================= */
+#cv-profile-section {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#cv-profile-title {
+  margin-top: 0;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+#cv-profile-text {
+  margin-top: 0;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+#cv-skills-section {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#cv-skills-title {
+  margin-top: 0;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+#cv-skills {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+
+.list li {
+  margin-bottom: 6px;
+}
+
+#cv-languages-section {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#cv-languages-title {
+  margin-top: 0;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+#cv-education {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding-left: 20px;
+}
+
+#cv-education li {
+  margin-bottom: 6px;
+}
+
+.download {
+  display: inline-block;
+  margin-top: 50px;
+  padding: 14px 24px;
+  background: #000;
+  color: #fff;
+  font-size: 12px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+/* ================= PORTFOLIO ================= */
+.grid-3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:32px;
+}
+
+.case{
+  border-top:1px solid #ddd;
+  padding-top:16px;
+}
+
+.case span{
+  font-size:12px;
+  color:#666;
+}
+
+/* ================= FOOTER ================= */
+footer{
+  text-align:center;
+  padding:8px;
+  font-size:11px;
+  color:#555;
+  background-color: #eaeceb;
+  margin-top: 50px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:900px){
+  .cv{grid-template-columns:1fr}
+  .grid-3{grid-template-columns:1fr}
+}
+
+/* ================= Ajuste de imagen en "Sobre mí" ================= */
+.about-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.about-image {
+  width: auto;
+  max-width: 280px;
+  height: auto;
+  margin-left: auto;
+  margin-right: 20px;
+  margin-bottom: 70px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(40%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+#about-text {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 50px;
+  max-width: 550px;
+  color: #555;
+  text-align: justify;
+}
+
+#about-title,
+#portfolio-title,
+.contact-title,
+.cv-main-title {
+  font-weight: 500;
+}
 </style>
 </head>
 
 <body>
 
-<div class="bg-layer"></div>
-<div class="section-fade"></div>
-
 <header>
-  <div class="logo" id="logo-home">L · BIB</div>
+  <div class="nav">
+    <div class="logo">MB · Borbala Major</div>
 
-  <nav>
-    <a onclick="changeSection('home',this)" data-i18n="nav_home">Inicio</a>
-    <a onclick="changeSection('about',this)" data-i18n="nav_about">Sobre mí</a>
-    <a onclick="changeSection('portfolio',this)" data-i18n="nav_portfolio">Portfolio</a>
-    <a onclick="changeSection('cv',this)" data-i18n="nav_cv">CV</a>
-    <a onclick="changeSection('skills',this)" data-i18n="nav_skills">Habilidades</a>
-    <a onclick="changeSection('contact',this)" data-i18n="nav_contact">Contacto</a>
-  </nav>
+    <nav>
+      <ul>
+        <li class="tab active" data-tab="home">Inicio</li>
+        <li class="tab" data-tab="about">Sobre mí</li>
+        <li class="tab" data-tab="cv">Currículum</li>
+        <li class="tab" data-tab="portfolio">Portfolio</li>
+        <li class="tab" data-tab="contact">Contacto</li>
+      </ul>
+    </nav>
 
-  <div class="lang-switch">
-    <button class="active" onclick="changeLang('es')">ES</button>
-    <button onclick="changeLang('en')">EN</button>
+    <div class="lang">
+      <button id="btn-es" class="active">ES</button>
+      <button id="btn-en">EN</button>
+    </div>
   </div>
 </header>
 
-<!-- Inicio -->
-<section id="home" class="section active">
-  <div class="content">
-    <h1 class="fade-up">
-      <span class="title-line" data-i18n="home_title_1">Diseño Industrial</span>
-      <span class="title-line" data-i18n="home_title_2">y Desarrollo de Producto</span>
-    </h1>
+<main>
 
-    <p class="fade-up delay-1" data-i18n="home_sub">
-      Perfil técnico y creativo enfocado en producto.
-    </p>
-
-    <button class="btn fade-up delay-2" data-i18n="home_btn" onclick="changeSection('portfolio',this)">
-      Ver proyectos
-    </button>
+<!-- HOME -->
+<section id="home" class="home active">
+  <div class="home-bg">
+    <img src="profile17.jpg" alt="">
+    <img src="profile13.jpg" alt="">
+    <img src="profile14.jpg" alt="">
+    <img src="profile18.jpg" alt="">
   </div>
-</section>
 
-<!-- Sobre mí -->
-<section id="about" class="section">
-  <div class="content" style="max-width: 1035px;"> <!-- Ajuste el ancho máximo del contenido -->
-    <h2 class="fade-up" data-i18n="about_title">Sobre mí</h2>
-
-    <div class="about-layout">
-      <p class="fade-up delay-1" data-i18n="about_text">
-        Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV, actualmente en mi último año. Vivo en Valencia y me considero una persona con una mente ecléctica y perfeccionista, siempre interesada en encontrar el equilibrio entre lo técnico y lo estético. Desde pequeño he tenido curiosidad por entender cómo funcionan las cosas, y mi formación profesional en el sector de la electricidad me permitió adquirir una base técnica sólida que hoy aplico al diseño y desarrollo de producto. Disfruto especialmente del proceso completo de diseño, desde la idea inicial hasta la definición técnica y el detalle final, y tengo una necesidad constante de estar creando y resolviendo. Si algo no me sale, no paro hasta encontrar la solución, porque para mí el proceso es tan importante como el resultado final. Como dato curioso, me interesa especialmente el campo de la impresión 3D, ya que me permite experimentar directamente con el diseño y validar conceptos de la manera más rápida y precisa.
-      </p>
-
-      <div class="about-image photo-in">
-        <img src="foto.jpg" alt="Foto de Luis">
+  <div class="container hero">
+    <div class="hero-box">
+      <h1 id="hero-title">Portafolio de Diseño Industrial | Borbála Major</h1>
+      <p id="hero-sub">Imagina, diseña y transforma ideas en productos con propósito y estilo.</p>
+      <div class="hero-cta">
+        <a class="btn primary tab" data-tab="cv">Ver CV</a>
+        <a class="btn secondary tab" data-tab="contact">Contactar</a>
       </div>
     </div>
   </div>
 </section>
 
-<footer data-i18n="footer">
-  © 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial
+<!-- ABOUT -->
+<section id="about">
+  <div class="container spaced">
+    <h1 id="about-title">Sobre mí</h1>
+    <div class="about-content">
+      <p id="about-text">
+        Soy Borbála, una joven de 23 años de Hungría, graduada de la Universidad Técnica de Budapest (BME) y actualmente en búsqueda de oportunidades profesionales en España. Aunque mi formación es más técnica, me apasiona combinar lo artístico y lo técnico. Me considero una persona emotiva, lo que me permite comprender mejor a los usuarios y crear soluciones más empáticas y funcionales. Disfruto trabajar en equipo, ya que valoro la colaboración y el intercambio de ideas. Además, soy muy detallista y creo que la atención a los pequeños aspectos del diseño marca la diferencia. Hablo inglés y español con fluidez, además de mi idioma natal, el húngaro, lo que me permite adaptarme fácilmente a entornos internacionales y multiculturales. Siempre busco aprender y adaptarme para seguir creciendo a través de nuevos retos y oportunidades.
+      </p>
+      <img src="profile.jpg" alt="Luis Blasco-Ibáñez Berbel" class="about-image"> 
+    </div>
+  </div>
+</section>
+
+<!-- CV -->
+<section id="cv">
+  <div class="container spaced">
+    <h1 class="cv-main-title">Currículum</h1>
+    <h2 class="cv-section-title">Formación académica</h2>
+
+    <article class="cv-block">
+      <div class="cv-block-image">
+        <img src="profile3.jpg" alt="Formación académica 1">
+      </div>
+      <div class="cv-block-text">
+        <h2>Grado en Ingenieria de Diseño Industrial y desarrollo de productos 2022-2026</h2>
+        <p>Graduada en Diseño Industrial por la Universidad de Tecnología y Economía de Budapest (BME), con una formación interdisciplinar en diseño de producto, procesos de fabricación y desarrollo técnico.</p>
+      </div>
+    </article>
+
+    <article class="cv-block">
+      <div class="cv-block-image">
+        <img src="profile2.jpg" alt="Formación académica 2">
+      </div>
+      <div class="cv-block-text">
+        <h2>Grado en Ingenieria de Diseño Industrial y desarrollo de productos (Erasmus) 2025</h2>
+        <p>Formación académica en Diseño Industrial cursada durante medio año en la Universitat Politècnica de València (UPV), mediante un programa Erasmus en la Universidad de Tecnología y Economía de Budapest (BME).</p>
+      </div>
+    </article>
+
+    <div class="cv-section-separator"></div>
+    
+    <h2 class="cv-section-title">Experiencia en diseño</h2>
+
+    <article class="cv-block">
+      <div class="cv-block-image">
+        <img src="profile4.jpg" alt="Experiencia en diseño">
+      </div>
+      <div class="cv-block-text">
+        <h2>Experiencia profesional en empresa Sixay 2025</h2>
+        <p>Experiencia profesional de medio año en la empresa Sixay, enfocada al diseño de mobiliario, con participación activa en el desarrollo de productos, diseño técnico, optimización de componentes y trabajo colaborativo multidisciplinar.</p>
+      </div>
+    </article>
+
+    <div class="cv-download-wrapper">
+      <a href="curriculum.pdf" class="cv-download-btn" target="_blank">Descargar CV</a>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="container spaced">
+    <h1 id="portfolio-title">Portfolio</h1>
+    <div class="portfolio-grid">
+      <a href="baori.html" class="portfolio-link">
+        <article class="portfolio-item">
+          <img src="profile5.jpg" alt="Diseño de mobiliario">
+          <div class="portfolio-content">
+            <h2>BAORI</h2>
+            <span>Espacio de uso colectivo</span>
+          </div>
+        </article>
+      </a>
+      
+      <a href="lumora.html" class="portfolio-link">
+        <article class="portfolio-item">
+          <img src="profile6.jpg" alt="Prototipado e impresión 3D">
+          <div class="portfolio-content">
+            <h2>LUMORA</h2>
+            <span>iluminación</span>
+          </div>
+        </article>
+      </a>
+
+      <a href="eliptria.html" class="portfolio-link">
+        <article class="portfolio-item">
+          <img src="profile7.jpg" alt="Optimización de producto">
+          <div class="portfolio-content">
+            <h2>ELIPTRIA</h2>
+            <span>grifería</span>
+          </div>
+        </article>
+      </a>
+
+      <a href="sixay.html" class="portfolio-link">
+        <article class="portfolio-item">
+          <img src="profile8.jpg" alt="Nombre del proyecto">
+          <div class="portfolio-content">
+            <h2>SERIE SIXAY</h2>
+            <span>mobiliario</span>
+          </div>
+        </article>
+      </a>
+
+      <a href="node.html" class="portfolio-link">
+        <article class="portfolio-item">
+          <img src="profile9.jpg" alt="Proyecto 9">
+          <div class="portfolio-content">
+            <h2>NODE</h2>
+            <span>mobiliario</span>
+          </div>
+        </article>
+      </a>
+
+      <a href="syncro.html" class="portfolio-link">
+        <article class="portfolio-item">
+          <img src="profile10.jpg" alt="Proyecto 10">
+          <div class="portfolio-content">
+            <h2>SYNCRO</h2>
+            <span>smartwatch</span>
+          </div>
+        </article>
+      </a>
+
+      <a href="kateclub.html" class="portfolio-link">
+        <article class="portfolio-item">
+          <img src="profile11.jpg" alt="Proyecto 11">
+          <div class="portfolio-content">
+            <h2>KATE CLUB</h2>
+            <span>Diseño gráfico</span>
+          </div>
+        </article>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container spaced">
+    <h1 id="contact-title">Contacto</h1>
+    <p id="contact-email">📧 majorbori@gmail.com</p>
+    <p id="contact-phone">📞 +36 30 820 3716</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+© 2026 · Borbala Major · Ingeniera en diseño industrial
 </footer>
 
 <script>
-let currentLang = 'es';
-
-const translations = {
-  es:{
-    nav_home:"Inicio",
-    nav_about:"Sobre mí",
-    nav_portfolio:"Portfolio",
-    nav_cv:"CV",
-    nav_skills:"Habilidades",
-    nav_contact:"Contacto",
-    home_title_1:"Diseño Industrial",
-    home_title_2:"y Desarrollo de Producto",
-    home_sub:"Perfil técnico y creativo enfocado en producto.",
-    home_btn:"Ver proyectos",
-    about_title:"Sobre mí",
-    about_text:"Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV, actualmente en mi último año. Vivo en Valencia y me considero una persona con una mente ecléctica y perfeccionista, siempre interesada en encontrar el equilibrio entre lo técnico y lo estético. Desde pequeño he tenido curiosidad por entender cómo funcionan las cosas, y mi formación profesional en el sector de la electricidad me permitió adquirir una base técnica sólida que hoy aplico al diseño y desarrollo de producto. Disfruto especialmente del proceso completo de diseño, desde la idea inicial hasta la definición técnica y el detalle final, y tengo una necesidad constante de estar creando y resolviendo. Si algo no me sale, no paro hasta encontrar la solución, porque para mí el proceso es tan importante como el resultado final. Como dato curioso, me interesa especialmente el campo de la impresión 3D, ya que me permite experimentar directamente con el diseño y validar conceptos de la manera más rápida y precisa.",
-    portfolio_title:"Mi Portfolio",
-    footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"
-  },
-  en:{
-    nav_home:"Home",
-    nav_about:"About",
-    nav_portfolio:"Portfolio",
-    nav_cv:"CV",
-    nav_skills:"Skills",
-    nav_contact:"Contact",
-    home_title_1:"Industrial Design",
-    home_title_2:"and Product Development",
-    home_sub:"Technical and creative profile focused on product.",
-    home_btn:"View projects",
-    about_title:"About me",
-    about_text:"Hi, I’m Luis, I’m 24 years old and an Industrial Design student at UPV, currently in my final year. I live in Valencia and consider myself an eclectic and perfectionist person, always interested in finding the balance between technical precision and aesthetics. From an early age, I’ve been curious about how things work, and my vocational training in the electrical sector gave me a solid technical foundation that I now apply to product design and development. I especially enjoy the complete design process, from the initial idea to technical definition and final detailing, and I have a constant need to keep creating and solving problems. If something doesn’t work, I don’t stop until I find the solution, because for me the process is just as important as the final result. As a curious fact, I’m particularly interested in the field of 3D printing, as it allows me to directly experiment with design and validate concepts in the fastest and most precise way.",
-    portfolio_title:"My Portfolio",
-    footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineering"
-  }
-};
-
-function resetAnimations(scope=document){
-  scope.querySelectorAll('.fade-up, .photo-in').forEach(el=>{
-    const c = el.className;
-    el.className = c.replace(/fade-up|delay-1|delay-2|photo-in/g,'').trim();
-    void el.offsetHeight; // force reflow
-    el.className = c;
-  });
-
-  // Reset header and nav link animations (cascading effect)
-  scope.querySelectorAll('.logo, nav a').forEach((el, index) => {
-    el.style.animation = 'none'; // remove current animation
-    void el.offsetHeight; // force reflow
-    el.style.animation = `navIn 0.55s ease forwards ${index * 0.08}s`; // apply cascading effect
-  });
-
-  // Reset button animation (faster entry)
-  const button = scope.querySelector('.btn');
-  button.style.animation = 'none';
-  void button.offsetHeight;
-  button.style.animation = `btnIn 0.6s cubic-bezier(.4,0,.2,1) forwards 0.8s`; // Reduced delay
-
-  // Reset language button animation (from right)
-  const langButtons = scope.querySelectorAll('.lang-switch button');
-  langButtons.forEach((btn, index) => {
-    btn.style.animation = 'none';
-    void btn.offsetHeight;
-    btn.style.animation = `langFadeRight 1s cubic-bezier(.4,0,.2,1) forwards`; // Apply same timing for both buttons
-  });
-
-  // Reset logo animation (same as initial entry)
-  const logo = scope.querySelector('.logo');
-  logo.style.animation = 'none'; 
-  void logo.offsetHeight; // force reflow
-  logo.style.animation = 'logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards'; // Reapply the same animation on language change
-
-  // Reset header animation
-  scope.querySelectorAll('header').forEach(el => {
-    el.style.animation = 'none';
-    void el.offsetHeight;
-    el.style.animation = '';
-  });
-
-  // Reset footer animation (triggered on button click)
-  scope.querySelectorAll('footer').forEach(el => {
-    el.style.animation = 'none';
-    void el.offsetHeight;
-    el.style.animation = 'footerIn 1.2s cubic-bezier(.4,0,.2,1) forwards'; // Same animation duration as initial page load
-    el.style.animationDelay = '1s'; // Retardo de 1 segundo antes de que aparezca el footer
-  });
-}
-
-function changeLang(lang){
-  if(lang === currentLang) return;
-  currentLang = lang;
-
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    el.textContent = translations[lang][el.dataset.i18n];
-  });
-
-  document.querySelectorAll('.lang-switch button').forEach(b=>b.classList.remove('active'));
-  document.querySelector(`.lang-switch button[onclick*="${lang}"]`).classList.add('active');
-
-  resetAnimations(); // Reset animations when changing language
-}
-
-function changeSection(id, link){
-  const current = document.querySelector('.section.active');
-  const logo = document.getElementById('logo-home');
-  
-  if(current && current.id === id) return;  // No hacer nada si ya estamos en la sección actual
-
-  // Ocultar la sección actual
-  const fade = document.querySelector('.section-fade');
-  fade.classList.remove('active');
-  void fade.offsetHeight;  // force reflow
-  fade.classList.add('active');
-
-  // Ocultar logo y otras animaciones
-  if(id !== "home") {
-    logo.style.visibility = 'hidden';  /* Use visibility instead of display: none */
-  } else {
-    logo.style.visibility = 'visible';
-  }
-
-  // Eliminar clase activa de todas las secciones
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  
-  // Mostrar la nueva sección activa
-  document.getElementById(id).classList.add('active');
-  
-  // Resaltar el enlace de navegación correspondiente
-  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-  link.classList.add('active');
-
-  resetAnimations();  // Resetear animaciones al cambiar de sección
-}
-</script>
-
-</body>
-</html>
+document.querySelectorAll(".tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    document.querySelectorAll("section").forEach(section =>
+      section.classList.remove("active")
+    );
+    const targetSection = document.getElementById(tab.dataset.tab);
+   

@@ -508,7 +508,11 @@ function changeSection(id, link){
   const current = document.querySelector('.section.active');
   const logo = document.getElementById('logo-home');
   
-  if(current && current.id === id) return;
+  if(current && current.id === id) {
+    if (id === 'home') {
+        return; // Si ya estamos en "Inicio", no hacer nada
+    }
+  }
 
   // Remove the animation when the logo is hidden
   logo.style.animation = 'none';

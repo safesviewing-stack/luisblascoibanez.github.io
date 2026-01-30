@@ -515,12 +515,12 @@ function changeSection(id, link) {
     portfolioLink.classList.add('active'); // Asegura que la línea decorativa esté activa
   }
 
-  // Ocultar el logo en secciones que no son Home
+  // Mostrar u ocultar el logo dependiendo de la sección activa
   const logo = document.getElementById('logo-home');
   if (id === 'home') {
-    logo.style.visibility = 'visible';
+    logo.style.visibility = 'visible';  // Mostrar el logo solo en la sección "Home"
   } else {
-    logo.style.visibility = 'hidden';
+    logo.style.visibility = 'hidden';   // Ocultar el logo en otras secciones
   }
 }
 </script>

@@ -66,7 +66,7 @@ header{
   padding:34px 40px;
   display:flex;
   align-items:center;
-  justify-content:space-between; /* Se asegura de que el logo y los botones estén en línea */
+  justify-content:space-between;
   z-index:1000;
   opacity:1;
   transform:translateY(0);
@@ -78,17 +78,17 @@ header{
   font-weight:500;
   opacity:1;
   transform:translateX(0);
-  animation:logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards; /* Animación de entrada desde la izquierda */
+  animation:logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards;
 }
 
 @keyframes logoInLeft {
   from {
     opacity: 0;
-    transform: translateX(-100%); /* Empezar desde la izquierda */
+    transform: translateX(-100%);
   }
   to {
     opacity: 1;
-    transform: translateX(0); /* Posición final en su lugar */
+    transform: translateX(0);
   }
 }
 
@@ -142,7 +142,7 @@ nav a:hover::after{
   display:flex;
   gap:20px;
   align-items:center;
-  opacity:0;
+  opacity:1; /* Aseguramos que no esté opaco */
   animation:langFadeRight 1s ease forwards; /* Animación de los botones de idioma entrando desde la derecha */
 }
 
@@ -165,7 +165,7 @@ nav a:hover::after{
   cursor:pointer;
   position:relative;
   padding-bottom:6px;
-  opacity:1; /* No hay fundido, opacidad se mantiene en 1 */
+  opacity:1; /* Aseguramos que no esté opaco */
 }
 
 .lang-switch button.active{opacity:1}

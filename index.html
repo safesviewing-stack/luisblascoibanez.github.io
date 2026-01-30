@@ -323,7 +323,7 @@ footer{
   <div class="logo" id="logo-home">L · BIB</div>
 
   <nav>
-    <a class="active" onclick="changeSection('home',this)" data-i18n="nav_home">Inicio</a>
+    <a onclick="changeSection('portfolio',this)" data-i18n="nav_home">Inicio</a>
     <a onclick="changeSection('about',this)" data-i18n="nav_about">Sobre mí</a>
     <a onclick="changeSection('portfolio',this)" data-i18n="nav_portfolio">Portfolio</a>
     <a onclick="changeSection('cv',this)" data-i18n="nav_cv">CV</a>
@@ -337,6 +337,7 @@ footer{
   </div>
 </header>
 
+<!-- Inicio -->
 <section id="home" class="section active">
   <div class="content">
     <h1 class="fade-up">
@@ -348,12 +349,13 @@ footer{
       Perfil técnico y creativo enfocado en producto.
     </p>
 
-    <button class="btn fade-up delay-2" data-i18n="home_btn">
-      Ver proyectos
+    <button class="btn fade-up delay-2" data-i18n="home_btn" onclick="changeSection('portfolio',this)">
+      Proyectos
     </button>
   </div>
 </section>
 
+<!-- Sobre mí -->
 <section id="about" class="section">
   <div class="content">
     <h2 class="fade-up" data-i18n="about_title">Sobre mí</h2>
@@ -365,6 +367,31 @@ footer{
 
       <div class="about-image photo-in">
         <img src="foto.jpg" alt="Foto de Luis">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Portfolio -->
+<section id="portfolio" class="section">
+  <div class="content">
+    <h2 class="fade-up" data-i18n="portfolio_title">Mi Portfolio</h2>
+
+    <div class="portfolio-items fade-up delay-1">
+      <div class="portfolio-item">
+        <img src="proyecto1.jpg" alt="Proyecto 1">
+        <h3>Proyecto 1</h3>
+        <p>Descripción breve del proyecto 1.</p>
+      </div>
+      <div class="portfolio-item">
+        <img src="proyecto2.jpg" alt="Proyecto 2">
+        <h3>Proyecto 2</h3>
+        <p>Descripción breve del proyecto 2.</p>
+      </div>
+      <div class="portfolio-item">
+        <img src="proyecto3.jpg" alt="Proyecto 3">
+        <h3>Proyecto 3</h3>
+        <p>Descripción breve del proyecto 3.</p>
       </div>
     </div>
   </div>
@@ -391,6 +418,7 @@ const translations = {
     home_btn:"Ver proyectos",
     about_title:"Sobre mí",
     about_text:"Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV, actualmente en mi último año. Vivo en Valencia y me considero una persona con una mente ecléctica y perfeccionista, siempre interesada en encontrar el equilibrio entre lo técnico y lo estético. Desde pequeño he tenido curiosidad por entender cómo funcionan las cosas, y mi formación profesional en el sector de la electricidad me permitió adquirir una base técnica sólida que hoy aplico al diseño y desarrollo de producto. Disfruto especialmente del proceso completo de diseño, desde la idea inicial hasta la definición técnica y el detalle final, y tengo una necesidad constante de estar creando y resolviendo. Si algo no me sale, no paro hasta encontrar la solución, porque para mí el proceso es tan importante como el resultado final. Como dato curioso, me interesa especialmente el campo de la impresión 3D, ya que me permite experimentar directamente con el diseño y validar conceptos de la manera más rápida y precisa.",
+    portfolio_title:"Mi Portfolio",
     footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"
   },
   en:{
@@ -406,6 +434,7 @@ const translations = {
     home_btn:"View projects",
     about_title:"About me",
     about_text:"Hi, I’m Luis, I’m 24 years old and an Industrial Design student at UPV, currently in my final year. I live in Valencia and consider myself an eclectic and perfectionist person, always interested in finding the balance between technical precision and aesthetics. From an early age, I’ve been curious about how things work, and my vocational training in the electrical sector gave me a solid technical foundation that I now apply to product design and development. I especially enjoy the complete design process, from the initial idea to technical definition and final detailing, and I have a constant need to keep creating and solving problems. If something doesn’t work, I don’t stop until I find the solution, because for me the process is just as important as the final result. As a curious fact, I’m particularly interested in the field of 3D printing, as it allows me to directly experiment with design and validate concepts in the fastest and most precise way.",
+    portfolio_title:"My Portfolio",
     footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineering"
   }
 };

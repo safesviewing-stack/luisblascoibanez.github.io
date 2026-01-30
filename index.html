@@ -77,13 +77,13 @@ header{
   font-weight:500;
   opacity:1;
   transform:translateX(0);
-  animation:logoInRight 1s cubic-bezier(.4,0,.2,1) forwards; /* Animación de entrada */
+  animation:logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards; /* Animación de entrada desde la izquierda */
 }
 
-@keyframes logoInRight {
+@keyframes logoInLeft {
   from {
     opacity: 0;
-    transform: translateX(100%); /* Empezar desde la derecha */
+    transform: translateX(-100%); /* Empezar desde la izquierda */
   }
   to {
     opacity: 1;

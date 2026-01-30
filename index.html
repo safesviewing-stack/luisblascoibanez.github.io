@@ -266,7 +266,7 @@ footer{
   opacity:0;
   transform:translateY(20px);
   animation:footerIn 1s cubic-bezier(.4,0,.2,1) forwards;
-  animation-delay:1.8s; /* Retardo de 1.8 segundos al entrar */
+  animation-delay:1.8s; /* Retardo de 1.8 segundos */
 }
 @keyframes footerIn{
   to{opacity:1;transform:translateY(0);}
@@ -433,7 +433,7 @@ function resetAnimations(scope=document){
     el.style.animation = '';
   });
 
-  // Reset footer animation
+  // Reset footer animation (triggered on button click)
   scope.querySelectorAll('footer').forEach(el => {
     el.style.animation = 'none';
     void el.offsetHeight;
@@ -483,6 +483,8 @@ function changeSection(id, link){
 
   document.getElementById(id).classList.add('active');
   link.classList.add('active');
+
+  resetAnimations(); // Reset animations when changing section
 }
 </script>
 

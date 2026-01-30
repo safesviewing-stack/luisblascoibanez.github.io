@@ -686,7 +686,9 @@ function changeSection(id, link){
   link.classList.add('active');
   
   // Activar la línea decorativa debajo del título al hacer clic en el enlace
-  link.classList.add('active');
+  if (id === 'portfolio') {
+    link.classList.add('active'); // Mantener la línea decorativa activa en Portfolio
+  }
 
   resetAnimations(); // Reset animations when changing section
 }

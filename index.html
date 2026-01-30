@@ -679,6 +679,10 @@ function changeSection(id, link) {
     logo.style.visibility = 'hidden';
   } else {
     logo.style.visibility = 'visible';
+    // Reaplicar la animación al logo cuando se entra en Home
+    logo.style.animation = 'none'; // Para reiniciar la animación
+    void logo.offsetHeight; // Fuerza el reflujo del DOM
+    logo.style.animation = 'logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards'; // Reaplica la animación de entrada
   }
 }
 </script>

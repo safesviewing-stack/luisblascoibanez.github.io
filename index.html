@@ -25,6 +25,9 @@ body{
   background:var(--bg);
   color:var(--white);
   overflow:hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Para asegurar que el footer esté siempre en el fondo */
 }
 
 /* ===== BACKGROUND ===== */
@@ -262,6 +265,26 @@ p{
   height:auto;
   float:right;  /* Alineamos la imagen a la derecha */
   margin-left:20px;  /* Añadimos margen a la izquierda de la imagen */
+}
+
+/* ===== FOOTER ===== */
+footer{
+  margin-top: auto; /* Esto asegura que el footer siempre esté al final */
+  width: 100%;
+  padding:18px 40px;
+  text-align:center;
+  font-size:11px;
+  letter-spacing:.08em;
+  color:#9a9a9a;
+  background-color:transparent; /* Fondo transparente */
+  opacity:0;
+  transform:translateY(20px);
+  animation:footerIn 1.2s cubic-bezier(.4,0,.2,1) forwards;
+  animation-delay:1s; /* Retardo de 1 segundo antes de que aparezca el footer */
+}
+
+@keyframes footerIn{
+  to{opacity:1;transform:translateY(0);}
 }
 </style>
 </head>

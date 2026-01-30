@@ -148,11 +148,9 @@ nav a:hover::after{
 
 @keyframes langFadeRight{
   from{
-    opacity:0;
     transform:translateX(100%); /* Los botones entran desde la derecha */
   }
   to{
-    opacity:1;
     transform:translateX(0); /* Se posicionan en su lugar final */
   }
 }
@@ -167,7 +165,7 @@ nav a:hover::after{
   cursor:pointer;
   position:relative;
   padding-bottom:6px;
-  opacity:.6;
+  opacity:1; /* No hay fundido, opacidad se mantiene en 1 */
 }
 
 .lang-switch button.active{opacity:1}

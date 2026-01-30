@@ -25,6 +25,9 @@ body{
   background:var(--bg);
   color:var(--white);
   overflow:hidden;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ===== BACKGROUND ===== */
@@ -70,6 +73,7 @@ header{
   z-index:1000;
   opacity:1;
   transform:translateY(0);
+  background: rgba(0, 0, 0, 0.8); /* Fondo del header */
 }
 
 .logo{
@@ -108,6 +112,7 @@ nav a{
   opacity:0;
   transform:translateY(-12px);
   animation:navIn 0.55s ease forwards;
+  z-index: 9999;  /* Asegurarse de que los enlaces estén encima */
 }
 
 nav a:nth-child(1){animation-delay:.25s}
@@ -165,6 +170,7 @@ nav a:hover::after{
   inset:0;
   display:none;
   align-items:center;
+  z-index:0; /* Asegurarse de que las secciones no bloqueen el menú */
 }
 .section.active{display:flex}
 
@@ -454,4 +460,37 @@ function changeSection(id, link){
   const current = document.querySelector('.section.active');
   const logo = document.getElementById('logo-home');
   
-  // Check if the section is already active, only proceed if it's not the same
+  // Check if the section is already active, only proceed if it's not the same section
+  if(current && current.id === id) {
+    return; // Do nothing if the section is already active
+  }
+
+  // Remove the animation when the logo is hidden
+  logo.style.animation = 'none';
+  void logo.offsetHeight; // force reflow
+  logo.style.animation = 'logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards'; // Reinicia la animación
+
+  // Hide logo on all sections except home
+  if(id !== "home") {
+    logo.style.visibility = 'hidden';  /* Use visibility instead of display: none */
+  } else {
+    logo.style.visibility = 'visible';
+  }
+
+  const fade=document.querySelector('.section-fade');
+  fade.classList.remove('active');
+  void fade.offsetHeight;
+  fade.classList.add('active');
+
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+
+  document.getElementById(id).classList.add('active');
+  link.classList.add('active');
+
+  resetAnimations(); // Reset animations when changing section
+}
+</script>
+
+</body>
+</html>

@@ -556,8 +556,7 @@ footer{
 </footer>
 
 <script>
-// Función para cambiar entre secciones y activar la línea decorativa
-function changeSection(id, link){
+function changeSection(id, link) {
   // Desactivar todas las secciones
   document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
   // Activar la sección correspondiente
@@ -565,7 +564,13 @@ function changeSection(id, link){
   // Desactivar la clase active en todos los enlaces
   document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
   // Activar la clase active en el enlace correspondiente
-  link.classList.add('active');
+  link.classList.add('active'); // Aseguramos que el enlace activo tiene la línea debajo
+  
+  // Si es la sección de Portfolio, aplicamos la clase active al enlace de Portfolio
+  if (id === 'portfolio') {
+    const portfolioLink = document.querySelector('nav a:nth-child(3)');
+    portfolioLink.classList.add('active'); // Asegura que la línea decorativa esté activa
+  }
 }
 </script>
 

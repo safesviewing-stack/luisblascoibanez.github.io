@@ -684,6 +684,9 @@ function changeSection(id, link){
 
   document.getElementById(id).classList.add('active');
   link.classList.add('active');
+  
+  // Activar la línea decorativa debajo del título al hacer clic en el enlace
+  link.classList.add('active');
 
   resetAnimations(); // Reset animations when changing section
 }

@@ -66,22 +66,10 @@ header{
   padding:34px 40px;
   display:flex;
   align-items:center;
-  justify-content:space-between;
+  justify-content:space-between; /* Se asegura de que el logo y los botones estén en línea */
   z-index:1000;
   opacity:1;
   transform:translateY(0);
-  animation:headerInRight 1s cubic-bezier(.4,0,.2,1) forwards; /* Animación de entrada desde la derecha */
-}
-
-@keyframes headerInRight {
-  from {
-    opacity: 0;
-    transform: translateX(100%); /* Empezar desde la derecha */
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0); /* Posición final en su lugar */
-  }
 }
 
 .logo{
@@ -90,7 +78,7 @@ header{
   font-weight:500;
   opacity:1;
   transform:translateX(0);
-  animation:logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards;
+  animation:logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards; /* Animación de entrada desde la izquierda */
 }
 
 @keyframes logoInLeft {
@@ -108,18 +96,6 @@ nav{
   display:flex;
   gap:36px;
   align-items:center;
-  animation:navInRight 1s cubic-bezier(.4,0,.2,1) forwards; /* Animación de entrada desde la derecha */
-}
-
-@keyframes navInRight{
-  from {
-    opacity: 0;
-    transform: translateX(100%); /* Entrar desde la derecha */
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
 }
 
 nav a{
@@ -192,21 +168,9 @@ nav a:hover::after{
   position:relative;
   padding-bottom:6px;
   opacity:.6;
-  animation:buttonFadeIn 0.8s ease forwards; /* Animación de los botones de idioma */
 }
 
 .lang-switch button.active{opacity:1}
-
-@keyframes buttonFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
 /* ===== SECTIONS ===== */
 .section{

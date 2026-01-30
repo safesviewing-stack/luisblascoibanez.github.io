@@ -27,7 +27,7 @@ body{
   overflow:hidden;
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Para asegurar que el footer esté siempre en el fondo */
+  min-height: 100vh; /* Asegura que el footer se quede al final */
 }
 
 /* ===== BACKGROUND ===== */
@@ -188,7 +188,7 @@ nav a:hover::after{
 }
 
 .lang-switch button.active::after,
-.lang-switch button:hover::after{
+lang-switch button:hover::after{
   transform:scaleX(1); /* La línea se expande cuando el botón es activo o se pasa el ratón */
 }
 
@@ -286,6 +286,7 @@ footer{
 @keyframes footerIn{
   to{opacity:1;transform:translateY(0);}
 }
+
 </style>
 </head>
 
@@ -332,7 +333,7 @@ footer{
 
 <!-- Sobre mí -->
 <section id="about" class="section">
-  <div class="content">
+  <div class="content" style="max-width: 1035px;"> <!-- Ajuste el ancho máximo del contenido -->
     <h2 class="fade-up" data-i18n="about_title">Sobre mí</h2>
 
     <div class="about-layout">

@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 <style>
 :root{
@@ -15,7 +14,7 @@
   --muted:#cfcfcf;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui,sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
 body{background:var(--bg);color:var(--white);overflow:hidden}
 
 /* BACKGROUND */
@@ -38,9 +37,12 @@ header{
 }
 
 .logo{
-  letter-spacing:.3em;font-size:16px;font-weight:500;
-  animation:logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards;
+  font-size:16px;
+  letter-spacing:.3em;
+  font-weight:500;
+  opacity:0;
 }
+
 @keyframes logoInLeft{
   from{opacity:0;transform:translateX(-40px)}
   to{opacity:1;transform:none}
@@ -59,7 +61,6 @@ nav a:nth-child(3){animation-delay:.41s}
 nav a:nth-child(4){animation-delay:.49s}
 nav a:nth-child(5){animation-delay:.57s}
 nav a:nth-child(6){animation-delay:.65s}
-
 @keyframes navIn{to{opacity:1;transform:none}}
 
 nav a::after{
@@ -71,8 +72,8 @@ nav a.active::after,nav a:hover::after{transform:scaleX(1)}
 .lang-switch{display:flex;gap:20px}
 .lang-switch button{
   background:none;border:none;color:#fff;font-size:11px;
-  letter-spacing:.18em;text-transform:uppercase;cursor:pointer;
-  position:relative;padding-bottom:6px;
+  letter-spacing:.18em;text-transform:uppercase;
+  cursor:pointer;position:relative;padding-bottom:6px;
 }
 .lang-switch button::after{
   content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
@@ -103,17 +104,6 @@ p{color:var(--muted);font-size:14px;line-height:1.8}
 .delay-2{animation-delay:.6s}
 @keyframes fadeUp{to{opacity:1;transform:none}}
 
-/* FOOTER */
-footer{
-  position:fixed;bottom:0;width:100%;
-  padding:18px 40px;text-align:center;
-  font-size:11px;letter-spacing:.08em;color:#9a9a9a;
-  opacity:0;transform:translateY(20px);
-  animation:footerIn 1.4s cubic-bezier(.4,0,.2,1) forwards;
-  animation-delay:1.7s;
-}
-@keyframes footerIn{to{opacity:1;transform:none}}
-
 /* BUTTON */
 .btn{
   padding:14px 34px;border-radius:40px;border:none;
@@ -123,6 +113,17 @@ footer{
   animation-delay:.9s;
 }
 @keyframes btnIn{to{opacity:1;transform:none}}
+
+/* FOOTER */
+footer{
+  position:fixed;bottom:0;width:100%;
+  padding:18px 40px;text-align:center;
+  font-size:11px;letter-spacing:.08em;color:#9a9a9a;
+  opacity:0;transform:translateY(20px);
+  animation:footerIn 1.4s cubic-bezier(.4,0,.2,1) forwards;
+  animation-delay:2s;
+}
+@keyframes footerIn{to{opacity:1;transform:none}}
 </style>
 </head>
 
@@ -143,8 +144,8 @@ footer{
   </nav>
 
   <div class="lang-switch">
-    <button class="active" onclick="changeLang('es')">ES</button>
-    <button onclick="changeLang('en')">EN</button>
+    <button class="active">ES</button>
+    <button>EN</button>
   </div>
 </header>
 
@@ -162,10 +163,7 @@ footer{
 <section id="about" class="section">
   <div class="content">
     <h2 class="fade-up">Sobre mí</h2>
-    <p class="fade-up delay-1">
-      Diseñador industrial con base técnica en electricidad, enfoque en producto
-      y atención extrema al detalle.
-    </p>
+    <p class="fade-up delay-1">Diseñador industrial con enfoque técnico y atención al detalle.</p>
   </div>
 </section>
 
@@ -179,21 +177,18 @@ footer{
 <section id="cv" class="section">
   <div class="content">
     <h2 class="fade-up">Currículum Vitae</h2>
-    <p class="fade-up delay-1">Formación, experiencia y perfil técnico.</p>
   </div>
 </section>
 
 <section id="skills" class="section">
   <div class="content">
     <h2 class="fade-up">Habilidades</h2>
-    <p class="fade-up delay-1">Diseño de producto · CAD · Prototipado · 3D</p>
   </div>
 </section>
 
 <section id="contact" class="section">
   <div class="content">
     <h2 class="fade-up">Contacto</h2>
-    <p class="fade-up delay-1">Disponible para proyectos y colaboraciones.</p>
   </div>
 </section>
 
@@ -202,17 +197,11 @@ footer{
 </footer>
 
 <script>
-let currentLang = 'es';
 let currentSection = 'home';
+const logo = document.getElementById('logo-home');
 
-function changeLang(lang){
-  if(lang === currentLang) return;
-  currentLang = lang;
-  document.querySelectorAll('.lang-switch button')
-    .forEach(b=>b.classList.remove('active'));
-  document.querySelector(`.lang-switch button[onclick*="${lang}"]`)
-    .classList.add('active');
-}
+/* Animación inicial del logo */
+logo.style.animation = 'logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards';
 
 function changeSection(id, link){
   if(id === currentSection) return;
@@ -230,14 +219,22 @@ function changeSection(id, link){
     document.querySelector('nav a:nth-child(3)').classList.add('active');
   }
 
-  const logo = document.getElementById('logo-home');
-  logo.style.visibility = id === 'home' ? 'visible' : 'hidden';
+  /* LOGO */
+  if(id === 'home'){
+    logo.style.visibility = 'visible';
+    logo.style.animation = 'none';
+    void logo.offsetHeight;
+    logo.style.animation = 'logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards';
+  } else {
+    logo.style.visibility = 'hidden';
+  }
 
+  /* FOOTER */
   const footer = document.querySelector('footer');
   footer.style.animation = 'none';
   void footer.offsetHeight;
   footer.style.animation = 'footerIn 1.4s cubic-bezier(.4,0,.2,1) forwards';
-  footer.style.animationDelay = '1.7s';
+  footer.style.animationDelay = '2s';
 }
 </script>
 

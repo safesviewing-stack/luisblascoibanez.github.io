@@ -21,174 +21,176 @@
       font-family:Inter, system-ui, sans-serif;
     }
 
-    body{
-      background:var(--bg);
-      color:var(--white);
-      overflow:hidden;
+    body {
+      background: var(--bg);
+      color: var(--white);
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     /* ===== BACKGROUND ===== */
-    .bg-layer{
-      position:fixed;
-      inset:0;
+    .bg-layer {
+      position: fixed;
+      inset: 0;
       background:
-        linear-gradient(rgba(11,11,13,.75), rgba(11,11,13,.7)),
+        linear-gradient(rgba(11, 11, 13, .75), rgba(11, 11, 13, .7)),
         url("reloj1.jpg") center / cover no-repeat;
-      z-index:-2;
-      opacity:0;
-      animation:bgFadeIn 1.4s ease forwards;
-      pointer-events:none;
+      z-index: -2;
+      opacity: 0;
+      animation: bgFadeIn 1.4s ease forwards;
+      pointer-events: none;
     }
-    @keyframes bgFadeIn{ to{opacity:1;} }
+    @keyframes bgFadeIn { to { opacity: 1; } }
 
     /* ===== GLOBAL SECTION FADE ===== */
-    .section-fade{
-      position:fixed;
-      inset:0;
-      background:rgba(11,11,13,.9);
-      z-index:-1;
-      opacity:0;
-      pointer-events:none;
+    .section-fade {
+      position: fixed;
+      inset: 0;
+      background: rgba(11, 11, 13, .9);
+      z-index: -1;
+      opacity: 0;
+      pointer-events: none;
     }
-    .section-fade.active{
-      animation:sectionFade 1.4s cubic-bezier(.4,0,.2,1) forwards;
+    .section-fade.active {
+      animation: sectionFade 1.4s cubic-bezier(.4, 0, .2, 1) forwards;
     }
-    @keyframes sectionFade{
-      from{opacity:1}
-      to{opacity:0}
+    @keyframes sectionFade {
+      from { opacity: 1; }
+      to { opacity: 0; }
     }
 
     /* ===== HEADER ===== */
-    header{
-      position:fixed;
-      top:0;
-      width:100%;
-      padding:34px 40px;
-      display:flex;
-      justify-content:space-between; /* Logo a la izquierda y los botones a la derecha */
-      align-items:center;
-      z-index:1000;
-      opacity:1;
-      transform:translateY(0);
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 34px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    .logo{
-      font-size:16px;
-      letter-spacing:.3em;
-      font-weight:500;
-      opacity:1;
-      transform:translateX(0);
-      animation:logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards;
+    .logo {
+      font-size: 16px;
+      letter-spacing: .3em;
+      font-weight: 500;
+      opacity: 1;
+      transform: translateX(0);
+      animation: logoInLeft 1s cubic-bezier(.4, 0, .2, 1) forwards;
       color: white;
     }
 
     @keyframes logoInLeft {
-      from {
-        opacity: 0;
-        transform: translateX(-100%);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
+      from { opacity: 0; transform: translateX(-100%); }
+      to { opacity: 1; transform: translateX(0); }
     }
 
-    nav{
-      display:flex;
-      gap:36px;
-      align-items:center;
+    nav {
+      display: flex;
+      gap: 36px;
+      align-items: center;
     }
 
-    nav a{
-      font-size:11px;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      position:relative;
-      padding-bottom:6px;
-      cursor:pointer;
-      opacity:0;
-      transform:translateY(-12px);
-      animation:navIn 0.55s ease forwards;
+    nav a {
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      position: relative;
+      padding-bottom: 6px;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(-12px);
+      animation: navIn 0.55s ease forwards;
     }
 
-    nav a:nth-child(1){animation-delay:.25s}
-    nav a:nth-child(2){animation-delay:.33s}
-    nav a:nth-child(3){animation-delay:.41s}
-    nav a:nth-child(4){animation-delay:.49s}
-    nav a:nth-child(5){animation-delay:.57s}
-    nav a:nth-child(6){animation-delay:.65s}
+    nav a:nth-child(1) { animation-delay: .25s; }
+    nav a:nth-child(2) { animation-delay: .33s; }
+    nav a:nth-child(3) { animation-delay: .41s; }
+    nav a:nth-child(4) { animation-delay: .49s; }
+    nav a:nth-child(5) { animation-delay: .57s; }
+    nav a:nth-child(6) { animation-delay: .65s; }
 
-    @keyframes navIn{ to{opacity:1;transform:translateY(0);} }
+    @keyframes navIn { to { opacity: 1; transform: translateY(0); } }
 
-    nav a.active::after{
-      content:"";
-      position:absolute;
-      left:0;
-      right:.18em;
-      bottom:0;
-      height:1px;  /* Grosor de la línea */
-      background:#fff;
-      transform:scaleX(1);
+    nav a.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: .18em;
+      bottom: 0;
+      height: 1px; /* Grosor de la línea */
+      background: #fff;
+      transform: scaleX(1);
     }
 
-    nav a.disabled{
+    nav a.disabled {
       pointer-events: none;
       opacity: 0.5;
       cursor: not-allowed;
     }
 
     /* ===== SECTIONS ===== */
-    .section{
-      position:absolute;
-      inset:0;
-      display:none;
-      align-items:center;
+    .section {
+      position: absolute;
+      inset: 0;
+      display: none;
+      align-items: center;
     }
-    .section.active{display:flex}
+    .section.active {
+      display: flex;
+    }
 
-    .content{
-      max-width:960px;
-      margin-left:clamp(120px,16vw,240px);
-      display:flex;
-      flex-direction:column;
-      gap:26px;
+    .content {
+      max-width: 960px;
+      margin-left: clamp(120px, 16vw, 240px);
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
     }
 
     /* ===== BUTTON ===== */
-    .btn{
-      margin-top:14px;
-      padding:14px 34px;
-      border-radius:40px;
-      border:none;
-      background:#fff;
-      color:#000;
-      font-weight:600;
-      cursor:pointer;
-      align-self:flex-start;
-      opacity:0;
-      transform:translateY(24px);
-      animation:btnIn 0.6s cubic-bezier(.4,0,.2,1) forwards;
-      animation-delay:0.9s; /* Reduced delay */
+    .btn {
+      margin-top: 14px;
+      padding: 14px 34px;
+      border-radius: 40px;
+      border: none;
+      background: #fff;
+      color: #000;
+      font-weight: 600;
+      cursor: pointer;
+      align-self: flex-start;
+      opacity: 0;
+      transform: translateY(24px);
+      animation: btnIn 0.6s cubic-bezier(.4, 0, .2, 1) forwards;
+      animation-delay: 0.9s; /* Reduced delay */
     }
 
-    @keyframes btnIn{
-      to{opacity:1;transform:translateY(0);}
-    }
+    @keyframes btnIn { to { opacity: 1; transform: translateY(0); } }
 
     /* ===== FOOTER ===== */
-    footer{
-      position:relative; /* Lo devuelvo a su posición original */
-      padding:18px 40px;
-      text-align:center;
-      font-size:11px;
-      letter-spacing:.08em;
-      color:#9a9a9a;
-      background-color:transparent; /* Fondo transparente */
-      pointer-events:none;
-      margin-top: 50px; /* Se asegura de que el footer quede en la parte inferior */
+    footer {
+      position: relative;
+      padding: 18px 40px;
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: .08em;
+      color: #9a9a9a;
+      background-color: transparent; /* Fondo transparente */
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(20px);
+      margin-top: auto; /* Asegura que el footer esté al final de la página */
+      animation: footerIn 1.2s cubic-bezier(.4, 0, .2, 1) forwards; /* Tiempo de animación igual que al entrar por primera vez */
+      animation-delay: 1s; /* Retardo de 1 segundo antes de que aparezca el footer */
     }
-    @keyframes footerIn{
-      to{opacity:1;transform:translateY(0);}
+
+    @keyframes footerIn {
+      to { opacity: 1; transform: translateY(0); }
     }
 
     /* ===== LANGUAGE SWITCH ===== */
@@ -197,7 +199,7 @@
       gap: 20px;
       align-items: center;
       opacity: 0;
-      animation: langFadeRight 1s cubic-bezier(.4,0,.2,1) forwards;
+      animation: langFadeRight 1s cubic-bezier(.4, 0, .2, 1) forwards;
     }
 
     @keyframes langFadeRight {

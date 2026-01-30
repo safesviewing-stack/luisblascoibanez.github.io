@@ -457,6 +457,11 @@ function changeSection(id, link){
   
   if(current && current.id === id) return;
 
+  // Remove the animation when the logo is hidden
+  logo.style.animation = 'none';
+  void logo.offsetHeight; // force reflow
+  logo.style.animation = 'logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards'; // Reinicia la animación
+
   // Hide logo on all sections except home
   if(id !== "home") {
     logo.style.visibility = 'hidden';  /* Use visibility instead of display: none */

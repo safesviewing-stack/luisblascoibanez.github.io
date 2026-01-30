@@ -67,8 +67,8 @@ header{
   display:flex;
   align-items:center;
   z-index:1000;
-  opacity:1; /* Fix opacity */
-  transform:translateY(0); /* Fix transform */
+  opacity:1;
+  transform:translateY(0);
 }
 
 .logo{
@@ -76,7 +76,19 @@ header{
   letter-spacing:.3em;
   font-weight:500;
   opacity:1;
-  transform:translateX(0); /* Ensure the logo is always in place */
+  transform:translateX(0);
+  animation:logoInRight 1s cubic-bezier(.4,0,.2,1) forwards; /* Animación de entrada */
+}
+
+@keyframes logoInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%); /* Empezar desde la derecha */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0); /* Posición final en su lugar */
+  }
 }
 
 nav{

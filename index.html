@@ -50,9 +50,14 @@ header{
 
 nav{display:flex;gap:36px}
 nav a{
-  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
-  position:relative;padding-bottom:6px;cursor:pointer;
-  opacity:0;transform:translateY(-12px);
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  position:relative;
+  padding-bottom:6px;
+  cursor:pointer;
+  opacity:0;
+  transform:translateY(-12px);
   animation:navIn .55s ease forwards;
 }
 nav a:nth-child(1){animation-delay:.25s}
@@ -64,20 +69,42 @@ nav a:nth-child(6){animation-delay:.65s}
 @keyframes navIn{to{opacity:1;transform:none}}
 
 nav a::after{
-  content:"";position:absolute;left:0;right:.18em;bottom:0;height:1px;
-  background:#fff;transform:scaleX(0);transform-origin:left;transition:.3s;
+  content:"";
+  position:absolute;
+  left:0;
+  right:.18em;
+  bottom:0;
+  height:1px;
+  background:#fff;
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:.3s;
 }
-nav a.active::after,nav a:hover::after{transform:scaleX(1)}
+nav a.active::after,
+nav a:hover::after{transform:scaleX(1)}
 
 .lang-switch{display:flex;gap:20px}
 .lang-switch button{
-  background:none;border:none;color:#fff;font-size:11px;
-  letter-spacing:.18em;text-transform:uppercase;
-  cursor:pointer;position:relative;padding-bottom:6px;
+  background:none;
+  border:none;
+  color:#fff;
+  font-size:11px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  cursor:pointer;
+  position:relative;
+  padding-bottom:6px;
 }
 .lang-switch button::after{
-  content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
-  background:#fff;transform:scaleX(0);transition:.3s;
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:1px;
+  background:#fff;
+  transform:scaleX(0);
+  transition:.3s;
 }
 .lang-switch button.active::after{transform:scaleX(1)}
 
@@ -87,7 +114,9 @@ nav a.active::after,nav a:hover::after{transform:scaleX(1)}
 .content{
   max-width:960px;
   margin-left:clamp(120px,16vw,240px);
-  display:flex;flex-direction:column;gap:26px;
+  display:flex;
+  flex-direction:column;
+  gap:26px;
 }
 
 /* TEXT */
@@ -97,16 +126,19 @@ p{color:var(--muted);font-size:14px;line-height:1.8}
 
 /* ANIMATIONS */
 .fade-up{
-  opacity:0;transform:translateY(24px);
+  opacity:0;
+  transform:translateY(24px);
   animation:fadeUp .8s cubic-bezier(.4,0,.2,1) forwards;
 }
 .delay-1{animation-delay:.35s}
 .delay-2{animation-delay:.6s}
 @keyframes fadeUp{to{opacity:1;transform:none}}
 
-/* BUTTON (CORREGIDO) */
+/* BUTTON — AHORA SÍ */
 .btn{
-  padding:14px 26px; /* ⬅ longitud original */
+  padding:12px 20px;      /* ⬅ reducción real */
+  font-size:13px;
+  letter-spacing:.04em;
   border-radius:40px;
   border:none;
   background:#fff;
@@ -122,10 +154,16 @@ p{color:var(--muted);font-size:14px;line-height:1.8}
 
 /* FOOTER */
 footer{
-  position:fixed;bottom:0;width:100%;
-  padding:18px 40px;text-align:center;
-  font-size:11px;letter-spacing:.08em;color:#9a9a9a;
-  opacity:0;transform:translateY(20px);
+  position:fixed;
+  bottom:0;
+  width:100%;
+  padding:18px 40px;
+  text-align:center;
+  font-size:11px;
+  letter-spacing:.08em;
+  color:#9a9a9a;
+  opacity:0;
+  transform:translateY(20px);
   animation:footerIn 1.4s cubic-bezier(.4,0,.2,1) forwards;
   animation-delay:2s;
 }
@@ -166,38 +204,6 @@ footer{
   </div>
 </section>
 
-<section id="about" class="section">
-  <div class="content">
-    <h2 class="fade-up">Sobre mí</h2>
-    <p class="fade-up delay-1">Diseñador industrial con enfoque técnico y atención al detalle.</p>
-  </div>
-</section>
-
-<section id="portfolio" class="section">
-  <div class="content">
-    <h2 class="fade-up">Portfolio</h2>
-    <p class="fade-up delay-1">Selección de proyectos destacados.</p>
-  </div>
-</section>
-
-<section id="cv" class="section">
-  <div class="content">
-    <h2 class="fade-up">Currículum Vitae</h2>
-  </div>
-</section>
-
-<section id="skills" class="section">
-  <div class="content">
-    <h2 class="fade-up">Habilidades</h2>
-  </div>
-</section>
-
-<section id="contact" class="section">
-  <div class="content">
-    <h2 class="fade-up">Contacto</h2>
-  </div>
-</section>
-
 <footer>
   © 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial
 </footer>
@@ -205,8 +211,6 @@ footer{
 <script>
 let currentSection = 'home';
 const logo = document.getElementById('logo-home');
-
-/* animación inicial logo */
 logo.style.animation = 'logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards';
 
 function changeSection(id, link){

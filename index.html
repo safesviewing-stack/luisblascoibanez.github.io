@@ -35,7 +35,7 @@ body{
   background:
     linear-gradient(rgba(11,11,13,.75), rgba(11,11,13,.7)),
     url("reloj1.jpg") center / cover no-repeat;
-  z-index:-2;
+  z-index:-2; /* Aseguramos que el fondo esté detrás de todos los elementos interactivos */
   opacity:0;
   animation:bgFadeIn 1.4s ease forwards;
   pointer-events:none;
@@ -47,7 +47,7 @@ body{
   position:fixed;
   inset:0;
   background:rgba(11,11,13,.9);
-  z-index:-1;
+  z-index:-1; /* Cambiar el z-index para evitar que bloquee la interacción */
   opacity:0;
   pointer-events:none;
 }
@@ -68,7 +68,7 @@ header{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  z-index:1000;
+  z-index:1000; /* Aseguramos que el header esté encima de otros elementos */
   opacity:1;
   transform:translateY(0);
 }
@@ -313,100 +313,6 @@ footer{
   to{opacity:1;transform:translateY(0);}
 }
 
-/* ===== PORTFOLIO STYLING ===== */
-.project-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 30px;
-  margin-top: 30px;
-}
-
-.project-item {
-  position: relative;
-  overflow: hidden;
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  transition: transform 0.3s ease-in-out;
-}
-
-.project-item:hover {
-  transform: scale(1.05);
-}
-
-.project-img {
-  width: 100%;
-  height: auto;
-  border-radius: 15px;
-  object-fit: cover;
-  transition: opacity 0.3s ease;
-}
-
-.project-item:hover .project-img {
-  opacity: 0.7;
-}
-
-.project-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  padding: 20px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  border-radius: 15px;
-}
-
-.project-item:hover .project-overlay {
-  opacity: 1;
-}
-
-/* ===== CV STYLING ===== */
-.cv-details {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.cv-column {
-  width: 32%;
-}
-
-.cv-column h3 {
-  font-size: 22px;
-  margin-bottom: 10px;
-}
-
-.cv-column ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.cv-column li {
-  margin-bottom: 12px;
-}
-
-.cv-column li strong {
-  font-weight: 600;
-}
-
-.cv-column li span {
-  font-size: 14px;
-  color: var(--muted);
-}
-
-.cv-column i {
-  margin-right: 8px;
-  color: #fff;
-}
 </style>
 </head>
 
@@ -571,4 +477,16 @@ const translations = {
     home_sub:"Perfil técnico y creativo enfocado en producto.",
     home_btn:"Ver proyectos",
     about_title:"Sobre mí",
-    about_text:"Hola, soy
+    about_text:"Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV, actualmente en mi último año. Vivo en Valencia y me considero una persona con una mente ecléctica y perfeccionista, siempre interesada en encontrar el equilibrio entre lo técnico y lo estético. Desde pequeño he tenido curiosidad por entender cómo funcionan las cosas, y mi formación profesional en el sector de la electricidad me permitió adquirir una base técnica sólida que hoy aplico al diseño y desarrollo de producto. Disfruto especialmente del proceso completo de diseño, desde la idea inicial hasta la definición técnica y el detalle final, y tengo una necesidad constante de estar creando y resolviendo. Si algo no me sale, no paro hasta encontrar la solución, porque para mí el proceso es tan importante como el resultado final. Como dato curioso, me interesa especialmente el campo de la impresión 3D, ya que me permite experimentar directamente con el diseño y validar conceptos de la manera más rápida y precisa.",
+    footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"
+  },
+  en:{
+    nav_home:"Home",
+    nav_about:"About",
+    nav_portfolio:"Portfolio",
+    nav_cv:"CV",
+    nav_skills:"Skills",
+    nav_contact:"Contact",
+    home_title_1:"Industrial Design",
+    home_title_2:"and Product Development",
+    home_sub:"Technical and creative

@@ -125,7 +125,7 @@ nav a::after{
   left:0;
   right:.18em;
   bottom:0;
-  height:1px;
+  height:1px;  /* Grosor de la línea */
   background:#fff;
   transform:scaleX(0);
   transform-origin:left;
@@ -170,14 +170,14 @@ nav a:hover::after{
   opacity:1; /* Aseguramos que no haya fundido */
 }
 
-/* Línea decorativa debajo de los botones de idioma */
+/* Línea decorativa debajo de los botones de idioma con grosor de 1px */
 .lang-switch button::after{
   content:"";
   position:absolute;
   left:0;
   right:0;
   bottom:0;
-  height:2px;
+  height:1px; /* Grosor de la línea igual al de los títulos del header */
   background:#fff;
   transform:scaleX(0);
   transform-origin:left;

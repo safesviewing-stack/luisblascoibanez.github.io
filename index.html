@@ -556,44 +556,92 @@ footer{
 </footer>
 
 <script>
-// Variable para almacenar el idioma actual
 let currentLang = 'es';
 
-// Traducciones para los dos idiomas
 const translations = {
-  es: {
-    nav_home: "Inicio",
-    nav_about: "Sobre mí",
-    nav_portfolio: "Portfolio",
-    nav_cv: "CV",
-    nav_skills: "Habilidades",
-    nav_contact: "Contacto",
-    home_title_1: "Diseño Industrial",
-    home_title_2: "y Desarrollo de Producto",
-    home_sub: "Perfil técnico y creativo enfocado en producto.",
-    home_btn: "Ver proyectos",
-    about_title: "Sobre mí",
-    about_text: "Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV...",
-    footer: "© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"
+  es:{
+    nav_home:"Inicio",
+    nav_about:"Sobre mí",
+    nav_portfolio:"Portfolio",
+    nav_cv:"CV",
+    nav_skills:"Habilidades",
+    nav_contact:"Contacto",
+    home_title_1:"Diseño Industrial",
+    home_title_2:"y Desarrollo de Producto",
+    home_sub:"Perfil técnico y creativo enfocado en producto.",
+    home_btn:"Ver proyectos",
+    about_title:"Sobre mí",
+    about_text:"Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV, actualmente en mi último año...",
+    footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"
   },
-  en: {
-    nav_home: "Home",
-    nav_about: "About",
-    nav_portfolio: "Portfolio",
-    nav_cv: "CV",
-    nav_skills: "Skills",
-    nav_contact: "Contact",
-    home_title_1: "Industrial Design",
-    home_title_2: "and Product Development",
-    home_sub: "Technical and creative profile focused on product.",
-    home_btn: "View projects",
-    about_title: "About me",
-    about_text: "Hi, I’m Luis, I’m 24 years old and an Industrial Design student at UPV...",
-    footer: "© 2026 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineering"
+  en:{
+    nav_home:"Home",
+    nav_about:"About",
+    nav_portfolio:"Portfolio",
+    nav_cv:"CV",
+    nav_skills:"Skills",
+    nav_contact:"Contact",
+    home_title_1:"Industrial Design",
+    home_title_2:"and Product Development",
+    home_sub:"Technical and creative profile focused on product.",
+    home_btn:"View projects",
+    about_title:"About me",
+    about_text:"Hi, I’m Luis, I’m 24 years old and an Industrial Design student at UPV...",
+    footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineering"
   }
 };
 
-// Función para cambiar el idioma
+function resetAnimations(scope=document){
+  scope.querySelectorAll('.fade-up, .photo-in').forEach(el=>{
+    const c = el.className;
+    el.className = c.replace(/fade-up|delay-1|delay-2|photo-in/g,'').trim();
+    void el.offsetHeight; // force reflow
+    el.className = c;
+  });
+
+  // Reset header and nav link animations (cascading effect)
+  scope.querySelectorAll('.logo, nav a').forEach((el, index) => {
+    el.style.animation = 'none'; // remove current animation
+    void el.offsetHeight; // force reflow
+    el.style.animation = `navIn 0.55s ease forwards ${index * 0.08}s`; // apply cascading effect
+  });
+
+  // Reset button animation (faster entry)
+  const button = scope.querySelector('.btn');
+  button.style.animation = 'none';
+  void button.offsetHeight;
+  button.style.animation = `btnIn 0.6s cubic-bezier(.4,0,.2,1) forwards 0.8s`; // Reduced delay
+
+  // Reset language button animation (from right)
+  const langButtons = scope.querySelectorAll('.lang-switch button');
+  langButtons.forEach((btn, index) => {
+    btn.style.animation = 'none';
+    void btn.offsetHeight;
+    btn.style.animation = `langFadeRight 1s cubic-bezier(.4,0,.2,1) forwards`; // Apply same timing for both buttons
+  });
+
+  // Reset logo animation (same as initial entry)
+  const logo = scope.querySelector('.logo');
+  logo.style.animation = 'none'; 
+  void logo.offsetHeight; // force reflow
+  logo.style.animation = 'logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards'; // Reapply the same animation on language change
+
+  // Reset header animation
+  scope.querySelectorAll('header').forEach(el => {
+    el.style.animation = 'none';
+    void el.offsetHeight;
+    el.style.animation = '';
+  });
+
+  // Reset footer animation (triggered on button click)
+  scope.querySelectorAll('footer').forEach(el => {
+    el.style.animation = 'none';
+    void el.offsetHeight;
+    el.style.animation = 'footerIn 1.2s cubic-bezier(.4,0,.2,1) forwards'; // Same animation duration as initial page load
+    el.style.animationDelay = '1s'; // Retardo de 1 segundo antes de que aparezca el footer
+  });
+}
+
 function changeLang(lang){
   if(lang === currentLang) return; // Si el idioma ya es el seleccionado, no hacer nada
 
@@ -607,8 +655,9 @@ function changeLang(lang){
   // Actualizar el estado activo en los botones de idioma
   document.querySelectorAll('.lang-switch button').forEach(b => b.classList.remove('active'));
   document.querySelector(`.lang-switch button[onclick*="${lang}"]`).classList.add('active');
-}
 
+  resetAnimations(); // Restablecer animaciones al cambiar el idioma
+}
 </script>
 
 </body>

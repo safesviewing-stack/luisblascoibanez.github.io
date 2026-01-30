@@ -447,9 +447,9 @@ function changeSection(id, link){
 
   // Hide logo on all sections except home
   if(id !== "home") {
-    logo.style.display = 'none';
+    logo.style.visibility = 'hidden';  /* Use visibility instead of display: none */
   } else {
-    logo.style.display = 'block';
+    logo.style.visibility = 'visible';
   }
 
   const fade=document.querySelector('.section-fade');

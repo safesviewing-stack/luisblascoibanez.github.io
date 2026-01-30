@@ -226,16 +226,16 @@ h1{
 h2{
   font-size:28px;
   font-weight:600;
-  position: relative; /* Añadido para trabajar con la línea decorativa */
+  position: relative; /* Esto se añade para aplicar la línea decorativa al título */
 }
 
 h2::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -5px;  /* Coloca la línea decorativa justo debajo del título */
-  width: 100%;
-  height: 2px;  /* Grosor de la línea */
+  right: 0;
+  bottom: 0;
+  height: 1px; /* Grosor de la línea */
   background: #fff;
   transform: scaleX(0);
   transform-origin: left;
@@ -243,7 +243,7 @@ h2::after {
 }
 
 h2.active::after {
-  transform: scaleX(1);  /* La línea se expande cuando se activa */
+  transform: scaleX(1); /* Cuando la clase active esté presente, la línea aparecerá */
 }
 
 p{
@@ -486,7 +486,7 @@ footer{
 
 <section id="portfolio" class="section">
   <div class="content">
-    <h2 class="fade-up" data-i18n="portfolio_title">Portfolio</h2>
+    <h2 class="fade-up active" data-i18n="portfolio_title">Portfolio</h2>
 
     <p class="fade-up delay-1" data-i18n="portfolio_description">
       A continuación, te presento algunos de los proyectos más destacados en los que he trabajado, donde cada uno refleja mi enfoque creativo, técnico y mi atención al detalle.
@@ -705,8 +705,9 @@ function changeSection(id, link){
   
   // Activar la línea decorativa debajo del título al hacer clic en el enlace
   if (id === 'portfolio') {
+    link.classList.add('active'); // Mantener la línea decorativa activa en Portfolio
     const portfolioTitle = document.querySelector('#portfolio h2');
-    portfolioTitle.classList.add('active'); // Mantener la línea decorativa activa en Portfolio
+    portfolioTitle.classList.add('active'); // Activar línea decorativa en Portfolio
   }
 
   resetAnimations(); // Reset animations when changing section

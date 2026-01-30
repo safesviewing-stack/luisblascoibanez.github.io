@@ -65,7 +65,8 @@
       width:100%;
       padding:34px 40px;
       display:flex;
-      justify-content:center; /* Centrado de los elementos en el header */
+      justify-content:space-between; /* Logo a la izquierda y los botones a la derecha */
+      align-items:center;
       z-index:1000;
       opacity:1;
       transform:translateY(0);
@@ -78,6 +79,7 @@
       opacity:1;
       transform:translateX(0);
       animation:logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards;
+      color: white;
     }
 
     @keyframes logoInLeft {
@@ -212,6 +214,12 @@
       <a id="nav-skills" onclick="changeSection('skills',this)">Habilidades</a>
       <a id="nav-contact" onclick="changeSection('contact',this)">Contacto</a>
     </nav>
+
+    <!-- Títulos de idioma -->
+    <div class="lang-switch">
+      <button class="active" onclick="changeLang('es')">ES</button>
+      <button onclick="changeLang('en')">EN</button>
+    </div>
   </header>
 
   <!-- Inicio -->

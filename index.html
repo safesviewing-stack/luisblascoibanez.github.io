@@ -185,11 +185,7 @@
       color:#9a9a9a;
       background-color:transparent; /* Fondo transparente */
       pointer-events:none;
-
-      opacity:0;
-      transform:translateY(20px);
-      animation:footerIn 1.2s cubic-bezier(.4,0,.2,1) forwards; /* Tiempo de animación igual que al entrar por primera vez */
-      animation-delay:1s; /* Retardo de 1 segundo antes de que aparezca el footer */
+      margin-top: 50px; /* Se asegura de que el footer quede en la parte inferior */
     }
     @keyframes footerIn{
       to{opacity:1;transform:translateY(0);}
@@ -240,8 +236,7 @@
       transition: .3s;
     }
 
-    .lang-switch button.active::after,
-    .lang-switch button:hover::after {
+    .lang-switch button.active::after {
       transform: scaleX(1);
     }
 

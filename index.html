@@ -8,10 +8,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --bg:#0b0b0d;
-      --white:#ffffff;
-      --muted:#cfcfcf;
+    :root {
+      --bg: #0b0b0d;
+      --white: #ffffff;
+      --muted: #cfcfcf;
     }
 
     * {
@@ -358,12 +358,12 @@
   <script>
     let currentLang = 'es';
 
-    function changeSection(id, link){
+    function changeSection(id, link) {
       const current = document.querySelector('.section.active');
       const logo = document.getElementById('logo-home');
 
       // Si la sección ya está activa, no hacer nada
-      if(current && current.id === id) return;
+      if (current && current.id === id) return;
 
       // Remove the animation when the logo is hidden
       logo.style.animation = 'none';

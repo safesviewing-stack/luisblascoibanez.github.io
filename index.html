@@ -454,37 +454,4 @@ function changeSection(id, link){
   const current = document.querySelector('.section.active');
   const logo = document.getElementById('logo-home');
   
-  // Check if the section is already active, only proceed if it's not the same section
-  if(current && current.id === id) {
-    return; // Do nothing if the section is already active
-  }
-
-  // Remove the animation when the logo is hidden
-  logo.style.animation = 'none';
-  void logo.offsetHeight; // force reflow
-  logo.style.animation = 'logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards'; // Reinicia la animación
-
-  // Hide logo on all sections except home
-  if(id !== "home") {
-    logo.style.visibility = 'hidden';  /* Use visibility instead of display: none */
-  } else {
-    logo.style.visibility = 'visible';
-  }
-
-  const fade=document.querySelector('.section-fade');
-  fade.classList.remove('active');
-  void fade.offsetHeight;
-  fade.classList.add('active');
-
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
-
-  document.getElementById(id).classList.add('active');
-  link.classList.add('active');
-
-  resetAnimations(); // Reset animations when changing section
-}
-</script>
-
-</body>
-</html>
+  // Check if the section is already active, only proceed if it's not the same

@@ -66,6 +66,7 @@ header{
   padding:34px 40px;
   display:flex;
   align-items:center;
+  justify-content:space-between; /* Se asegura de que el logo y los botones estén en línea */
   z-index:1000;
   opacity:1;
   transform:translateY(0);
@@ -92,11 +93,9 @@ header{
 }
 
 nav{
-  position:absolute;
-  left:50%;
-  transform:translateX(-50%);
   display:flex;
   gap:36px;
+  align-items:center;
 }
 
 nav a{
@@ -140,12 +139,9 @@ nav a:hover::after{
 
 /* ===== LANGUAGE ===== */
 .lang-switch{
-  position:absolute;
-  right:40px;
-  top:50%;
-  transform:translateY(-50%);
   display:flex;
   gap:20px;
+  align-items:center;
   opacity:0;
   animation:langFade 0.8s ease forwards; /* Independent animation for language buttons */
 }

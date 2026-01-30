@@ -119,19 +119,6 @@ nav a:nth-child(6){animation-delay:.65s}
 
 @keyframes navIn{ to{opacity:1;transform:translateY(0);} }
 
-nav a::after{
-  content:"";
-  position:absolute;
-  left:0;
-  right:.18em;
-  bottom:0;
-  height:1px;  /* Grosor de la línea */
-  background:#fff;
-  transform:scaleX(0);
-  transform-origin:left;
-  transition:.3s;
-}
-
 nav a.active::after,
 nav a:hover::after{
   transform:scaleX(1);
@@ -170,25 +157,6 @@ nav a:hover::after{
   opacity:1; /* Aseguramos que no haya fundido */
 }
 
-/* Línea decorativa debajo de los botones de idioma con grosor de 1px */
-.lang-switch button::after{
-  content:"";
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  height:1px; /* Grosor de la línea igual al de los títulos del header */
-  background:#fff;
-  transform:scaleX(0);
-  transform-origin:left;
-  transition:.3s;
-}
-
-.lang-switch button.active::after,
-.lang-switch button:hover::after{
-  transform:scaleX(1); /* La línea se expande cuando el botón es activo o se pasa el ratón */
-}
-
 .lang-switch button.active{opacity:1}
 
 /* ===== SECTIONS ===== */
@@ -206,12 +174,6 @@ nav a:hover::after{
   display:flex;
   flex-direction:column;
   gap:26px;
-}
-
-/* ABOUT ADJUST */
-#about .content{
-  max-width:1035px;
-  transform:translateY(15px);
 }
 
 /* ===== TEXT ===== */
@@ -232,41 +194,6 @@ p{
   font-size:14px;
   line-height:1.8;
   text-align:justify;
-}
-
-/* ===== ABOUT LAYOUT ===== */
-.about-layout{
-  display:flex;
-  gap:60px;
-  align-items:flex-start;
-}
-
-.about-image img{
-  width:335px;
-  display:block;
-}
-
-/* ===== ANIMATIONS ===== */
-.fade-up{
-  opacity:0;
-  transform:translateY(24px);
-  animation:fadeUp .8s cubic-bezier(.4,0,.2,1) forwards;
-}
-.delay-1{animation-delay:.35s}
-.delay-2{animation-delay:.6s}
-
-@keyframes fadeUp{
-  to{opacity:1;transform:translateY(0);}
-}
-
-.photo-in{
-  opacity:0;
-  transform:translateX(48px) scale(.95);
-  animation:photoIn 1.1s cubic-bezier(.22,.61,.36,1) forwards;
-  animation-delay:.75s;
-}
-@keyframes photoIn{
-  to{opacity:1;transform:translateX(0) scale(1);}
 }
 
 /* ===== FOOTER ===== */
@@ -323,7 +250,7 @@ footer{
   <div class="logo" id="logo-home">L · BIB</div>
 
   <nav>
-    <a onclick="changeSection('portfolio',this)" data-i18n="nav_home">Inicio</a>
+    <a onclick="changeSection('home',this)" data-i18n="nav_home">Inicio</a>
     <a onclick="changeSection('about',this)" data-i18n="nav_about">Sobre mí</a>
     <a onclick="changeSection('portfolio',this)" data-i18n="nav_portfolio">Portfolio</a>
     <a onclick="changeSection('cv',this)" data-i18n="nav_cv">CV</a>
@@ -508,10 +435,9 @@ function changeSection(id, link){
   const current = document.querySelector('.section.active');
   const logo = document.getElementById('logo-home');
   
+  // Check if the section is already active, only proceed if it's not the same section
   if(current && current.id === id) {
-    if (id === 'home') {
-        return; // Si ya estamos en "Inicio", no hacer nada
-    }
+    return; // Do nothing if the section is already active
   }
 
   // Remove the animation when the logo is hidden

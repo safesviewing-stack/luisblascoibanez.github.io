@@ -260,6 +260,7 @@ footer{
   font-size:11px;
   letter-spacing:.08em;
   color:#9a9a9a;
+  background-color:#1a1a1a; /* Fondo más oscuro */
   pointer-events:none;
 
   opacity:0;
@@ -436,7 +437,7 @@ function resetAnimations(scope=document){
   scope.querySelectorAll('footer').forEach(el => {
     el.style.animation = 'none';
     void el.offsetHeight;
-    el.style.animation = '';
+    el.style.animation = 'footerIn 1s cubic-bezier(.4,0,.2,1) forwards'; // Reinicia la animación del footer
   });
 }
 

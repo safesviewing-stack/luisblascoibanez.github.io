@@ -348,9 +348,9 @@ footer{
       Perfil técnico y creativo enfocado en producto.
     </p>
 
-   <button class="btn fade-up delay-2" data-i18n="home_btn" onclick="changeSection('portfolio', this)">
-    Ver proyectos
-   </button>
+    <button class="btn fade-up delay-2" data-i18n="home_btn" onclick="changeSection('portfolio', this)">
+      Ver proyectos
+    </button>
   </div>
 </section>
 
@@ -366,6 +366,106 @@ footer{
       <div class="about-image photo-in">
         <img src="foto.jpg" alt="Foto de Luis">
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio" class="section">
+  <div class="content">
+    <h2 class="fade-up" data-i18n="portfolio_title">Portfolio</h2>
+
+    <p class="fade-up delay-1" data-i18n="portfolio_description">
+      Aquí puedes ver algunos de los proyectos que he realizado en el ámbito del diseño industrial. Cada uno de estos trabajos refleja mi enfoque creativo y técnico, buscando siempre la mejor solución para cada desafío.
+    </p>
+
+    <div class="project-gallery">
+      <!-- Ejemplo de un proyecto -->
+      <div class="project-item">
+        <img src="proyecto1.jpg" alt="Proyecto 1">
+        <h3>Proyecto 1: Diseño de una lámpara moderna</h3>
+        <p>Descripción breve del proyecto.</p>
+      </div>
+
+      <div class="project-item">
+        <img src="proyecto2.jpg" alt="Proyecto 2">
+        <h3>Proyecto 2: Mobiliario para oficina</h3>
+        <p>Descripción breve del proyecto.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cv" class="section">
+  <div class="content">
+    <h2 class="fade-up" data-i18n="cv_title">Currículum Vitae</h2>
+
+    <p class="fade-up delay-1" data-i18n="cv_description">
+      Mi experiencia profesional se centra en el diseño industrial y desarrollo de productos. A lo largo de mi carrera he adquirido habilidades técnicas y creativas que me permiten abordar proyectos con un enfoque innovador.
+    </p>
+
+    <div class="cv-details">
+      <h3>Educación</h3>
+      <ul>
+        <li>Universidad Politécnica de Valencia - Grado en Diseño Industrial (2022-2026)</li>
+        <li>Formación Profesional en Electricidad</li>
+      </ul>
+
+      <h3>Experiencia Profesional</h3>
+      <ul>
+        <li>Prácticas en Sixay - Diseño de mobiliario personalizado</li>
+        <li>Freelance - Proyectos de diseño de productos para clientes individuales</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="section">
+  <div class="content">
+    <h2 class="fade-up" data-i18n="skills_title">Habilidades</h2>
+
+    <p class="fade-up delay-1" data-i18n="skills_description">
+      A lo largo de mi formación y experiencia laboral, he desarrollado una serie de habilidades técnicas y creativas que me permiten llevar a cabo proyectos de diseño con un enfoque detallado y preciso.
+    </p>
+
+    <div class="skills-list">
+      <h3>Habilidades técnicas</h3>
+      <ul>
+        <li>Diseño asistido por computadora (CAD)</li>
+        <li>Impresión 3D y prototipado rápido</li>
+        <li>Modelado 3D y renderizado</li>
+      </ul>
+
+      <h3>Habilidades creativas</h3>
+      <ul>
+        <li>Creatividad aplicada al diseño de productos</li>
+        <li>Desarrollo de conceptos innovadores</li>
+        <li>Trabajo colaborativo en equipo multidisciplinario</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section">
+  <div class="content">
+    <h2 class="fade-up" data-i18n="contact_title">Contacto</h2>
+
+    <p class="fade-up delay-1" data-i18n="contact_description">
+      Si deseas saber más sobre mis proyectos, colaborar o discutir alguna idea, no dudes en ponerte en contacto conmigo.
+    </p>
+
+    <div class="contact-form">
+      <form action="submit_form.php" method="POST">
+        <label for="name">Nombre</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Mensaje</label>
+        <textarea id="message" name="message" required></textarea>
+
+        <button type="submit">Enviar</button>
+      </form>
     </div>
   </div>
 </section>

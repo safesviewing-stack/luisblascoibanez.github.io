@@ -313,6 +313,101 @@ footer{
 @keyframes btnIn{
   to{opacity:1;transform:translateY(0);}
 }
+
+/* ===== PORTFOLIO STYLING ===== */
+.project-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.project-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.project-item:hover {
+  transform: scale(1.05);
+}
+
+.project-img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.project-item:hover .project-img {
+  opacity: 0.7;
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border-radius: 15px;
+}
+
+.project-item:hover .project-overlay {
+  opacity: 1;
+}
+
+/* ===== CV STYLING ===== */
+.cv-details {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.cv-column {
+  width: 32%;
+}
+
+.cv-column h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.cv-column ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cv-column li {
+  margin-bottom: 12px;
+}
+
+.cv-column li strong {
+  font-weight: 600;
+}
+
+.cv-column li span {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.cv-column i {
+  margin-right: 8px;
+  color: #fff;
+}
 </style>
 </head>
 
@@ -392,6 +487,55 @@ footer{
   </div>
 </section>
 
+<section id="cv" class="section">
+  <div class="content">
+    <h2 class="fade-up" data-i18n="cv_title">Currículum Vitae</h2>
+
+    <p class="fade-up delay-1" data-i18n="cv_description">
+      Aquí podrás ver una descripción general de mi trayectoria académica y profesional. He adquirido una experiencia valiosa tanto en el ámbito académico como en el mundo real, enfrentando retos de diseño innovadores.
+    </p>
+
+    <div class="cv-details fade-up delay-2">
+      <div class="cv-column">
+        <h3>Educación</h3>
+        <ul>
+          <li>
+            <strong>Universidad Politécnica de Valencia</strong><br>
+            <span>Grado en Diseño Industrial (2022-2026)</span>
+          </li>
+          <li>
+            <strong>Formación Profesional en Electricidad</strong><br>
+            <span>Formación técnica en el sector eléctrico, que me ha proporcionado una sólida base técnica.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="cv-column">
+        <h3>Experiencia Profesional</h3>
+        <ul>
+          <li>
+            <strong>Prácticas en Sixay</strong><br>
+            <span>Diseño de mobiliario personalizado y gestión de proyectos en una empresa de diseño líder.</span>
+          </li>
+          <li>
+            <strong>Freelance</strong><br>
+            <span>Desarrollo de proyectos de diseño de productos para clientes individuales, con enfoque en la funcionalidad y la estética.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="cv-column">
+        <h3>Habilidades Técnicas</h3>
+        <ul>
+          <li><i class="fas fa-cogs"></i> Diseño asistido por computadora (CAD)</li>
+          <li><i class="fas fa-3d"></i> Impresión 3D y prototipado rápido</li>
+          <li><i class="fas fa-pen"></i> Modelado 3D y renderizado</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer data-i18n="footer">
   © 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial
 </footer>
@@ -414,122 +558,4 @@ const translations = {
     home_btn:"Ver proyectos",
     about_title:"Sobre mí",
     about_text:"Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV, actualmente en mi último año. Vivo en Valencia y me considero una persona con una mente ecléctica y perfeccionista, siempre interesada en encontrar el equilibrio entre lo técnico y lo estético. Desde pequeño he tenido curiosidad por entender cómo funcionan las cosas, y mi formación profesional en el sector de la electricidad me permitió adquirir una base técnica sólida que hoy aplico al diseño y desarrollo de producto. Disfruto especialmente del proceso completo de diseño, desde la idea inicial hasta la definición técnica y el detalle final, y tengo una necesidad constante de estar creando y resolviendo. Si algo no me sale, no paro hasta encontrar la solución, porque para mí el proceso es tan importante como el resultado final. Como dato curioso, me interesa especialmente el campo de la impresión 3D, ya que me permite experimentar directamente con el diseño y validar conceptos de la manera más rápida y precisa.",
-    footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"
-  },
-  en:{
-    nav_home:"Home",
-    nav_about:"About",
-    nav_portfolio:"Portfolio",
-    nav_cv:"CV",
-    nav_skills:"Skills",
-    nav_contact:"Contact",
-    home_title_1:"Industrial Design",
-    home_title_2:"and Product Development",
-    home_sub:"Technical and creative profile focused on product.",
-    home_btn:"View projects",
-    about_title:"About me",
-    about_text:"Hi, I’m Luis, I’m 24 years old and an Industrial Design student at UPV, currently in my final year. I live in Valencia and consider myself an eclectic and perfectionist person, always interested in finding the balance between technical precision and aesthetics. From an early age, I’ve been curious about how things work, and my vocational training in the electrical sector gave me a solid technical foundation that I now apply to product design and development. I especially enjoy the complete design process, from the initial idea to technical definition and final detailing, and I have a constant need to keep creating and solving problems. If something doesn’t work, I don’t stop until I find the solution, because for me the process is just as important as the final result. As a curious fact, I’m particularly interested in the field of 3D printing, as it allows me to directly experiment with design and validate concepts in the fastest and most precise way.",
-    footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineering"
-  }
-};
-
-function resetAnimations(scope=document){
-  scope.querySelectorAll('.fade-up, .photo-in').forEach(el=>{
-    const c = el.className;
-    el.className = c.replace(/fade-up|delay-1|delay-2|photo-in/g,'').trim();
-    void el.offsetHeight; // force reflow
-    el.className = c;
-  });
-
-  // Reset header and nav link animations (cascading effect)
-  scope.querySelectorAll('.logo, nav a').forEach((el, index) => {
-    el.style.animation = 'none'; // remove current animation
-    void el.offsetHeight; // force reflow
-    el.style.animation = `navIn 0.55s ease forwards ${index * 0.08}s`; // apply cascading effect
-  });
-
-  // Reset button animation (faster entry)
-  const button = scope.querySelector('.btn');
-  button.style.animation = 'none';
-  void button.offsetHeight;
-  button.style.animation = `btnIn 0.6s cubic-bezier(.4,0,.2,1) forwards 0.8s`; // Reduced delay
-
-  // Reset language button animation (from right)
-  const langButtons = scope.querySelectorAll('.lang-switch button');
-  langButtons.forEach((btn, index) => {
-    btn.style.animation = 'none';
-    void btn.offsetHeight;
-    btn.style.animation = `langFadeRight 1s cubic-bezier(.4,0,.2,1) forwards`; // Apply same timing for both buttons
-  });
-
-  // Reset logo animation (same as initial entry)
-  const logo = scope.querySelector('.logo');
-  logo.style.animation = 'none'; 
-  void logo.offsetHeight; // force reflow
-  logo.style.animation = 'logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards'; // Reapply the same animation on language change
-
-  // Reset header animation
-  scope.querySelectorAll('header').forEach(el => {
-    el.style.animation = 'none';
-    void el.offsetHeight;
-    el.style.animation = '';
-  });
-
-  // Reset footer animation (triggered on button click)
-  scope.querySelectorAll('footer').forEach(el => {
-    el.style.animation = 'none';
-    void el.offsetHeight;
-    el.style.animation = 'footerIn 1.2s cubic-bezier(.4,0,.2,1) forwards'; // Same animation duration as initial page load
-    el.style.animationDelay = '1s'; // Retardo de 1 segundo antes de que aparezca el footer
-  });
-}
-
-function changeLang(lang){
-  if(lang === currentLang) return;
-  currentLang = lang;
-
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    el.textContent = translations[lang][el.dataset.i18n];
-  });
-
-  document.querySelectorAll('.lang-switch button').forEach(b=>b.classList.remove('active'));
-  document.querySelector(`.lang-switch button[onclick*="${lang}"]`).classList.add('active');
-
-  resetAnimations(); // Reset animations when changing language
-}
-
-function changeSection(id, link){
-  const current = document.querySelector('.section.active');
-  const logo = document.getElementById('logo-home');
-  
-  if(current && current.id === id) return;
-
-  // Remover la animación cuando el logo está oculto
-  logo.style.animation = 'none';
-  void logo.offsetHeight; // force reflow
-  logo.style.animation = 'logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards'; // Reinicia la animación
-
-  // Ocultar el logo en todas las secciones excepto "home"
-  if(id !== "home") {
-    logo.style.visibility = 'hidden';  /* Usar visibility en lugar de display: none */
-  } else {
-    logo.style.visibility = 'visible';
-  }
-
-  const fade=document.querySelector('.section-fade');
-  fade.classList.remove('active');
-  void fade.offsetHeight;
-  fade.classList.add('active');
-
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
-
-  document.getElementById(id).classList.add('active');
-  link.classList.add('active');
-
-  resetAnimations(); // Restablecer animaciones al cambiar de sección
-}
-</script>
-
-</body>
-</html>
+    footer:"© 2026 · Luis Blasco-Ibá

@@ -248,6 +248,20 @@ p{
 @keyframes btnIn{
   to{opacity:1;transform:translateY(0);}
 }
+
+/* ===== ABOUT LAYOUT ===== */
+.about-layout{
+  display:flex;
+  gap:20px; /* Reducción de espacio entre el texto y la imagen */
+  align-items:flex-start;
+}
+
+.about-image img{
+  width:200px;  /* Hacemos la imagen más pequeña */
+  height:auto;
+  float:right;  /* Alineamos la imagen a la derecha */
+  margin-left:20px;  /* Añadimos margen a la izquierda de la imagen */
+}
 </style>
 </head>
 
@@ -274,24 +288,6 @@ p{
   </div>
 </header>
 
-<!-- Inicio -->
-<section id="home" class="section active">
-  <div class="content">
-    <h1 class="fade-up">
-      <span class="title-line" data-i18n="home_title_1">Diseño Industrial</span>
-      <span class="title-line" data-i18n="home_title_2">y Desarrollo de Producto</span>
-    </h1>
-
-    <p class="fade-up delay-1" data-i18n="home_sub">
-      Perfil técnico y creativo enfocado en producto.
-    </p>
-
-    <button class="btn fade-up delay-2" data-i18n="home_btn" onclick="changeSection('portfolio',this)">
-      Ver proyectos
-    </button>
-  </div>
-</section>
-
 <!-- Sobre mí -->
 <section id="about" class="section">
   <div class="content">
@@ -304,31 +300,6 @@ p{
 
       <div class="about-image photo-in">
         <img src="foto.jpg" alt="Foto de Luis">
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Portfolio -->
-<section id="portfolio" class="section">
-  <div class="content">
-    <h2 class="fade-up" data-i18n="portfolio_title">Mi Portfolio</h2>
-
-    <div class="portfolio-items fade-up delay-1">
-      <div class="portfolio-item">
-        <img src="proyecto1.jpg" alt="Proyecto 1">
-        <h3>Proyecto 1</h3>
-        <p>Descripción breve del proyecto 1.</p>
-      </div>
-      <div class="portfolio-item">
-        <img src="proyecto2.jpg" alt="Proyecto 2">
-        <h3>Proyecto 2</h3>
-        <p>Descripción breve del proyecto 2.</p>
-      </div>
-      <div class="portfolio-item">
-        <img src="proyecto3.jpg" alt="Proyecto 3">
-        <h3>Proyecto 3</h3>
-        <p>Descripción breve del proyecto 3.</p>
       </div>
     </div>
   </div>

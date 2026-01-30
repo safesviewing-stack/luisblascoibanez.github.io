@@ -35,7 +35,7 @@ body{
   background:
     linear-gradient(rgba(11,11,13,.75), rgba(11,11,13,.7)),
     url("reloj1.jpg") center / cover no-repeat;
-  z-index:-1; /* Ajustado para no bloquear la interacción */
+  z-index:-1; /* Fondo detrás de los elementos interactivos */
   opacity:0;
   animation:bgFadeIn 1.4s ease forwards;
   pointer-events:none;
@@ -47,7 +47,7 @@ body{
   position:fixed;
   inset:0;
   background:rgba(11,11,13,.9);
-  z-index:1; /* Ajustado para no bloquear los botones */
+  z-index:1; /* Para asegurarnos que la capa de fade esté por encima del fondo pero debajo de los elementos interactivos */
   opacity:0;
   pointer-events:none;
 }
@@ -69,8 +69,6 @@ header{
   align-items:center;
   justify-content:space-between;
   z-index:1000; /* Aseguramos que el header esté encima de todos los elementos interactivos */
-  opacity:1;
-  transform:translateY(0);
 }
 
 .logo{
@@ -143,7 +141,8 @@ nav a:hover::after{
   display:flex;
   gap:20px;
   align-items:center;
-  opacity:0;
+  opacity:1;
+  z-index:1100; /* Aseguramos que la capa de los botones de idiomas esté encima del fondo */
   animation:langFadeRight 1s cubic-bezier(.4,0,.2,1) forwards; /* Animación de los botones de idioma entrando desde la derecha */
 }
 
@@ -209,12 +208,6 @@ nav a:hover::after{
   gap:26px;
 }
 
-/* ABOUT ADJUST */
-#about .content{
-  max-width:1035px;
-  transform:translateY(15px);
-}
-
 /* ===== TEXT ===== */
 h1{
   font-size:44px;
@@ -233,18 +226,6 @@ p{
   font-size:14px;
   line-height:1.8;
   text-align:justify;
-}
-
-/* ===== ABOUT LAYOUT ===== */
-.about-layout{
-  display:flex;
-  gap:60px;
-  align-items:flex-start;
-}
-
-.about-image img{
-  width:335px;
-  display:block;
 }
 
 /* ===== ANIMATIONS ===== */
@@ -450,213 +431,57 @@ footer{
   </div>
 </section>
 
-<section id="about" class="section">
-  <div class="content">
-    <h2 class="fade-up" data-i18n="about_title">Sobre mí</h2>
-
-    <div class="about-layout">
-      <p class="fade-up delay-1" data-i18n="about_text">
-        Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV, actualmente en mi último año. Vivo en Valencia y me considero una persona con una mente ecléctica y perfeccionista, siempre interesada en encontrar el equilibrio entre lo técnico y lo estético. Desde pequeño he tenido curiosidad por entender cómo funcionan las cosas, y mi formación profesional en el sector de la electricidad me permitió adquirir una base técnica sólida que hoy aplico al diseño y desarrollo de producto. Disfruto especialmente del proceso completo de diseño, desde la idea inicial hasta la definición técnica y el detalle final, y tengo una necesidad constante de estar creando y resolviendo. Si algo no me sale, no paro hasta encontrar la solución, porque para mí el proceso es tan importante como el resultado final. Como dato curioso, me interesa especialmente el campo de la impresión 3D, ya que me permite experimentar directamente con el diseño y validar conceptos de la manera más rápida y precisa.
-      </p>
-
-      <div class="about-image photo-in">
-        <img src="foto.jpg" alt="Foto de Luis">
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="portfolio" class="section">
-  <div class="content">
-    <h2 class="fade-up" data-i18n="portfolio_title">Portfolio</h2>
-
-    <p class="fade-up delay-1" data-i18n="portfolio_description">
-      A continuación, te presento algunos de los proyectos más destacados en los que he trabajado, donde cada uno refleja mi enfoque creativo, técnico y mi atención al detalle.
-    </p>
-
-    <div class="project-gallery fade-up delay-2">
-      <div class="project-item">
-        <img src="proyecto1.jpg" alt="Proyecto 1" class="project-img">
-        <div class="project-overlay">
-          <h3>Diseño de Lámpara Moderna</h3>
-          <p>Un diseño único que fusiona funcionalidad y estética, inspirado en formas orgánicas.</p>
-        </div>
-      </div>
-
-      <div class="project-item">
-        <img src="proyecto2.jpg" alt="Proyecto 2" class="project-img">
-        <div class="project-overlay">
-          <h3>Mobiliario para Oficina</h3>
-          <p>Creación de mobiliario ergonómico con materiales sostenibles, enfocado en la productividad.</p>
-        </div>
-      </div>
-
-      <div class="project-item">
-        <img src="proyecto3.jpg" alt="Proyecto 3" class="project-img">
-        <div class="project-overlay">
-          <h3>Rediseño de Producto</h3>
-          <p>Optimización de producto para mejorar su funcionalidad y experiencia del usuario.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="cv" class="section">
-  <div class="content">
-    <h2 class="fade-up" data-i18n="cv_title">Currículum Vitae</h2>
-
-    <p class="fade-up delay-1" data-i18n="cv_description">
-      Aquí podrás ver una descripción general de mi trayectoria académica y profesional. He adquirido una experiencia valiosa tanto en el ámbito académico como en el mundo real, enfrentando retos de diseño innovadores.
-    </p>
-
-    <div class="cv-details fade-up delay-2">
-      <div class="cv-column">
-        <h3>Educación</h3>
-        <ul>
-          <li>
-            <strong>Universidad Politécnica de Valencia</strong><br>
-            <span>Grado en Diseño Industrial (2022-2026)</span>
-          </li>
-          <li>
-            <strong>Formación Profesional en Electricidad</strong><br>
-            <span>Formación técnica en el sector eléctrico, que me ha proporcionado una sólida base técnica.</span>
-          </li>
-        </ul>
-      </div>
-
-      <div class="cv-column">
-        <h3>Experiencia Profesional</h3>
-        <ul>
-          <li>
-            <strong>Prácticas en Sixay</strong><br>
-            <span>Diseño de mobiliario personalizado y gestión de proyectos en una empresa de diseño líder.</span>
-          </li>
-          <li>
-            <strong>Freelance</strong><br>
-            <span>Desarrollo de proyectos de diseño de productos para clientes individuales, con enfoque en la funcionalidad y la estética.</span>
-          </li>
-        </ul>
-      </div>
-
-      <div class="cv-column">
-        <h3>Habilidades Técnicas</h3>
-        <ul>
-          <li><i class="fas fa-cogs"></i> Diseño asistido por computadora (CAD)</li>
-          <li><i class="fas fa-3d"></i> Impresión 3D y prototipado rápido</li>
-          <li><i class="fas fa-pen"></i> Modelado 3D y renderizado</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer data-i18n="footer">
-  © 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial
-</footer>
-
 <script>
+// Cambio de idioma
 let currentLang = 'es';
 
 const translations = {
-  es:{
-    nav_home:"Inicio",
-    nav_about:"Sobre mí",
-    nav_portfolio:"Portfolio",
-    nav_cv:"CV",
-    nav_skills:"Habilidades",
-    nav_contact:"Contacto",
-    home_title_1:"Diseño Industrial",
-    home_title_2:"y Desarrollo de Producto",
-    home_sub:"Perfil técnico y creativo enfocado en producto.",
-    home_btn:"Ver proyectos",
-    about_title:"Sobre mí",
-    about_text:"Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV, actualmente en mi último año...",
-    footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"
+  es: {
+    nav_home: "Inicio",
+    nav_about: "Sobre mí",
+    nav_portfolio: "Portfolio",
+    nav_cv: "CV",
+    nav_skills: "Habilidades",
+    nav_contact: "Contacto",
+    home_title_1: "Diseño Industrial",
+    home_title_2: "y Desarrollo de Producto",
+    home_sub: "Perfil técnico y creativo enfocado en producto.",
+    home_btn: "Ver proyectos",
+    about_title: "Sobre mí",
+    about_text: "Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV...",
+    footer: "© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"
   },
-  en:{
-    nav_home:"Home",
-    nav_about:"About",
-    nav_portfolio:"Portfolio",
-    nav_cv:"CV",
-    nav_skills:"Skills",
-    nav_contact:"Contact",
-    home_title_1:"Industrial Design",
-    home_title_2:"and Product Development",
-    home_sub:"Technical and creative profile focused on product.",
-    home_btn:"View projects",
-    about_title:"About me",
-    about_text:"Hi, I’m Luis, I’m 24 years old and an Industrial Design student at UPV...",
-    footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineering"
+  en: {
+    nav_home: "Home",
+    nav_about: "About",
+    nav_portfolio: "Portfolio",
+    nav_cv: "CV",
+    nav_skills: "Skills",
+    nav_contact: "Contact",
+    home_title_1: "Industrial Design",
+    home_title_2: "and Product Development",
+    home_sub: "Technical and creative profile focused on product.",
+    home_btn: "View projects",
+    about_title: "About me",
+    about_text: "Hi, I’m Luis, I’m 24 years old and an Industrial Design student at UPV...",
+    footer: "© 2026 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineering"
   }
 };
 
-function resetAnimations(scope=document){
-  scope.querySelectorAll('.fade-up, .photo-in').forEach(el=>{
-    const c = el.className;
-    el.className = c.replace(/fade-up|delay-1|delay-2|photo-in/g,'').trim();
-    void el.offsetHeight; // force reflow
-    el.className = c;
-  });
-
-  // Reset header and nav link animations (cascading effect)
-  scope.querySelectorAll('.logo, nav a').forEach((el, index) => {
-    el.style.animation = 'none'; // remove current animation
-    void el.offsetHeight; // force reflow
-    el.style.animation = `navIn 0.55s ease forwards ${index * 0.08}s`; // apply cascading effect
-  });
-
-  // Reset button animation (faster entry)
-  const button = scope.querySelector('.btn');
-  button.style.animation = 'none';
-  void button.offsetHeight;
-  button.style.animation = `btnIn 0.6s cubic-bezier(.4,0,.2,1) forwards 0.8s`; // Reduced delay
-
-  // Reset language button animation (from right)
-  const langButtons = scope.querySelectorAll('.lang-switch button');
-  langButtons.forEach((btn, index) => {
-    btn.style.animation = 'none';
-    void btn.offsetHeight;
-    btn.style.animation = `langFadeRight 1s cubic-bezier(.4,0,.2,1) forwards`; // Apply same timing for both buttons
-  });
-
-  // Reset logo animation (same as initial entry)
-  const logo = scope.querySelector('.logo');
-  logo.style.animation = 'none'; 
-  void logo.offsetHeight; // force reflow
-  logo.style.animation = 'logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards'; // Reapply the same animation on language change
-
-  // Reset header animation
-  scope.querySelectorAll('header').forEach(el => {
-    el.style.animation = 'none';
-    void el.offsetHeight;
-    el.style.animation = '';
-  });
-
-  // Reset footer animation (triggered on button click)
-  scope.querySelectorAll('footer').forEach(el => {
-    el.style.animation = 'none';
-    void el.offsetHeight;
-    el.style.animation = 'footerIn 1.2s cubic-bezier(.4,0,.2,1) forwards'; // Same animation duration as initial page load
-    el.style.animationDelay = '1s'; // Retardo de 1 segundo antes de que aparezca el footer
-  });
-}
-
-function changeLang(lang){
-  if(lang === currentLang) return; // Si el idioma ya es el seleccionado, no hacer nada
+// Cambiar idioma
+function changeLang(lang) {
+  if (lang === currentLang) return;
 
   currentLang = lang;
 
-  // Cambiar el contenido de la página
+  // Actualizar contenido
   document.querySelectorAll('[data-i18n]').forEach(el => {
     el.textContent = translations[lang][el.dataset.i18n];
   });
 
-  // Actualizar el estado activo en los botones de idioma
+  // Actualizar la clase activa
   document.querySelectorAll('.lang-switch button').forEach(b => b.classList.remove('active'));
   document.querySelector(`.lang-switch button[onclick*="${lang}"]`).classList.add('active');
-
-  resetAnimations(); // Restablecer animaciones al cambiar el idioma
 }
 </script>
 

@@ -638,7 +638,7 @@ function resetAnimations(scope=document){
   scope.querySelectorAll('footer').forEach(el => {
     el.style.animation = 'none';
     void el.offsetHeight;
-    el.style.animation = 'footerIn 1.4s cubic-bezier(.4,0,.2,1) forwards'; // Duración de 1.4s
+    el.style.animation = 'footerIn 1.8s cubic-bezier(.4,0,.2,1) forwards'; // Duración de 1.4s
     el.style.animationDelay = '1.8s'; // Mayor retraso para asegurar que aparezca después del cambio de sección
   });
 }
@@ -682,14 +682,14 @@ function changeSection(id, link) {
     // Reaplicar la animación al logo cuando se entra en Home
     logo.style.animation = 'none'; // Para reiniciar la animación
     void logo.offsetHeight; // Fuerza el reflujo del DOM
-    logo.style.animation = 'logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards'; // Reaplica la animación de entrada
+    logo.style.animation = 'logoInLeft 1.8s cubic-bezier(.4,0,.2,1) forwards'; // Reaplica la animación de entrada
   }
 
   // Mostrar el footer con animación cada vez que se cambie de sección
   const footer = document.querySelector('footer');
   footer.style.animation = 'none';
   void footer.offsetHeight; // Fuerza el reflujo del DOM
-  footer.style.animation = 'footerIn 1.4s cubic-bezier(.4,0,.2,1) forwards'; // Duración igual a la animación de entrada
+  footer.style.animation = 'footerIn 1.8s cubic-bezier(.4,0,.2,1) forwards'; // Duración igual a la animación de entrada
 }
 </script>
 

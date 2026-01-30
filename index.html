@@ -66,10 +66,22 @@ header{
   padding:34px 40px;
   display:flex;
   align-items:center;
-  justify-content:space-between; /* Se asegura de que el logo y los botones estén en línea */
+  justify-content:space-between;
   z-index:1000;
   opacity:1;
   transform:translateY(0);
+  animation:headerInRight 1s cubic-bezier(.4,0,.2,1) forwards; /* Animación de entrada desde la derecha */
+}
+
+@keyframes headerInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%); /* Empezar desde la derecha */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0); /* Posición final en su lugar */
+  }
 }
 
 .logo{
@@ -78,7 +90,7 @@ header{
   font-weight:500;
   opacity:1;
   transform:translateX(0);
-  animation:logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards; /* Animación de entrada desde la izquierda */
+  animation:logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards;
 }
 
 @keyframes logoInLeft {
@@ -96,6 +108,18 @@ nav{
   display:flex;
   gap:36px;
   align-items:center;
+  animation:navInRight 1s cubic-bezier(.4,0,.2,1) forwards; /* Animación de entrada desde la derecha */
+}
+
+@keyframes navInRight{
+  from {
+    opacity: 0;
+    transform: translateX(100%); /* Entrar desde la derecha */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 nav a{

@@ -286,8 +286,8 @@ footer{
 
   opacity:0;
   transform:translateY(20px);
-  animation:footerIn 1.4s cubic-bezier(.4,0,.2,1) forwards; /* Tiempo de animación igual a la animación de entrada */
-  animation-delay:1.4s; /* Igual al tiempo de entrada de la página */
+  animation:footerIn 1.4s cubic-bezier(.4,0,.2,1) forwards; /* Tiempo de animación igual que la animación de entrada */
+  animation-delay:1.8s; /* Retraso más largo para asegurar que el footer aparezca después del cambio de sección */
 }
 @keyframes footerIn{
   to{opacity:1;transform:translateY(0);}
@@ -638,8 +638,8 @@ function resetAnimations(scope=document){
   scope.querySelectorAll('footer').forEach(el => {
     el.style.animation = 'none';
     void el.offsetHeight;
-    el.style.animation = 'footerIn 1.4s cubic-bezier(.4,0,.2,1) forwards'; // Same duration as page load animation
-    el.style.animationDelay = '1.4s'; // Same delay as the page entry animation
+    el.style.animation = 'footerIn 1.4s cubic-bezier(.4,0,.2,1) forwards'; // Duración de 1.4s
+    el.style.animationDelay = '1.8s'; // Mayor retraso para asegurar que aparezca después del cambio de sección
   });
 }
 

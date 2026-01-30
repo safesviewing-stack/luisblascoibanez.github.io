@@ -109,6 +109,7 @@ nav a{
   opacity:0;
   transform:translateY(-12px);
   animation:navIn 0.55s ease forwards;
+  transition: all 0.3s ease; /* Añadido para transición suave */
 }
 
 nav a:nth-child(1){animation-delay:.25s}
@@ -396,6 +397,7 @@ footer{
 </footer>
 
 <script>
+// Función para cambiar el idioma
 let currentLang = 'es';
 
 const translations = {
@@ -494,6 +496,38 @@ function changeLang(lang){
   document.querySelector(`.lang-switch button[onclick*="${lang}"]`).classList.add('active');
 
   resetAnimations(); // Reset animations when changing language
+}
+
+function changeSection(id, link){
+  const current = document.querySelector('.section.active');
+  const logo = document.getElementById('logo-home');
+  
+  if(current && current.id === id) return;
+
+  // Remover la animación cuando el logo está oculto
+  logo.style.animation = 'none';
+  void logo.offsetHeight; // force reflow
+  logo.style.animation = 'logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards'; // Reinicia la animación
+
+  // Ocultar el logo en todas las secciones excepto "home"
+  if(id !== "home") {
+    logo.style.visibility = 'hidden';  /* Usar visibility en lugar de display: none */
+  } else {
+    logo.style.visibility = 'visible';
+  }
+
+  const fade=document.querySelector('.section-fade');
+  fade.classList.remove('active');
+  void fade.offsetHeight;
+  fade.classList.add('active');
+
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+
+  document.getElementById(id).classList.add('active');
+  link.classList.add('active');
+
+  resetAnimations(); // Restablecer animaciones al cambiar de sección
 }
 </script>
 

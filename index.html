@@ -112,7 +112,7 @@
       left: 0;
       right: .18em;
       bottom: 0;
-      height: 1px;  /* Grosor de la línea */
+      height: 1px;
       background: #fff;
       transform: scaleX(0);
       transform-origin: left;
@@ -245,139 +245,101 @@
       opacity: 1;
     }
 
-    /* ===== CV STYLING ===== */
-    .cv-details {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .cv-column {
-      width: 32%;
-    }
-
-    .cv-column h3 {
-      font-size: 22px;
-      margin-bottom: 10px;
-    }
-
-    .cv-column ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .cv-column li {
-      margin-bottom: 12px;
-    }
-
-    .cv-column li strong {
-      font-weight: 600;
-    }
-
-    .cv-column li span {
-      font-size: 14px;
-      color: var(--muted);
-    }
-
-    .cv-column i {
-      margin-right: 8px;
+    /* ===== ACTIVE LINK STYLING ===== */
+    nav a.active {
       color: #fff;
+      font-weight: 600;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="bg-layer"></div>
-  <div class="section-fade"></div>
+<div class="bg-layer"></div>
+<div class="section-fade"></div>
 
-  <header>
-    <div class="logo" id="logo-home">L · BIB</div>
+<header>
+  <div class="logo" id="logo-home">L · BIB</div>
 
-    <nav>
-      <a class="active" onclick="changeSection('home',this)">Inicio</a>
-      <a onclick="changeSection('about',this)">Sobre mí</a>
-      <a onclick="changeSection('portfolio',this)">Portfolio</a>
-      <a onclick="changeSection('cv',this)">CV</a>
-      <a onclick="changeSection('skills',this)">Habilidades</a>
-      <a onclick="changeSection('contact',this)">Contacto</a>
-    </nav>
+  <nav>
+    <a class="active" onclick="changeSection('home',this)">Inicio</a>
+    <a onclick="changeSection('about',this)">Sobre mí</a>
+    <a onclick="changeSection('portfolio',this)">Portfolio</a>
+    <a onclick="changeSection('cv',this)">CV</a>
+    <a onclick="changeSection('skills',this)">Habilidades</a>
+    <a onclick="changeSection('contact',this)">Contacto</a>
+  </nav>
 
-    <div class="lang-switch">
-      <button class="active" onclick="changeLang('es')">ES</button>
-      <button onclick="changeLang('en')">EN</button>
-    </div>
-  </header>
+  <div class="lang-switch">
+    <button class="active" onclick="changeLang('es')">ES</button>
+    <button onclick="changeLang('en')">EN</button>
+  </div>
+</header>
 
-  <section id="home" class="section active">
-    <div class="content">
-      <h1>
-        <span class="title-line">Diseño Industrial</span>
-        <span class="title-line">y Desarrollo de Producto</span>
-      </h1>
+<section id="home" class="section active">
+  <div class="content">
+    <h1>
+      <span class="title-line">Diseño Industrial</span>
+      <span class="title-line">y Desarrollo de Producto</span>
+    </h1>
 
-      <p class="delay-1">Perfil técnico y creativo enfocado en producto.</p>
+    <p class="delay-1">Perfil técnico y creativo enfocado en producto.</p>
 
-      <button class="btn delay-2" onclick="changeSection('portfolio', this)">Ver proyectos</button>
-    </div>
-  </section>
+    <button class="btn delay-2" onclick="changeSection('portfolio', this)">Ver proyectos</button>
+  </div>
+</section>
 
-  <section id="about" class="section">
-    <div class="content">
-      <h2>Sobre mí</h2>
-      <p>Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV...</p>
-    </div>
-  </section>
+<section id="about" class="section">
+  <div class="content">
+    <h2>Sobre mí</h2>
+    <p>Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV...</p>
+  </div>
+</section>
 
-  <section id="portfolio" class="section">
-    <div class="content">
-      <h2>Portfolio</h2>
-      <div class="project-gallery">
-        <div class="project-item">
-          <img src="proyecto1.jpg" alt="Proyecto 1" class="project-img">
-          <div class="project-overlay">
-            <h3>Diseño de Lámpara Moderna</h3>
-            <p>Un diseño único que fusiona funcionalidad y estética, inspirado en formas orgánicas.</p>
-          </div>
+<section id="portfolio" class="section">
+  <div class="content">
+    <h2>Portfolio</h2>
+    <div class="project-gallery">
+      <div class="project-item">
+        <img src="proyecto1.jpg" alt="Proyecto 1" class="project-img">
+        <div class="project-overlay">
+          <h3>Diseño de Lámpara Moderna</h3>
+          <p>Un diseño único que fusiona funcionalidad y estética, inspirado en formas orgánicas.</p>
         </div>
-        <div class="project-item">
-          <img src="proyecto2.jpg" alt="Proyecto 2" class="project-img">
-          <div class="project-overlay">
-            <h3>Mobiliario para Oficina</h3>
-            <p>Creación de mobiliario ergonómico con materiales sostenibles.</p>
-          </div>
+      </div>
+      <div class="project-item">
+        <img src="proyecto2.jpg" alt="Proyecto 2" class="project-img">
+        <div class="project-overlay">
+          <h3>Mobiliario para Oficina</h3>
+          <p>Creación de mobiliario ergonómico con materiales sostenibles.</p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="cv" class="section">
-    <div class="content">
-      <h2>Currículum Vitae</h2>
-      <p>Aquí podrás ver una descripción general de mi trayectoria académica y profesional...</p>
-    </div>
-  </section>
+<section id="cv" class="section">
+  <div class="content">
+    <h2>Currículum Vitae</h2>
+    <p>Aquí podrás ver una descripción general de mi trayectoria académica y profesional...</p>
+  </div>
+</section>
 
-  <footer>
-    © 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial
-  </footer>
+<script>
+// Función para cambiar entre secciones y activar la línea decorativa
+function changeSection(id, link){
+  document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+  link.classList.add('active'); // Aseguramos que el enlace activo tiene la línea debajo
 
-  <script>
-    // Función para cambiar entre secciones y activar la línea decorativa
-    function changeSection(id, link) {
-      document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-      link.classList.add('active'); // Aseguramos que el enlace activo tiene la línea debajo
-
-      // Si es la sección de Portfolio, aplicamos la clase active al enlace de Portfolio
-      if (id === 'portfolio') {
-        const portfolioLink = document.querySelector('nav a:nth-child(3)');
-        portfolioLink.classList.add('active');
-      }
-    }
-  </script>
+  // Si es la sección de Portfolio, aplicamos la clase active al enlace de Portfolio
+  if (id === 'portfolio') {
+    const portfolioLink = document.querySelector('nav a:nth-child(3)');
+    portfolioLink.classList.add('active');
+  }
+}
+</script>
 
 </body>
 </html>

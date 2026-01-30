@@ -65,8 +65,7 @@
       width:100%;
       padding:34px 40px;
       display:flex;
-      align-items:center;
-      justify-content:space-between;
+      justify-content:center; /* Centrado de los elementos en el header */
       z-index:1000;
       opacity:1;
       transform:translateY(0);
@@ -173,6 +172,27 @@
     @keyframes btnIn{
       to{opacity:1;transform:translateY(0);}
     }
+
+    /* ===== FOOTER ===== */
+    footer{
+      position:relative; /* Lo devuelvo a su posición original */
+      padding:18px 40px;
+      text-align:center;
+      font-size:11px;
+      letter-spacing:.08em;
+      color:#9a9a9a;
+      background-color:transparent; /* Fondo transparente */
+      pointer-events:none;
+
+      opacity:0;
+      transform:translateY(20px);
+      animation:footerIn 1.2s cubic-bezier(.4,0,.2,1) forwards; /* Tiempo de animación igual que al entrar por primera vez */
+      animation-delay:1s; /* Retardo de 1 segundo antes de que aparezca el footer */
+    }
+    @keyframes footerIn{
+      to{opacity:1;transform:translateY(0);}
+    }
+
   </style>
 </head>
 

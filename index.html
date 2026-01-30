@@ -14,20 +14,20 @@
       --muted:#cfcfcf;
     }
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:Inter, system-ui, sans-serif;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Inter, system-ui, sans-serif;
     }
 
     body {
       background: var(--bg);
       color: var(--white);
-      overflow-x: hidden;
-      min-height: 100vh;
+      overflow-x: hidden;  /* Eliminar el desbordamiento horizontal */
       display: flex;
       flex-direction: column;
+      min-height: 100vh;
     }
 
     /* ===== BACKGROUND ===== */
@@ -42,7 +42,12 @@
       animation: bgFadeIn 1.4s ease forwards;
       pointer-events: none;
     }
-    @keyframes bgFadeIn { to { opacity: 1; } }
+
+    @keyframes bgFadeIn {
+      to {
+        opacity: 1;
+      }
+    }
 
     /* ===== GLOBAL SECTION FADE ===== */
     .section-fade {
@@ -53,12 +58,18 @@
       opacity: 0;
       pointer-events: none;
     }
+
     .section-fade.active {
       animation: sectionFade 1.4s cubic-bezier(.4, 0, .2, 1) forwards;
     }
+
     @keyframes sectionFade {
-      from { opacity: 1; }
-      to { opacity: 0; }
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
     }
 
     /* ===== HEADER ===== */
@@ -86,8 +97,14 @@
     }
 
     @keyframes logoInLeft {
-      from { opacity: 0; transform: translateX(-100%); }
-      to { opacity: 1; transform: translateX(0); }
+      from {
+        opacity: 0;
+        transform: translateX(-100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
     }
 
     nav {
@@ -108,14 +125,31 @@
       animation: navIn 0.55s ease forwards;
     }
 
-    nav a:nth-child(1) { animation-delay: .25s; }
-    nav a:nth-child(2) { animation-delay: .33s; }
-    nav a:nth-child(3) { animation-delay: .41s; }
-    nav a:nth-child(4) { animation-delay: .49s; }
-    nav a:nth-child(5) { animation-delay: .57s; }
-    nav a:nth-child(6) { animation-delay: .65s; }
+    nav a:nth-child(1) {
+      animation-delay: .25s;
+    }
+    nav a:nth-child(2) {
+      animation-delay: .33s;
+    }
+    nav a:nth-child(3) {
+      animation-delay: .41s;
+    }
+    nav a:nth-child(4) {
+      animation-delay: .49s;
+    }
+    nav a:nth-child(5) {
+      animation-delay: .57s;
+    }
+    nav a:nth-child(6) {
+      animation-delay: .65s;
+    }
 
-    @keyframes navIn { to { opacity: 1; transform: translateY(0); } }
+    @keyframes navIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
     nav a.active::after {
       content: "";
@@ -123,7 +157,7 @@
       left: 0;
       right: .18em;
       bottom: 0;
-      height: 1px; /* Grosor de la línea */
+      height: 1px;  /* Grosor de la línea */
       background: #fff;
       transform: scaleX(1);
     }
@@ -170,7 +204,12 @@
       animation-delay: 0.9s; /* Reduced delay */
     }
 
-    @keyframes btnIn { to { opacity: 1; transform: translateY(0); } }
+    @keyframes btnIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
     /* ===== FOOTER ===== */
     footer {
@@ -190,7 +229,10 @@
     }
 
     @keyframes footerIn {
-      to { opacity: 1; transform: translateY(0); }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* ===== LANGUAGE SWITCH ===== */

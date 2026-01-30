@@ -549,4 +549,150 @@ footer{
       </div>
     </div>
   </div>
-</
+</section>
+
+<footer data-i18n="footer">
+  © 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial
+</footer>
+
+<script>
+let currentLang = 'es';
+
+const translations = {
+  es:{
+    nav_home:"Inicio",
+    nav_about:"Sobre mí",
+    nav_portfolio:"Portfolio",
+    nav_cv:"CV",
+    nav_skills:"Habilidades",
+    nav_contact:"Contacto",
+    home_title_1:"Diseño Industrial",
+    home_title_2:"y Desarrollo de Producto",
+    home_sub:"Perfil técnico y creativo enfocado en producto.",
+    home_btn:"Ver proyectos",
+    about_title:"Sobre mí",
+    about_text:"Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV, actualmente en mi último año. Vivo en Valencia y me considero una persona con una mente ecléctica y perfeccionista, siempre interesada en encontrar el equilibrio entre lo técnico y lo estético. Desde pequeño he tenido curiosidad por entender cómo funcionan las cosas, y mi formación profesional en el sector de la electricidad me permitió adquirir una base técnica sólida que hoy aplico al diseño y desarrollo de producto. Disfruto especialmente del proceso completo de diseño, desde la idea inicial hasta la definición técnica y el detalle final, y tengo una necesidad constante de estar creando y resolviendo. Si algo no me sale, no paro hasta encontrar la solución, porque para mí el proceso es tan importante como el resultado final. Como dato curioso, me interesa especialmente el campo de la impresión 3D, ya que me permite experimentar directamente con el diseño y validar conceptos de la manera más rápida y precisa.",
+    footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"
+  },
+  en:{
+    nav_home:"Home",
+    nav_about:"About",
+    nav_portfolio:"Portfolio",
+    nav_cv:"CV",
+    nav_skills:"Skills",
+    nav_contact:"Contact",
+    home_title_1:"Industrial Design",
+    home_title_2:"and Product Development",
+    home_sub:"Technical and creative profile focused on product.",
+    home_btn:"View projects",
+    about_title:"About me",
+    about_text:"Hi, I’m Luis, I’m 24 years old and an Industrial Design student at UPV, currently in my final year. I live in Valencia and consider myself an eclectic and perfectionist person, always interested in finding the balance between technical precision and aesthetics. From an early age, I’ve been curious about how things work, and my vocational training in the electrical sector gave me a solid technical foundation that I now apply to product design and development. I especially enjoy the complete design process, from the initial idea to technical definition and final detailing, and I have a constant need to keep creating and solving problems. If something doesn’t work, I don’t stop until I find the solution, because for me the process is just as important as the final result. As a curious fact, I’m particularly interested in the field of 3D printing, as it allows me to directly experiment with design and validate concepts in the fastest and most precise way.",
+    footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineering"
+  }
+};
+
+function resetAnimations(scope=document){
+  scope.querySelectorAll('.fade-up, .photo-in').forEach(el=>{
+    const c = el.className;
+    el.className = c.replace(/fade-up|delay-1|delay-2|photo-in/g,'').trim();
+    void el.offsetHeight; // force reflow
+    el.className = c;
+  });
+
+  // Reset header and nav link animations (cascading effect)
+  scope.querySelectorAll('.logo, nav a').forEach((el, index) => {
+    el.style.animation = 'none'; // remove current animation
+    void el.offsetHeight; // force reflow
+    el.style.animation = `navIn 0.55s ease forwards ${index * 0.08}s`; // apply cascading effect
+  });
+
+  // Reset button animation (faster entry)
+  const button = scope.querySelector('.btn');
+  button.style.animation = 'none';
+  void button.offsetHeight;
+  button.style.animation = `btnIn 0.6s cubic-bezier(.4,0,.2,1) forwards 0.8s`; // Reduced delay
+
+  // Reset language button animation (from right)
+  const langButtons = scope.querySelectorAll('.lang-switch button');
+  langButtons.forEach((btn, index) => {
+    btn.style.animation = 'none';
+    void btn.offsetHeight;
+    btn.style.animation = `langFadeRight 1s cubic-bezier(.4,0,.2,1) forwards`; // Apply same timing for both buttons
+  });
+
+  // Reset logo animation (same as initial entry)
+  const logo = scope.querySelector('.logo');
+  logo.style.animation = 'none'; 
+  void logo.offsetHeight; // force reflow
+  logo.style.animation = 'logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards'; // Reapply the same animation on language change
+
+  // Reset header animation
+  scope.querySelectorAll('header').forEach(el => {
+    el.style.animation = 'none';
+    void el.offsetHeight;
+    el.style.animation = '';
+  });
+
+  // Reset footer animation (triggered on button click)
+  scope.querySelectorAll('footer').forEach(el => {
+    el.style.animation = 'none';
+    void el.offsetHeight;
+    el.style.animation = 'footerIn 1.2s cubic-bezier(.4,0,.2,1) forwards'; // Same animation duration as initial page load
+    el.style.animationDelay = '1s'; // Retardo de 1 segundo antes de que aparezca el footer
+  });
+}
+
+function changeLang(lang){
+  if(lang === currentLang) return;
+  currentLang = lang;
+
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    el.textContent = translations[lang][el.dataset.i18n];
+  });
+
+  document.querySelectorAll('.lang-switch button').forEach(b=>b.classList.remove('active'));
+  document.querySelector(`.lang-switch button[onclick*="${lang}"]`).classList.add('active');
+
+  resetAnimations(); // Reset animations when changing language
+}
+
+function changeSection(id, link){
+  const current = document.querySelector('.section.active');
+  const logo = document.getElementById('logo-home');
+  
+  if(current && current.id === id) return;
+
+  // Remove the animation when the logo is hidden
+  logo.style.animation = 'none';
+  void logo.offsetHeight; // force reflow
+  logo.style.animation = 'logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards'; // Reinicia la animación
+
+  // Hide logo on all sections except home
+  if(id !== "home") {
+    logo.style.visibility = 'hidden';  /* Use visibility instead of display: none */
+  } else {
+    logo.style.visibility = 'visible';
+  }
+
+  const fade=document.querySelector('.section-fade');
+  fade.classList.remove('active');
+  void fade.offsetHeight;
+  fade.classList.add('active');
+
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+
+  document.getElementById(id).classList.add('active');
+  link.classList.add('active');
+  
+  // Activar la línea decorativa debajo del título al hacer clic en el enlace
+  if (id === 'portfolio') {
+    link.classList.add('active'); // Mantener la línea decorativa activa en Portfolio
+  }
+
+  resetAnimations(); // Reset animations when changing section
+}
+</script>
+
+</body>
+</html>

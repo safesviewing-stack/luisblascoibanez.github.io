@@ -170,6 +170,25 @@ nav a:hover::after{
   opacity:1; /* Aseguramos que no haya fundido */
 }
 
+/* Línea decorativa debajo de los botones de idioma */
+.lang-switch button::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:2px;
+  background:#fff;
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:.3s;
+}
+
+.lang-switch button.active::after,
+.lang-switch button:hover::after{
+  transform:scaleX(1); /* La línea se expande cuando el botón es activo o se pasa el ratón */
+}
+
 .lang-switch button.active{opacity:1}
 
 /* ===== SECTIONS ===== */

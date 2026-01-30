@@ -92,17 +92,6 @@ header{
   }
 }
 
-@keyframes logoChangeLang {
-  from {
-    opacity: 0;
-    transform: scale(0.8) translateX(-30px); /* Entra de la izquierda con escala */
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateX(0); /* Regresa a su tamaño original */
-  }
-}
-
 nav{
   display:flex;
   gap:36px;
@@ -441,11 +430,11 @@ function resetAnimations(scope=document){
     btn.style.animation = `buttonFadeIn 0.8s ease forwards ${index * 0.1}s`; // Reset animation on language change
   });
 
-  // Reset logo animation
+  // Reset logo animation (same as initial entry)
   const logo = scope.querySelector('.logo');
   logo.style.animation = 'none'; 
   void logo.offsetHeight; // force reflow
-  logo.style.animation = 'logoChangeLang 1s cubic-bezier(.4,0,.2,1) forwards'; // Reset logo animation
+  logo.style.animation = 'logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards'; // Reapply the same animation on language change
 
   // Reset header animation
   scope.querySelectorAll('header').forEach(el => {

@@ -167,9 +167,21 @@ nav a:hover::after{
   position:relative;
   padding-bottom:6px;
   opacity:.6;
+  animation:buttonFadeIn 0.8s ease forwards; /* Animación de botones de idioma */
 }
 
 .lang-switch button.active{opacity:1}
+
+@keyframes buttonFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 /* ===== SECTIONS ===== */
 .section{
@@ -415,7 +427,7 @@ function resetAnimations(scope=document){
   langButtons.forEach((btn, index) => {
     btn.style.animation = 'none';
     void btn.offsetHeight;
-    btn.style.animation = `langFade 0.8s ease forwards ${index * 0.1}s`; // Animation from left
+    btn.style.animation = `buttonFadeIn 0.8s ease forwards ${index * 0.1}s`; // Reset animation on language change
   });
 
   // Reset header animation

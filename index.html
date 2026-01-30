@@ -208,10 +208,17 @@ nav a:hover::after{
   gap:26px;
 }
 
-/* ABOUT ADJUST */
-#about .content{
-  max-width:1035px;
-  transform:translateY(15px);
+/* ===== ABOUT LAYOUT ===== */
+.about-layout{
+  display:flex;
+  gap:60px;
+  align-items:flex-start;
+}
+
+.about-image img{
+  width:335px;
+  display:block;
+  transition: transform 0.3s ease; /* Asegura que la imagen no se mueva bruscamente */
 }
 
 /* ===== TEXT ===== */
@@ -232,41 +239,6 @@ p{
   font-size:14px;
   line-height:1.8;
   text-align:justify;
-}
-
-/* ===== ABOUT LAYOUT ===== */
-.about-layout{
-  display:flex;
-  gap:60px;
-  align-items:flex-start;
-}
-
-.about-image img{
-  width:335px;
-  display:block;
-}
-
-/* ===== ANIMATIONS ===== */
-.fade-up{
-  opacity:0;
-  transform:translateY(24px);
-  animation:fadeUp .8s cubic-bezier(.4,0,.2,1) forwards;
-}
-.delay-1{animation-delay:.35s}
-.delay-2{animation-delay:.6s}
-
-@keyframes fadeUp{
-  to{opacity:1;transform:translateY(0);}
-}
-
-.photo-in{
-  opacity:0;
-  transform:translateX(48px) scale(.95);
-  animation:photoIn 1.1s cubic-bezier(.22,.61,.36,1) forwards;
-  animation-delay:.75s;
-}
-@keyframes photoIn{
-  to{opacity:1;transform:translateX(0) scale(1);}
 }
 
 /* ===== FOOTER ===== */

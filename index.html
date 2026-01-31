@@ -53,6 +53,7 @@ header{
   z-index:1000;
 }
 
+/* LOGO */
 .logo{
   position:absolute;
   left:40px;
@@ -67,6 +68,7 @@ header{
   to{opacity:1;transform:translateX(0);}
 }
 
+/* NAV */
 nav{
   display:flex;
   gap:36px;
@@ -112,6 +114,50 @@ nav a:hover::after{
   transform:scaleX(1);
 }
 
+/* LANGUAGE SWITCH */
+.lang-switch{
+  position:absolute;
+  right:40px;
+  display:flex;
+  gap:20px;
+  align-items:center;
+  opacity:0;
+  animation:langFadeRight 1s cubic-bezier(.4,0,.2,1) forwards;
+}
+
+@keyframes langFadeRight{
+  from{opacity:0;transform:translateX(100%);}
+  to{opacity:1;transform:translateX(0);}
+}
+
+.lang-switch button{
+  background:none;
+  border:none;
+  color:#fff;
+  font-size:11px;
+  letter-spacing:.18em;
+  cursor:pointer;
+  position:relative;
+  padding-bottom:6px;
+}
+
+.lang-switch button::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:1px;
+  background:#fff;
+  transform:scaleX(0);
+  transition:.3s;
+}
+
+.lang-switch button.active::after,
+.lang-switch button:hover::after{
+  transform:scaleX(1);
+}
+
 /* ===== SECTIONS ===== */
 .section{
   position:absolute;
@@ -129,7 +175,7 @@ nav a:hover::after{
   gap:26px;
 }
 
-/* ===== ALINEACIÓN SECCIONES INTERNAS ===== */
+/* ALINEACIÓN INTERIOR */
 #about .content,
 #portfolio .content,
 #cv .content,
@@ -138,7 +184,7 @@ nav a:hover::after{
   transform:translateY(15px);
 }
 
-/* ===== TEXT ===== */
+/* TEXT */
 h1{
   font-size:44px;
   font-weight:600;
@@ -157,7 +203,7 @@ p{
   max-width:70ch;
 }
 
-/* ===== ANIMATIONS ===== */
+/* ANIMATIONS */
 .fade-up{
   opacity:0;
   transform:translateY(24px);
@@ -170,7 +216,7 @@ p{
   to{opacity:1;transform:translateY(0);}
 }
 
-/* ===== BUTTON (RESTAURADO) ===== */
+/* BUTTON */
 .btn{
   margin-top:14px;
   padding:12px 24px;
@@ -189,7 +235,7 @@ p{
   animation-delay:.9s;
 }
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 footer{
   position:fixed;
   bottom:0;
@@ -214,6 +260,7 @@ footer{
 
 <header>
   <div class="logo" id="logo-home">L · BIB</div>
+
   <nav>
     <a class="active" onclick="changeSection('home',this)">Inicio</a>
     <a onclick="changeSection('about',this)">Sobre mí</a>
@@ -221,9 +268,14 @@ footer{
     <a onclick="changeSection('cv',this)">CV</a>
     <a onclick="changeSection('skills',this)">Habilidades</a>
   </nav>
+
+  <div class="lang-switch">
+    <button class="active" onclick="changeLang('es')">ES</button>
+    <button onclick="changeLang('en')">EN</button>
+  </div>
 </header>
 
-<!-- ===== HOME ===== -->
+<!-- HOME -->
 <section id="home" class="section active">
   <div class="content">
     <h1 class="fade-up">
@@ -234,8 +286,7 @@ footer{
       Perfil técnico y creativo enfocado en producto.
     </p>
 
-    <button
-      class="btn fade-up delay-2"
+    <button class="btn fade-up delay-2"
       onclick="changeSection('portfolio', document.querySelectorAll('nav a')[2])">
       Ver proyectos
     </button>
@@ -275,6 +326,8 @@ footer{
 </footer>
 
 <script>
+let currentLang = 'es';
+
 function animateActiveSection(){
   const active = document.querySelector('.section.active');
   if(!active) return;
@@ -286,6 +339,19 @@ function animateActiveSection(){
     el.style.animation = '';
     el.style.opacity = '';
   });
+}
+
+function changeLang(lang){
+  if(lang === currentLang) return;
+  currentLang = lang;
+
+  document.querySelectorAll('.lang-switch button')
+    .forEach(b=>b.classList.remove('active'));
+
+  document.querySelector(`.lang-switch button[onclick*="${lang}"]`)
+    .classList.add('active');
+
+  animateActiveSection();
 }
 
 function changeSection(id, link){

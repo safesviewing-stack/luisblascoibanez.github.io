@@ -114,7 +114,7 @@ nav a:hover::after{
   transform:scaleX(1);
 }
 
-/* ===== LANGUAGE ===== */
+/* LANGUAGE */
 .lang-switch{
   position:absolute;
   right:40px;
@@ -167,7 +167,6 @@ nav a:hover::after{
   gap:26px;
 }
 
-/* Alineación interior */
 #about .content,
 #portfolio .content,
 #cv .content,
@@ -195,7 +194,7 @@ p{
   max-width:70ch;
 }
 
-/* ===== BASE ANIMATIONS ===== */
+/* ===== MAIN ANIMATION (LA MISMA DE SIEMPRE) ===== */
 .fade-up{
   opacity:0;
   transform:translateY(24px);
@@ -225,20 +224,6 @@ p{
   transform:translateY(24px);
   animation:fadeUp .6s cubic-bezier(.4,0,.2,1) forwards;
   animation-delay:.9s;
-}
-
-/* ===== I18N ANIMATION ===== */
-.lang-fade{
-  opacity:0;
-  transform:translateY(16px);
-  animation:langFade .6s cubic-bezier(.4,0,.2,1) forwards;
-}
-
-@keyframes langFade{
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
 }
 
 /* ===== FOOTER ===== */
@@ -379,14 +364,15 @@ const translations = {
   }
 };
 
+/* REAPLICA LA MISMA ANIMACIÓN fade-up */
 function animateActiveSection(){
   const active = document.querySelector('.section.active');
   if(!active) return;
 
-  active.querySelectorAll('[data-i18n]').forEach(el=>{
-    el.classList.remove('lang-fade');
-    void el.offsetHeight;
-    el.classList.add('lang-fade');
+  active.querySelectorAll('.fade-up').forEach(el=>{
+    el.classList.remove('fade-up');
+    void el.offsetHeight; // reflow
+    el.classList.add('fade-up');
   });
 }
 

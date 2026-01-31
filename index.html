@@ -14,7 +14,7 @@
   --muted:#cfcfcf;
 }
 
-/* RESET */
+/* ===== RESET ===== */
 *{
   margin:0;
   padding:0;
@@ -28,7 +28,7 @@ body{
   overflow:hidden;
 }
 
-/* BACKGROUND */
+/* ===== BACKGROUND ===== */
 .bg-layer{
   position:fixed;
   inset:0;
@@ -41,7 +41,7 @@ body{
 }
 @keyframes bgFadeIn{to{opacity:1;}}
 
-/* HEADER */
+/* ===== HEADER ===== */
 header{
   position:fixed;
   top:0;
@@ -53,6 +53,7 @@ header{
   z-index:1000;
 }
 
+/* LOGO */
 .logo{
   position:absolute;
   left:40px;
@@ -67,6 +68,7 @@ header{
   to{opacity:1;transform:translateX(0);}
 }
 
+/* NAV */
 nav{
   display:flex;
   gap:36px;
@@ -90,7 +92,9 @@ nav a:nth-child(3){animation-delay:.41s}
 nav a:nth-child(4){animation-delay:.49s}
 nav a:nth-child(5){animation-delay:.57s}
 
-@keyframes navIn{to{opacity:1;transform:translateY(0);}}
+@keyframes navIn{
+  to{opacity:1;transform:translateY(0);}
+}
 
 nav a::after{
   content:"";
@@ -110,7 +114,7 @@ nav a:hover::after{
   transform:scaleX(1);
 }
 
-/* LANGUAGE */
+/* ===== LANGUAGE ===== */
 .lang-switch{
   position:absolute;
   right:40px;
@@ -146,7 +150,7 @@ nav a:hover::after{
   transform:scaleX(1);
 }
 
-/* SECTIONS */
+/* ===== SECTIONS ===== */
 .section{
   position:absolute;
   inset:0;
@@ -163,6 +167,7 @@ nav a:hover::after{
   gap:26px;
 }
 
+/* Alineación interior */
 #about .content,
 #portfolio .content,
 #cv .content,
@@ -171,7 +176,7 @@ nav a:hover::after{
   transform:translateY(15px);
 }
 
-/* TEXT */
+/* ===== TEXT ===== */
 h1{
   font-size:44px;
   font-weight:600;
@@ -190,7 +195,7 @@ p{
   max-width:70ch;
 }
 
-/* ANIMATIONS */
+/* ===== BASE ANIMATIONS ===== */
 .fade-up{
   opacity:0;
   transform:translateY(24px);
@@ -203,7 +208,7 @@ p{
   to{opacity:1;transform:translateY(0);}
 }
 
-/* BUTTON */
+/* ===== BUTTON ===== */
 .btn{
   margin-top:14px;
   padding:12px 24px;
@@ -222,7 +227,21 @@ p{
   animation-delay:.9s;
 }
 
-/* FOOTER */
+/* ===== I18N ANIMATION ===== */
+.lang-fade{
+  opacity:0;
+  transform:translateY(16px);
+  animation:langFade .6s cubic-bezier(.4,0,.2,1) forwards;
+}
+
+@keyframes langFade{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* ===== FOOTER ===== */
 footer{
   position:fixed;
   bottom:0;
@@ -267,7 +286,8 @@ footer{
       Perfil técnico y creativo enfocado en producto.
     </p>
 
-    <button class="btn fade-up delay-2"
+    <button
+      class="btn fade-up delay-2"
       data-i18n="home_btn"
       onclick="changeSection('portfolio', document.querySelectorAll('nav a')[2])">
       Ver proyectos
@@ -278,9 +298,7 @@ footer{
 <section id="about" class="section">
   <div class="content">
     <h2 class="fade-up" data-i18n="about_title">Sobre mí</h2>
-    <p class="fade-up delay-1" data-i18n="about_text">
-      Texto sobre ti…
-    </p>
+    <p class="fade-up delay-1" data-i18n="about_text">Texto sobre ti…</p>
   </div>
 </section>
 
@@ -365,12 +383,10 @@ function animateActiveSection(){
   const active = document.querySelector('.section.active');
   if(!active) return;
 
-  active.querySelectorAll('.fade-up').forEach(el=>{
-    el.style.animation = 'none';
-    el.style.opacity = '0';
+  active.querySelectorAll('[data-i18n]').forEach(el=>{
+    el.classList.remove('lang-fade');
     void el.offsetHeight;
-    el.style.animation = '';
-    el.style.opacity = '';
+    el.classList.add('lang-fade');
   });
 }
 

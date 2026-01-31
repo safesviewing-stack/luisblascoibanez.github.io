@@ -81,8 +81,8 @@ nav a{
   position:relative;
   padding-bottom:6px;
   cursor:pointer;
-  opacity:0;
-  transform:translateY(-12px);
+  opacity:1;              /* ⬅️ SIEMPRE visible */
+  transform:none;         /* ⬅️ SIN animación por defecto */
 }
 
 @keyframes navIn{
@@ -107,13 +107,13 @@ nav a:hover::after{
   transform:scaleX(1);
 }
 
-/* LANG */
+/* LANGUAGE */
 .lang-switch{
   position:absolute;
   right:40px;
   display:flex;
   gap:20px;
-  opacity:0;
+  opacity:1;              /* ⬅️ visible por defecto */
 }
 
 @keyframes langFadeRight{
@@ -177,6 +177,7 @@ nav a:hover::after{
 /* TEXT */
 h1{font-size:44px;font-weight:600;}
 h2{font-size:28px;font-weight:600;}
+
 p{
   color:var(--muted);
   font-size:14px;
@@ -251,11 +252,9 @@ footer{
       <span data-i18n="home_title_1">Diseño Industrial</span><br>
       <span data-i18n="home_title_2">y Desarrollo de Producto</span>
     </h1>
-
     <p class="fade-up delay-1" data-i18n="home_sub">
       Perfil técnico y creativo enfocado en producto.
     </p>
-
     <button class="btn fade-up delay-2"
       data-i18n="home_btn"
       onclick="changeSection('portfolio', document.querySelectorAll('nav a')[2])">
@@ -342,8 +341,17 @@ const translations = {
   }
 };
 
-/* HEADER CASCADE (HOME ONLY) */
-function animateHeaderHome(){
+/* CONTENT ONLY */
+function animateContent(){
+  document.querySelectorAll('.section.active .fade-up').forEach(el=>{
+    el.classList.remove('fade-up');
+    void el.offsetHeight;
+    el.classList.add('fade-up');
+  });
+}
+
+/* HEADER ANIMATION (LANG CHANGE ONLY) */
+function animateHeader(){
   const logo = document.getElementById('logo-home');
   logo.style.visibility = 'visible';
   logo.style.animation = 'none';
@@ -353,24 +361,13 @@ function animateHeaderHome(){
   document.querySelectorAll('nav a').forEach((link,i)=>{
     link.style.animation = 'none';
     void link.offsetHeight;
-    link.style.animation =
-      `navIn .55s ease forwards ${0.25 + i * 0.08}s`;
+    link.style.animation = `navIn .55s ease forwards ${0.25 + i * 0.08}s`;
   });
 
   const lang = document.querySelector('.lang-switch');
   lang.style.animation = 'none';
   void lang.offsetHeight;
-  lang.style.animation =
-    'langFadeRight 1s cubic-bezier(.4,0,.2,1) forwards';
-}
-
-/* CONTENT */
-function animateContent(){
-  document.querySelectorAll('.section.active .fade-up').forEach(el=>{
-    el.classList.remove('fade-up');
-    void el.offsetHeight;
-    el.classList.add('fade-up');
-  });
+  lang.style.animation = 'langFadeRight 1s cubic-bezier(.4,0,.2,1) forwards';
 }
 
 /* LANGUAGE */
@@ -387,6 +384,7 @@ function changeLang(lang){
   document.querySelector(`.lang-switch button[onclick*="${lang}"]`)
     .classList.add('active');
 
+  animateHeader();
   animateContent();
 }
 
@@ -401,18 +399,14 @@ function changeSection(id, link){
   link.classList.add('active');
 
   const logo = document.getElementById('logo-home');
-
-  if(id === 'home'){
-    animateHeaderHome();
-  }else{
-    logo.style.visibility = 'hidden';
-  }
+  logo.style.visibility = id === 'home' ? 'visible' : 'hidden';
 
   animateContent();
 }
 
 /* INITIAL LOAD */
-animateHeaderHome();
+animateHeader();
+animateContent();
 </script>
 
 </body>

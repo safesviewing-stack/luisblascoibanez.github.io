@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 <style>
 :root{
@@ -88,7 +87,6 @@ nav a:nth-child(2){animation-delay:.33s}
 nav a:nth-child(3){animation-delay:.41s}
 nav a:nth-child(4){animation-delay:.49s}
 nav a:nth-child(5){animation-delay:.57s}
-nav a:nth-child(6){animation-delay:.65s}
 
 @keyframes navIn{
   to{opacity:1;transform:translateY(0);}
@@ -112,47 +110,6 @@ nav a:hover::after{
   transform:scaleX(1);
 }
 
-/* ===== LANGUAGE ===== */
-.lang-switch{
-  display:flex;
-  gap:20px;
-  opacity:0;
-  animation:langFadeRight 1s cubic-bezier(.4,0,.2,1) forwards;
-}
-
-@keyframes langFadeRight{
-  from{opacity:0;transform:translateX(100%);}
-  to{opacity:1;transform:translateX(0);}
-}
-
-.lang-switch button{
-  background:none;
-  border:none;
-  color:#fff;
-  font-size:11px;
-  letter-spacing:.18em;
-  cursor:pointer;
-  position:relative;
-  padding-bottom:6px;
-}
-
-.lang-switch button::after{
-  content:"";
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  height:1px;
-  background:#fff;
-  transform:scaleX(0);
-  transition:.3s;
-}
-
-.lang-switch button.active::after,
-.lang-switch button:hover::after{
-  transform:scaleX(1);
-}
-
 /* ===== SECTIONS ===== */
 .section{
   position:absolute;
@@ -170,7 +127,7 @@ nav a:hover::after{
   gap:26px;
 }
 
-/* ===== ALINEACIÓN INTERIOR ===== */
+/* ===== ALINEACIÓN SECCIONES INTERNAS ===== */
 #about .content,
 #portfolio .content,
 #cv .content,
@@ -180,13 +137,22 @@ nav a:hover::after{
 }
 
 /* ===== TEXT ===== */
-h1{font-size:44px;font-weight:600;}
-h2{font-size:28px;font-weight:600;}
+h1{
+  font-size:44px;
+  font-weight:600;
+  max-width:32ch;
+}
+
+h2{
+  font-size:28px;
+  font-weight:600;
+}
+
 p{
   color:var(--muted);
   font-size:14px;
   line-height:1.8;
-  text-align:justify;
+  max-width:70ch;
 }
 
 /* ===== ANIMATIONS ===== */
@@ -202,6 +168,25 @@ p{
   to{opacity:1;transform:translateY(0);}
 }
 
+/* ===== BUTTON (RESTAURADO) ===== */
+.btn{
+  margin-top:14px;
+  padding:12px 24px;
+  border-radius:999px;
+  border:none;
+  background:#fff;
+  color:#000;
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+  align-self:flex-start;
+  white-space:nowrap;
+  opacity:0;
+  transform:translateY(24px);
+  animation:fadeUp .6s cubic-bezier(.4,0,.2,1) forwards;
+  animation-delay:.9s;
+}
+
 /* ===== FOOTER ===== */
 footer{
   position:fixed;
@@ -215,7 +200,6 @@ footer{
   animation:footerIn 1.4s cubic-bezier(.4,0,.2,1) forwards;
   animation-delay:1.5s;
 }
-
 @keyframes footerIn{
   to{opacity:1;transform:translateY(0);}
 }
@@ -235,12 +219,9 @@ footer{
     <a onclick="changeSection('cv',this)">CV</a>
     <a onclick="changeSection('skills',this)">Habilidades</a>
   </nav>
-  <div class="lang-switch">
-    <button class="active" onclick="changeLang('es')">ES</button>
-    <button onclick="changeLang('en')">EN</button>
-  </div>
 </header>
 
+<!-- ===== HOME ===== -->
 <section id="home" class="section active">
   <div class="content">
     <h1 class="fade-up">
@@ -258,7 +239,6 @@ footer{
     </button>
   </div>
 </section>
-
 
 <section id="about" class="section">
   <div class="content">
@@ -293,9 +273,6 @@ footer{
 </footer>
 
 <script>
-let currentLang = 'es';
-
-/* === SOLO ANIMA LA SECCIÓN ACTIVA === */
 function animateActiveSection(){
   const active = document.querySelector('.section.active');
   if(!active) return;
@@ -307,19 +284,6 @@ function animateActiveSection(){
     el.style.animation = '';
     el.style.opacity = '';
   });
-}
-
-function changeLang(lang){
-  if(lang === currentLang) return;
-  currentLang = lang;
-
-  document.querySelectorAll('.lang-switch button')
-    .forEach(b=>b.classList.remove('active'));
-
-  document.querySelector(`.lang-switch button[onclick*="${lang}"]`)
-    .classList.add('active');
-
-  animateActiveSection();
 }
 
 function changeSection(id, link){

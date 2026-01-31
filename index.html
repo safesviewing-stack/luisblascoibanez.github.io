@@ -60,10 +60,10 @@ header{
   font-size:16px;
   letter-spacing:.3em;
   font-weight:500;
-  visibility:visible;
+  visibility:hidden;
 }
 
-/* Logo animation */
+/* LOGO ANIMATION */
 @keyframes logoInLeft{
   from{opacity:0;transform:translateX(-100%);}
   to{opacity:1;transform:translateX(0);}
@@ -82,19 +82,6 @@ nav a{
   position:relative;
   padding-bottom:6px;
   cursor:pointer;
-  opacity:0;
-  transform:translateY(-12px);
-  animation:navIn .55s ease forwards;
-}
-
-nav a:nth-child(1){animation-delay:.25s}
-nav a:nth-child(2){animation-delay:.33s}
-nav a:nth-child(3){animation-delay:.41s}
-nav a:nth-child(4){animation-delay:.49s}
-nav a:nth-child(5){animation-delay:.57s}
-
-@keyframes navIn{
-  to{opacity:1;transform:translateY(0);}
 }
 
 nav a::after{
@@ -121,13 +108,6 @@ nav a:hover::after{
   right:40px;
   display:flex;
   gap:20px;
-  opacity:0;
-  animation:langFadeRight 1s cubic-bezier(.4,0,.2,1) forwards;
-}
-
-@keyframes langFadeRight{
-  from{opacity:0;transform:translateX(100%);}
-  to{opacity:1;transform:translateX(0);}
 }
 
 .lang-switch button{
@@ -202,7 +182,7 @@ p{
   max-width:70ch;
 }
 
-/* ===== ANIMATION ===== */
+/* ===== CONTENT ANIMATION ===== */
 .fade-up{
   opacity:0;
   transform:translateY(24px);
@@ -227,10 +207,6 @@ p{
   font-weight:600;
   cursor:pointer;
   align-self:flex-start;
-  opacity:0;
-  transform:translateY(24px);
-  animation:fadeUp .6s cubic-bezier(.4,0,.2,1) forwards;
-  animation-delay:.9s;
 }
 
 /* FOOTER */
@@ -364,33 +340,22 @@ const translations = {
   }
 };
 
-/* CONTENT REENTRY */
-function animateActiveSection(){
-  const active = document.querySelector('.section.active');
-  if(!active) return;
+function animateHomeEntry(){
+  const logo = document.getElementById('logo-home');
+  logo.style.visibility = 'visible';
+  logo.style.animation = 'none';
+  void logo.offsetHeight;
+  logo.style.animation = 'logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards';
+}
 
-  active.querySelectorAll('.fade-up').forEach(el=>{
+function animateContent(){
+  document.querySelectorAll('.section.active .fade-up').forEach(el=>{
     el.classList.remove('fade-up');
     void el.offsetHeight;
     el.classList.add('fade-up');
   });
 }
 
-/* HEADER CASCADE */
-function animateHeaderCascade(){
-  document.querySelectorAll('nav a').forEach((link,i)=>{
-    link.style.animation = 'none';
-    void link.offsetHeight;
-    link.style.animation = `navIn .55s ease forwards ${0.25 + i * 0.08}s`;
-  });
-
-  const lang = document.querySelector('.lang-switch');
-  lang.style.animation = 'none';
-  void lang.offsetHeight;
-  lang.style.animation = 'langFadeRight 1s cubic-bezier(.4,0,.2,1) forwards';
-}
-
-/* LANGUAGE */
 function changeLang(lang){
   if(lang === currentLang) return;
   currentLang = lang;
@@ -404,11 +369,9 @@ function changeLang(lang){
   document.querySelector(`.lang-switch button[onclick*="${lang}"]`)
     .classList.add('active');
 
-  animateHeaderCascade();
-  animateActiveSection();
+  animateContent();
 }
 
-/* SECTION CHANGE */
 function changeSection(id, link){
   if(document.getElementById(id).classList.contains('active')) return;
 
@@ -421,16 +384,16 @@ function changeSection(id, link){
   const logo = document.getElementById('logo-home');
 
   if(id === 'home'){
-    logo.style.visibility = 'visible';
-    logo.style.animation = 'none';
-    void logo.offsetHeight;
-    logo.style.animation = 'logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards';
+    animateHomeEntry();
   }else{
     logo.style.visibility = 'hidden';
   }
 
-  animateActiveSection();
+  animateContent();
 }
+
+/* INITIAL HOME ENTRY */
+animateHomeEntry();
 </script>
 
 </body>

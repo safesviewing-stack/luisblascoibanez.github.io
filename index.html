@@ -14,7 +14,7 @@
   --muted:#cfcfcf;
 }
 
-/* ===== RESET ===== */
+/* RESET */
 *{
   margin:0;
   padding:0;
@@ -28,7 +28,7 @@ body{
   overflow:hidden;
 }
 
-/* ===== BACKGROUND ===== */
+/* BACKGROUND */
 .bg-layer{
   position:fixed;
   inset:0;
@@ -41,7 +41,7 @@ body{
 }
 @keyframes bgFadeIn{to{opacity:1;}}
 
-/* ===== HEADER ===== */
+/* HEADER */
 header{
   position:fixed;
   top:0;
@@ -63,7 +63,6 @@ header{
   visibility:hidden;
 }
 
-/* LOGO ANIMATION */
 @keyframes logoInLeft{
   from{opacity:0;transform:translateX(-100%);}
   to{opacity:1;transform:translateX(0);}
@@ -82,6 +81,12 @@ nav a{
   position:relative;
   padding-bottom:6px;
   cursor:pointer;
+  opacity:0;
+  transform:translateY(-12px);
+}
+
+@keyframes navIn{
+  to{opacity:1;transform:translateY(0);}
 }
 
 nav a::after{
@@ -102,12 +107,18 @@ nav a:hover::after{
   transform:scaleX(1);
 }
 
-/* LANGUAGE */
+/* LANG */
 .lang-switch{
   position:absolute;
   right:40px;
   display:flex;
   gap:20px;
+  opacity:0;
+}
+
+@keyframes langFadeRight{
+  from{opacity:0;transform:translateX(100%);}
+  to{opacity:1;transform:translateX(0);}
 }
 
 .lang-switch button{
@@ -138,7 +149,7 @@ nav a:hover::after{
   transform:scaleX(1);
 }
 
-/* ===== SECTIONS ===== */
+/* SECTIONS */
 .section{
   position:absolute;
   inset:0;
@@ -163,18 +174,9 @@ nav a:hover::after{
   transform:translateY(15px);
 }
 
-/* ===== TEXT ===== */
-h1{
-  font-size:44px;
-  font-weight:600;
-  max-width:32ch;
-}
-
-h2{
-  font-size:28px;
-  font-weight:600;
-}
-
+/* TEXT */
+h1{font-size:44px;font-weight:600;}
+h2{font-size:28px;font-weight:600;}
 p{
   color:var(--muted);
   font-size:14px;
@@ -182,7 +184,7 @@ p{
   max-width:70ch;
 }
 
-/* ===== CONTENT ANIMATION ===== */
+/* CONTENT ANIMATION */
 .fade-up{
   opacity:0;
   transform:translateY(24px);
@@ -340,14 +342,29 @@ const translations = {
   }
 };
 
-function animateHomeEntry(){
+/* HEADER CASCADE (HOME ONLY) */
+function animateHeaderHome(){
   const logo = document.getElementById('logo-home');
   logo.style.visibility = 'visible';
   logo.style.animation = 'none';
   void logo.offsetHeight;
   logo.style.animation = 'logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards';
+
+  document.querySelectorAll('nav a').forEach((link,i)=>{
+    link.style.animation = 'none';
+    void link.offsetHeight;
+    link.style.animation =
+      `navIn .55s ease forwards ${0.25 + i * 0.08}s`;
+  });
+
+  const lang = document.querySelector('.lang-switch');
+  lang.style.animation = 'none';
+  void lang.offsetHeight;
+  lang.style.animation =
+    'langFadeRight 1s cubic-bezier(.4,0,.2,1) forwards';
 }
 
+/* CONTENT */
 function animateContent(){
   document.querySelectorAll('.section.active .fade-up').forEach(el=>{
     el.classList.remove('fade-up');
@@ -356,6 +373,7 @@ function animateContent(){
   });
 }
 
+/* LANGUAGE */
 function changeLang(lang){
   if(lang === currentLang) return;
   currentLang = lang;
@@ -372,6 +390,7 @@ function changeLang(lang){
   animateContent();
 }
 
+/* SECTION CHANGE */
 function changeSection(id, link){
   if(document.getElementById(id).classList.contains('active')) return;
 
@@ -384,7 +403,7 @@ function changeSection(id, link){
   const logo = document.getElementById('logo-home');
 
   if(id === 'home'){
-    animateHomeEntry();
+    animateHeaderHome();
   }else{
     logo.style.visibility = 'hidden';
   }
@@ -392,8 +411,8 @@ function changeSection(id, link){
   animateContent();
 }
 
-/* INITIAL HOME ENTRY */
-animateHomeEntry();
+/* INITIAL LOAD */
+animateHeaderHome();
 </script>
 
 </body>

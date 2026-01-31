@@ -35,12 +35,29 @@ body{
   background:
     linear-gradient(rgba(11,11,13,.75), rgba(11,11,13,.7)),
     url("reloj1.jpg") center / cover no-repeat;
-  z-index:-1;
+  z-index:-1; /* Ajustado para no bloquear la interacción */
   opacity:0;
   animation:bgFadeIn 1.4s ease forwards;
   pointer-events:none;
 }
 @keyframes bgFadeIn{ to{opacity:1;} }
+
+/* ===== GLOBAL SECTION FADE ===== */
+.section-fade{
+  position:fixed;
+  inset:0;
+  background:rgba(11,11,13,.9);
+  z-index:1; /* Ajustado para no bloquear los botones */
+  opacity:0;
+  pointer-events:none;
+}
+.section-fade.active{
+  animation:sectionFade 1.4s cubic-bezier(.4,0,.2,1) forwards;
+}
+@keyframes sectionFade{
+  from{opacity:1}
+  to{opacity:0}
+}
 
 /* ===== HEADER ===== */
 header{
@@ -51,36 +68,50 @@ header{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  z-index:1000;
+  z-index:1000; /* Aseguramos que el header esté encima de todos los elementos interactivos */
+  opacity:1;
+  transform:translateY(0);
 }
 
 .logo{
   font-size:16px;
   letter-spacing:.3em;
   font-weight:500;
+  opacity:1;
+  transform:translateX(0);
   animation:logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards;
 }
-@keyframes logoInLeft{
-  from{opacity:0;transform:translateX(-60px)}
-  to{opacity:1;transform:none}
+
+/* Animación de entrada para el logo */
+@keyframes logoInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 nav{
   display:flex;
   gap:36px;
+  align-items:center;
 }
 
 nav a{
   font-size:11px;
   letter-spacing:.18em;
   text-transform:uppercase;
-  cursor:pointer;
   position:relative;
   padding-bottom:6px;
+  cursor:pointer;
   opacity:0;
   transform:translateY(-12px);
-  animation:navIn .55s ease forwards;
+  animation:navIn 0.55s ease forwards;
 }
+
 nav a:nth-child(1){animation-delay:.25s}
 nav a:nth-child(2){animation-delay:.33s}
 nav a:nth-child(3){animation-delay:.41s}
@@ -88,7 +119,7 @@ nav a:nth-child(4){animation-delay:.49s}
 nav a:nth-child(5){animation-delay:.57s}
 nav a:nth-child(6){animation-delay:.65s}
 
-@keyframes navIn{to{opacity:1;transform:none}}
+@keyframes navIn{ to{opacity:1;transform:translateY(0);} }
 
 nav a::after{
   content:"";
@@ -96,48 +127,71 @@ nav a::after{
   left:0;
   right:.18em;
   bottom:0;
-  height:1px;
+  height:1px;  /* Grosor de la línea */
   background:#fff;
   transform:scaleX(0);
   transform-origin:left;
   transition:.3s;
 }
+
 nav a.active::after,
-nav a:hover::after{transform:scaleX(1)}
+nav a:hover::after{
+  transform:scaleX(1);
+}
 
 /* ===== LANGUAGE ===== */
 .lang-switch{
   display:flex;
   gap:20px;
-  animation:langFadeRight 1s cubic-bezier(.4,0,.2,1) forwards;
+  align-items:center;
+  opacity:0;
+  animation:langFadeRight 1s cubic-bezier(.4,0,.2,1) forwards; /* Animación de los botones de idioma entrando desde la derecha */
 }
+
 @keyframes langFadeRight{
-  from{opacity:0;transform:translateX(40px)}
-  to{opacity:1;transform:none}
+  from{
+    opacity:0;
+    transform:translateX(100%); /* Los botones entran desde la derecha */
+  }
+  to{
+    opacity:1;
+    transform:translateX(0); /* Se posicionan en su lugar final */
+  }
 }
+
 .lang-switch button{
   background:none;
   border:none;
   color:#fff;
   font-size:11px;
   letter-spacing:.18em;
+  text-transform:uppercase;
   cursor:pointer;
-  padding-bottom:6px;
   position:relative;
+  padding-bottom:6px;
+  opacity:1; /* Aseguramos que no haya fundido */
 }
+
+/* Línea decorativa debajo de los botones de idioma con grosor de 1px */
 .lang-switch button::after{
   content:"";
   position:absolute;
   left:0;
   right:0;
   bottom:0;
-  height:1px;
+  height:1px; /* Grosor de la línea igual al de los títulos del header */
   background:#fff;
   transform:scaleX(0);
   transform-origin:left;
   transition:.3s;
 }
-.lang-switch button.active::after{transform:scaleX(1)}
+
+.lang-switch button.active::after,
+lang-switch button:hover::after{
+  transform:scaleX(1); /* La línea se expande cuando el botón es activo o se pasa el ratón */
+}
+
+.lang-switch button.active{opacity:1}
 
 /* ===== SECTIONS ===== */
 .section{
@@ -156,20 +210,46 @@ nav a:hover::after{transform:scaleX(1)}
   gap:26px;
 }
 
+/* ABOUT ADJUST */
+#about .content{
+  max-width:1035px;
+  transform:translateY(15px);
+}
+
 /* ===== TEXT ===== */
 h1{
   font-size:44px;
   font-weight:600;
+  max-width:32ch;
 }
+.title-line{display:block}
+
 h2{
   font-size:28px;
   font-weight:600;
 }
+
 p{
   color:var(--muted);
   font-size:14px;
   line-height:1.8;
   text-align:justify;
+}
+
+/* ===== ABOUT LAYOUT ===== */
+.about-layout{
+  display:flex;
+  gap:60px;
+  align-items:flex-start;
+}
+
+.about-image img{
+  width:335px;
+  display:block;
+}
+
+.about-image{
+  margin-top: 20px;
 }
 
 /* ===== ANIMATIONS ===== */
@@ -180,30 +260,41 @@ p{
 }
 .delay-1{animation-delay:.35s}
 .delay-2{animation-delay:.6s}
-@keyframes fadeUp{to{opacity:1;transform:none}}
+
+@keyframes fadeUp{
+  to{opacity:1;transform:translateY(0);}
+}
 
 .photo-in{
   opacity:0;
-  transform:translateX(40px) scale(.95);
+  transform:translateX(48px) scale(.95);
   animation:photoIn 1.1s cubic-bezier(.22,.61,.36,1) forwards;
   animation-delay:.75s;
 }
-@keyframes photoIn{to{opacity:1;transform:none}}
-
-/* ===== ABOUT (CORREGIDO) ===== */
-.about-layout{
-  display:flex;
-  gap:60px;
-  align-items:flex-start; /* 🔥 ALINEACIÓN SUPERIOR */
+@keyframes photoIn{
+  to{opacity:1;transform:translateX(0) scale(1);}
 }
 
-.about-image{
-  flex-shrink:0;
-}
+/* ===== FOOTER ===== */
+footer{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  padding:18px 40px;
+  text-align:center;
+  font-size:11px;
+  letter-spacing:.08em;
+  color:#9a9a9a;
+  background-color:transparent; /* Fondo transparente */
+  pointer-events:none;
 
-.about-image img{
-  width:335px;
-  display:block;
+  opacity:0;
+  transform:translateY(20px);
+  animation:footerIn 1.4s cubic-bezier(.4,0,.2,1) forwards; /* Duración igual a la animación de entrada */
+  animation-delay:1.5s; /* Retraso reducido a 1.5 segundos */
+}
+@keyframes footerIn{
+  to{opacity:1;transform:translateY(0);}
 }
 
 /* ===== BUTTON ===== */
@@ -216,57 +307,149 @@ p{
   color:#000;
   font-weight:600;
   cursor:pointer;
+  align-self:flex-start;
   opacity:0;
   transform:translateY(24px);
-  animation:btnIn .6s cubic-bezier(.4,0,.2,1) forwards .9s;
+  animation:btnIn 0.6s cubic-bezier(.4,0,.2,1) forwards;
+  animation-delay:0.9s; /* Reduced delay */
 }
-@keyframes btnIn{to{opacity:1;transform:none}}
 
-/* ===== FOOTER ===== */
-footer{
-  position:fixed;
-  bottom:0;
-  width:100%;
-  padding:18px 40px;
-  text-align:center;
-  font-size:11px;
-  color:#9a9a9a;
-  opacity:0;
-  transform:translateY(20px);
-  animation:footerIn 1.4s cubic-bezier(.4,0,.2,1) forwards;
-  animation-delay:1.5s;
+@keyframes btnIn{
+  to{opacity:1;transform:translateY(0);}
 }
-@keyframes footerIn{to{opacity:1;transform:none}}
+
+/* ===== PORTFOLIO STYLING ===== */
+.project-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.project-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+
+.project-item:hover {
+  transform: scale(1.05);
+}
+
+.project-img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.project-item:hover .project-img {
+  opacity: 0.7;
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  border-radius: 15px;
+}
+
+.project-item:hover .project-overlay {
+  opacity: 1;
+}
+
+/* ===== CV STYLING ===== */
+.cv-details {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.cv-column {
+  width: 32%;
+}
+
+.cv-column h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.cv-column ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cv-column li {
+  margin-bottom: 12px;
+}
+
+.cv-column li strong {
+  font-weight: 600;
+}
+
+.cv-column li span {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.cv-column i {
+  margin-right: 8px;
+  color: #fff;
+}
 </style>
 </head>
 
 <body>
 
 <div class="bg-layer"></div>
+<div class="section-fade"></div>
 
 <header>
   <div class="logo" id="logo-home">L · BIB</div>
 
   <nav>
-    <a class="active" onclick="changeSection('home',this)">Inicio</a>
-    <a onclick="changeSection('about',this)">Sobre mí</a>
-    <a onclick="changeSection('portfolio',this)">Portfolio</a>
-    <a onclick="changeSection('cv',this)">CV</a>
-    <a onclick="changeSection('skills',this)">Habilidades</a>
-    <a onclick="changeSection('contact',this)">Contacto</a>
+    <a class="active" onclick="changeSection('home',this)" data-i18n="nav_home">Inicio</a>
+    <a onclick="changeSection('about',this)" data-i18n="nav_about">Sobre mí</a>
+    <a onclick="changeSection('portfolio',this)" data-i18n="nav_portfolio">Portfolio</a>
+    <a onclick="changeSection('cv',this)" data-i18n="nav_cv">CV</a>
+    <a onclick="changeSection('skills',this)" data-i18n="nav_skills">Habilidades</a>
+    <a onclick="changeSection('contact',this)" data-i18n="nav_contact">Contacto</a>
   </nav>
 
   <div class="lang-switch">
-    <button class="active">ES</button>
-    <button>EN</button>
+    <button class="active" onclick="changeLang('es')">ES</button>
+    <button onclick="changeLang('en')">EN</button>
   </div>
 </header>
 
 <section id="home" class="section active">
   <div class="content">
-    <h1 class="fade-up">Diseño Industrial<br>y Desarrollo de Producto</h1>
-    <p class="fade-up delay-1">Perfil técnico y creativo enfocado en producto.</p>
-    <button class="btn" onclick="changeSection('portfolio',document.querySelector('nav a:nth-child(3)'))">
+    <h1 class="fade-up">
+      <span class="title-line" data-i18n="home_title_1">Diseño Industrial</span>
+      <span class="title-line" data-i18n="home_title_2">y Desarrollo de Producto</span>
+    </h1>
+
+    <p class="fade-up delay-1" data-i18n="home_sub">
+      Perfil técnico y creativo enfocado en producto.
+    </p>
+
+    <button class="btn fade-up delay-2" data-i18n="home_btn" onclick="changeSection('portfolio', this)">
       Ver proyectos
     </button>
   </div>
@@ -274,15 +457,100 @@ footer{
 
 <section id="about" class="section">
   <div class="content">
-    <h2 class="fade-up">Sobre mí</h2>
+    <h2 class="fade-up" data-i18n="about_title">Sobre mí</h2>
+
     <div class="about-layout">
-      <p class="fade-up delay-1">
-        Hola, soy Luis, estudiante de Diseño Industrial en la UPV. Me considero una persona
-        ecléctica y perfeccionista, con una base técnica sólida en electricidad y una fuerte
-        orientación al diseño de producto.
+      <p class="fade-up delay-1" data-i18n="about_text">
+        Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV, actualmente en mi último año. Vivo en Valencia y me considero una persona con una mente ecléctica y perfeccionista, siempre interesada en encontrar el equilibrio entre lo técnico y lo estético. Desde pequeño he tenido curiosidad por entender cómo funcionan las cosas, y mi formación profesional en el sector de la electricidad me permitió adquirir una base técnica sólida que hoy aplico al diseño y desarrollo de producto. Disfruto especialmente del proceso completo de diseño, desde la idea inicial hasta la definición técnica y el detalle final, y tengo una necesidad constante de estar creando y resolviendo. Si algo no me sale, no paro hasta encontrar la solución, porque para mí el proceso es tan importante como el resultado final. Como dato curioso, me interesa especialmente el campo de la impresión 3D, ya que me permite experimentar directamente con el diseño y validar conceptos de la manera más rápida y precisa.
       </p>
+
       <div class="about-image photo-in">
-        <img src="foto.jpg" alt="Luis">
+        <img src="foto.jpg" alt="Foto de Luis">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio" class="section">
+  <div class="content">
+    <h2 class="fade-up" data-i18n="portfolio_title">Portfolio</h2>
+
+    <p class="fade-up delay-1" data-i18n="portfolio_description">
+      A continuación, te presento algunos de los proyectos más destacados en los que he trabajado, donde cada uno refleja mi enfoque creativo, técnico y mi atención al detalle.
+    </p>
+
+    <div class="project-gallery fade-up delay-2">
+      <div class="project-item">
+        <img src="proyecto1.jpg" alt="Proyecto 1" class="project-img">
+        <div class="project-overlay">
+          <h3>Diseño de Lámpara Moderna</h3>
+          <p>Un diseño único que fusiona funcionalidad y estética, inspirado en formas orgánicas.</p>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <img src="proyecto2.jpg" alt="Proyecto 2" class="project-img">
+        <div class="project-overlay">
+          <h3>Mobiliario para Oficina</h3>
+          <p>Creación de mobiliario ergonómico con materiales sostenibles, enfocado en la productividad.</p>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <img src="proyecto3.jpg" alt="Proyecto 3" class="project-img">
+        <div class="project-overlay">
+          <h3>Rediseño de Producto</h3>
+          <p>Optimización de producto para mejorar su funcionalidad y experiencia del usuario.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cv" class="section">
+  <div class="content">
+    <h2 class="fade-up" data-i18n="cv_title">Currículum Vitae</h2>
+
+    <p class="fade-up delay-1" data-i18n="cv_description">
+      Aquí podrás ver una descripción general de mi trayectoria académica y profesional. He adquirido una experiencia valiosa tanto en el ámbito académico como en el mundo real, enfrentando retos de diseño innovadores.
+    </p>
+
+    <div class="cv-details fade-up delay-2">
+      <div class="cv-column">
+        <h3>Educación</h3>
+        <ul>
+          <li>
+            <strong>Universidad Politécnica de Valencia</strong><br>
+            <span>Grado en Diseño Industrial (2022-2026)</span>
+          </li>
+          <li>
+            <strong>Formación Profesional en Electricidad</strong><br>
+            <span>Formación técnica en el sector eléctrico, que me ha proporcionado una sólida base técnica.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="cv-column">
+        <h3>Experiencia Profesional</h3>
+        <ul>
+          <li>
+            <strong>Prácticas en Sixay</strong><br>
+            <span>Diseño de mobiliario personalizado y gestión de proyectos en una empresa de diseño líder.</span>
+          </li>
+          <li>
+            <strong>Freelance</strong><br>
+            <span>Desarrollo de proyectos de diseño de productos para clientes individuales, con enfoque en la funcionalidad y la estética.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="cv-column">
+        <h3>Habilidades Técnicas</h3>
+        <ul>
+          <li><i class="fas fa-cogs"></i> Diseño asistido por computadora (CAD)</li>
+          <li><i class="fas fa-3d"></i> Impresión 3D y prototipado rápido</li>
+          <li><i class="fas fa-pen"></i> Modelado 3D y renderizado</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -293,23 +561,143 @@ footer{
 </footer>
 
 <script>
-function changeSection(id, link){
-  if(document.getElementById(id).classList.contains('active')) return;
+let currentLang = 'es';
 
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+const translations = {
+  es:{
+    nav_home:"Inicio",
+    nav_about:"Sobre mí",
+    nav_portfolio:"Portfolio",
+    nav_cv:"CV",
+    nav_skills:"Habilidades",
+    nav_contact:"Contacto",
+    home_title_1:"Diseño Industrial",
+    home_title_2:"y Desarrollo de Producto",
+    home_sub:"Perfil técnico y creativo enfocado en producto.",
+    home_btn:"Ver proyectos",
+    about_title:"Sobre mí",
+    about_text:"Hola, soy Luis, tengo 24 años y soy estudiante de Diseño Industrial en la UPV, actualmente en mi último año. Vivo en Valencia y me considero una persona con una mente ecléctica y perfeccionista, siempre interesada en encontrar el equilibrio entre lo técnico y lo estético. Desde pequeño he tenido curiosidad por entender cómo funcionan las cosas, y mi formación profesional en el sector de la electricidad me permitió adquirir una base técnica sólida que hoy aplico al diseño y desarrollo de producto. Disfruto especialmente del proceso completo de diseño, desde la idea inicial hasta la definición técnica y el detalle final, y tengo una necesidad constante de estar creando y resolviendo. Si algo no me sale, no paro hasta encontrar la solución, porque para mí el proceso es tan importante como el resultado final. Como dato curioso, me interesa especialmente el campo de la impresión 3D, ya que me permite experimentar directamente con el diseño y validar conceptos de la manera más rápida y precisa.",
+    footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial"
+  },
+  en:{
+    nav_home:"Home",
+    nav_about:"About",
+    nav_portfolio:"Portfolio",
+    nav_cv:"CV",
+    nav_skills:"Skills",
+    nav_contact:"Contact",
+    home_title_1:"Industrial Design",
+    home_title_2:"and Product Development",
+    home_sub:"Technical and creative profile focused on product.",
+    home_btn:"View projects",
+    about_title:"About me",
+    about_text:"Hi, I’m Luis, I’m 24 years old and an Industrial Design student at UPV, currently in my final year. I live in Valencia and consider myself an eclectic and perfectionist person, always interested in finding the balance between technical precision and aesthetics. From an early age, I’ve been curious about how things work, and my vocational training in the electrical sector gave me a solid technical foundation that I now apply to product design and development. I especially enjoy the complete design process, from the initial idea to technical definition and final detailing, and I have a constant need to keep creating and solving problems. If something doesn’t work, I don’t stop until I find the solution, because for me the process is just as important as the final result. As a curious fact, I’m particularly interested in the field of 3D printing, as it allows me to directly experiment with design and validate concepts in the fastest and most precise way.",
+    footer:"© 2026 · Luis Blasco-Ibáñez Berbel · Industrial Design Engineering"
+  }
+};
+
+function resetAnimations(scope=document){
+  scope.querySelectorAll('.fade-up, .photo-in').forEach(el=>{
+    const c = el.className;
+    el.className = c.replace(/fade-up|delay-1|delay-2|photo-in/g,'').trim();
+    void el.offsetHeight; // force reflow
+    el.className = c;
+  });
+
+  // Reset header and nav link animations (cascading effect)
+  scope.querySelectorAll('.logo, nav a').forEach((el, index) => {
+    el.style.animation = 'none'; // remove current animation
+    void el.offsetHeight; // force reflow
+    el.style.animation = `navIn 0.55s ease forwards ${index * 0.08}s`; // apply cascading effect
+  });
+
+  // Reset button animation (faster entry)
+  const button = scope.querySelector('.btn');
+  button.style.animation = 'none';
+  void button.offsetHeight;
+  button.style.animation = `btnIn 0.6s cubic-bezier(.4,0,.2,1) forwards 0.8s`; // Reduced delay
+
+  // Reset language button animation (from right)
+  const langButtons = scope.querySelectorAll('.lang-switch button');
+  langButtons.forEach((btn, index) => {
+    btn.style.animation = 'none';
+    void btn.offsetHeight;
+    btn.style.animation = `langFadeRight 1s cubic-bezier(.4,0,.2,1) forwards`; // Apply same timing for both buttons
+  });
+
+  // Reset logo animation (same as initial entry)
+  const logo = scope.querySelector('.logo');
+  logo.style.animation = 'none'; 
+  void logo.offsetHeight; // force reflow
+  logo.style.animation = 'logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards'; // Reapply the same animation on language change
+
+  // Reset header animation
+  scope.querySelectorAll('header').forEach(el => {
+    el.style.animation = 'none';
+    void el.offsetHeight;
+    el.style.animation = '';
+  });
+
+  // Reset footer animation (triggered on button click)
+  scope.querySelectorAll('footer').forEach(el => {
+    el.style.animation = 'none';
+    void el.offsetHeight; 
+    el.style.animation = 'footerIn 1.4s cubic-bezier(.4,0,.2,1) forwards'; // Apply same animation for all footers
+    el.style.animationDelay = '1.5s'; // Retraso reducido a 1.5 segundos
+  });
+}
+
+function changeLang(lang){
+  if(lang === currentLang) return;
+  currentLang = lang;
+
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    el.textContent = translations[lang][el.dataset.i18n];
+  });
+
+  document.querySelectorAll('.lang-switch button').forEach(b=>b.classList.remove('active'));
+  document.querySelector(`.lang-switch button[onclick*="${lang}"]`).classList.add('active');
+
+  resetAnimations(); // Reset animations when changing language
+}
+
+function changeSection(id, link) {
+  // Verificar si ya estamos en la misma sección
+  if (document.getElementById(id).classList.contains('active')) return;
+
+  // Desactivar todas las secciones
+  document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
+  // Activar la sección correspondiente
   document.getElementById(id).classList.add('active');
+  // Desactivar la clase active en todos los enlaces
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+  // Activar la clase active en el enlace correspondiente
+  link.classList.add('active'); // Aseguramos que el enlace activo tiene la línea debajo
+  
+  // Si es la sección de Portfolio, aplicamos la clase active al enlace de Portfolio
+  if (id === 'portfolio') {
+    const portfolioLink = document.querySelector('nav a:nth-child(3)');
+    portfolioLink.classList.add('active'); // Asegura que la línea decorativa esté activa
+  }
+  
+  // Ocultar el logo en todas las secciones excepto Home
+  const logo = document.getElementById('logo-home');
+  if (id !== 'home') {
+    logo.style.visibility = 'hidden';
+  } else {
+    logo.style.visibility = 'visible';
+    // Reaplicar la animación al logo cuando se entra en Home
+    logo.style.animation = 'none'; // Para reiniciar la animación
+    void logo.offsetHeight; // Fuerza el reflujo del DOM
+    logo.style.animation = 'logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards'; // Reaplica la animación de entrada
+  }
 
-  document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
-  if(link) link.classList.add('active');
-
-  const logo=document.getElementById('logo-home');
-  logo.style.visibility = id === 'home' ? 'visible' : 'hidden';
-
-  const footer=document.querySelector('footer');
-  footer.style.animation='none';
-  void footer.offsetHeight;
-  footer.style.animation='footerIn 1.4s cubic-bezier(.4,0,.2,1) forwards';
-  footer.style.animationDelay='1.5s';
+  // Mostrar el footer con animación cada vez que se cambie de sección
+  const footer = document.querySelector('footer');
+  footer.style.animation = 'none';
+  void footer.offsetHeight; // Fuerza el reflujo del DOM
+  footer.style.animation = 'footerIn 1.4s cubic-bezier(.4,0,.2,1) forwards'; // Duración igual a la animación de entrada
+  footer.style.animationDelay = '1.5s'; // Retraso reducido a 1.5 segundos
 }
 </script>
 

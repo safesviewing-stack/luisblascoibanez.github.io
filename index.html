@@ -1,216 +1,283 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Portfolio · Industrial Design</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Portfolio · Industrial Design</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    :root{
+      --bg:#0b0b0d;
+      --white:#ffffff;
+      --muted:#cfcfcf;
+    }
 
-<style>
-:root{
-  --bg:#0b0b0d;
-  --white:#ffffff;
-  --muted:#cfcfcf;
-}
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Inter, system-ui, sans-serif;
+    }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
+    body{
+      background:var(--bg);
+      color:var(--white);
+      overflow:hidden;
+    }
 
-body{background:var(--bg);color:#fff;overflow:hidden}
+    /* BACKGROUND */
+    .bg-layer{
+      position:fixed;
+      inset:0;
+      background:linear-gradient(rgba(11,11,13,.75), rgba(11,11,13,.7)),
+      url("reloj1.jpg") center/cover no-repeat;
+      opacity:0;
+      animation:bgFadeIn 1.4s forwards;
+      pointer-events:none;
+      z-index:-1;
+    }
+    @keyframes bgFadeIn{ to{ opacity:1; } }
 
-/* BACKGROUND */
-.bg-layer{
-  position:fixed;inset:0;
-  background:linear-gradient(rgba(11,11,13,.75),rgba(11,11,13,.7)),
-  url("reloj1.jpg") center/cover no-repeat;
-  opacity:0;animation:bgFadeIn 1.4s forwards;
-  pointer-events:none;z-index:-1
-}
-@keyframes bgFadeIn{to{opacity:1}}
+    /* HEADER */
+    header{
+      position:fixed;
+      top:0;
+      width:100%;
+      padding:34px 40px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      z-index:1000;
+    }
 
-/* HEADER */
-header{
-  position:fixed;top:0;width:100%;
-  padding:34px 40px;
-  display:flex;justify-content:space-between;align-items:center;
-  z-index:1000
-}
+    .logo{
+      font-size:16px;
+      letter-spacing:.3em;
+      font-weight:500;
+      animation:logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards;
+    }
+    @keyframes logoInLeft {
+      from { opacity:0; transform:translateX(-100%); }
+      to { opacity:1; transform:translateX(0); }
+    }
 
-.logo{
-  font-size:16px;letter-spacing:.3em;
-  animation:logoInLeft 1s cubic-bezier(.4,0,.2,1) forwards
-}
-@keyframes logoInLeft{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:none}}
+    nav{
+      display:flex;
+      gap:36px;
+      align-items:center;
+    }
 
-nav{display:flex;gap:36px}
-nav a{
-  font-size:11px;letter-spacing:.18em;
-  text-transform:uppercase;
-  cursor:pointer;position:relative;
-  padding-bottom:6px;
-  opacity:0;transform:translateY(-10px);
-  animation:navIn .55s forwards
-}
-nav a:nth-child(n){animation-delay:.3s}
-@keyframes navIn{to{opacity:1;transform:none}}
+    nav a{
+      font-size:11px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      cursor:pointer;
+      position:relative;
+      padding-bottom:6px;
+      opacity:0;
+      transform:translateY(-10px);
+      animation:navIn .55s forwards;
+    }
+    nav a:nth-child(n){animation-delay:.3s}
+    @keyframes navIn{ to { opacity:1; transform: translateY(0); } }
 
-nav a::after{
-  content:"";position:absolute;left:0;right:0;bottom:0;
-  height:1px;background:#fff;
-  transform:scaleX(0);transition:.3s
-}
-nav a.active::after,nav a:hover::after{transform:scaleX(1)}
-nav a.active{cursor:default}
+    nav a::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:0;
+      height:1px;
+      background:#fff;
+      transform:scaleX(0);
+      transform-origin:left;
+      transition:.3s;
+    }
+    nav a.active::after,
+    nav a:hover::after{
+      transform:scaleX(1);
+    }
+    nav a.active { cursor:default; }
 
-/* LANGUAGE */
-.lang-switch{display:flex;gap:16px}
-.lang-switch button{
-  background:none;border:none;color:#fff;
-  font-size:11px;letter-spacing:.18em;
-  cursor:pointer;position:relative
-}
-.lang-switch button::after{
-  content:"";position:absolute;left:0;right:0;bottom:-2px;
-  height:1px;background:#fff;
-  transform:scaleX(0);transition:.3s
-}
-.lang-switch button.active::after{transform:scaleX(1)}
+    /* LANGUAGE */
+    .lang-switch{
+      display:flex;
+      gap:16px;
+    }
+    .lang-switch button{
+      background:none;
+      border:none;
+      color:#fff;
+      font-size:11px;
+      letter-spacing:.18em;
+      cursor:pointer;
+      position:relative;
+    }
+    .lang-switch button::after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:-2px;
+      height:1px;
+      background:#fff;
+      transform:scaleX(0);
+      transition:.3s;
+    }
+    .lang-switch button.active::after{ transform:scaleX(1); }
 
-/* SECTIONS */
-.section{
-  position:absolute;inset:0;
-  display:none;align-items:center
-}
-.section.active{display:flex}
+    /* SECTIONS */
+    .section{
+      position:absolute;
+      inset:0;
+      display:none;
+      align-items:center;
+    }
+    .section.active{
+      display:flex;
+    }
 
-.content{
-  margin-left:clamp(120px,16vw,240px);
-  max-width:960px;display:flex;
-  flex-direction:column;gap:26px
-}
+    .content{
+      margin-left:clamp(120px,16vw,240px);
+      max-width:960px;
+      display:flex;
+      flex-direction:column;
+      gap:26px;
+    }
 
-/* TEXT */
-h1{font-size:44px;font-weight:600}
-h2{font-size:28px;font-weight:600}
-p{color:var(--muted);font-size:14px;line-height:1.8}
+    /* TEXT */
+    h1{ font-size:44px; font-weight:600; }
+    h2{ font-size:28px; font-weight:600; }
+    p{ color:var(--muted); font-size:14px; line-height:1.8; }
 
-/* ANIMATIONS */
-.fade-up{opacity:0;transform:translateY(20px);animation:fadeUp .8s forwards}
-.delay-1{animation-delay:.3s}
-.delay-2{animation-delay:.6s}
-@keyframes fadeUp{to{opacity:1;transform:none}}
+    /* ANIMATIONS */
+    .fade-up{
+      opacity:0;
+      transform:translateY(20px);
+      animation:fadeUp .8s forwards;
+    }
+    .delay-1{ animation-delay:.3s; }
+    .delay-2{ animation-delay:.6s; }
+    @keyframes fadeUp{
+      to { opacity:1; transform: translateY(0); }
+    }
 
-.btn{
-  padding:14px 34px;border-radius:40px;
-  background:#fff;border:none;
-  font-weight:600;cursor:pointer;
-  animation:fadeUp .6s .8s forwards
-}
+    .btn{
+      padding:14px 34px;
+      border-radius:40px;
+      background:#fff;
+      border:none;
+      font-weight:600;
+      cursor:pointer;
+      animation:fadeUp .6s .8s forwards;
+    }
 
-/* FOOTER */
-footer{
-  position:fixed;bottom:0;width:100%;
-  padding:18px;text-align:center;
-  font-size:11px;color:#9a9a9a;
-  opacity:0;transform:translateY(20px);
-  animation:footerIn 1.4s forwards;
-  animation-delay:2.8s;
-  pointer-events:none
-}
-@keyframes footerIn{to{opacity:1;transform:none}}
-</style>
+    /* FOOTER */
+    footer{
+      position:fixed;
+      bottom:0;
+      width:100%;
+      padding:18px;
+      text-align:center;
+      font-size:11px;
+      letter-spacing:.08em;
+      color:#9a9a9a;
+      opacity:0;
+      transform:translateY(20px);
+      animation:footerIn 1.4s forwards;
+      animation-delay:2.5s;
+      pointer-events:none;
+    }
+    @keyframes footerIn{ to { opacity:1; transform:translateY(0); } }
+
+  </style>
 </head>
 
 <body>
 
-<div class="bg-layer"></div>
+  <div class="bg-layer"></div>
 
-<header>
-  <div class="logo" id="logo-home">L · BIB</div>
+  <header>
+    <div class="logo" id="logo-home">L · BIB</div>
+    <nav>
+      <a class="active" onclick="changeSection('home',this)">Inicio</a>
+      <a onclick="changeSection('about',this)">Sobre mí</a>
+      <a onclick="changeSection('portfolio',this)">Portfolio</a>
+      <a onclick="changeSection('cv',this)">CV</a>
+    </nav>
+    <div class="lang-switch">
+      <button class="active" onclick="changeLang('es')">ES</button>
+      <button onclick="changeLang('en')">EN</button>
+    </div>
+  </header>
 
-  <nav>
-    <a class="active" onclick="changeSection('home',this)">Inicio</a>
-    <a onclick="changeSection('about',this)">Sobre mí</a>
-    <a onclick="changeSection('portfolio',this)">Portfolio</a>
-    <a onclick="changeSection('cv',this)">CV</a>
-  </nav>
+  <section id="home" class="section active">
+    <div class="content">
+      <h1 class="fade-up">Diseño Industrial<br>y Desarrollo de Producto</h1>
+      <p class="fade-up delay-1">Perfil técnico y creativo enfocado en producto.</p>
+      <button class="btn" onclick="changeSection('portfolio',document.querySelector('nav a:nth-child(3)'))">Ver proyectos</button>
+    </div>
+  </section>
 
-  <div class="lang-switch">
-    <button class="active" onclick="changeLang('es')">ES</button>
-    <button onclick="changeLang('en')">EN</button>
-  </div>
-</header>
+  <section id="about" class="section">
+    <div class="content">
+      <h2 class="fade-up">Sobre mí</h2>
+      <p class="fade-up delay-1">Soy un diseñador industrial enfocado en la funcionalidad y la estética del producto.</p>
+    </div>
+  </section>
 
-<section id="home" class="section active">
-  <div class="content">
-    <h1 class="fade-up">Diseño Industrial<br>y Desarrollo de Producto</h1>
-    <p class="fade-up delay-1">Perfil técnico y creativo enfocado en producto.</p>
-    <button class="btn" onclick="changeSection('portfolio',document.querySelector('nav a:nth-child(3)'))">
-      Ver proyectos
-    </button>
-  </div>
-</section>
+  <section id="portfolio" class="section">
+    <div class="content">
+      <h2 class="fade-up">Portfolio</h2>
+      <p class="fade-up delay-1">Selección de mis proyectos destacados.</p>
+    </div>
+  </section>
 
-<section id="about" class="section">
-  <div class="content">
-    <h2 class="fade-up">Sobre mí</h2>
-    <p class="fade-up delay-1">
-      Diseñador industrial con perfil técnico y atención obsesiva al detalle.
-    </p>
-  </div>
-</section>
+  <section id="cv" class="section">
+    <div class="content">
+      <h2 class="fade-up">Currículum Vitae</h2>
+      <p class="fade-up delay-1">Mi trayectoria académica y profesional.</p>
+    </div>
+  </section>
 
-<section id="portfolio" class="section">
-  <div class="content">
-    <h2 class="fade-up">Portfolio</h2>
-    <p class="fade-up delay-1">Selección de proyectos destacados.</p>
-  </div>
-</section>
+  <footer>
+    © 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial
+  </footer>
 
-<section id="cv" class="section">
-  <div class="content">
-    <h2 class="fade-up">Currículum</h2>
-    <p class="fade-up delay-1">Formación y experiencia profesional.</p>
-  </div>
-</section>
+  <script>
+    let currentSection = 'home';
+    let currentLang = 'es';
 
-<footer>
-  © 2026 · Luis Blasco-Ibáñez Berbel · Ingeniería en diseño industrial
-</footer>
+    function changeSection(id, link) {
+      if (id === currentSection) return;
+      currentSection = id;
 
-<script>
-let currentSection = 'home'
-let currentLang = 'es'
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
 
-function changeSection(id, link){
-  if(id === currentSection) return
-  currentSection = id
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      link.classList.add('active');
 
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'))
-  document.getElementById(id).classList.add('active')
+      const logo = document.getElementById('logo-home');
+      logo.style.visibility = id === 'home' ? 'visible' : 'hidden';
 
-  document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'))
-  link.classList.add('active')
+      const footer = document.querySelector('footer');
+      footer.style.animation = 'none';
+      footer.offsetHeight;
+      footer.style.animation = 'footerIn 1.4s forwards';
+      footer.style.animationDelay = '2.5s';
+    }
 
-  const logo = document.getElementById('logo-home')
-  logo.style.visibility = id === 'home' ? 'visible' : 'hidden'
-
-  const footer = document.querySelector('footer')
-  footer.style.animation = 'none'
-  footer.offsetHeight
-  footer.style.animation = 'footerIn 1.4s forwards'
-  footer.style.animationDelay = '2.8s'
-}
-
-function changeLang(lang){
-  if(lang === currentLang) return
-  currentLang = lang
-  document.querySelectorAll('.lang-switch button')
-    .forEach(b=>b.classList.remove('active'))
-  event.target.classList.add('active')
-}
-</script>
+    function changeLang(lang) {
+      if (lang === currentLang) return;
+      currentLang = lang;
+      document.querySelectorAll('.lang-switch button').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+  </script>
 
 </body>
 </html>
